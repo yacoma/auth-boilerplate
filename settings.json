@@ -1,0 +1,10 @@
+{
+  "locale": {
+    "accepted_languages": ["en-GB", "en-US"],
+    "default_language": "en-US"
+  },
+  "jwtauth": {
+    "master_secret": "KSIJN3MmnjsJjndn9sjn049jsks",
+    "leeway": 10
+  }
+}

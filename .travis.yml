@@ -1,0 +1,16 @@
+language: python
+
+python: 3.5
+cache: pip
+env:
+    - TOXENV=py27
+    - TOXENV=py34
+    - TOXENV=py35
+    - TOXENV=pep8
+    - TOXENV=coverage
+before_install:
+    - pip install --upgrade pip setuptools
+install:
+    - pip install tox
+script:
+    - tox -e $TOXENV

@@ -1,0 +1,72 @@
+from datetime import datetime
+from argon2 import PasswordHasher
+from pony.orm import Database, Required, Optional, Set
+
+db = Database()
+
+
+class Root(object):
+    pass
+
+
+class Login(object):
+    pass
+
+
+class User(db.Entity):
+    _table_ = 'users'
+
+    nickname = Required(str, 255)
+    email = Required(str, 255, unique=True)
+    password = Required(str, 255)
+    language = Optional(str, 16)
+    creation_ip = Optional(str, 255)
+    groups = Set('Group')
+    create_time = Required(datetime, 0, default=datetime.utcnow)
+    access_time = Required(datetime, 0, default=datetime.utcnow)
+
+    def before_update(self):
+        self.access_time = datetime.now()
+
+    def update(self, payload={}):
+        update_payload = {}
+        for attribute, value in payload.items():
+            if attribute == 'groups':
+                for group_id in value:
+                    self.groups.add(Group[group_id])
+            elif attribute == 'password':
+                ph = PasswordHasher()
+                password_hash = ph.hash(value)
+                update_payload['password'] = password_hash
+            else:
+                update_payload[attribute] = value
+        self.set(**update_payload)
+
+    def remove(self):
+        self.delete()
+
+
+class Group(db.Entity):
+    name = Required(str, 255, unique=True)
+    basegroups = Set('Group', reverse='subgroups')
+    subgroups = Set('Group')
+    users = Set(User)
+
+    def before_insert(self):
+        self.basegroups.add(self)
+
+    def update(self, payload={}):
+        update_payload = {}
+        for attribute, value in payload.items():
+            if attribute == 'basegroups':
+                for group_id in value:
+                    self.basegroups.add(Group[group_id])
+            elif attribute == 'subgroups':
+                for group_id in value:
+                    self.subgroups.add(Group[group_id])
+            else:
+                update_payload[attribute] = value
+        self.set(**update_payload)
+
+    def remove(self):
+        self.delete()

@@ -1,0 +1,14 @@
+html {
+  font-size: 14px;
+}
+
+body {
+  background-color: #444;
+  overflow-y: hidden;
+}
+.ui.grid {
+  margin-top: 8rem;
+}
+.column {
+  max-width: 450px;
+}
