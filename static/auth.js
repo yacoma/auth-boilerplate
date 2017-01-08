@@ -28856,7 +28856,6 @@
 	    currentPage: null,
 	    lastVisited: null
 	  },
-	
 	  signals: {
 	    pageRouted: _routeTo2.default
 	  }
@@ -68796,17 +68795,22 @@
 	Object.defineProperty(exports, "__esModule", {
 	  value: true
 	});
-	exports.default = Private;
 	
 	var _react = __webpack_require__(6);
 	
 	var _react2 = _interopRequireDefault(_react);
 	
+	var _react3 = __webpack_require__(281);
+	
 	var _semanticUiReact = __webpack_require__(319);
 	
 	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 	
-	function Private() {
+	exports.default = (0, _react3.connect)({
+	  nickname: 'user.nickname'
+	}, function Private(_ref) {
+	  var nickname = _ref.nickname;
+	
 	  return _react2.default.createElement(
 	    _semanticUiReact.Grid,
 	    { centered: true },
@@ -68816,7 +68820,9 @@
 	      _react2.default.createElement(
 	        _semanticUiReact.Header,
 	        { as: 'h1', textAlign: 'center', color: 'blue' },
-	        'Private'
+	        'Hello ',
+	        nickname,
+	        '!'
 	      ),
 	      _react2.default.createElement(
 	        _semanticUiReact.Segment,
@@ -68825,7 +68831,7 @@
 	      )
 	    )
 	  );
-	}
+	});
 
 /***/ },
 /* 853 */

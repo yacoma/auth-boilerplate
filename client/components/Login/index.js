@@ -1,6 +1,8 @@
 import React from 'react'
 import {connect} from 'cerebral/react'
-import {Grid, Header, Icon, Form, Segment, Input, Button, Label, Message, Dimmer, Loader} from 'semantic-ui-react'
+import {
+  Grid, Header, Icon, Form, Segment, Input, Button, Label, Message, Dimmer, Loader
+} from 'semantic-ui-react'
 
 export default connect({
   signIn: 'user.signIn.**'
