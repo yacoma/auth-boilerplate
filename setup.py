@@ -24,7 +24,7 @@ setup(
     install_requires=[
         'more.jwtauth',
         'pony',
-        'argon2_cffi'
+        'argon2_cffi',
     ],
     extras_require=dict(
         test=[

@@ -22,7 +22,7 @@ def login(self, request):
     ph = PasswordHasher()
     u = User.get(email=email)
     valid_credentials = False
-    if u :
+    if u:
         try:
             ph.verify(u.password, password)
         except(VerifyMismatchError):
@@ -34,13 +34,13 @@ def login(self, request):
         @request.after
         def remember(response):
             admin = Group.get(name='Admin')
-            isAdmin = False
+            is_admin = False
             # Checks if user is member of Admin group or a group to which
             # belong Admin group (recursive).
             if u.groups and admin:
-                isAdmin = admin in u.groups.basegroups
+                is_admin = admin in u.groups.basegroups
             identity = morepath.Identity(email, nickname=u.nickname,
-                                         language=u.language, isAdmin=isAdmin)
+                                         language=u.language, isAdmin=is_admin)
             request.app.remember_identity(response, request, identity)
 
         return {

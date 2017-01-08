@@ -10,7 +10,7 @@ class App(morepath.App):
 
 
 with open('settings.json') as config:
-     settings_dict = json.load(config)
+    settings_dict = json.load(config)
 
 App.init_settings(settings_dict)
 
