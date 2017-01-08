@@ -68775,7 +68775,7 @@
 	      _react2.default.createElement(
 	        _semanticUiReact.Header,
 	        { as: 'h1', textAlign: 'center', color: 'blue' },
-	        'Login boilerplate'
+	        'Auth Boilerplate'
 	      ),
 	      _react2.default.createElement(
 	        _semanticUiReact.Segment,

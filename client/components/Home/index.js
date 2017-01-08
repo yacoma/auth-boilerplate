@@ -6,7 +6,7 @@ export default function Home () {
     <Grid centered>
       <Grid.Column>
         <Header as='h1' textAlign='center' color='blue'>
-          Login boilerplate
+          Auth Boilerplate
         </Header>
         <Segment padded size='big'>
           This is a a authentication boilerplate, which uses Morepath
