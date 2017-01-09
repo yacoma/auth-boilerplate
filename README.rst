@@ -7,7 +7,7 @@ Morepath REST server
 From inside the project directory create a clean Python environment with
 `virtualenv <https://virtualenv.pypa.io/en/latest>`_ and activate it::
 
-  $ virtualenv env
+  $ virtualenv -p python3 env
   $ source env/bin/activate
 
 After this you can install the package including dependencies using::
