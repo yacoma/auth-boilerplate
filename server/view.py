@@ -25,7 +25,7 @@ def login(self, request):
     if u:
         try:
             ph.verify(u.password, password)
-        except(VerifyMismatchError):
+        except VerifyMismatchError as e:
             pass
         else:
             valid_credentials = True
@@ -147,13 +147,27 @@ def group_collection_get(self, request):
 def group_collection_add(self, request):
     name = request.json.get('name')
     basegroup_ids = request.json.get('basegroups', [])
-    group = self.add(name=name, basegroup_ids=basegroup_ids)
 
-    @request.after
-    def after(response):
-        response.status = 201
+    if not Group.exists(name=name):
+        group = self.add(name=name, basegroup_ids=basegroup_ids)
 
-    return group.id
+        @request.after
+        def after(response):
+            response.status = 201
+
+        return {
+            '@id': request.class_link(Group, variables={'id': group.id}),
+            '@type': request.class_link(GroupCollection)
+        }
+
+    else:
+        @request.after
+        def after(response):
+            response.status = 409
+
+        return {
+            'integrityError': 'Group already exists'
+        }
 
 
 @App.json(model=Group, request_method='PUT')
