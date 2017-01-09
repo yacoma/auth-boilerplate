@@ -8,7 +8,7 @@ from .model import db, User, Group
 
 
 @db_session
-def add_admin():
+def add_admin():   # pragma: no cover
     if not User.exists():
         if not Group.exists(name='Admin'):
             admin = Group(name='Admin')

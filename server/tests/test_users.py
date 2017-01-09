@@ -1,4 +1,5 @@
 import json
+from argon2 import PasswordHasher
 from pony.orm import db_session
 from webtest import TestApp as Client
 
@@ -26,17 +27,50 @@ def setup_function(function):
     db.drop_all_tables(with_all_data=True)
     db.create_tables()
 
+    ph = PasswordHasher()
+
     with db_session:
         editor = Group(id=3, name='Editor')
         moderator = Group(id=2, name='Moderator', basegroups=[editor])
         admin = Group(id=1, name='Admin', basegroups=[moderator, editor])
 
         User(id=1, nickname='Leader', email='leader@example.com',
-             password='test1', groups=[admin])
+             password=ph.hash('test1'), groups=[admin])
         User(id=2, nickname='Mary', email='mary@example.com',
-             password='test2', groups=[moderator])
+             password=ph.hash('test2'), groups=[moderator])
         User(id=3, nickname='Mike', email='mike@example.com',
-             password='test3', groups=[editor])
+             password=ph.hash('test3'), groups=[editor])
+
+
+def test_login():
+    c = Client(App())
+
+    response = c.post(
+        '/login',
+        json.dumps({"email": "mary@example.com", "password": "false"}),
+        status=403
+    )
+    assert response.json == {
+        "validationError": "Invalid username or password"
+    }
+
+    response = c.post(
+        '/login',
+        json.dumps({"email": "not_exists@example.com", "password": "test2"}),
+        status=403
+    )
+    assert response.json == {
+        "validationError": "Invalid username or password"
+    }
+
+    response = c.post(
+        '/login',
+        json.dumps({"email": "mary@example.com", "password": "test2"})
+    )
+    assert response.json == {
+        "@id": "http://localhost/users/2",
+        "@type": "http://localhost/users"
+    }
 
 
 def test_user():
@@ -54,24 +88,30 @@ def test_user():
 
 def test_add_user():
     c = Client(App(), extra_environ=dict(REMOTE_ADDR='127.0.0.1'))
+
     new_user_json = json.dumps({
         "nickname": "NewUser",
         "email": "newuser@example.com",
         "password": "test7",
         "language": "de_DE"
     })
-    response = c.post('/users', new_user_json)
 
+    response = c.post('/users', new_user_json, status=201)
     assert response.json == {
         "@id": "http://localhost/users/4",
         "@type": "http://localhost/users"
     }
-
     with db_session:
         assert User.exists(nickname='NewUser')
         assert User.get(nickname='NewUser').language == 'de_DE'
         assert User.get(nickname='NewUser').creation_ip == '127.0.0.1'
 
+    response = c.post('/users', new_user_json, status=409)
+    assert response.json == {
+        "integrityError": "Email already exists"
+    }
+
+    with db_session:
         editor_id = Group.get(name='Editor').get_pk()
         new_editor_json = json.dumps({
             "nickname": "NewEditor",
@@ -94,6 +134,13 @@ def test_update_user():
 
     with db_session:
         assert User[1].nickname == "Guru"
+
+    update_user_json = json.dumps({"password": "secret0"})
+    c.put('/users/1', update_user_json)
+
+    ph = PasswordHasher()
+    with db_session:
+        assert ph.verify(User[1].password, 'secret0')
 
         moderator_id = Group.get(name='Moderator').get_pk()
         update_user_json = json.dumps({"groups": [moderator_id]})

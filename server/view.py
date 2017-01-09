@@ -25,7 +25,7 @@ def login(self, request):
     if u:
         try:
             ph.verify(u.password, password)
-        except VerifyMismatchError as e:
+        except VerifyMismatchError:
             pass
         else:
             valid_credentials = True
