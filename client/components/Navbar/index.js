@@ -1,9 +1,10 @@
 import React from 'react'
 import {connect} from 'cerebral/react'
+import {state} from 'cerebral/tags'
 import {Menu, Container, Button} from 'semantic-ui-react'
 
 export default connect({
-  currentPage: 'app.currentPage'
+  currentPage: state`app.currentPage`
 },
   function Navbar ({currentPage}) {
     return (

@@ -1,9 +1,10 @@
 import React from 'react'
 import {connect} from 'cerebral/react'
+import {state} from 'cerebral/tags'
 import {Grid, Header, Segment} from 'semantic-ui-react'
 
 export default connect({
-  nickname: 'user.nickname'
+  nickname: state`user.nickname`
 },
   function Private ({nickname}) {
     return (

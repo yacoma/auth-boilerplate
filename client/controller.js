@@ -1,5 +1,5 @@
 import {Controller} from 'cerebral'
-import {input} from 'cerebral/operators'
+import {input} from 'cerebral/tags'
 import Devtools from 'cerebral/devtools'
 import Router from 'cerebral-router'
 import HttpProvider from 'cerebral-provider-http'

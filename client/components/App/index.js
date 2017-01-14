@@ -1,5 +1,6 @@
 import React from 'react'
 import {connect} from 'cerebral/react'
+import {state} from 'cerebral/tags'
 import Navbar from '../Navbar'
 import Home from '../Home'
 import Private from '../Private'
@@ -14,10 +15,10 @@ const pages = {
 }
 
 export default connect({
-  currentPage: 'app.currentPage'
+  currentPage: state`app.currentPage`
 },
-  function App (props) {
-    const Page = pages[props.currentPage || 'home']
+  function App ({currentPage}) {
+    const Page = pages[currentPage || 'home']
 
     return (
       <div>

@@ -1,4 +1,5 @@
-import {set, when, state, input} from 'cerebral/operators'
+import {state, input} from 'cerebral/tags'
+import {set, when} from 'cerebral/operators'
 import {isValidForm} from 'cerebral-forms'
 import {httpPost} from 'cerebral-provider-http'
 import initUser from '../actions/initUser'

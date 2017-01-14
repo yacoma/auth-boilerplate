@@ -1,13 +1,13 @@
 import React from 'react'
 import {connect} from 'cerebral/react'
+import {state, signal} from 'cerebral/tags'
 import {Grid, Header, Icon, Form, Segment, Input, Button, Label, Message, Dimmer, Loader}
     from 'semantic-ui-react'
 
 export default connect({
-  register: 'user.register.**'
-}, {
-  fieldChanged: 'user.fieldChanged',
-  formSubmitted: 'user.registerFormSubmitted'
+  register: state`user.register.**`,
+  fieldChanged: signal`user.fieldChanged`,
+  formSubmitted: signal`user.registerFormSubmitted`
 },
   function Register ({fieldChanged, formSubmitted, register}) {
     const showError = field => register.showErrors && !field.isValid && field.errorMessage !== null
