@@ -1,0 +1,16 @@
+#!/bin/bash
+#
+set -x
+livepath="/home/yacoma/web/auth.yakoma.it/private/auth-boilerplate"
+while read oldrev newrev ref
+do
+        branch=`echo $ref | cut -d/ -f3`
+        if [[ "master" == "$branch" ]]; then
+                git --work-tree=$livepath checkout -f $branch
+                cd $livepath
+                make deploylive
+                echo 'Changes pushed live.'
+        fi
+done
+cd /home/wegiel/git/domek.git
+git symbolic-ref HEAD refs/heads/master

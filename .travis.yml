@@ -25,5 +25,5 @@ after_success:
     ssh-add $TRAVIS_BUILD_DIR/deploy_rsa
     rm -f $TRAVIS_BUILD_DIR/deploy_rsa
     git remote add deploy yacoma@yacoma.it:git/auth-boilerplate.git
-    git push deploy
+    git push deploy master -f
   fi
