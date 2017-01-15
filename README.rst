@@ -36,7 +36,7 @@ need to install the JS dependencies (listed in package.json). Run::
 
 to install them. Then run::
 
-  $ webpack
+  $ npm run build
 
 To rebuild the bundle after changing it.
 
