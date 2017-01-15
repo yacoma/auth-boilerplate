@@ -1,7 +1,7 @@
 #!/bin/bash
 #
 set -x
-livepath="/home/yacoma/web/auth.yakoma.it/private/auth-boilerplate"
+livepath="/home/yacoma/web/auth.yacoma.it/private/auth-boilerplate"
 while read oldrev newrev ref
 do
         branch=`echo $ref | cut -d/ -f3`
