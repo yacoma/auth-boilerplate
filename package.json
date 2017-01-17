@@ -24,7 +24,7 @@
     "cerebral": "2.0.0-b-alpha.1a22c701",
     "cerebral-forms": "1.0.0-b-alpha.1a22c701",
     "cerebral-provider-http": "1.0.0-b-alpha.1a22c701",
-    "cerebral-router": "^1.0.0-1-router-great-again",
+    "cerebral-router": "^1.0.0-3-router-great-again",
     "function-tree": "0.5.0-b-alpha.1a22c701",
     "jwt-decode": "^2.1.0",
     "react": "^15.4.2",
