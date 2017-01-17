@@ -9,7 +9,10 @@ do
                 git --work-tree=$livepath checkout -f $branch
                 cd $livepath
                 make deploylive
-                echo 'Changes pushed live.'
+                echo 'Changes pushed live.'jjj
+
+
+
         fi
 done
 cd /home/wegiel/git/domek.git

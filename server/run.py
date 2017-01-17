@@ -1,12 +1,3 @@
-import os
-import sys
-
-SERVER_ROOT = os.path.dirname(os.path.abspath(__file__))
-APP_ROOT = os.path.dirname(os.path.abspath(SERVER_ROOT))
-sys.path.insert(0, APP_ROOT)
-sys.path.insert(0, SERVER_ROOT)
-print(sys.path)
-
 from argon2 import PasswordHasher
 import morepath
 from pony.orm import db_session
