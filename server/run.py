@@ -36,8 +36,9 @@ def setup_db(app):
     add_admin()
 
 
-def run():   # pragma: no cover
+def wsgi_factory():   # pragma: no cover
     morepath.autoscan()
+    App.commit()
 
     index = FileApp('static/index.html')
     static = DirectoryApp('static')
@@ -55,17 +56,7 @@ def run():   # pragma: no cover
         else:
             return request.get_response(index)
 
-    morepath.run(morepath_with_static_absorb)
+    return morepath_with_static_absorb
 
 
-def wsgi_factory():
-    morepath.autoscan()
-    App.commit()
-    app = App()
-
-    setup_db(app)
-
-    return app
-
-
-application = wsgi_factory()
+application = wsgi_factory()   # pragma: no cover

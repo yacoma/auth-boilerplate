@@ -16,9 +16,9 @@ After this you can install the package including dependencies using::
 
 Once that is done you can start the server::
 
-  (env) $ run-app
+  (env) $ gunicorn server.run
 
-You can go to http://localhost:5000 to see the UI.
+You can go to http://localhost:8000 to see the UI.
 
 For installing the test suite and running the tests use::
 

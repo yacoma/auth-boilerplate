@@ -25,6 +25,7 @@ setup(
         'more.jwtauth',
         'pony',
         'argon2_cffi',
+        'gunicorn',
     ],
     extras_require=dict(
         test=[
@@ -44,9 +45,6 @@ setup(
         morepath=[
             'scan = server',
         ],
-        console_scripts=[
-            'run-app = server.run:run',
-        ]
     ),
     classifiers=[
         'Intended Audience :: Developers',
