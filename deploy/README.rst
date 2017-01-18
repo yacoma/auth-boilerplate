@@ -18,6 +18,4 @@ The ``conf/web`` directory contains examples for server configuration with gunic
 and nginx as proxy. For monitoring and controlling gunicord we use supervisor.
 
 - **nginx.conf** - the nginx configuration.
-- **gunicorn.conf** - the supervisor configuration for gunicorn.
-- **legacy-apache2** - a legacy Apache2 mod-wsgi configuration I used before with nginx proxy.
-  For inspiration.
+- **supervisord.conf** - the supervisor configuration for gunicorn.
