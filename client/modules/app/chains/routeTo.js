@@ -1,5 +1,5 @@
-import {state, input} from 'cerebral/tags'
 import {set, equals, when} from 'cerebral/operators'
+import {state, input} from 'cerebral/tags'
 
 export default [
   set(state`app.currentPage`, input`page`),

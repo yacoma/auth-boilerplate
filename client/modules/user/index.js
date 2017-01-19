@@ -2,6 +2,7 @@ import {form, changeField} from 'cerebral-forms'
 
 import signIn from './chains/signIn'
 import register from './chains/register'
+import logOut from './chains/logOut'
 
 export default {
   state: {
@@ -71,6 +72,7 @@ export default {
   signals: {
     fieldChanged: changeField,
     loginFormSubmitted: signIn,
-    registerFormSubmitted: register
+    registerFormSubmitted: register,
+    logoutButtonClicked: logOut
   }
 }
