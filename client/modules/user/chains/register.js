@@ -5,7 +5,7 @@ import {httpPost} from 'cerebral-provider-http'
 import initUser from '../actions/initUser'
 
 export default [
-  isValidForm('user.register'), {
+  isValidForm(state`user.register`), {
     true: [
       set(state`user.register.isLoading`, true),
       httpPost('/users', {

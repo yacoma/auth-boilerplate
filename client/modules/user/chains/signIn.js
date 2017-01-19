@@ -5,7 +5,7 @@ import {httpPost} from 'cerebral-provider-http'
 import initUser from '../actions/initUser'
 
 export default [
-  isValidForm('user.signIn'), {
+  isValidForm(state`user.signIn`), {
     true: [
       set(state`user.signIn.isLoading`, true),
       httpPost('/login', {
