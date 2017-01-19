@@ -12,7 +12,13 @@ env/bin/python:
 deploylive: env/bin/python
 	cp -af deploy/live_settings.json settings.json
 	npm install
-	npm run build:production
+
+	# For production you should use this
+	# npm run build:production
+
+	# We want here the debugger to work so we do
+	npm run build
+
 	touch server/run.py  # trigger reload
 
 .PHONY:	setuplocal
