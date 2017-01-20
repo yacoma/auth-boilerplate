@@ -12,7 +12,7 @@ This copy the production settings to ``settings.json``, install the dependencies
 build the App.
 
 In addition on every push to GitHub master branch Travis CI triggers a push to
-the live server at auth-boilerplate.yacoma.it.
+the live server.
 
 The ``conf/web`` directory contains examples for server configuration with gunicord
 behind a nginx reverse proxy. For monitoring and controlling gunicord we use supervisor.
