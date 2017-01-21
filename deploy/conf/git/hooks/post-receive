@@ -9,7 +9,7 @@ do
                 git --work-tree=$livepath checkout -f $branch
                 cd $livepath
                 make deploylive
-                echo 'Changes pushed live.'jjj
+                echo 'Changes pushed live.'
 
 
 
