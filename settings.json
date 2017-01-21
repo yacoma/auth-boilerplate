@@ -11,5 +11,8 @@
     "provider": "sqlite",
     "args": ["auth.db"],
     "kwargs": {"create_db": true}
+  },
+  "authentication": {
+    "verify_registration_email": false
   }
 }
