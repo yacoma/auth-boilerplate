@@ -11,8 +11,8 @@ The hook triggers ``make deploylive`` which is defined in ``Makefile``.
 This copy the production settings to ``settings.json``, install the dependencies and
 build the App.
 
-In addition on every push to GitHub master branch Travis CI triggers a push to
-the live server.
+In addition on every push to Github master branch Travis CI triggers a push to
+the live server. So the live site is in sync with the Github master branch.
 
 The ``conf/web`` directory contains examples for server configuration with gunicord
 behind a nginx reverse proxy. For monitoring and controlling gunicord we use supervisor.
