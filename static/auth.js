@@ -47058,6 +47058,10 @@
 	  value: true
 	});
 	
+	var _toConsumableArray2 = __webpack_require__(574);
+	
+	var _toConsumableArray3 = _interopRequireDefault(_toConsumableArray2);
+	
 	var _extends2 = __webpack_require__(298);
 	
 	var _extends3 = _interopRequireDefault(_extends2);
@@ -47077,10 +47081,6 @@
 	var _inherits2 = __webpack_require__(436);
 	
 	var _inherits3 = _interopRequireDefault(_inherits2);
-	
-	var _toConsumableArray2 = __webpack_require__(574);
-	
-	var _toConsumableArray3 = _interopRequireDefault(_toConsumableArray2);
 	
 	var _isNil2 = __webpack_require__(695);
 	
@@ -47120,21 +47120,8 @@
 	
 	var debug = (0, _lib.makeDebugger)('button');
 	
-	var _meta = {
-	  name: 'Button',
-	  type: _lib.META.TYPES.ELEMENT,
-	  props: {
-	    animated: ['fade', 'vertical'],
-	    attached: ['left', 'right', 'top', 'bottom'],
-	    color: [].concat((0, _toConsumableArray3.default)(_lib.SUI.COLORS), ['facebook', 'twitter', 'google plus', 'vk', 'linkedin', 'instagram', 'youtube']),
-	    floated: _lib.SUI.FLOATS,
-	    labelPosition: ['right', 'left'],
-	    size: _lib.SUI.SIZES
-	  }
-	};
-	
 	/**
-	 * A Button indicates a possible user action
+	 * A Button indicates a possible user action.
 	 * @see Form
 	 * @see Icon
 	 * @see Label
@@ -47166,6 +47153,15 @@
 	      }
 	
 	      if (onClick) onClick(e, _this.props);
+	    }, _this.computeTabIndex = function (ElementType) {
+	      var _this$props2 = _this.props,
+	          disabled = _this$props2.disabled,
+	          tabIndex = _this$props2.tabIndex;
+	
+	
+	      if (!(0, _isNil3.default)(tabIndex)) return tabIndex;
+	      if (disabled) return -1;
+	      if (ElementType === 'div') return 0;
 	    }, _temp), (0, _possibleConstructorReturn3.default)(_this, _ret);
 	  }
 	
@@ -47196,27 +47192,24 @@
 	          primary = _props.primary,
 	          secondary = _props.secondary,
 	          size = _props.size,
-	          tabIndex = _props.tabIndex,
 	          toggle = _props.toggle;
 	
 	
 	      var labeledClasses = (0, _classnames2.default)((0, _lib.useKeyOrValueAndKey)(labelPosition || !!label, 'labeled'));
 	
-	      var baseClasses = (0, _classnames2.default)(color, size, (0, _lib.useKeyOnly)(active, 'active'), (0, _lib.useKeyOrValueAndKey)(animated, 'animated'), (0, _lib.useKeyOrValueAndKey)(attached, 'attached'), (0, _lib.useKeyOnly)(basic, 'basic'), (0, _lib.useKeyOnly)(circular, 'circular'), (0, _lib.useKeyOnly)(compact, 'compact'), (0, _lib.useKeyOnly)(disabled, 'disabled'), (0, _lib.useValueAndKey)(floated, 'floated'), (0, _lib.useKeyOnly)(fluid, 'fluid'), (0, _lib.useKeyOnly)(icon === true || icon && (labelPosition || !children && !content), 'icon'), (0, _lib.useKeyOnly)(inverted, 'inverted'), (0, _lib.useKeyOnly)(loading, 'loading'), (0, _lib.useKeyOnly)(negative, 'negative'), (0, _lib.useKeyOnly)(positive, 'positive'), (0, _lib.useKeyOnly)(primary, 'primary'), (0, _lib.useKeyOnly)(secondary, 'secondary'), (0, _lib.useKeyOnly)(toggle, 'toggle'));
+	      var baseClasses = (0, _classnames2.default)(color, size, (0, _lib.useKeyOnly)(active, 'active'), (0, _lib.useKeyOnly)(basic, 'basic'), (0, _lib.useKeyOnly)(circular, 'circular'), (0, _lib.useKeyOnly)(compact, 'compact'), (0, _lib.useKeyOnly)(disabled, 'disabled'), (0, _lib.useKeyOnly)(fluid, 'fluid'), (0, _lib.useKeyOnly)(icon === true || icon && (labelPosition || !children && !content), 'icon'), (0, _lib.useKeyOnly)(inverted, 'inverted'), (0, _lib.useKeyOnly)(loading, 'loading'), (0, _lib.useKeyOnly)(negative, 'negative'), (0, _lib.useKeyOnly)(positive, 'positive'), (0, _lib.useKeyOnly)(primary, 'primary'), (0, _lib.useKeyOnly)(secondary, 'secondary'), (0, _lib.useKeyOnly)(toggle, 'toggle'), (0, _lib.useKeyOrValueAndKey)(animated, 'animated'), (0, _lib.useKeyOrValueAndKey)(attached, 'attached'), (0, _lib.useValueAndKey)(floated, 'floated'));
 	      var rest = (0, _lib.getUnhandledProps)(Button, this.props);
 	      var ElementType = (0, _lib.getElementType)(Button, this.props, function () {
 	        if (!(0, _isNil3.default)(label) || !(0, _isNil3.default)(attached)) return 'div';
 	      });
-	
-	      var computedTabIndex = void 0;
-	      if (!(0, _isNil3.default)(tabIndex)) computedTabIndex = tabIndex;else if (disabled) computedTabIndex = -1;else if (ElementType === 'div') computedTabIndex = 0;
+	      var tabIndex = this.computeTabIndex(ElementType);
 	
 	      if (!(0, _isNil3.default)(children)) {
 	        var _classes = (0, _classnames2.default)('ui', baseClasses, labeledClasses, 'button', className);
 	        debug('render children:', { classes: _classes });
 	        return _react2.default.createElement(
 	          ElementType,
-	          (0, _extends3.default)({}, rest, { className: _classes, tabIndex: computedTabIndex, onClick: this.handleClick }),
+	          (0, _extends3.default)({}, rest, { className: _classes, tabIndex: tabIndex, onClick: this.handleClick }),
 	          children
 	        );
 	      }
@@ -47250,7 +47243,7 @@
 	        debug('render icon && !label:', { classes: _classes3 });
 	        return _react2.default.createElement(
 	          ElementType,
-	          (0, _extends3.default)({}, rest, { className: _classes3, tabIndex: computedTabIndex, onClick: this.handleClick }),
+	          (0, _extends3.default)({}, rest, { className: _classes3, tabIndex: tabIndex, onClick: this.handleClick }),
 	          _Icon2.default.create(icon),
 	          ' ',
 	          content
@@ -47262,7 +47255,7 @@
 	
 	      return _react2.default.createElement(
 	        ElementType,
-	        (0, _extends3.default)({}, rest, { className: classes, tabIndex: computedTabIndex, onClick: this.handleClick }),
+	        (0, _extends3.default)({}, rest, { className: classes, tabIndex: tabIndex, onClick: this.handleClick }),
 	        content
 	      );
 	    }
@@ -47273,7 +47266,10 @@
 	Button.defaultProps = {
 	  as: 'button'
 	};
-	Button._meta = _meta;
+	Button._meta = {
+	  name: 'Button',
+	  type: _lib.META.TYPES.ELEMENT
+	};
 	Button.Content = _ButtonContent2.default;
 	Button.Group = _ButtonGroup2.default;
 	Button.Or = _ButtonOr2.default;
@@ -47281,16 +47277,16 @@
 	  /** An element type to render as (string or function). */
 	  as: _lib.customPropTypes.as,
 	
-	  /** A button can show it is currently the active user selection */
+	  /** A button can show it is currently the active user selection. */
 	  active: _react.PropTypes.bool,
 	
-	  /** A button can animate to show hidden content */
-	  animated: _react.PropTypes.oneOfType([_react.PropTypes.bool, _react.PropTypes.oneOf(_meta.props.animated)]),
+	  /** A button can animate to show hidden content. */
+	  animated: _react.PropTypes.oneOfType([_react.PropTypes.bool, _react.PropTypes.oneOf(['fade', 'vertical'])]),
 	
-	  /** A button can be attached to the top or bottom of other content */
-	  attached: _react.PropTypes.oneOf(_meta.props.attached),
+	  /** A button can be attached to the top or bottom of other content. */
+	  attached: _react.PropTypes.oneOf(['left', 'right', 'top', 'bottom']),
 	
-	  /** A basic button is less pronounced */
+	  /** A basic button is less pronounced. */
 	  basic: _react.PropTypes.bool,
 	
 	  /** Primary content. */
@@ -47298,46 +47294,46 @@
 	    icon: _react.PropTypes.oneOfType([_react.PropTypes.string.isRequired, _react.PropTypes.object.isRequired, _react.PropTypes.element.isRequired])
 	  }, _lib.customPropTypes.disallow(['icon']))]),
 	
-	  /** A button can be circular */
-	  circular: _react.PropTypes.bool,
-	
 	  /** Additional classes. */
 	  className: _react.PropTypes.string,
+	
+	  /** A button can be circular. */
+	  circular: _react.PropTypes.bool,
+	
+	  /** A button can have different colors */
+	  color: _react.PropTypes.oneOf([].concat((0, _toConsumableArray3.default)(_lib.SUI.COLORS), ['facebook', 'google plus', 'instagram', 'linkedin', 'twitter', 'vk', 'youtube'])),
+	
+	  /** A button can reduce its padding to fit into tighter spaces. */
+	  compact: _react.PropTypes.bool,
 	
 	  /** Shorthand for primary content. */
 	  content: _lib.customPropTypes.contentShorthand,
 	
-	  /** A button can have different colors */
-	  color: _react.PropTypes.oneOf(_meta.props.color),
-	
-	  /** A button can reduce its padding to fit into tighter spaces */
-	  compact: _react.PropTypes.bool,
-	
-	  /** A button can show it is currently unable to be interacted with */
+	  /** A button can show it is currently unable to be interacted with. */
 	  disabled: _react.PropTypes.bool,
 	
-	  /** A button can be aligned to the left or right of its container */
-	  floated: _react.PropTypes.oneOf(_meta.props.floated),
+	  /** A button can be aligned to the left or right of its container. */
+	  floated: _react.PropTypes.oneOf(_lib.SUI.FLOATS),
 	
-	  /** A button can take the width of its container */
+	  /** A button can take the width of its container. */
 	  fluid: _react.PropTypes.bool,
 	
-	  /** Add an Icon by name, props object, or pass an <Icon /> */
+	  /** Add an Icon by name, props object, or pass an <Icon />. */
 	  icon: _lib.customPropTypes.some([_react.PropTypes.bool, _react.PropTypes.string, _react.PropTypes.object, _react.PropTypes.element]),
 	
-	  /** A button can be formatted to appear on dark backgrounds */
+	  /** A button can be formatted to appear on dark backgrounds. */
 	  inverted: _react.PropTypes.bool,
 	
-	  /** A labeled button can format a Label or Icon to appear on the left or right */
-	  labelPosition: _react.PropTypes.oneOf(_meta.props.labelPosition),
-	
-	  /** Add a Label by text, props object, or pass a <Label /> */
+	  /** Add a Label by text, props object, or pass a <Label />. */
 	  label: _lib.customPropTypes.some([_react.PropTypes.string, _react.PropTypes.object, _react.PropTypes.element]),
 	
-	  /** A button can show a loading indicator */
+	  /** A labeled button can format a Label or Icon to appear on the left or right. */
+	  labelPosition: _react.PropTypes.oneOf(['right', 'left']),
+	
+	  /** A button can show a loading indicator. */
 	  loading: _react.PropTypes.bool,
 	
-	  /** A button can hint towards a negative consequence */
+	  /** A button can hint towards a negative consequence. */
 	  negative: _react.PropTypes.bool,
 	
 	  /**
@@ -47347,22 +47343,22 @@
 	   */
 	  onClick: _react.PropTypes.func,
 	
-	  /** A button can hint towards a positive consequence */
+	  /** A button can hint towards a positive consequence. */
 	  positive: _react.PropTypes.bool,
 	
-	  /** A button can be formatted to show different levels of emphasis */
+	  /** A button can be formatted to show different levels of emphasis. */
 	  primary: _react.PropTypes.bool,
 	
-	  /** A button can be formatted to show different levels of emphasis */
+	  /** A button can be formatted to show different levels of emphasis. */
 	  secondary: _react.PropTypes.bool,
 	
-	  /** A button can have different sizes */
-	  size: _react.PropTypes.oneOf(_meta.props.size),
+	  /** A button can have different sizes. */
+	  size: _react.PropTypes.oneOf(_lib.SUI.SIZES),
 	
 	  /** A button can receive focus. */
-	  tabIndex: _react.PropTypes.oneOfType([_react.PropTypes.string, _react.PropTypes.number]),
+	  tabIndex: _react.PropTypes.oneOfType([_react.PropTypes.number, _react.PropTypes.string]),
 	
-	  /** A button can be formatted to toggle on and off */
+	  /** A button can be formatted to toggle on and off. */
 	  toggle: _react.PropTypes.bool
 	} : void 0;
 	Button.handledProps = ['active', 'animated', 'as', 'attached', 'basic', 'children', 'circular', 'className', 'color', 'compact', 'content', 'disabled', 'floated', 'fluid', 'icon', 'inverted', 'label', 'labelPosition', 'loading', 'negative', 'onClick', 'positive', 'primary', 'secondary', 'size', 'tabIndex', 'toggle'];
@@ -47409,13 +47405,13 @@
 	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 	
 	/**
-	 * An icon is a glyph used to represent something else
+	 * An icon is a glyph used to represent something else.
 	 * @see Image
 	 */
 	function Icon(props) {
 	  var bordered = props.bordered,
-	      className = props.className,
 	      circular = props.circular,
+	      className = props.className,
 	      color = props.color,
 	      corner = props.corner,
 	      disabled = props.disabled,
@@ -47429,7 +47425,7 @@
 	      size = props.size;
 	
 	
-	  var classes = (0, _classnames2.default)(size, color, (0, _lib.useKeyOnly)(bordered, 'bordered'), (0, _lib.useKeyOnly)(circular, 'circular'), (0, _lib.useKeyOnly)(corner, 'corner'), (0, _lib.useKeyOnly)(disabled, 'disabled'), (0, _lib.useKeyOnly)(fitted, 'fitted'), (0, _lib.useValueAndKey)(flipped, 'flipped'), (0, _lib.useKeyOnly)(inverted, 'inverted'), (0, _lib.useKeyOnly)(link, 'link'), (0, _lib.useKeyOnly)(loading, 'loading'), (0, _lib.useValueAndKey)(rotated, 'rotated'), name, className, 'icon');
+	  var classes = (0, _classnames2.default)(color, name, size, (0, _lib.useKeyOnly)(bordered, 'bordered'), (0, _lib.useKeyOnly)(circular, 'circular'), (0, _lib.useKeyOnly)(corner, 'corner'), (0, _lib.useKeyOnly)(disabled, 'disabled'), (0, _lib.useKeyOnly)(fitted, 'fitted'), (0, _lib.useKeyOnly)(inverted, 'inverted'), (0, _lib.useKeyOnly)(link, 'link'), (0, _lib.useKeyOnly)(loading, 'loading'), (0, _lib.useValueAndKey)(flipped, 'flipped'), (0, _lib.useValueAndKey)(rotated, 'rotated'), 'icon', className);
 	  var rest = (0, _lib.getUnhandledProps)(Icon, props);
 	  var ElementType = (0, _lib.getElementType)(Icon, props);
 	
@@ -47441,61 +47437,54 @@
 	
 	Icon._meta = {
 	  name: 'Icon',
-	  type: _lib.META.TYPES.ELEMENT,
-	  props: {
-	    color: _lib.SUI.COLORS,
-	    flipped: ['horizontally', 'vertically'],
-	    name: _lib.SUI.ICONS_AND_ALIASES,
-	    rotated: ['clockwise', 'counterclockwise'],
-	    size: (0, _without3.default)(_lib.SUI.SIZES, 'medium')
-	  }
+	  type: _lib.META.TYPES.ELEMENT
 	};
 	
 	 true ? Icon.propTypes = {
 	  /** An element type to render as (string or function). */
 	  as: _lib.customPropTypes.as,
 	
-	  /** Formatted to appear bordered */
+	  /** Formatted to appear bordered. */
 	  bordered: _react.PropTypes.bool,
+	
+	  /** Icon can formatted to appear circular. */
+	  circular: _react.PropTypes.bool,
 	
 	  /** Additional classes. */
 	  className: _react.PropTypes.string,
 	
-	  /** Icon can formatted to appear circular */
-	  circular: _react.PropTypes.bool,
-	
 	  /** Color of the icon. */
-	  color: _react.PropTypes.oneOf(Icon._meta.props.color),
+	  color: _react.PropTypes.oneOf(_lib.SUI.COLORS),
 	
-	  /** Icons can display a smaller corner icon */
+	  /** Icons can display a smaller corner icon. */
 	  corner: _react.PropTypes.bool,
 	
-	  /** Show that the icon is inactive */
+	  /** Show that the icon is inactive. */
 	  disabled: _react.PropTypes.bool,
 	
 	  /** Fitted, without space to left or right of Icon. */
 	  fitted: _react.PropTypes.bool,
 	
-	  /** Icon can flipped */
-	  flipped: _react.PropTypes.oneOf(Icon._meta.props.flipped),
+	  /** Icon can flipped. */
+	  flipped: _react.PropTypes.oneOf(['horizontally', 'vertically']),
 	
-	  /** Formatted to have its colors inverted for contrast */
+	  /** Formatted to have its colors inverted for contrast. */
 	  inverted: _react.PropTypes.bool,
 	
-	  /** Name of the icon */
-	  name: _lib.customPropTypes.suggest(Icon._meta.props.name),
-	
-	  /** Icon can be formatted as a link */
+	  /** Icon can be formatted as a link. */
 	  link: _react.PropTypes.bool,
 	
-	  /** Icon can be used as a simple loader */
+	  /** Icon can be used as a simple loader. */
 	  loading: _react.PropTypes.bool,
 	
-	  /** Icon can rotated */
-	  rotated: _react.PropTypes.oneOf(Icon._meta.props.rotated),
+	  /** Name of the icon. */
+	  name: _lib.customPropTypes.suggest(_lib.SUI.ICONS_AND_ALIASES),
+	
+	  /** Icon can rotated. */
+	  rotated: _react.PropTypes.oneOf(['clockwise', 'counterclockwise']),
 	
 	  /** Size of the icon. */
-	  size: _react.PropTypes.oneOf(Icon._meta.props.size)
+	  size: _react.PropTypes.oneOf((0, _without3.default)(_lib.SUI.SIZES, 'medium'))
 	} : void 0;
 	
 	Icon.defaultProps = {
@@ -47559,6 +47548,10 @@
 	
 	var _extends3 = _interopRequireDefault(_extends2);
 	
+	var _without2 = __webpack_require__(707);
+	
+	var _without3 = _interopRequireDefault(_without2);
+	
 	var _classnames = __webpack_require__(556);
 	
 	var _classnames2 = _interopRequireDefault(_classnames);
@@ -47572,13 +47565,12 @@
 	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 	
 	/**
-	 * Several icons can be used together as a group
+	 * Several icons can be used together as a group.
 	 */
 	function IconGroup(props) {
 	  var children = props.children,
 	      className = props.className,
 	      size = props.size;
-	
 	
 	  var classes = (0, _classnames2.default)(size, 'icons', className);
 	  var rest = (0, _lib.getUnhandledProps)(IconGroup, props);
@@ -47595,10 +47587,7 @@
 	IconGroup._meta = {
 	  name: 'IconGroup',
 	  parent: 'Icon',
-	  type: _lib.META.TYPES.ELEMENT,
-	  props: {
-	    size: _lib.SUI.SIZES
-	  }
+	  type: _lib.META.TYPES.ELEMENT
 	};
 	
 	 true ? IconGroup.propTypes = {
@@ -47612,7 +47601,7 @@
 	  className: _react.PropTypes.string,
 	
 	  /** Size of the icon group. */
-	  size: _react.PropTypes.oneOf(IconGroup._meta.props.size)
+	  size: _react.PropTypes.oneOf((0, _without3.default)(_lib.SUI.SIZES, 'medium'))
 	} : void 0;
 	
 	IconGroup.defaultProps = {
@@ -47988,14 +47977,7 @@
 	
 	Image._meta = {
 	  name: 'Image',
-	  type: _lib.META.TYPES.ELEMENT,
-	  props: {
-	    verticalAlign: _lib.SUI.VERTICAL_ALIGNMENTS,
-	    floated: _lib.SUI.FLOATS,
-	    shape: ['rounded', 'circular'],
-	    size: _lib.SUI.SIZES,
-	    spaced: ['left', 'right']
-	  }
+	  type: _lib.META.TYPES.ELEMENT
 	};
 	
 	 true ? Image.propTypes = {
@@ -48027,7 +48009,7 @@
 	  dimmer: _lib.customPropTypes.itemShorthand,
 	
 	  /** An image can sit to the left or right of other content. */
-	  floated: _react.PropTypes.oneOf(Image._meta.props.floated),
+	  floated: _react.PropTypes.oneOf(_lib.SUI.FLOATS),
 	
 	  /** An image can take up the width of its container. */
 	  fluid: _lib.customPropTypes.every([_react.PropTypes.bool, _lib.customPropTypes.disallow(['size'])]),
@@ -48048,13 +48030,13 @@
 	  label: _lib.customPropTypes.itemShorthand,
 	
 	  /** An image may appear rounded or circular. */
-	  shape: _react.PropTypes.oneOf(Image._meta.props.shape),
+	  shape: _react.PropTypes.oneOf(['rounded', 'circular']),
 	
 	  /** An image may appear at different sizes. */
-	  size: _react.PropTypes.oneOf(Image._meta.props.size),
+	  size: _react.PropTypes.oneOf(_lib.SUI.SIZES),
 	
 	  /** An image can specify that it needs an additional spacing to separate it from nearby content. */
-	  spaced: _react.PropTypes.oneOfType([_react.PropTypes.bool, _react.PropTypes.oneOf(Image._meta.props.spaced)]),
+	  spaced: _react.PropTypes.oneOfType([_react.PropTypes.bool, _react.PropTypes.oneOf(['left', 'right'])]),
 	
 	  /** Specifies the URL of the image. */
 	  src: _react.PropTypes.string,
@@ -48062,13 +48044,13 @@
 	  /** Whether or not to add the ui className. */
 	  ui: _react.PropTypes.bool,
 	
-	  /** An image can specify its vertical alignment */
-	  verticalAlign: _react.PropTypes.oneOf(Image._meta.props.verticalAlign),
+	  /** An image can specify its vertical alignment. */
+	  verticalAlign: _react.PropTypes.oneOf(_lib.SUI.VERTICAL_ALIGNMENTS),
 	
-	  /** The img element width attribute */
+	  /** The img element width attribute. */
 	  width: _react.PropTypes.oneOfType([_react.PropTypes.string, _react.PropTypes.number]),
 	
-	  /** An image can render wrapped in a `div.ui.image` as alternative HTML markup */
+	  /** An image can render wrapped in a `div.ui.image` as alternative HTML markup. */
 	  wrapped: _lib.customPropTypes.every([_react.PropTypes.bool,
 	  // these props wrap the image in an a tag already
 	  _lib.customPropTypes.disallow(['href'])])
@@ -48158,15 +48140,9 @@
 	
 	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 	
-	var _meta = {
-	  name: 'Dimmer',
-	  type: _lib.META.TYPES.MODULE
-	};
-	
 	/**
 	 * A dimmer hides distractions to focus attention on particular content.
 	 */
-	
 	var Dimmer = function (_Component) {
 	  (0, _inherits3.default)(Dimmer, _Component);
 	
@@ -48217,7 +48193,8 @@
 	      var rest = (0, _lib.getUnhandledProps)(Dimmer, this.props);
 	      var ElementType = (0, _lib.getElementType)(Dimmer, this.props);
 	
-	      var childrenJSX = ((0, _isNil3.default)(children) ? content : children) && _react2.default.createElement(
+	      var childrenContent = (0, _isNil3.default)(children) ? content : children;
+	      var childrenJSX = childrenContent && _react2.default.createElement(
 	        'div',
 	        { className: 'content' },
 	        _react2.default.createElement(
@@ -48225,7 +48202,7 @@
 	          { className: 'center', ref: function ref(center) {
 	              return _this2.center = center;
 	            } },
-	          (0, _isNil3.default)(children) ? content : children
+	          childrenContent
 	        )
 	      );
 	
@@ -48262,7 +48239,10 @@
 	// Do not use a static property initializer
 	
 	
-	Dimmer._meta = _meta;
+	Dimmer._meta = {
+	  name: 'Dimmer',
+	  type: _lib.META.TYPES.MODULE
+	};
 	Dimmer.Dimmable = _DimmerDimmable2.default;
 	exports.default = Dimmer;
 	 true ? Dimmer.propTypes = {
@@ -48591,11 +48571,13 @@
 	      if (onMount) onMount(null, _this.props);
 	    }, _this.unmountPortal = function () {
 	      if (!_lib.isBrowser || !_this.node) return;
+	      _this.didInitialRender = false;
 	
 	      debug('unmountPortal()');
 	
 	      _reactDom2.default.unmountComponentAtNode(_this.node);
 	      _this.node.parentNode.removeChild(_this.node);
+	      if (_this.previousActiveElement) _this.previousActiveElement.focus();
 	
 	      _this.portal.removeEventListener('mouseleave', _this.handlePortalMouseLeave);
 	      _this.portal.removeEventListener('mouseenter', _this.handlePortalMouseEnter);
@@ -48615,11 +48597,13 @@
 	  (0, _createClass3.default)(Portal, [{
 	    key: 'componentDidMount',
 	    value: function componentDidMount() {
+	      debug('componentDidMount()');
 	      this.renderPortal();
 	    }
 	  }, {
 	    key: 'componentDidUpdate',
 	    value: function componentDidUpdate(prevProps, prevState) {
+	      debug('componentDidUpdate()');
 	      // NOTE: Ideally the portal rendering would happen in the render() function
 	      // but React gives a warning about not being pure and suggests doing it
 	      // within this method.
@@ -48657,12 +48641,15 @@
 	  }, {
 	    key: 'renderPortal',
 	    value: function renderPortal() {
+	      var _this2 = this;
+	
 	      if (!this.state.open) return;
 	      debug('renderPortal()');
 	
 	      var _props = this.props,
 	          children = _props.children,
-	          className = _props.className;
+	          className = _props.className,
+	          closeOnTriggerBlur = _props.closeOnTriggerBlur;
 	
 	
 	      this.mountPortal();
@@ -48681,6 +48668,23 @@
 	      _reactDom2.default.unstable_renderSubtreeIntoContainer(this, _react.Children.only(children), this.node);
 	
 	      this.portal = this.node.firstElementChild;
+	
+	      // don't take focus away from portals that close on blur
+	      if (!this.didInitialRender && !closeOnTriggerBlur) {
+	        this.didInitialRender = true;
+	        this.previousActiveElement = document.activeElement;
+	
+	        // add a tabIndex so we can focus it, remove outline
+	        this.portal.tabIndex = -1;
+	        this.portal.style.outline = 'none';
+	
+	        // Wait a tick for things like popups which need to calculate where the popup shows up.
+	        // Otherwise, the element is focused at its initial position, scrolling the browser, then
+	        // it is immediately repositioned at the proper location.
+	        setTimeout(function () {
+	          if (_this2.portal) _this2.portal.focus();
+	        });
+	      }
 	
 	      this.portal.addEventListener('mouseleave', this.handlePortalMouseLeave);
 	      this.portal.addEventListener('mouseenter', this.handlePortalMouseEnter);
@@ -49023,7 +49027,7 @@
 	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 	
 	/**
-	 * A group of images
+	 * A group of images.
 	 */
 	function ImageGroup(props) {
 	  var children = props.children,
@@ -49045,10 +49049,7 @@
 	ImageGroup._meta = {
 	  name: 'ImageGroup',
 	  parent: 'Image',
-	  type: _lib.META.TYPES.ELEMENT,
-	  props: {
-	    size: _lib.SUI.SIZES
-	  }
+	  type: _lib.META.TYPES.ELEMENT
 	};
 	
 	 true ? ImageGroup.propTypes = {
@@ -49062,7 +49063,7 @@
 	  className: _react.PropTypes.string,
 	
 	  /** A group of images can be formatted to have the same size. */
-	  size: _react.PropTypes.oneOf(ImageGroup._meta.props.size)
+	  size: _react.PropTypes.oneOf(_lib.SUI.SIZES)
 	} : void 0;
 	
 	exports.default = ImageGroup;
@@ -49245,7 +49246,7 @@
 	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 	
 	/**
-	 * Used in some Button types, such as `animated`
+	 * Used in some Button types, such as `animated`.
 	 */
 	function ButtonContent(props) {
 	  var children = props.children,
@@ -49275,16 +49276,16 @@
 	  /** An element type to render as (string or function). */
 	  as: _lib.customPropTypes.as,
 	
-	  /** Additional classes. */
-	  className: _react.PropTypes.string,
-	
 	  /** Primary content. */
 	  children: _react.PropTypes.node,
 	
-	  /** Initially hidden, visible on hover */
+	  /** Additional classes. */
+	  className: _react.PropTypes.string,
+	
+	  /** Initially hidden, visible on hover. */
 	  hidden: _react.PropTypes.bool,
 	
-	  /** Initially visible, hidden on hover */
+	  /** Initially visible, hidden on hover. */
 	  visible: _react.PropTypes.bool
 	} : void 0;
 	
@@ -49317,7 +49318,7 @@
 	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 	
 	/**
-	 * Button.Group
+	 * Buttons can be grouped.
 	 */
 	function ButtonGroup(props) {
 	  var attached = props.attached,
@@ -49340,8 +49341,7 @@
 	      widths = props.widths;
 	
 	
-	  var classes = (0, _classnames2.default)('ui', size, color, (0, _lib.useValueAndKey)(attached, 'attached'), (0, _lib.useKeyOnly)(basic, 'basic'), (0, _lib.useKeyOnly)(compact, 'compact'), (0, _lib.useKeyOnly)(fluid, 'fluid'), (0, _lib.useKeyOnly)(icon, 'icon'), (0, _lib.useKeyOnly)(inverted, 'inverted'), (0, _lib.useKeyOnly)(labeled, 'labeled'), (0, _lib.useKeyOnly)(negative, 'negative'), (0, _lib.useKeyOnly)(positive, 'positive'), (0, _lib.useKeyOnly)(primary, 'primary'), (0, _lib.useKeyOnly)(secondary, 'secondary'), (0, _lib.useKeyOnly)(toggle, 'toggle'), (0, _lib.useKeyOnly)(vertical, 'vertical'), (0, _lib.useWidthProp)(widths), 'buttons', className);
-	
+	  var classes = (0, _classnames2.default)('ui', color, size, (0, _lib.useKeyOnly)(basic, 'basic'), (0, _lib.useKeyOnly)(compact, 'compact'), (0, _lib.useKeyOnly)(fluid, 'fluid'), (0, _lib.useKeyOnly)(icon, 'icon'), (0, _lib.useKeyOnly)(inverted, 'inverted'), (0, _lib.useKeyOnly)(labeled, 'labeled'), (0, _lib.useKeyOnly)(negative, 'negative'), (0, _lib.useKeyOnly)(positive, 'positive'), (0, _lib.useKeyOnly)(primary, 'primary'), (0, _lib.useKeyOnly)(secondary, 'secondary'), (0, _lib.useKeyOnly)(toggle, 'toggle'), (0, _lib.useKeyOnly)(vertical, 'vertical'), (0, _lib.useValueAndKey)(attached, 'attached'), (0, _lib.useWidthProp)(widths), 'buttons', className);
 	  var rest = (0, _lib.getUnhandledProps)(ButtonGroup, props);
 	  var ElementType = (0, _lib.getElementType)(ButtonGroup, props);
 	
@@ -49356,72 +49356,66 @@
 	ButtonGroup._meta = {
 	  name: 'ButtonGroup',
 	  parent: 'Button',
-	  type: _lib.META.TYPES.ELEMENT,
-	  props: {
-	    attached: ['left', 'right', 'top', 'bottom'],
-	    color: _lib.SUI.COLORS,
-	    size: _lib.SUI.SIZES,
-	    widths: _lib.SUI.WIDTHS
-	  }
+	  type: _lib.META.TYPES.ELEMENT
 	};
 	
 	 true ? ButtonGroup.propTypes = {
 	  /** An element type to render as (string or function). */
 	  as: _lib.customPropTypes.as,
 	
-	  /** A button can be attached to the top or bottom of other content */
-	  attached: _react.PropTypes.oneOf(ButtonGroup._meta.props.attached),
+	  /** A button can be attached to the top or bottom of other content. */
+	  attached: _react.PropTypes.oneOf(['left', 'right', 'top', 'bottom']),
 	
-	  /** Groups can be less pronounced */
+	  /** Groups can be less pronounced. */
 	  basic: _react.PropTypes.bool,
-	
-	  /** Additional classes. */
-	  className: _react.PropTypes.string,
 	
 	  /** Primary content. */
 	  children: _react.PropTypes.node,
 	
-	  /** Groups can have a shared color */
-	  color: _react.PropTypes.oneOf(ButtonGroup._meta.props.color),
+	  /** Additional classes. */
+	  className: _react.PropTypes.string,
 	
-	  /** Groups can reduce their padding to fit into tighter spaces */
+	  /** Groups can have a shared color. */
+	  color: _react.PropTypes.oneOf(_lib.SUI.COLORS),
+	
+	  /** Groups can reduce their padding to fit into tighter spaces. */
 	  compact: _react.PropTypes.bool,
 	
-	  /** Groups can take the width of their container */
+	  /** Groups can take the width of their container. */
 	  fluid: _react.PropTypes.bool,
 	
-	  /** Groups can be formatted as icons */
+	  /** Groups can be formatted as icons. */
 	  icon: _react.PropTypes.bool,
 	
-	  /** Groups can be formatted to appear on dark backgrounds */
+	  /** Groups can be formatted to appear on dark backgrounds. */
 	  inverted: _react.PropTypes.bool,
 	
-	  /** Groups can be formatted as labeled icon buttons */
+	  /** Groups can be formatted as labeled icon buttons. */
 	  labeled: _react.PropTypes.bool,
 	
-	  /** Groups can hint towards a negative consequence */
+	  /** Groups can hint towards a negative consequence. */
 	  negative: _react.PropTypes.bool,
 	
-	  /** Groups can hint towards a positive consequence */
+	  /** Groups can hint towards a positive consequence. */
 	  positive: _react.PropTypes.bool,
 	
-	  /** Groups can be formatted to show different levels of emphasis */
+	  /** Groups can be formatted to show different levels of emphasis. */
 	  primary: _react.PropTypes.bool,
 	
-	  /** Groups can be formatted to show different levels of emphasis */
+	  /** Groups can be formatted to show different levels of emphasis. */
 	  secondary: _react.PropTypes.bool,
 	
-	  /** Groups can have different sizes */
-	  size: _react.PropTypes.oneOf(ButtonGroup._meta.props.size),
+	  /** Groups can have different sizes. */
+	  size: _react.PropTypes.oneOf(_lib.SUI.SIZES),
 	
-	  /** Groups can be formatted to toggle on and off */
+	  /** Groups can be formatted to toggle on and off. */
 	  toggle: _react.PropTypes.bool,
 	
-	  /** Groups can be formatted to appear vertically */
+	  /** Groups can be formatted to appear vertically. */
 	  vertical: _react.PropTypes.bool,
 	
-	  /** Groups can have their widths divided evenly */
-	  widths: _react.PropTypes.oneOf(ButtonGroup._meta.props.widths)
+	  /** Groups can have their widths divided evenly. */
+	  widths: _react.PropTypes.oneOf(_lib.SUI.WIDTHS)
 	} : void 0;
 	
 	exports.default = ButtonGroup;
@@ -49453,7 +49447,7 @@
 	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 	
 	/**
-	 * Used in some Button types, such as `animated`
+	 * Used in some Button types, such as `animated`.
 	 */
 	function ButtonOr(props) {
 	  var className = props.className;
@@ -49538,10 +49532,6 @@
 	var _omit2 = __webpack_require__(728);
 	
 	var _omit3 = _interopRequireDefault(_omit2);
-	
-	var _keys2 = __webpack_require__(484);
-	
-	var _keys3 = _interopRequireDefault(_keys2);
 	
 	var _react = __webpack_require__(6);
 	
@@ -49727,7 +49717,7 @@
 	
 	      var classes = (0, _classnames2.default)('ui', size, (0, _lib.useKeyOnly)(basic, 'basic'), (0, _lib.useKeyOnly)(scrolling, 'scrolling'), 'modal transition visible active', className);
 	      var unhandled = (0, _lib.getUnhandledProps)(Modal, this.props);
-	      var portalPropNames = (0, _keys3.default)(_Portal2.default.propTypes);
+	      var portalPropNames = _Portal2.default.handledProps;
 	
 	      var rest = (0, _omit3.default)(unhandled, portalPropNames);
 	      var portalProps = (0, _pick3.default)(unhandled, portalPropNames);
@@ -50303,21 +50293,18 @@
 	Radio.handledProps = ['slider', 'toggle', 'type'];
 	Radio._meta = {
 	  name: 'Radio',
-	  type: _lib.META.TYPES.ADDON,
-	  props: {
-	    type: _Checkbox2.default._meta.props.type
-	  }
+	  type: _lib.META.TYPES.ADDON
 	};
 	
 	 true ? Radio.propTypes = {
-	  /** Format to emphasize the current selection state */
+	  /** Format to emphasize the current selection state. */
 	  slider: _Checkbox2.default.propTypes.slider,
 	
-	  /** Format to show an on or off choice */
+	  /** Format to show an on or off choice. */
 	  toggle: _Checkbox2.default.propTypes.toggle,
 	
 	  /** HTML input type, either checkbox or radio. */
-	  type: _react.PropTypes.oneOf(Radio._meta.props.type)
+	  type: _Checkbox2.default.propTypes.type
 	} : void 0;
 	
 	Radio.defaultProps = {
@@ -50393,16 +50380,8 @@
 	
 	var debug = (0, _lib.makeDebugger)('checkbox');
 	
-	var _meta = {
-	  name: 'Checkbox',
-	  type: _lib.META.TYPES.MODULE,
-	  props: {
-	    type: ['checkbox', 'radio']
-	  }
-	};
-	
 	/**
-	 * A checkbox allows a user to select a value from a small set of options, often binary
+	 * A checkbox allows a user to select a value from a small set of options, often binary.
 	 * @see Form
 	 * @see Radio
 	 */
@@ -50524,7 +50503,10 @@
 	  type: 'checkbox'
 	};
 	Checkbox.autoControlledProps = ['checked', 'indeterminate'];
-	Checkbox._meta = _meta;
+	Checkbox._meta = {
+	  name: 'Checkbox',
+	  type: _lib.META.TYPES.MODULE
+	};
 	exports.default = Checkbox;
 	 true ? Checkbox.propTypes = {
 	  /** An element type to render as (string or function). */
@@ -50573,20 +50555,20 @@
 	   */
 	  onClick: _react.PropTypes.func,
 	
-	  /** Format as a radio element. This means it is an exclusive option.*/
+	  /** Format as a radio element. This means it is an exclusive option. */
 	  radio: _lib.customPropTypes.every([_react.PropTypes.bool, _lib.customPropTypes.disallow(['slider', 'toggle'])]),
 	
-	  /** A checkbox can be read-only and unable to change states */
+	  /** A checkbox can be read-only and unable to change states. */
 	  readOnly: _react.PropTypes.bool,
 	
-	  /** Format to emphasize the current selection state */
+	  /** Format to emphasize the current selection state. */
 	  slider: _lib.customPropTypes.every([_react.PropTypes.bool, _lib.customPropTypes.disallow(['radio', 'toggle'])]),
 	
-	  /** Format to show an on or off choice */
+	  /** Format to show an on or off choice. */
 	  toggle: _lib.customPropTypes.every([_react.PropTypes.bool, _lib.customPropTypes.disallow(['radio', 'slider'])]),
 	
 	  /** HTML input type, either checkbox or radio. */
-	  type: _react.PropTypes.oneOf(_meta.props.type),
+	  type: _react.PropTypes.oneOf(['checkbox', 'radio']),
 	
 	  /** The HTML input value. */
 	  value: _react.PropTypes.string,
@@ -50843,6 +50825,7 @@
 	 * A dropdown allows a user to select a value from a series of options.
 	 * @see Form
 	 * @see Select
+	 * @see Menu
 	 */
 	
 	var Dropdown = function (_Component) {
@@ -50903,7 +50886,7 @@
 	      e.preventDefault();
 	
 	      _this.open(e);
-	    }, _this.selectHighlightedItem = function (e) {
+	    }, _this.makeSelectedItemActive = function (e) {
 	      var open = _this.state.open;
 	      var _this$props = _this.props,
 	          multiple = _this$props.multiple,
@@ -50929,15 +50912,17 @@
 	      } else {
 	        _this.setValue(value);
 	        _this.handleChange(e, value);
-	        _this.close();
 	      }
 	    }, _this.selectItemOnEnter = function (e) {
 	      debug('selectItemOnEnter()');
 	      debug(_lib.keyboardKey.getName(e));
 	      if (_lib.keyboardKey.getCode(e) !== _lib.keyboardKey.Enter) return;
 	      e.preventDefault();
+	      var multiple = _this.props.multiple;
 	
-	      _this.selectHighlightedItem(e);
+	
+	      _this.makeSelectedItemActive(e);
+	      if (!multiple) _this.close();
 	    }, _this.removeItemOnBackspace = function (e) {
 	      debug('removeItemOnBackspace()');
 	      debug(_lib.keyboardKey.getName(e));
@@ -51033,6 +51018,7 @@
 	    }, _this.handleBlur = function (e) {
 	      debug('handleBlur()');
 	      var _this$props4 = _this.props,
+	          closeOnBlur = _this$props4.closeOnBlur,
 	          multiple = _this$props4.multiple,
 	          onBlur = _this$props4.onBlur,
 	          selectOnBlur = _this$props4.selectOnBlur;
@@ -51040,7 +51026,10 @@
 	
 	      if (_this.isMouseDown) return;
 	      if (onBlur) onBlur(e, _this.props);
-	      if (selectOnBlur && !multiple) _this.selectHighlightedItem(e);
+	      if (selectOnBlur && !multiple) {
+	        _this.makeSelectedItemActive(e);
+	        if (closeOnBlur) _this.close();
+	      }
 	      _this.setState({ focus: false, searchQuery: '' });
 	    }, _this.handleSearchChange = function (e) {
 	      debug('handleSearchChange()');
@@ -51252,9 +51241,7 @@
 	      _this.scrollSelectedItemIntoView();
 	    }, _this.scrollSelectedItemIntoView = function () {
 	      debug('scrollSelectedItemIntoView()');
-	      // Do not access document when server side rendering
-	      if (!_lib.isBrowser) return;
-	      var menu = document.querySelector('.ui.dropdown.active.visible .menu.visible');
+	      var menu = _this._dropdown.querySelector('.menu.visible');
 	      var item = menu.querySelector('.item.selected');
 	      debug('menu: ' + menu);
 	      debug('item: ' + item);
@@ -51577,11 +51564,11 @@
 	        }
 	      } else if (prevState.focus && !this.state.focus) {
 	        debug('dropdown blurred');
-	        if (!this.isMouseDown) {
-	          var closeOnBlur = this.props.closeOnBlur;
+	        var closeOnBlur = this.props.closeOnBlur;
 	
-	          debug('mouse is not down, closing');
-	          if (closeOnBlur) this.close();
+	        if (!this.isMouseDown && closeOnBlur) {
+	          debug('mouse is not down and closeOnBlur=true, closing');
+	          this.close();
 	        }
 	        document.removeEventListener('keydown', this.openOnArrow);
 	        document.removeEventListener('keydown', this.openOnSpace);
@@ -51692,6 +51679,7 @@
 	          floating = _props2.floating,
 	          icon = _props2.icon,
 	          inline = _props2.inline,
+	          item = _props2.item,
 	          labeled = _props2.labeled,
 	          multiple = _props2.multiple,
 	          pointing = _props2.pointing,
@@ -51712,10 +51700,7 @@
 	      // https://github.com/Semantic-Org/Semantic-UI-React/issues/401#issuecomment-240487229
 	      // TODO: the icon class is only required when a dropdown is a button
 	      // useKeyOnly(icon, 'icon'),
-	      (0, _lib.useKeyOnly)(labeled, 'labeled'),
-	      // TODO: linkItem is required only when Menu child, add dynamically
-	      // useKeyOnly(linkItem, 'link item'),
-	      (0, _lib.useKeyOnly)(multiple, 'multiple'), (0, _lib.useKeyOnly)(search, 'search'), (0, _lib.useKeyOnly)(selection, 'selection'), (0, _lib.useKeyOnly)(simple, 'simple'), (0, _lib.useKeyOnly)(scrolling, 'scrolling'), (0, _lib.useKeyOrValueAndKey)(pointing, 'pointing'), className, 'dropdown');
+	      (0, _lib.useKeyOnly)(labeled, 'labeled'), (0, _lib.useKeyOnly)(item, 'item'), (0, _lib.useKeyOnly)(multiple, 'multiple'), (0, _lib.useKeyOnly)(search, 'search'), (0, _lib.useKeyOnly)(selection, 'selection'), (0, _lib.useKeyOnly)(simple, 'simple'), (0, _lib.useKeyOnly)(scrolling, 'scrolling'), (0, _lib.useKeyOrValueAndKey)(pointing, 'pointing'), className, 'dropdown');
 	      var rest = (0, _lib.getUnhandledProps)(Dropdown, this.props);
 	      var ElementType = (0, _lib.getElementType)(Dropdown, this.props);
 	      var ariaOptions = this.getDropdownAriaOptions(ElementType, this.props);
@@ -51842,7 +51827,8 @@
 	  /** A dropdown can be labeled. */
 	  labeled: _react.PropTypes.bool,
 	
-	  // linkItem: PropTypes.bool,
+	  /** A dropdown can be formatted as a Menu item. */
+	  item: _react.PropTypes.bool,
 	
 	  /** A dropdown can show that it is currently loading data. */
 	  loading: _react.PropTypes.bool,
@@ -51992,7 +51978,7 @@
 	  /** Current value or value array if multiple. Creates a controlled component. */
 	  value: _react.PropTypes.oneOfType([_react.PropTypes.string, _react.PropTypes.number, _react.PropTypes.arrayOf(_react.PropTypes.oneOfType([_react.PropTypes.string, _react.PropTypes.number]))])
 	} : void 0;
-	Dropdown.handledProps = ['additionLabel', 'additionPosition', 'allowAdditions', 'as', 'basic', 'button', 'children', 'className', 'closeOnBlur', 'compact', 'defaultOpen', 'defaultSelectedLabel', 'defaultValue', 'disabled', 'error', 'floating', 'fluid', 'header', 'icon', 'inline', 'labeled', 'loading', 'multiple', 'name', 'noResultsMessage', 'onAddItem', 'onBlur', 'onChange', 'onClick', 'onClose', 'onFocus', 'onLabelClick', 'onMouseDown', 'onOpen', 'onSearchChange', 'open', 'openOnFocus', 'options', 'placeholder', 'pointing', 'renderLabel', 'scrolling', 'search', 'selectOnBlur', 'selectedLabel', 'selection', 'simple', 'tabIndex', 'text', 'trigger', 'value'];
+	Dropdown.handledProps = ['additionLabel', 'additionPosition', 'allowAdditions', 'as', 'basic', 'button', 'children', 'className', 'closeOnBlur', 'compact', 'defaultOpen', 'defaultSelectedLabel', 'defaultValue', 'disabled', 'error', 'floating', 'fluid', 'header', 'icon', 'inline', 'item', 'labeled', 'loading', 'multiple', 'name', 'noResultsMessage', 'onAddItem', 'onBlur', 'onChange', 'onClick', 'onClose', 'onFocus', 'onLabelClick', 'onMouseDown', 'onOpen', 'onSearchChange', 'open', 'openOnFocus', 'options', 'placeholder', 'pointing', 'renderLabel', 'scrolling', 'search', 'selectOnBlur', 'selectedLabel', 'selection', 'simple', 'tabIndex', 'text', 'trigger', 'value'];
 
 /***/ },
 /* 744 */
@@ -52874,11 +52860,14 @@
 	
 	var names = ['ad', 'andorra', 'ae', 'united arab emirates', 'uae', 'af', 'afghanistan', 'ag', 'antigua', 'ai', 'anguilla', 'al', 'albania', 'am', 'armenia', 'an', 'netherlands antilles', 'ao', 'angola', 'ar', 'argentina', 'as', 'american samoa', 'at', 'austria', 'au', 'australia', 'aw', 'aruba', 'ax', 'aland islands', 'az', 'azerbaijan', 'ba', 'bosnia', 'bb', 'barbados', 'bd', 'bangladesh', 'be', 'belgium', 'bf', 'burkina faso', 'bg', 'bulgaria', 'bh', 'bahrain', 'bi', 'burundi', 'bj', 'benin', 'bm', 'bermuda', 'bn', 'brunei', 'bo', 'bolivia', 'br', 'brazil', 'bs', 'bahamas', 'bt', 'bhutan', 'bv', 'bouvet island', 'bw', 'botswana', 'by', 'belarus', 'bz', 'belize', 'ca', 'canada', 'cc', 'cocos islands', 'cd', 'congo', 'cf', 'central african republic', 'cg', 'congo brazzaville', 'ch', 'switzerland', 'ci', 'cote divoire', 'ck', 'cook islands', 'cl', 'chile', 'cm', 'cameroon', 'cn', 'china', 'co', 'colombia', 'cr', 'costa rica', 'cs', 'cu', 'cuba', 'cv', 'cape verde', 'cx', 'christmas island', 'cy', 'cyprus', 'cz', 'czech republic', 'de', 'germany', 'dj', 'djibouti', 'dk', 'denmark', 'dm', 'dominica', 'do', 'dominican republic', 'dz', 'algeria', 'ec', 'ecuador', 'ee', 'estonia', 'eg', 'egypt', 'eh', 'western sahara', 'er', 'eritrea', 'es', 'spain', 'et', 'ethiopia', 'eu', 'european union', 'fi', 'finland', 'fj', 'fiji', 'fk', 'falkland islands', 'fm', 'micronesia', 'fo', 'faroe islands', 'fr', 'france', 'ga', 'gabon', 'gb', 'united kingdom', 'gd', 'grenada', 'ge', 'georgia', 'gf', 'french guiana', 'gh', 'ghana', 'gi', 'gibraltar', 'gl', 'greenland', 'gm', 'gambia', 'gn', 'guinea', 'gp', 'guadeloupe', 'gq', 'equatorial guinea', 'gr', 'greece', 'gs', 'sandwich islands', 'gt', 'guatemala', 'gu', 'guam', 'gw', 'guinea-bissau', 'gy', 'guyana', 'hk', 'hong kong', 'hm', 'heard island', 'hn', 'honduras', 'hr', 'croatia', 'ht', 'haiti', 'hu', 'hungary', 'id', 'indonesia', 'ie', 'ireland', 'il', 'israel', 'in', 'india', 'io', 'indian ocean territory', 'iq', 'iraq', 'ir', 'iran', 'is', 'iceland', 'it', 'italy', 'jm', 'jamaica', 'jo', 'jordan', 'jp', 'japan', 'ke', 'kenya', 'kg', 'kyrgyzstan', 'kh', 'cambodia', 'ki', 'kiribati', 'km', 'comoros', 'kn', 'saint kitts and nevis', 'kp', 'north korea', 'kr', 'south korea', 'kw', 'kuwait', 'ky', 'cayman islands', 'kz', 'kazakhstan', 'la', 'laos', 'lb', 'lebanon', 'lc', 'saint lucia', 'li', 'liechtenstein', 'lk', 'sri lanka', 'lr', 'liberia', 'ls', 'lesotho', 'lt', 'lithuania', 'lu', 'luxembourg', 'lv', 'latvia', 'ly', 'libya', 'ma', 'morocco', 'mc', 'monaco', 'md', 'moldova', 'me', 'montenegro', 'mg', 'madagascar', 'mh', 'marshall islands', 'mk', 'macedonia', 'ml', 'mali', 'mm', 'myanmar', 'burma', 'mn', 'mongolia', 'mo', 'macau', 'mp', 'northern mariana islands', 'mq', 'martinique', 'mr', 'mauritania', 'ms', 'montserrat', 'mt', 'malta', 'mu', 'mauritius', 'mv', 'maldives', 'mw', 'malawi', 'mx', 'mexico', 'my', 'malaysia', 'mz', 'mozambique', 'na', 'namibia', 'nc', 'new caledonia', 'ne', 'niger', 'nf', 'norfolk island', 'ng', 'nigeria', 'ni', 'nicaragua', 'nl', 'netherlands', 'no', 'norway', 'np', 'nepal', 'nr', 'nauru', 'nu', 'niue', 'nz', 'new zealand', 'om', 'oman', 'pa', 'panama', 'pe', 'peru', 'pf', 'french polynesia', 'pg', 'new guinea', 'ph', 'philippines', 'pk', 'pakistan', 'pl', 'poland', 'pm', 'saint pierre', 'pn', 'pitcairn islands', 'pr', 'puerto rico', 'ps', 'palestine', 'pt', 'portugal', 'pw', 'palau', 'py', 'paraguay', 'qa', 'qatar', 're', 'reunion', 'ro', 'romania', 'rs', 'serbia', 'ru', 'russia', 'rw', 'rwanda', 'sa', 'saudi arabia', 'sb', 'solomon islands', 'sc', 'seychelles', 'gb sct', 'scotland', 'sd', 'sudan', 'se', 'sweden', 'sg', 'singapore', 'sh', 'saint helena', 'si', 'slovenia', 'sj', 'svalbard', 'jan mayen', 'sk', 'slovakia', 'sl', 'sierra leone', 'sm', 'san marino', 'sn', 'senegal', 'so', 'somalia', 'sr', 'suriname', 'st', 'sao tome', 'sv', 'el salvador', 'sy', 'syria', 'sz', 'swaziland', 'tc', 'caicos islands', 'td', 'chad', 'tf', 'french territories', 'tg', 'togo', 'th', 'thailand', 'tj', 'tajikistan', 'tk', 'tokelau', 'tl', 'timorleste', 'tm', 'turkmenistan', 'tn', 'tunisia', 'to', 'tonga', 'tr', 'turkey', 'tt', 'trinidad', 'tv', 'tuvalu', 'tw', 'taiwan', 'tz', 'tanzania', 'ua', 'ukraine', 'ug', 'uganda', 'um', 'us minor islands', 'us', 'america', 'united states', 'uy', 'uruguay', 'uz', 'uzbekistan', 'va', 'vatican city', 'vc', 'saint vincent', 've', 'venezuela', 'vg', 'british virgin islands', 'vi', 'us virgin islands', 'vn', 'vietnam', 'vu', 'vanuatu', 'gb wls', 'wales', 'wf', 'wallis and futuna', 'ws', 'samoa', 'ye', 'yemen', 'yt', 'mayotte', 'za', 'south africa', 'zm', 'zambia', 'zw', 'zimbabwe'];
 	
+	/**
+	 * A flag is is used to represent a political state.
+	 */
 	function Flag(props) {
 	  var className = props.className,
 	      name = props.name;
 	
-	  var classes = (0, _classnames2.default)(name, className, 'flag');
+	  var classes = (0, _classnames2.default)(name, 'flag', className);
 	  var rest = (0, _lib.getUnhandledProps)(Flag, props);
 	  var ElementType = (0, _lib.getElementType)(Flag, props);
 	
@@ -52888,10 +52877,7 @@
 	Flag.handledProps = ['as', 'className', 'name'];
 	Flag._meta = {
 	  name: 'Flag',
-	  type: _lib.META.TYPES.ELEMENT,
-	  props: {
-	    name: names
-	  }
+	  type: _lib.META.TYPES.ELEMENT
 	};
 	
 	 true ? Flag.propTypes = {
@@ -52901,8 +52887,8 @@
 	  /** Additional classes. */
 	  className: _react.PropTypes.string,
 	
-	  /** Flag name, can use the two digit country code, the full name, or a common alias */
-	  name: _lib.customPropTypes.suggest(Flag._meta.props.name)
+	  /** Flag name, can use the two digit country code, the full name, or a common alias. */
+	  name: _lib.customPropTypes.suggest(names)
 	} : void 0;
 	
 	Flag.defaultProps = {
@@ -53243,7 +53229,7 @@
 	  /** An element type to render as (string or function). */
 	  as: _lib.customPropTypes.as,
 	
-	  /** Indicates whether height of the textarea fits the content or not */
+	  /** Indicates whether height of the textarea fits the content or not. */
 	  autoHeight: _react.PropTypes.bool,
 	
 	  /**
@@ -53336,10 +53322,11 @@
 	      className = props.className,
 	      divider = props.divider,
 	      icon = props.icon,
-	      size = props.size,
-	      sections = props.sections;
+	      sections = props.sections,
+	      size = props.size;
 	
-	  var classes = (0, _classnames2.default)('ui', className, size, 'breadcrumb');
+	
+	  var classes = (0, _classnames2.default)('ui', size, 'breadcrumb', className);
 	  var rest = (0, _lib.getUnhandledProps)(Breadcrumb, props);
 	  var ElementType = (0, _lib.getElementType)(Breadcrumb, props);
 	
@@ -53389,10 +53376,7 @@
 	Breadcrumb.handledProps = ['as', 'children', 'className', 'divider', 'icon', 'sections', 'size'];
 	Breadcrumb._meta = {
 	  name: 'Breadcrumb',
-	  type: _lib.META.TYPES.COLLECTION,
-	  props: {
-	    size: (0, _without3.default)(_lib.SUI.SIZES, 'medium')
-	  }
+	  type: _lib.META.TYPES.COLLECTION
 	};
 	
 	 true ? Breadcrumb.propTypes = {
@@ -53415,8 +53399,8 @@
 	  /** Shorthand array of props for Breadcrumb.Section. */
 	  sections: _lib.customPropTypes.collectionShorthand,
 	
-	  /** Size of Breadcrumb */
-	  size: _react.PropTypes.oneOf(Breadcrumb._meta.props.size)
+	  /** Size of Breadcrumb. */
+	  size: _react.PropTypes.oneOf((0, _without3.default)(_lib.SUI.SIZES, 'medium'))
 	} : void 0;
 	
 	Breadcrumb.Divider = _BreadcrumbDivider2.default;
@@ -53463,23 +53447,21 @@
 	 */
 	function BreadcrumbDivider(props) {
 	  var children = props.children,
+	      className = props.className,
 	      content = props.content,
-	      icon = props.icon,
-	      className = props.className;
+	      icon = props.icon;
 	
-	  var classes = (0, _classnames2.default)(className, 'divider');
+	
+	  var classes = (0, _classnames2.default)('divider', className);
 	  var rest = (0, _lib.getUnhandledProps)(BreadcrumbDivider, props);
 	  var ElementType = (0, _lib.getElementType)(BreadcrumbDivider, props);
 	
 	  var iconElement = _Icon2.default.create(icon, (0, _extends3.default)({}, rest, { className: classes }));
 	  if (iconElement) return iconElement;
 	
-	  var breadcrumbContent = void 0;
-	  if ((0, _isNil3.default)(content)) {
-	    breadcrumbContent = (0, _isNil3.default)(children) ? '/' : children;
-	  } else {
-	    breadcrumbContent = content;
-	  }
+	  var breadcrumbContent = content;
+	  if ((0, _isNil3.default)(content)) breadcrumbContent = (0, _isNil3.default)(children) ? '/' : children;
+	
 	  return _react2.default.createElement(
 	    ElementType,
 	    (0, _extends3.default)({}, rest, { className: classes }),
@@ -53564,7 +53546,7 @@
 	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 	
 	/**
-	 * A section sub-component for Breadcrumb component
+	 * A section sub-component for Breadcrumb component.
 	 */
 	var BreadcrumbSection = function (_Component) {
 	  (0, _inherits3.default)(BreadcrumbSection, _Component);
@@ -53639,11 +53621,11 @@
 	  /** Shorthand for primary content. */
 	  content: _lib.customPropTypes.contentShorthand,
 	
-	  /** Render as an `a` tag instead of a `div`. */
-	  link: _lib.customPropTypes.every([_lib.customPropTypes.disallow(['href']), _react.PropTypes.bool]),
-	
 	  /** Render as an `a` tag instead of a `div` and adds the href attribute. */
 	  href: _lib.customPropTypes.every([_lib.customPropTypes.disallow(['link']), _react.PropTypes.string]),
+	
+	  /** Render as an `a` tag instead of a `div`. */
+	  link: _lib.customPropTypes.every([_lib.customPropTypes.disallow(['href']), _react.PropTypes.bool]),
 	
 	  /**
 	   * Called on click. When passed, the component will render as an `a`
@@ -53963,6 +53945,7 @@
 	          children = _props.children,
 	          className = _props.className,
 	          error = _props.error,
+	          inverted = _props.inverted,
 	          loading = _props.loading,
 	          reply = _props.reply,
 	          size = _props.size,
@@ -53971,7 +53954,7 @@
 	          widths = _props.widths;
 	
 	
-	      var classes = (0, _classnames2.default)('ui', size, (0, _lib.useKeyOnly)(error, 'error'), (0, _lib.useKeyOnly)(loading, 'loading'), (0, _lib.useKeyOnly)(reply, 'reply'), (0, _lib.useKeyOnly)(success, 'success'), (0, _lib.useKeyOnly)(warning, 'warning'), (0, _lib.useWidthProp)(widths, null, true), 'form', className);
+	      var classes = (0, _classnames2.default)('ui', size, (0, _lib.useKeyOnly)(error, 'error'), (0, _lib.useKeyOnly)(inverted, 'inverted'), (0, _lib.useKeyOnly)(loading, 'loading'), (0, _lib.useKeyOnly)(reply, 'reply'), (0, _lib.useKeyOnly)(success, 'success'), (0, _lib.useKeyOnly)(warning, 'warning'), (0, _lib.useWidthProp)(widths, null, true), 'form', className);
 	      var rest = (0, _lib.getUnhandledProps)(Form, this.props);
 	      var ElementType = (0, _lib.getElementType)(Form, this.props);
 	
@@ -54013,6 +53996,9 @@
 	  /** Automatically show any error Message children */
 	  error: _react.PropTypes.bool,
 	
+	  /** A form can have its color inverted for contrast */
+	  inverted: _react.PropTypes.bool,
+	
 	  /** Automatically show a loading indicator */
 	  loading: _react.PropTypes.bool,
 	
@@ -54042,7 +54028,7 @@
 	  /** Forms can automatically divide fields to be equal width */
 	  widths: _react.PropTypes.oneOf(_meta.props.widths)
 	} : void 0;
-	Form.handledProps = ['as', 'children', 'className', 'error', 'loading', 'onSubmit', 'reply', 'serializer', 'size', 'success', 'warning', 'widths'];
+	Form.handledProps = ['as', 'children', 'className', 'error', 'inverted', 'loading', 'onSubmit', 'reply', 'serializer', 'size', 'success', 'warning', 'widths'];
 	/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(32)))
 
 /***/ },
@@ -54734,19 +54720,8 @@
 	// touch
 	'onTouchCancel', 'onTouchEnd', 'onTouchMove', 'onTouchStart'];
 	
-	var _meta = {
-	  name: 'Input',
-	  type: _lib.META.TYPES.ELEMENT,
-	  props: {
-	    actionPosition: ['left'],
-	    iconPosition: ['left'],
-	    labelPosition: ['left', 'right', 'left corner', 'right corner'],
-	    size: _lib.SUI.SIZES
-	  }
-	};
-	
 	/**
-	 * An Input is a field used to elicit a response from a user
+	 * An Input is a field used to elicit a response from a user.
 	 * @see Button
 	 * @see Form
 	 * @see Icon
@@ -54786,10 +54761,11 @@
 	          className = _props.className,
 	          disabled = _props.disabled,
 	          error = _props.error,
-	          focus = _props.focus,
 	          fluid = _props.fluid,
+	          focus = _props.focus,
 	          icon = _props.icon,
 	          iconPosition = _props.iconPosition,
+	          input = _props.input,
 	          inverted = _props.inverted,
 	          label = _props.label,
 	          labelPosition = _props.labelPosition,
@@ -54797,12 +54773,11 @@
 	          onChange = _props.onChange,
 	          size = _props.size,
 	          tabIndex = _props.tabIndex,
-	          type = _props.type,
-	          input = _props.input,
-	          transparent = _props.transparent;
+	          transparent = _props.transparent,
+	          type = _props.type;
 	
 	
-	      var classes = (0, _classnames2.default)('ui', size, (0, _lib.useValueAndKey)(actionPosition, 'action') || (0, _lib.useKeyOnly)(action, 'action'), (0, _lib.useKeyOnly)(disabled, 'disabled'), (0, _lib.useKeyOnly)(error, 'error'), (0, _lib.useKeyOnly)(focus, 'focus'), (0, _lib.useKeyOnly)(fluid, 'fluid'), (0, _lib.useKeyOnly)(inverted, 'inverted'), (0, _lib.useValueAndKey)(labelPosition, 'labeled') || (0, _lib.useKeyOnly)(label, 'labeled'), (0, _lib.useKeyOnly)(loading, 'loading'), (0, _lib.useKeyOnly)(transparent, 'transparent'), (0, _lib.useValueAndKey)(iconPosition, 'icon') || (0, _lib.useKeyOnly)(icon, 'icon'), className, 'input');
+	      var classes = (0, _classnames2.default)('ui', size, (0, _lib.useKeyOnly)(disabled, 'disabled'), (0, _lib.useKeyOnly)(error, 'error'), (0, _lib.useKeyOnly)(fluid, 'fluid'), (0, _lib.useKeyOnly)(focus, 'focus'), (0, _lib.useKeyOnly)(inverted, 'inverted'), (0, _lib.useKeyOnly)(loading, 'loading'), (0, _lib.useKeyOnly)(transparent, 'transparent'), (0, _lib.useValueAndKey)(actionPosition, 'action') || (0, _lib.useKeyOnly)(action, 'action'), (0, _lib.useValueAndKey)(iconPosition, 'icon') || (0, _lib.useKeyOnly)(icon, 'icon'), (0, _lib.useValueAndKey)(labelPosition, 'labeled') || (0, _lib.useKeyOnly)(label, 'labeled'), 'input', className);
 	      var unhandled = (0, _lib.getUnhandledProps)(Input, this.props);
 	
 	      var rest = (0, _omit3.default)(unhandled, htmlInputPropNames);
@@ -54871,16 +54846,19 @@
 	Input.defaultProps = {
 	  type: 'text'
 	};
-	Input._meta = _meta;
+	Input._meta = {
+	  name: 'Input',
+	  type: _lib.META.TYPES.ELEMENT
+	};
 	 true ? Input.propTypes = {
 	  /** An element type to render as (string or function). */
 	  as: _lib.customPropTypes.as,
 	
-	  /** An Input can be formatted to alert the user to an action they may perform */
+	  /** An Input can be formatted to alert the user to an action they may perform. */
 	  action: _react.PropTypes.oneOfType([_react.PropTypes.bool, _lib.customPropTypes.itemShorthand]),
 	
-	  /** An action can appear along side an Input on the left or right */
-	  actionPosition: _react.PropTypes.oneOf(_meta.props.actionPosition),
+	  /** An action can appear along side an Input on the left or right. */
+	  actionPosition: _react.PropTypes.oneOf(['left']),
 	
 	  /** Primary content. */
 	  children: _react.PropTypes.node,
@@ -54888,37 +54866,37 @@
 	  /** Additional classes. */
 	  className: _react.PropTypes.string,
 	
-	  /** An Input field can show that it is disabled */
+	  /** An Input field can show that it is disabled. */
 	  disabled: _react.PropTypes.bool,
 	
-	  /** An Input field can show the data contains errors */
+	  /** An Input field can show the data contains errors. */
 	  error: _react.PropTypes.bool,
 	
-	  /** An Input field can show a user is currently interacting with it */
-	  focus: _react.PropTypes.bool,
-	
-	  /** Take on the size of it's container */
+	  /** Take on the size of it's container. */
 	  fluid: _react.PropTypes.bool,
 	
-	  /** Optional Icon to display inside the Input */
+	  /** An Input field can show a user is currently interacting with it. */
+	  focus: _react.PropTypes.bool,
+	
+	  /** Optional Icon to display inside the Input. */
 	  icon: _react.PropTypes.oneOfType([_react.PropTypes.bool, _lib.customPropTypes.itemShorthand]),
 	
-	  /** An Icon can appear inside an Input on the left or right */
-	  iconPosition: _react.PropTypes.oneOf(_meta.props.iconPosition),
+	  /** An Icon can appear inside an Input on the left or right. */
+	  iconPosition: _react.PropTypes.oneOf(['left']),
 	
-	  /** Format to appear on dark backgrounds */
-	  inverted: _react.PropTypes.bool,
-	
-	  /** Shorthand for creating the HTML Input */
+	  /** Shorthand for creating the HTML Input. */
 	  input: _lib.customPropTypes.itemShorthand,
 	
-	  /** Optional Label to display along side the Input */
+	  /** Format to appear on dark backgrounds. */
+	  inverted: _react.PropTypes.bool,
+	
+	  /** Optional Label to display along side the Input. */
 	  label: _lib.customPropTypes.itemShorthand,
 	
-	  /** A Label can appear outside an Input on the left or right */
-	  labelPosition: _react.PropTypes.oneOf(_meta.props.labelPosition),
+	  /** A Label can appear outside an Input on the left or right. */
+	  labelPosition: _react.PropTypes.oneOf(['left', 'right', 'left corner', 'right corner']),
 	
-	  /** An Icon Input field can show that it is currently loading data */
+	  /** An Icon Input field can show that it is currently loading data. */
 	  loading: _react.PropTypes.bool,
 	
 	  /**
@@ -54929,16 +54907,16 @@
 	   */
 	  onChange: _react.PropTypes.func,
 	
-	  /** An Input can vary in size */
-	  size: _react.PropTypes.oneOf(_meta.props.size),
+	  /** An Input can vary in size. */
+	  size: _react.PropTypes.oneOf(_lib.SUI.SIZES),
 	
 	  /** An Input can receive focus. */
-	  tabIndex: _react.PropTypes.oneOfType([_react.PropTypes.string, _react.PropTypes.number]),
+	  tabIndex: _react.PropTypes.oneOfType([_react.PropTypes.number, _react.PropTypes.string]),
 	
-	  /** Transparent Input has no background */
+	  /** Transparent Input has no background. */
 	  transparent: _react.PropTypes.bool,
 	
-	  /** The HTML input type */
+	  /** The HTML input type. */
 	  type: _react.PropTypes.string
 	} : void 0;
 	Input.handledProps = ['action', 'actionPosition', 'as', 'children', 'className', 'disabled', 'error', 'fluid', 'focus', 'icon', 'iconPosition', 'input', 'inverted', 'label', 'labelPosition', 'loading', 'onChange', 'size', 'tabIndex', 'transparent', 'type'];
@@ -55653,7 +55631,8 @@
 	
 	/**
 	 * A menu displays grouped navigation actions.
-	 **/
+	 * @see Dropdown
+	 */
 	
 	var Menu = function (_Component) {
 	  (0, _inherits3.default)(Menu, _Component);
@@ -57328,12 +57307,11 @@
 	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 	
 	/**
-	 * A table displays a collections of data grouped into rows
+	 * A table displays a collections of data grouped into rows.
 	 */
 	function Table(props) {
-	  var basic = props.basic,
-	      attached = props.attached,
-	      renderBodyRow = props.renderBodyRow,
+	  var attached = props.attached,
+	      basic = props.basic,
 	      celled = props.celled,
 	      children = props.children,
 	      className = props.className,
@@ -57347,9 +57325,11 @@
 	      headerRow = props.headerRow,
 	      inverted = props.inverted,
 	      padded = props.padded,
+	      renderBodyRow = props.renderBodyRow,
 	      selectable = props.selectable,
 	      singleLine = props.singleLine,
 	      size = props.size,
+	      sortable = props.sortable,
 	      stackable = props.stackable,
 	      striped = props.striped,
 	      structured = props.structured,
@@ -57357,7 +57337,7 @@
 	      unstackable = props.unstackable;
 	
 	
-	  var classes = (0, _classnames2.default)('ui', color, size, (0, _lib.useKeyOrValueAndKey)(attached, 'attached'), (0, _lib.useKeyOrValueAndKey)(basic, 'basic'), (0, _lib.useKeyOnly)(celled, 'celled'), (0, _lib.useKeyOnly)(collapsing, 'collapsing'), (0, _lib.useKeyOrValueAndKey)(compact, 'compact'), (0, _lib.useKeyOnly)(definition, 'definition'), (0, _lib.useKeyOnly)(fixed, 'fixed'), (0, _lib.useKeyOnly)(inverted, 'inverted'), (0, _lib.useKeyOrValueAndKey)(padded, 'padded'), (0, _lib.useKeyOnly)(selectable, 'selectable'), (0, _lib.useKeyOnly)(singleLine, 'single line'), (0, _lib.useKeyOnly)(stackable, 'stackable'), (0, _lib.useKeyOnly)(striped, 'striped'), (0, _lib.useKeyOnly)(structured, 'structured'), (0, _lib.useKeyOnly)(unstackable, 'unstackable'), (0, _lib.useWidthProp)(columns, 'column'), className, 'table');
+	  var classes = (0, _classnames2.default)('ui', color, size, (0, _lib.useKeyOnly)(celled, 'celled'), (0, _lib.useKeyOnly)(collapsing, 'collapsing'), (0, _lib.useKeyOnly)(definition, 'definition'), (0, _lib.useKeyOnly)(fixed, 'fixed'), (0, _lib.useKeyOnly)(inverted, 'inverted'), (0, _lib.useKeyOnly)(selectable, 'selectable'), (0, _lib.useKeyOnly)(singleLine, 'single line'), (0, _lib.useKeyOnly)(sortable, 'sortable'), (0, _lib.useKeyOnly)(stackable, 'stackable'), (0, _lib.useKeyOnly)(striped, 'striped'), (0, _lib.useKeyOnly)(structured, 'structured'), (0, _lib.useKeyOnly)(unstackable, 'unstackable'), (0, _lib.useKeyOrValueAndKey)(attached, 'attached'), (0, _lib.useKeyOrValueAndKey)(basic, 'basic'), (0, _lib.useKeyOrValueAndKey)(compact, 'compact'), (0, _lib.useKeyOrValueAndKey)(padded, 'padded'), (0, _lib.useWidthProp)(columns, 'column'), 'table', className);
 	  var rest = (0, _lib.getUnhandledProps)(Table, props);
 	  var ElementType = (0, _lib.getElementType)(Table, props);
 	
@@ -57392,19 +57372,10 @@
 	  );
 	}
 	
-	Table.handledProps = ['as', 'attached', 'basic', 'celled', 'children', 'className', 'collapsing', 'color', 'columns', 'compact', 'definition', 'fixed', 'footerRow', 'headerRow', 'inverted', 'padded', 'renderBodyRow', 'selectable', 'singleLine', 'size', 'stackable', 'striped', 'structured', 'tableData', 'unstackable'];
+	Table.handledProps = ['as', 'attached', 'basic', 'celled', 'children', 'className', 'collapsing', 'color', 'columns', 'compact', 'definition', 'fixed', 'footerRow', 'headerRow', 'inverted', 'padded', 'renderBodyRow', 'selectable', 'singleLine', 'size', 'sortable', 'stackable', 'striped', 'structured', 'tableData', 'unstackable'];
 	Table._meta = {
 	  name: 'Table',
-	  type: _lib.META.TYPES.COLLECTION,
-	  props: {
-	    attached: ['top', 'bottom'],
-	    basic: ['very'],
-	    color: _lib.SUI.COLORS,
-	    columns: _lib.SUI.WIDTHS,
-	    compact: ['very'],
-	    padded: ['very'],
-	    size: (0, _without3.default)(_lib.SUI.SIZES, 'mini', 'tiny', 'medium', 'big', 'huge', 'massive')
-	  }
+	  type: _lib.META.TYPES.COLLECTION
 	};
 	
 	Table.defaultProps = {
@@ -57416,10 +57387,10 @@
 	  as: _lib.customPropTypes.as,
 	
 	  /** Attach table to other content */
-	  attached: _react.PropTypes.oneOfType([_react.PropTypes.oneOf(Table._meta.props.attached), _react.PropTypes.bool]),
+	  attached: _react.PropTypes.oneOfType([_react.PropTypes.bool, _react.PropTypes.oneOf(['top', 'bottom'])]),
 	
 	  /** A table can reduce its complexity to increase readability. */
-	  basic: _react.PropTypes.oneOfType([_react.PropTypes.bool, _react.PropTypes.oneOf(Table._meta.props.basic)]),
+	  basic: _react.PropTypes.oneOfType([_react.PropTypes.oneOf(['very']), _react.PropTypes.bool]),
 	
 	  /** A table may be divided each row into separate cells. */
 	  celled: _react.PropTypes.bool,
@@ -57434,13 +57405,13 @@
 	  collapsing: _react.PropTypes.bool,
 	
 	  /** A table can be given a color to distinguish it from other tables. */
-	  color: _react.PropTypes.oneOf(Table._meta.props.color),
+	  color: _react.PropTypes.oneOf(_lib.SUI.COLORS),
 	
 	  /** A table can specify its column count to divide its content evenly. */
-	  columns: _react.PropTypes.oneOf(Table._meta.props.columns),
+	  columns: _react.PropTypes.oneOf(_lib.SUI.WIDTHS),
 	
 	  /** A table may sometimes need to be more compact to make more rows visible at a time. */
-	  compact: _react.PropTypes.oneOfType([_react.PropTypes.bool, _react.PropTypes.oneOf(Table._meta.props.compact)]),
+	  compact: _react.PropTypes.oneOfType([_react.PropTypes.bool, _react.PropTypes.oneOf(['very'])]),
 	
 	  /** A table may be formatted to emphasize a first column that defines a rows content. */
 	  definition: _react.PropTypes.bool,
@@ -57460,7 +57431,7 @@
 	  inverted: _react.PropTypes.bool,
 	
 	  /** A table may sometimes need to be more padded for legibility. */
-	  padded: _react.PropTypes.oneOfType([_react.PropTypes.bool, _react.PropTypes.oneOf(Table._meta.props.padded)]),
+	  padded: _react.PropTypes.oneOfType([_react.PropTypes.bool, _react.PropTypes.oneOf(['very'])]),
 	
 	  /**
 	   * A function that takes (data, index) and returns shorthand for a TableRow
@@ -57475,7 +57446,10 @@
 	  singleLine: _react.PropTypes.bool,
 	
 	  /** A table can also be small or large. */
-	  size: _react.PropTypes.oneOf(Table._meta.props.size),
+	  size: _react.PropTypes.oneOf((0, _without3.default)(_lib.SUI.SIZES, 'mini', 'tiny', 'medium', 'big', 'huge', 'massive')),
+	
+	  /** A table may allow a user to sort contents by clicking on a table header. */
+	  sortable: _react.PropTypes.bool,
 	
 	  /** A table can specify how it stacks table content responsively. */
 	  stackable: _react.PropTypes.bool,
@@ -57581,6 +57555,10 @@
 	
 	var _extends3 = _interopRequireDefault(_extends2);
 	
+	var _without2 = __webpack_require__(707);
+	
+	var _without3 = _interopRequireDefault(_without2);
+	
 	var _isNil2 = __webpack_require__(695);
 	
 	var _isNil3 = _interopRequireDefault(_isNil2);
@@ -57601,6 +57579,9 @@
 	
 	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 	
+	/**
+	 * A table row can have cells.
+	 */
 	function TableCell(props) {
 	  var active = props.active,
 	      children = props.children,
@@ -57644,12 +57625,7 @@
 	TableCell._meta = {
 	  name: 'TableCell',
 	  type: _lib.META.TYPES.COLLECTION,
-	  parent: 'Table',
-	  props: {
-	    textAlign: _lib.SUI.TEXT_ALIGNMENTS,
-	    verticalAlign: _lib.SUI.VERTICAL_ALIGNMENTS,
-	    width: _lib.SUI.WIDTHS
-	  }
+	  parent: 'Table'
 	};
 	
 	TableCell.defaultProps = {
@@ -57697,16 +57673,16 @@
 	  singleLine: _react.PropTypes.bool,
 	
 	  /** A table cell can adjust its text alignment. */
-	  textAlign: _react.PropTypes.oneOf(TableCell._meta.props.textAlign),
+	  textAlign: _react.PropTypes.oneOf((0, _without3.default)(_lib.SUI.TEXT_ALIGNMENTS, 'justified')),
 	
 	  /** A table cell can adjust its text alignment. */
-	  verticalAlign: _react.PropTypes.oneOf(TableCell._meta.props.verticalAlign),
+	  verticalAlign: _react.PropTypes.oneOf(_lib.SUI.VERTICAL_ALIGNMENTS),
 	
 	  /** A cell may warn a user. */
 	  warning: _react.PropTypes.bool,
 	
 	  /** A table can specify the width of individual columns independently. */
-	  width: _react.PropTypes.oneOf(TableCell._meta.props.width)
+	  width: _react.PropTypes.oneOf(_lib.SUI.WIDTHS)
 	} : void 0;
 	
 	TableCell.create = (0, _lib.createShorthandFactory)(TableCell, function (content) {
@@ -57737,6 +57713,9 @@
 	
 	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 	
+	/**
+	 * A table can have a footer.
+	 */
 	function TableFooter(props) {
 	  return _react2.default.createElement(_TableHeader2.default, props);
 	}
@@ -57780,6 +57759,9 @@
 	
 	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 	
+	/**
+	 * A table can have a header.
+	 */
 	function TableHeader(props) {
 	  var children = props.children,
 	      className = props.className,
@@ -57833,6 +57815,14 @@
 	  value: true
 	});
 	
+	var _extends2 = __webpack_require__(298);
+	
+	var _extends3 = _interopRequireDefault(_extends2);
+	
+	var _classnames = __webpack_require__(556);
+	
+	var _classnames2 = _interopRequireDefault(_classnames);
+	
 	var _react = __webpack_require__(6);
 	
 	var _react2 = _interopRequireDefault(_react);
@@ -57845,16 +57835,37 @@
 	
 	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 	
+	/**
+	 * A table can have a header cell.
+	 */
 	function TableHeaderCell(props) {
-	  return _react2.default.createElement(_TableCell2.default, props);
+	  var as = props.as,
+	      className = props.className,
+	      sorted = props.sorted;
+	
+	  var classes = (0, _classnames2.default)((0, _lib.useValueAndKey)(sorted, 'sorted'), className);
+	  var rest = (0, _lib.getUnhandledProps)(TableHeaderCell, props);
+	
+	  return _react2.default.createElement(_TableCell2.default, (0, _extends3.default)({}, rest, { as: as, className: classes }));
 	}
 	
-	TableHeaderCell.handledProps = ['as'];
+	TableHeaderCell.handledProps = ['as', 'className', 'sorted'];
 	TableHeaderCell._meta = {
 	  name: 'TableHeaderCell',
 	  type: _lib.META.TYPES.COLLECTION,
 	  parent: 'Table'
 	};
+	
+	 true ? TableHeaderCell.propTypes = {
+	  /** An element type to render as (string or function). */
+	  as: _lib.customPropTypes.as,
+	
+	  /** Additional classes. */
+	  className: _react.PropTypes.string,
+	
+	  /** A header cell can be sorted in ascending or descending order. */
+	  sorted: _react.PropTypes.oneOf(['ascending', 'descending'])
+	} : void 0;
 	
 	TableHeaderCell.defaultProps = {
 	  as: 'th'
@@ -57875,6 +57886,10 @@
 	var _extends2 = __webpack_require__(298);
 	
 	var _extends3 = _interopRequireDefault(_extends2);
+	
+	var _without2 = __webpack_require__(707);
+	
+	var _without3 = _interopRequireDefault(_without2);
 	
 	var _map2 = __webpack_require__(686);
 	
@@ -57900,6 +57915,9 @@
 	
 	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 	
+	/**
+	 * A table can have rows.
+	 */
 	function TableRow(props) {
 	  var active = props.active,
 	      cellAs = props.cellAs,
@@ -57940,11 +57958,7 @@
 	TableRow._meta = {
 	  name: 'TableRow',
 	  type: _lib.META.TYPES.COLLECTION,
-	  parent: 'Table',
-	  props: {
-	    textAlign: _lib.SUI.TEXT_ALIGNMENTS,
-	    verticalAlign: _lib.SUI.VERTICAL_ALIGNMENTS
-	  }
+	  parent: 'Table'
 	};
 	
 	TableRow.defaultProps = {
@@ -57984,10 +57998,10 @@
 	  positive: _react.PropTypes.bool,
 	
 	  /** A table row can adjust its text alignment. */
-	  textAlign: _react.PropTypes.oneOf(TableRow._meta.props.textAlign),
+	  textAlign: _react.PropTypes.oneOf((0, _without3.default)(_lib.SUI.TEXT_ALIGNMENTS, 'justified')),
 	
 	  /** A table row can adjust its vertical alignment. */
-	  verticalAlign: _react.PropTypes.oneOf(TableRow._meta.props.verticalAlign),
+	  verticalAlign: _react.PropTypes.oneOf(_lib.SUI.VERTICAL_ALIGNMENTS),
 	
 	  /** A row may warn a user. */
 	  warning: _react.PropTypes.bool
@@ -58045,14 +58059,14 @@
 	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 	
 	/**
-	 * A container limits content to a maximum width
+	 * A container limits content to a maximum width.
 	 */
 	function Container(props) {
-	  var text = props.text,
-	      textAlign = props.textAlign,
+	  var children = props.children,
+	      className = props.className,
 	      fluid = props.fluid,
-	      children = props.children,
-	      className = props.className;
+	      text = props.text,
+	      textAlign = props.textAlign;
 	
 	  var classes = (0, _classnames2.default)('ui', (0, _lib.useKeyOnly)(text, 'text'), (0, _lib.useKeyOnly)(fluid, 'fluid'), (0, _lib.useTextAlignProp)(textAlign), 'container', className);
 	  var rest = (0, _lib.getUnhandledProps)(Container, props);
@@ -58068,10 +58082,7 @@
 	Container.handledProps = ['as', 'children', 'className', 'fluid', 'text', 'textAlign'];
 	Container._meta = {
 	  name: 'Container',
-	  type: _lib.META.TYPES.ELEMENT,
-	  props: {
-	    textAlign: _lib.SUI.TEXT_ALIGNMENTS
-	  }
+	  type: _lib.META.TYPES.ELEMENT
 	};
 	
 	 true ? Container.propTypes = {
@@ -58084,14 +58095,14 @@
 	  /** Additional classes. */
 	  className: _react.PropTypes.string,
 	
-	  /** Reduce maximum width to more naturally accommodate text */
-	  text: _react.PropTypes.bool,
-	
-	  /** Container has no maximum with */
+	  /** Container has no maximum with. */
 	  fluid: _react.PropTypes.bool,
 	
-	  /** Align container text */
-	  textAlign: _react.PropTypes.oneOf(Container._meta.props.textAlign)
+	  /** Reduce maximum width to more naturally accommodate text. */
+	  text: _react.PropTypes.bool,
+	
+	  /** Align container text. */
+	  textAlign: _react.PropTypes.oneOf(_lib.SUI.TEXT_ALIGNMENTS)
 	} : void 0;
 	
 	exports.default = Container;
@@ -58142,21 +58153,21 @@
 	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 	
 	/**
-	 * A divider visually segments content into groups
+	 * A divider visually segments content into groups.
 	 */
 	function Divider(props) {
-	  var horizontal = props.horizontal,
-	      vertical = props.vertical,
-	      inverted = props.inverted,
+	  var children = props.children,
+	      className = props.className,
+	      clearing = props.clearing,
 	      fitted = props.fitted,
 	      hidden = props.hidden,
+	      horizontal = props.horizontal,
+	      inverted = props.inverted,
 	      section = props.section,
-	      clearing = props.clearing,
-	      children = props.children,
-	      className = props.className;
+	      vertical = props.vertical;
 	
 	
-	  var classes = (0, _classnames2.default)('ui', (0, _lib.useKeyOnly)(horizontal, 'horizontal'), (0, _lib.useKeyOnly)(vertical, 'vertical'), (0, _lib.useKeyOnly)(inverted, 'inverted'), (0, _lib.useKeyOnly)(fitted, 'fitted'), (0, _lib.useKeyOnly)(hidden, 'hidden'), (0, _lib.useKeyOnly)(section, 'section'), (0, _lib.useKeyOnly)(clearing, 'clearing'), 'divider', className);
+	  var classes = (0, _classnames2.default)('ui', (0, _lib.useKeyOnly)(clearing, 'clearing'), (0, _lib.useKeyOnly)(fitted, 'fitted'), (0, _lib.useKeyOnly)(hidden, 'hidden'), (0, _lib.useKeyOnly)(horizontal, 'horizontal'), (0, _lib.useKeyOnly)(inverted, 'inverted'), (0, _lib.useKeyOnly)(section, 'section'), (0, _lib.useKeyOnly)(vertical, 'vertical'), 'divider', className);
 	  var rest = (0, _lib.getUnhandledProps)(Divider, props);
 	  var ElementType = (0, _lib.getElementType)(Divider, props);
 	
@@ -58183,26 +58194,26 @@
 	  /** Additional classes. */
 	  className: _react.PropTypes.string,
 	
-	  /** Divider can segment content horizontally */
-	  horizontal: _react.PropTypes.bool,
+	  /** Divider can clear the content above it. */
+	  clearing: _react.PropTypes.bool,
 	
-	  /** Divider can segment content vertically */
-	  vertical: _react.PropTypes.bool,
-	
-	  /** Divider can have it's colours inverted */
-	  inverted: _react.PropTypes.bool,
-	
-	  /** Divider can be fitted without any space above or below it */
+	  /** Divider can be fitted without any space above or below it. */
 	  fitted: _react.PropTypes.bool,
 	
-	  /** Divider can divide content without creating a dividing line */
+	  /** Divider can divide content without creating a dividing line. */
 	  hidden: _react.PropTypes.bool,
 	
-	  /** Divider can provide greater margins to divide sections of content */
+	  /** Divider can segment content horizontally. */
+	  horizontal: _react.PropTypes.bool,
+	
+	  /** Divider can have it's colours inverted. */
+	  inverted: _react.PropTypes.bool,
+	
+	  /** Divider can provide greater margins to divide sections of content. */
 	  section: _react.PropTypes.bool,
 	
-	  /** Divider can clear the content above it */
-	  clearing: _react.PropTypes.bool
+	  /** Divider can segment content vertically. */
+	  vertical: _react.PropTypes.bool
 	} : void 0;
 	
 	exports.default = Divider;
@@ -58280,25 +58291,25 @@
 	 * A header provides a short summary of content
 	 */
 	function Header(props) {
-	  var color = props.color,
-	      content = props.content,
-	      dividing = props.dividing,
+	  var attached = props.attached,
 	      block = props.block,
-	      attached = props.attached,
-	      floated = props.floated,
-	      inverted = props.inverted,
-	      disabled = props.disabled,
-	      sub = props.sub,
-	      size = props.size,
-	      textAlign = props.textAlign,
-	      icon = props.icon,
-	      image = props.image,
 	      children = props.children,
 	      className = props.className,
-	      subheader = props.subheader;
+	      color = props.color,
+	      content = props.content,
+	      disabled = props.disabled,
+	      dividing = props.dividing,
+	      floated = props.floated,
+	      icon = props.icon,
+	      image = props.image,
+	      inverted = props.inverted,
+	      size = props.size,
+	      sub = props.sub,
+	      subheader = props.subheader,
+	      textAlign = props.textAlign;
 	
 	
-	  var classes = (0, _classnames2.default)('ui', size, color, (0, _lib.useKeyOrValueAndKey)(attached, 'attached'), (0, _lib.useKeyOnly)(block, 'block'), (0, _lib.useKeyOnly)(disabled, 'disabled'), (0, _lib.useKeyOnly)(dividing, 'dividing'), (0, _lib.useValueAndKey)(floated, 'floated'), (0, _lib.useKeyOnly)(icon === true, 'icon'), (0, _lib.useKeyOnly)(image === true, 'image'), (0, _lib.useKeyOnly)(inverted, 'inverted'), (0, _lib.useKeyOnly)(sub, 'sub'), (0, _lib.useTextAlignProp)(textAlign), className, 'header');
+	  var classes = (0, _classnames2.default)('ui', color, size, (0, _lib.useKeyOnly)(block, 'block'), (0, _lib.useKeyOnly)(disabled, 'disabled'), (0, _lib.useKeyOnly)(dividing, 'dividing'), (0, _lib.useValueAndKey)(floated, 'floated'), (0, _lib.useKeyOnly)(icon === true, 'icon'), (0, _lib.useKeyOnly)(image === true, 'image'), (0, _lib.useKeyOnly)(inverted, 'inverted'), (0, _lib.useKeyOnly)(sub, 'sub'), (0, _lib.useKeyOrValueAndKey)(attached, 'attached'), (0, _lib.useTextAlignProp)(textAlign), 'header', className);
 	  var rest = (0, _lib.getUnhandledProps)(Header, props);
 	  var ElementType = (0, _lib.getElementType)(Header, props);
 	
@@ -58339,67 +58350,60 @@
 	Header.handledProps = ['as', 'attached', 'block', 'children', 'className', 'color', 'content', 'disabled', 'dividing', 'floated', 'icon', 'image', 'inverted', 'size', 'sub', 'subheader', 'textAlign'];
 	Header._meta = {
 	  name: 'Header',
-	  type: _lib.META.TYPES.ELEMENT,
-	  props: {
-	    attached: ['top', 'bottom'],
-	    color: _lib.SUI.COLORS,
-	    size: (0, _without3.default)(_lib.SUI.SIZES, 'big', 'massive'),
-	    floated: _lib.SUI.FLOATS,
-	    textAlign: _lib.SUI.TEXT_ALIGNMENTS
-	  }
+	  type: _lib.META.TYPES.ELEMENT
 	};
 	
 	 true ? Header.propTypes = {
 	  /** An element type to render as (string or function). */
 	  as: _lib.customPropTypes.as,
 	
-	  /** Additional classes. */
-	  className: _react.PropTypes.string,
+	  /** Attach header  to other content, like a segment. */
+	  attached: _react.PropTypes.oneOfType([_react.PropTypes.bool, _react.PropTypes.oneOf(['top', 'bottom'])]),
+	
+	  /** Format header to appear inside a content block. */
+	  block: _react.PropTypes.bool,
 	
 	  /** Primary content. */
 	  children: _react.PropTypes.node,
 	
+	  /** Additional classes. */
+	  className: _react.PropTypes.string,
+	
+	  /** Color of the header. */
+	  color: _react.PropTypes.oneOf(_lib.SUI.COLORS),
+	
 	  /** Shorthand for primary content. */
 	  content: _lib.customPropTypes.contentShorthand,
 	
-	  /** Add an icon by icon name or pass an <Icon /.> */
-	  icon: _lib.customPropTypes.every([_lib.customPropTypes.disallow(['image']), _react.PropTypes.oneOfType([_react.PropTypes.bool, _lib.customPropTypes.itemShorthand])]),
-	
-	  /** Add an image by img src or pass an <Image />. */
-	  image: _lib.customPropTypes.every([_lib.customPropTypes.disallow(['icon']), _react.PropTypes.oneOfType([_react.PropTypes.bool, _lib.customPropTypes.itemShorthand])]),
-	
-	  /** Color of the header. */
-	  color: _react.PropTypes.oneOf(Header._meta.props.color),
-	
-	  /** Divide header from the content below it */
-	  dividing: _react.PropTypes.bool,
-	
-	  /** Format header to appear inside a content block */
-	  block: _react.PropTypes.bool,
-	
-	  /** Attach header  to other content, like a segment */
-	  attached: _react.PropTypes.oneOfType([_react.PropTypes.oneOf(Header._meta.props.attached), _react.PropTypes.bool]),
-	
-	  /** Header can sit to the left or right of other content */
-	  floated: _react.PropTypes.oneOf(Header._meta.props.floated),
-	
-	  /** Inverts the color of the header for dark backgrounds */
-	  inverted: _react.PropTypes.bool,
-	
-	  /** Show that the header is inactive */
+	  /** Show that the header is inactive. */
 	  disabled: _react.PropTypes.bool,
 	
-	  /** Headers may be formatted to label smaller or de-emphasized content */
-	  sub: _react.PropTypes.bool,
+	  /** Divide header from the content below it. */
+	  dividing: _react.PropTypes.bool,
+	
+	  /** Header can sit to the left or right of other content. */
+	  floated: _react.PropTypes.oneOf(_lib.SUI.FLOATS),
+	
+	  /** Add an icon by icon name or pass an Icon. */
+	  icon: _lib.customPropTypes.every([_lib.customPropTypes.disallow(['image']), _react.PropTypes.oneOfType([_react.PropTypes.bool, _lib.customPropTypes.itemShorthand])]),
+	
+	  /** Add an image by img src or pass an Image. */
+	  image: _lib.customPropTypes.every([_lib.customPropTypes.disallow(['icon']), _react.PropTypes.oneOfType([_react.PropTypes.bool, _lib.customPropTypes.itemShorthand])]),
+	
+	  /** Inverts the color of the header for dark backgrounds. */
+	  inverted: _react.PropTypes.bool,
 	
 	  /** Content headings are sized with em and are based on the font-size of their container. */
-	  size: _react.PropTypes.oneOf(Header._meta.props.size),
+	  size: _react.PropTypes.oneOf((0, _without3.default)(_lib.SUI.SIZES, 'big', 'massive')),
+	
+	  /** Headers may be formatted to label smaller or de-emphasized content. */
+	  sub: _react.PropTypes.bool,
 	
 	  /** Shorthand for Header.Subheader. */
 	  subheader: _lib.customPropTypes.itemShorthand,
 	
-	  /** Align header content */
-	  textAlign: _react.PropTypes.oneOf(Header._meta.props.textAlign)
+	  /** Align header content. */
+	  textAlign: _react.PropTypes.oneOf(_lib.SUI.TEXT_ALIGNMENTS)
 	} : void 0;
 	
 	Header.Content = _HeaderContent2.default;
@@ -58437,6 +58441,9 @@
 	
 	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 	
+	/**
+	 * Headers may contain subheaders.
+	 */
 	function HeaderSubheader(props) {
 	  var children = props.children,
 	      className = props.className,
@@ -58513,7 +58520,7 @@
 	  var children = props.children,
 	      className = props.className;
 	
-	  var classes = (0, _classnames2.default)(className, 'content');
+	  var classes = (0, _classnames2.default)('content', className);
 	  var rest = (0, _lib.getUnhandledProps)(HeaderContent, props);
 	  var ElementType = (0, _lib.getElementType)(HeaderContent, props);
 	
@@ -58623,7 +58630,7 @@
 	
 	/**
 	 * A list groups related content
-	 **/
+	 */
 	function List(props) {
 	  var animated = props.animated,
 	      bulleted = props.bulleted,
@@ -59383,11 +59390,7 @@
 	Loader.handledProps = ['active', 'as', 'children', 'className', 'content', 'disabled', 'indeterminate', 'inline', 'inverted', 'size'];
 	Loader._meta = {
 	  name: 'Loader',
-	  type: _lib.META.TYPES.ELEMENT,
-	  props: {
-	    inline: ['centered'],
-	    size: _lib.SUI.SIZES
-	  }
+	  type: _lib.META.TYPES.ELEMENT
 	};
 	
 	 true ? Loader.propTypes = {
@@ -59413,13 +59416,13 @@
 	  indeterminate: _react.PropTypes.bool,
 	
 	  /** Loaders can appear inline with content. */
-	  inline: _react.PropTypes.oneOfType([_react.PropTypes.bool, _react.PropTypes.oneOf(Loader._meta.props.inline)]),
+	  inline: _react.PropTypes.oneOfType([_react.PropTypes.bool, _react.PropTypes.oneOf(['centered'])]),
 	
 	  /** Loaders can have their colors inverted. */
 	  inverted: _react.PropTypes.bool,
 	
 	  /** Loaders can have different sizes. */
-	  size: _react.PropTypes.oneOf(Loader._meta.props.size)
+	  size: _react.PropTypes.oneOf(_lib.SUI.SIZES)
 	} : void 0;
 	
 	exports.default = Loader;
@@ -59610,10 +59613,7 @@
 	Reveal.handledProps = ['active', 'animated', 'as', 'children', 'className', 'disabled', 'instant'];
 	Reveal._meta = {
 	  name: 'Reveal',
-	  type: _lib.META.TYPES.ELEMENT,
-	  props: {
-	    animated: ['fade', 'small fade', 'move', 'move right', 'move up', 'move down', 'rotate', 'rotate left']
-	  }
+	  type: _lib.META.TYPES.ELEMENT
 	};
 	
 	 true ? Reveal.propTypes = {
@@ -59623,6 +59623,9 @@
 	  /** An active reveal displays its hidden content. */
 	  active: _react.PropTypes.bool,
 	
+	  /** An animation name that will be applied to Reveal. */
+	  animated: _react.PropTypes.oneOf(['fade', 'small fade', 'move', 'move right', 'move up', 'move down', 'rotate', 'rotate left']),
+	
 	  /** Primary content. */
 	  children: _react.PropTypes.node,
 	
@@ -59631,9 +59634,6 @@
 	
 	  /** A disabled reveal will not animate when hovered. */
 	  disabled: _react.PropTypes.bool,
-	
-	  /** An animation name that will be applied to Reveal. */
-	  animated: _react.PropTypes.oneOf(Reveal._meta.props.animated),
 	
 	  /** An element can show its content without delay. */
 	  instant: _react.PropTypes.bool
@@ -59796,7 +59796,7 @@
 	      vertical = props.vertical;
 	
 	
-	  var classes = (0, _classnames2.default)('ui', color, size, (0, _lib.useKeyOrValueAndKey)(attached, 'attached'), (0, _lib.useKeyOnly)(basic, 'basic'), (0, _lib.useKeyOnly)(circular, 'circular'), (0, _lib.useKeyOnly)(clearing, 'clearing'), (0, _lib.useKeyOnly)(compact, 'compact'), (0, _lib.useKeyOnly)(disabled, 'disabled'), (0, _lib.useValueAndKey)(floated, 'floated'), (0, _lib.useKeyOnly)(inverted, 'inverted'), (0, _lib.useKeyOnly)(loading, 'loading'), (0, _lib.useKeyOrValueAndKey)(padded, 'padded'), (0, _lib.useKeyOnly)(piled, 'piled'), (0, _lib.useKeyOnly)(raised, 'raised'), (0, _lib.useKeyOnly)(secondary, 'secondary'), (0, _lib.useKeyOnly)(stacked, 'stacked'), (0, _lib.useKeyOnly)(tertiary, 'tertiary'), (0, _lib.useTextAlignProp)(textAlign), (0, _lib.useKeyOnly)(vertical, 'vertical'), className, 'segment');
+	  var classes = (0, _classnames2.default)('ui', color, size, (0, _lib.useKeyOnly)(basic, 'basic'), (0, _lib.useKeyOnly)(circular, 'circular'), (0, _lib.useKeyOnly)(clearing, 'clearing'), (0, _lib.useKeyOnly)(compact, 'compact'), (0, _lib.useKeyOnly)(disabled, 'disabled'), (0, _lib.useKeyOnly)(inverted, 'inverted'), (0, _lib.useKeyOnly)(loading, 'loading'), (0, _lib.useKeyOnly)(piled, 'piled'), (0, _lib.useKeyOnly)(raised, 'raised'), (0, _lib.useKeyOnly)(secondary, 'secondary'), (0, _lib.useKeyOnly)(stacked, 'stacked'), (0, _lib.useKeyOnly)(tertiary, 'tertiary'), (0, _lib.useKeyOnly)(vertical, 'vertical'), (0, _lib.useKeyOrValueAndKey)(attached, 'attached'), (0, _lib.useKeyOrValueAndKey)(padded, 'padded'), (0, _lib.useTextAlignProp)(textAlign), (0, _lib.useValueAndKey)(floated, 'floated'), 'segment', className);
 	  var rest = (0, _lib.getUnhandledProps)(Segment, props);
 	  var ElementType = (0, _lib.getElementType)(Segment, props);
 	
@@ -59812,59 +59812,51 @@
 	
 	Segment._meta = {
 	  name: 'Segment',
-	  type: _lib.META.TYPES.ELEMENT,
-	  props: {
-	    attached: ['top', 'bottom'],
-	    color: _lib.SUI.COLORS,
-	    floated: _lib.SUI.FLOATS,
-	    padded: ['very'],
-	    size: (0, _without3.default)(_lib.SUI.SIZES, 'medium'),
-	    textAlign: _lib.SUI.TEXT_ALIGNMENTS
-	  }
+	  type: _lib.META.TYPES.ELEMENT
 	};
 	
 	 true ? Segment.propTypes = {
 	  /** An element type to render as (string or function). */
 	  as: _lib.customPropTypes.as,
 	
-	  /** Attach segment to other content, like a header */
-	  attached: _react.PropTypes.oneOfType([_react.PropTypes.oneOf(Segment._meta.props.attached), _react.PropTypes.bool]),
+	  /** Attach segment to other content, like a header. */
+	  attached: _react.PropTypes.oneOfType([_react.PropTypes.bool, _react.PropTypes.oneOf(['top', 'bottom'])]),
 	
-	  /** A basic segment has no special formatting */
+	  /** A basic segment has no special formatting. */
 	  basic: _react.PropTypes.bool,
 	
 	  /** Primary content. */
 	  children: _react.PropTypes.node,
 	
-	  /** A segment can be circular */
+	  /** A segment can be circular. */
 	  circular: _react.PropTypes.bool,
 	
 	  /** Additional classes. */
 	  className: _react.PropTypes.string,
 	
-	  /** A segment can clear floated content */
+	  /** A segment can clear floated content. */
 	  clearing: _react.PropTypes.bool,
 	
-	  /** Segment can be colored */
-	  color: _react.PropTypes.oneOf(Segment._meta.props.color),
+	  /** Segment can be colored. */
+	  color: _react.PropTypes.oneOf(_lib.SUI.COLORS),
 	
-	  /** A segment may take up only as much space as is necessary */
+	  /** A segment may take up only as much space as is necessary. */
 	  compact: _react.PropTypes.bool,
 	
-	  /** A segment may show its content is disabled */
+	  /** A segment may show its content is disabled. */
 	  disabled: _react.PropTypes.bool,
 	
-	  /** Segment content can be floated to the left or right */
-	  floated: _react.PropTypes.oneOf(Segment._meta.props.floated),
+	  /** Segment content can be floated to the left or right. */
+	  floated: _react.PropTypes.oneOf(_lib.SUI.FLOATS),
 	
-	  /** A segment can have its colors inverted for contrast */
+	  /** A segment can have its colors inverted for contrast. */
 	  inverted: _react.PropTypes.bool,
 	
-	  /** A segment may show its content is being loaded */
+	  /** A segment may show its content is being loaded. */
 	  loading: _react.PropTypes.bool,
 	
-	  /** A segment can increase its padding */
-	  padded: _react.PropTypes.oneOfType([_react.PropTypes.bool, _react.PropTypes.oneOf(Segment._meta.props.padded)]),
+	  /** A segment can increase its padding. */
+	  padded: _react.PropTypes.oneOfType([_react.PropTypes.bool, _react.PropTypes.oneOf(['very'])]),
 	
 	  /** Formatted to look like a pile of pages. */
 	  piled: _react.PropTypes.bool,
@@ -59872,22 +59864,22 @@
 	  /** A segment may be formatted to raise above the page. */
 	  raised: _react.PropTypes.bool,
 	
-	  /** A segment can be formatted to appear less noticeable */
+	  /** A segment can be formatted to appear less noticeable. */
 	  secondary: _react.PropTypes.bool,
 	
 	  /** A segment can have different sizes. */
-	  size: _react.PropTypes.oneOf(Segment._meta.props.size),
+	  size: _react.PropTypes.oneOf((0, _without3.default)(_lib.SUI.SIZES, 'medium')),
 	
 	  /** Formatted to show it contains multiple pages. */
 	  stacked: _react.PropTypes.bool,
 	
-	  /** A segment can be formatted to appear even less noticeable */
+	  /** A segment can be formatted to appear even less noticeable. */
 	  tertiary: _react.PropTypes.bool,
 	
 	  /** Formats content to be aligned as part of a vertical group. */
-	  textAlign: _react.PropTypes.oneOf(Segment._meta.props.textAlign),
+	  textAlign: _react.PropTypes.oneOf((0, _without3.default)(_lib.SUI.TEXT_ALIGNMENTS, 'justified')),
 	
-	  /** Formats content to be aligned vertically */
+	  /** Formats content to be aligned vertically. */
 	  vertical: _react.PropTypes.bool
 	} : void 0;
 	
@@ -59936,7 +59928,8 @@
 	      size = props.size,
 	      stacked = props.stacked;
 	
-	  var classes = (0, _classnames2.default)('ui', size, (0, _lib.useKeyOnly)(horizontal, 'horizontal'), (0, _lib.useKeyOnly)(compact, 'compact'), (0, _lib.useKeyOnly)(piled, 'piled'), (0, _lib.useKeyOnly)(raised, 'raised'), (0, _lib.useKeyOnly)(stacked, 'stacked'), className, 'segments');
+	
+	  var classes = (0, _classnames2.default)('ui', size, (0, _lib.useKeyOnly)(compact, 'compact'), (0, _lib.useKeyOnly)(horizontal, 'horizontal'), (0, _lib.useKeyOnly)(piled, 'piled'), (0, _lib.useKeyOnly)(raised, 'raised'), (0, _lib.useKeyOnly)(stacked, 'stacked'), 'segments', className);
 	  var rest = (0, _lib.getUnhandledProps)(SegmentGroup, props);
 	  var ElementType = (0, _lib.getElementType)(SegmentGroup, props);
 	
@@ -59951,26 +59944,23 @@
 	SegmentGroup._meta = {
 	  name: 'SegmentGroup',
 	  parent: 'Segment',
-	  type: _lib.META.TYPES.ELEMENT,
-	  props: {
-	    size: (0, _without3.default)(_lib.SUI.SIZES, 'medium')
-	  }
+	  type: _lib.META.TYPES.ELEMENT
 	};
 	
 	 true ? SegmentGroup.propTypes = {
 	  /** An element type to render as (string or function). */
 	  as: _lib.customPropTypes.as,
 	
-	  /** Additional classes. */
-	  className: _react.PropTypes.string,
-	
 	  /** Primary content. */
 	  children: _react.PropTypes.node,
 	
-	  /** A segment may take up only as much space as is necessary */
+	  /** Additional classes. */
+	  className: _react.PropTypes.string,
+	
+	  /** A segment may take up only as much space as is necessary. */
 	  compact: _react.PropTypes.bool,
 	
-	  /** Formats content to be aligned horizontally */
+	  /** Formats content to be aligned horizontally. */
 	  horizontal: _react.PropTypes.bool,
 	
 	  /** Formatted to look like a pile of pages. */
@@ -59980,7 +59970,7 @@
 	  raised: _react.PropTypes.bool,
 	
 	  /** A segment group can have different sizes. */
-	  size: _react.PropTypes.oneOf(SegmentGroup._meta.props.size),
+	  size: _react.PropTypes.oneOf((0, _without3.default)(_lib.SUI.SIZES, 'medium')),
 	
 	  /** Formatted to show it contains multiple pages. */
 	  stacked: _react.PropTypes.bool
@@ -60074,7 +60064,7 @@
 	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 	
 	/**
-	 * A step shows the completion status of an activity in a series of activities
+	 * A step shows the completion status of an activity in a series of activities.
 	 */
 	var Step = function (_Component) {
 	  (0, _inherits3.default)(Step, _Component);
@@ -60156,11 +60146,11 @@
 	  /** A step can be highlighted as active. */
 	  active: _react.PropTypes.bool,
 	
-	  /** Additional classes. */
-	  className: _react.PropTypes.string,
-	
 	  /** Primary content. */
 	  children: _react.PropTypes.node,
+	
+	  /** Additional classes. */
+	  className: _react.PropTypes.string,
 	
 	  /** A step can show that a user has completed it. */
 	  completed: _react.PropTypes.bool,
@@ -60171,14 +60161,14 @@
 	  /** Show that the Loader is inactive. */
 	  disabled: _react.PropTypes.bool,
 	
+	  /** Render as an `a` tag instead of a `div` and adds the href attribute. */
+	  href: _react.PropTypes.string,
+	
 	  /** Shorthand for Icon. */
 	  icon: _lib.customPropTypes.itemShorthand,
 	
 	  /** A step can be link. */
 	  link: _react.PropTypes.bool,
-	
-	  /** Render as an `a` tag instead of a `div` and adds the href attribute. */
-	  href: _react.PropTypes.string,
 	
 	  /**
 	   * Called on click. When passed, the component will render as an `a`
@@ -60215,13 +60205,13 @@
 	
 	var _isNil3 = _interopRequireDefault(_isNil2);
 	
-	var _react = __webpack_require__(6);
-	
-	var _react2 = _interopRequireDefault(_react);
-	
 	var _classnames = __webpack_require__(556);
 	
 	var _classnames2 = _interopRequireDefault(_classnames);
+	
+	var _react = __webpack_require__(6);
+	
+	var _react2 = _interopRequireDefault(_react);
 	
 	var _lib = __webpack_require__(393);
 	
@@ -60235,13 +60225,16 @@
 	
 	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 	
+	/**
+	 * A step can contain a content.
+	 */
 	function StepContent(props) {
 	  var children = props.children,
 	      className = props.className,
 	      description = props.description,
 	      title = props.title;
 	
-	  var classes = (0, _classnames2.default)(className, 'content');
+	  var classes = (0, _classnames2.default)('content', className);
 	  var rest = (0, _lib.getUnhandledProps)(StepContent, props);
 	  var ElementType = (0, _lib.getElementType)(StepContent, props);
 	
@@ -60326,7 +60319,7 @@
 	      className = props.className,
 	      description = props.description;
 	
-	  var classes = (0, _classnames2.default)(className, 'description');
+	  var classes = (0, _classnames2.default)('description', className);
 	  var rest = (0, _lib.getUnhandledProps)(StepDescription, props);
 	  var ElementType = (0, _lib.getElementType)(StepDescription, props);
 	
@@ -60390,12 +60383,15 @@
 	
 	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 	
+	/**
+	 * A step can contain a title.
+	 */
 	function StepTitle(props) {
 	  var children = props.children,
 	      className = props.className,
 	      title = props.title;
 	
-	  var classes = (0, _classnames2.default)(className, 'title');
+	  var classes = (0, _classnames2.default)('title', className);
 	  var rest = (0, _lib.getUnhandledProps)(StepTitle, props);
 	  var ElementType = (0, _lib.getElementType)(StepTitle, props);
 	
@@ -60471,6 +60467,9 @@
 	
 	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 	
+	/**
+	 * A set of steps.
+	 */
 	function StepGroup(props) {
 	  var children = props.children,
 	      className = props.className,
@@ -60481,7 +60480,7 @@
 	      stackable = props.stackable,
 	      vertical = props.vertical;
 	
-	  var classes = (0, _classnames2.default)('ui', (0, _lib.useKeyOnly)(fluid, 'fluid'), (0, _lib.useKeyOnly)(ordered, 'ordered'), (0, _lib.useValueAndKey)(stackable, 'stackable'), (0, _lib.useKeyOnly)(vertical, 'vertical'), size, className, 'steps');
+	  var classes = (0, _classnames2.default)('ui', size, (0, _lib.useKeyOnly)(fluid, 'fluid'), (0, _lib.useKeyOnly)(ordered, 'ordered'), (0, _lib.useKeyOnly)(vertical, 'vertical'), (0, _lib.useValueAndKey)(stackable, 'stackable'), 'steps', className);
 	  var rest = (0, _lib.getUnhandledProps)(StepGroup, props);
 	  var ElementType = (0, _lib.getElementType)(StepGroup, props);
 	
@@ -60509,10 +60508,6 @@
 	StepGroup._meta = {
 	  name: 'StepGroup',
 	  parent: 'Step',
-	  props: {
-	    sizes: (0, _without3.default)(_lib.SUI.SIZES, 'medium'),
-	    stackable: ['tablet']
-	  },
 	  type: _lib.META.TYPES.ELEMENT
 	};
 	
@@ -60520,11 +60515,11 @@
 	  /** An element type to render as (string or function). */
 	  as: _lib.customPropTypes.as,
 	
-	  /** Additional classes. */
-	  className: _react.PropTypes.string,
-	
 	  /** Primary content. */
 	  children: _react.PropTypes.node,
+	
+	  /** Additional classes. */
+	  className: _react.PropTypes.string,
 	
 	  /** A fluid step takes up the width of its container. */
 	  fluid: _react.PropTypes.bool,
@@ -60536,10 +60531,10 @@
 	  ordered: _react.PropTypes.bool,
 	
 	  /** Steps can have different sizes. */
-	  size: _react.PropTypes.oneOf(StepGroup._meta.props.sizes),
+	  size: _react.PropTypes.oneOf((0, _without3.default)(_lib.SUI.SIZES, 'medium')),
 	
 	  /** A step can stack vertically only on smaller screens. */
-	  stackable: _react.PropTypes.oneOf(StepGroup._meta.props.stackable),
+	  stackable: _react.PropTypes.oneOf(['tablet']),
 	
 	  /** A step can be displayed stacked vertically. */
 	  vertical: _react.PropTypes.bool
@@ -61086,19 +61081,9 @@
 	
 	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 	
-	var _meta = {
-	  name: 'Embed',
-	  type: _lib.META.TYPES.MODULE,
-	  props: {
-	    aspectRatio: ['4:3', '16:9', '21:9'],
-	    source: ['youtube', 'vimeo']
-	  }
-	};
-	
 	/**
 	 * An embed displays content from other websites like YouTube videos or Google Maps.
 	 */
-	
 	var Embed = function (_Component) {
 	  (0, _inherits3.default)(Embed, _Component);
 	
@@ -61208,7 +61193,10 @@
 	Embed.defaultProps = {
 	  icon: 'video play'
 	};
-	Embed._meta = _meta;
+	Embed._meta = {
+	  name: 'Embed',
+	  type: _lib.META.TYPES.MODULE
+	};
 	exports.default = Embed;
 	 true ? Embed.propTypes = {
 	  /** An element type to render as (string or function). */
@@ -61217,11 +61205,11 @@
 	  /** An embed can be active. */
 	  active: _react.PropTypes.bool,
 	
+	  /** An embed can specify an alternative aspect ratio. */
+	  aspectRatio: _react.PropTypes.oneOf(['4:3', '16:9', '21:9']),
+	
 	  /** Setting to true or false will force autoplay. */
 	  autoplay: _lib.customPropTypes.every([_lib.customPropTypes.demand(['source']), _react.PropTypes.bool]),
-	
-	  /** An embed can specify an alternative aspect ratio. */
-	  aspectRatio: _react.PropTypes.oneOf(_meta.props.aspectRatio),
 	
 	  /** Whether to show networks branded UI like title cards, or after video calls to action. */
 	  brandedUI: _lib.customPropTypes.every([_lib.customPropTypes.demand(['source']), _react.PropTypes.bool]),
@@ -61241,11 +61229,11 @@
 	  /** Whether to show networks branded UI like title cards, or after video calls to action. */
 	  hd: _lib.customPropTypes.every([_lib.customPropTypes.demand(['source']), _react.PropTypes.bool]),
 	
-	  /** Specifies an id for source. */
-	  id: _lib.customPropTypes.every([_lib.customPropTypes.demand(['source']), _react.PropTypes.string]),
-	
 	  /** Specifies an icon to use with placeholder content. */
 	  icon: _lib.customPropTypes.itemShorthand,
+	
+	  /** Specifies an id for source. */
+	  id: _lib.customPropTypes.every([_lib.customPropTypes.demand(['source']), _react.PropTypes.string]),
 	
 	  /**
 	   * Сalled on click.
@@ -61259,7 +61247,7 @@
 	  placeholder: _react.PropTypes.string,
 	
 	  /** Specifies a source to use. */
-	  source: _lib.customPropTypes.every([_lib.customPropTypes.disallow(['sourceUrl']), _react.PropTypes.oneOf(_meta.props.source)]),
+	  source: _lib.customPropTypes.every([_lib.customPropTypes.disallow(['sourceUrl']), _react.PropTypes.oneOf(['youtube', 'vimeo'])]),
 	
 	  /** Specifies a url to use for embed. */
 	  url: _lib.customPropTypes.every([_lib.customPropTypes.disallow(['source']), _react.PropTypes.string])
@@ -61322,10 +61310,6 @@
 	var _omit2 = __webpack_require__(728);
 	
 	var _omit3 = _interopRequireDefault(_omit2);
-	
-	var _keys2 = __webpack_require__(484);
-	
-	var _keys3 = _interopRequireDefault(_keys2);
 	
 	var _assign2 = __webpack_require__(868);
 	
@@ -61617,7 +61601,7 @@
 	      if (closed) return trigger;
 	
 	      var unhandled = (0, _lib.getUnhandledProps)(Popup, this.props);
-	      var portalPropNames = (0, _keys3.default)(_Portal2.default.propTypes);
+	      var portalPropNames = _Portal2.default.handledProps;
 	
 	      var rest = (0, _omit3.default)(unhandled, portalPropNames);
 	      var portalProps = (0, _pick3.default)(unhandled, portalPropNames);
@@ -61659,10 +61643,10 @@
 	Popup.Header = _PopupHeader2.default;
 	exports.default = Popup;
 	 true ? Popup.propTypes = {
-	  /** Display the popup without the pointing arrow */
+	  /** Display the popup without the pointing arrow. */
 	  basic: _react.PropTypes.bool,
 	
-	  /** You may pass a content as children of the Popup */
+	  /** You may pass a content as children of the Popup. */
 	  children: _react.PropTypes.node,
 	
 	  /** Classes to add to the Popup className. */
@@ -61671,33 +61655,33 @@
 	  /** Simple text content for the popover */
 	  content: _react.PropTypes.node,
 	
-	  /** A Flowing popup have no maximum width and continue to flow to fit its content */
+	  /** A flowing Popup has no maximum width and continues to flow to fit its content. */
 	  flowing: _react.PropTypes.bool,
 	
-	  /** Takes up the entire width of its offset container */
+	  /** Takes up the entire width of its offset container. */
 	  // TODO: implement the Popup fluid layout
 	  // fluid: PropTypes.bool,
 	
-	  /** Header displayed above the content in bold */
+	  /** Header displayed above the content in bold. */
 	  header: _react.PropTypes.string,
 	
-	  /** Whether the popup should not close on hover */
+	  /** Whether the popup should not close on hover. */
 	  hoverable: _react.PropTypes.bool,
 	
-	  /** Invert the colors of the popup */
+	  /** Invert the colors of the Popup. */
 	  inverted: _react.PropTypes.bool,
 	
-	  /** The node where the popup should mount.. */
+	  /** Hide the Popup when scrolling the window. */
 	  hideOnScroll: _react.PropTypes.bool,
 	
-	  /** Horizontal offset in pixels to be applied to the popup */
+	  /** Horizontal offset in pixels to be applied to the Popup. */
 	  offset: _react.PropTypes.number,
 	
 	  /** Event triggering the popup */
 	  on: _react.PropTypes.oneOf(_meta.props.on),
 	
 	  /**
-	   * Called when a close event happens
+	   * Called when a close event happens.
 	   *
 	   * @param {SyntheticEvent} event - React's original SyntheticEvent.
 	   * @param {object} data - All props.
@@ -61705,7 +61689,7 @@
 	  onClose: _react.PropTypes.func,
 	
 	  /**
-	   * Called when the portal is mounted on the DOM
+	   * Called when the portal is mounted on the DOM.
 	   *
 	   * @param {null}
 	   * @param {object} data - All props.
@@ -61713,7 +61697,7 @@
 	  onMount: _react.PropTypes.func,
 	
 	  /**
-	   * Called when an open event happens
+	   * Called when an open event happens.
 	   *
 	   * @param {SyntheticEvent} event - React's original SyntheticEvent.
 	   * @param {object} data - All props.
@@ -61721,7 +61705,7 @@
 	  onOpen: _react.PropTypes.func,
 	
 	  /**
-	   * Called when the portal is unmounted from the DOM
+	   * Called when the portal is unmounted from the DOM.
 	   *
 	   * @param {null}
 	   * @param {object} data - All props.
@@ -61731,16 +61715,16 @@
 	  /** Positioning for the popover */
 	  positioning: _react.PropTypes.oneOf(_meta.props.positioning),
 	
-	  /** Popup size */
+	  /** Popup size. */
 	  size: _react.PropTypes.oneOf(_meta.props.size),
 	
-	  /** custom popup style */
+	  /** Custom Popup style. */
 	  style: _react.PropTypes.object,
 	
 	  /** Element to be rendered in-place where the popup is defined. */
 	  trigger: _react.PropTypes.node,
 	
-	  /** Popup width */
+	  /** Popup width. */
 	  wide: _react.PropTypes.oneOf(_meta.props.wide)
 	} : void 0;
 	Popup.handledProps = ['basic', 'children', 'className', 'content', 'flowing', 'header', 'hideOnScroll', 'hoverable', 'inverted', 'offset', 'on', 'onClose', 'onMount', 'onOpen', 'onUnmount', 'positioning', 'size', 'style', 'trigger', 'wide'];
@@ -62902,14 +62886,6 @@
 	
 	var debug = (0, _lib.makeDebugger)('search');
 	
-	var _meta = {
-	  name: 'Search',
-	  type: _lib.META.TYPES.MODULE,
-	  props: {
-	    size: (0, _without3.default)(_lib.SUI.SIZES, 'medium')
-	  }
-	};
-	
 	/**
 	 * A search module allows a user to query for results from a selection of data
 	 */
@@ -63115,8 +63091,8 @@
 	    }, _this.renderSearchInput = function () {
 	      var _this$props3 = _this.props,
 	          icon = _this$props3.icon,
-	          placeholder = _this$props3.placeholder,
-	          input = _this$props3.input;
+	          input = _this$props3.input,
+	          placeholder = _this$props3.placeholder;
 	      var value = _this.state.value;
 	
 	
@@ -63132,8 +63108,8 @@
 	      });
 	    }, _this.renderNoResults = function () {
 	      var _this$props4 = _this.props,
-	          noResultsMessage = _this$props4.noResultsMessage,
-	          noResultsDescription = _this$props4.noResultsDescription;
+	          noResultsDescription = _this$props4.noResultsDescription,
+	          noResultsMessage = _this$props4.noResultsMessage;
 	
 	
 	      return _react2.default.createElement(
@@ -63375,7 +63351,7 @@
 	
 	      // Classes
 	
-	      var classes = (0, _classnames2.default)('ui', open && 'active visible', size, searchClasses, (0, _lib.useKeyOnly)(loading, 'loading'), (0, _lib.useValueAndKey)(aligned, 'aligned'), (0, _lib.useKeyOnly)(category, 'category'), (0, _lib.useKeyOnly)(focus, 'focus'), (0, _lib.useKeyOnly)(fluid, 'fluid'), className, 'search');
+	      var classes = (0, _classnames2.default)('ui', open && 'active visible', size, searchClasses, (0, _lib.useKeyOnly)(category, 'category'), (0, _lib.useKeyOnly)(focus, 'focus'), (0, _lib.useKeyOnly)(fluid, 'fluid'), (0, _lib.useKeyOnly)(loading, 'loading'), (0, _lib.useValueAndKey)(aligned, 'aligned'), 'search', className);
 	      var rest = (0, _lib.getUnhandledProps)(Search, this.props);
 	      var ElementType = (0, _lib.getElementType)(Search, this.props);
 	
@@ -63397,16 +63373,19 @@
 	
 	Search.defaultProps = {
 	  icon: 'search',
+	  input: 'text',
 	  minCharacters: 1,
 	  noResultsMessage: 'No results found.',
-	  showNoResults: true,
-	  input: 'text'
+	  showNoResults: true
 	};
 	Search.autoControlledProps = ['open', 'value'];
-	Search._meta = _meta;
+	Search._meta = {
+	  name: 'Search',
+	  type: _lib.META.TYPES.MODULE
+	};
+	Search.Category = _SearchCategory2.default;
 	Search.Result = _SearchResult2.default;
 	Search.Results = _SearchResults2.default;
-	Search.Category = _SearchCategory2.default;
 	exports.default = Search;
 	 true ? Search.propTypes = {
 	  /** An element type to render as (string or function). */
@@ -63416,8 +63395,20 @@
 	  // Behavior
 	  // ------------------------------------
 	
+	  /** Initial value of open. */
+	  defaultOpen: _react.PropTypes.bool,
+	
+	  /** Initial value. */
+	  defaultValue: _react.PropTypes.string,
+	
 	  /** Shorthand for Icon. */
 	  icon: _react.PropTypes.oneOfType([_react.PropTypes.node, _react.PropTypes.object]),
+	
+	  /** Controls whether or not the results menu is displayed. */
+	  open: _react.PropTypes.bool,
+	
+	  /** Placeholder of the search input. */
+	  placeholder: _react.PropTypes.string,
 	
 	  /**
 	   * One of:
@@ -63426,35 +63417,23 @@
 	   */
 	  results: _react.PropTypes.oneOfType([_react.PropTypes.arrayOf(_react.PropTypes.shape(_SearchResult2.default.propTypes)), _react.PropTypes.object]),
 	
-	  /** Controls whether or not the results menu is displayed. */
-	  open: _react.PropTypes.bool,
-	
-	  /** Initial value of open. */
-	  defaultOpen: _react.PropTypes.bool,
-	
-	  /** Current value of the search input. Creates a controlled component. */
-	  value: _react.PropTypes.string,
-	
-	  /** Initial value. */
-	  defaultValue: _react.PropTypes.string,
-	
-	  /** Placeholder of the search input. */
-	  placeholder: _react.PropTypes.string,
-	
 	  /** Minimum characters to query for results */
 	  minCharacters: _react.PropTypes.number,
 	
-	  /** Message to display when there are no results. */
-	  noResultsMessage: _react.PropTypes.string,
-	
 	  /** Additional text for "No Results" message with less emphasis. */
 	  noResultsDescription: _react.PropTypes.string,
+	
+	  /** Message to display when there are no results. */
+	  noResultsMessage: _react.PropTypes.string,
 	
 	  /** Whether the search should automatically select the first result after searching */
 	  selectFirstResult: _react.PropTypes.bool,
 	
 	  /** Whether a "no results" message should be shown if no results are found. */
 	  showNoResults: _react.PropTypes.bool,
+	
+	  /** Current value of the search input. Creates a controlled component. */
+	  value: _react.PropTypes.string,
 	
 	  // ------------------------------------
 	  // Rendering
@@ -63485,22 +63464,6 @@
 	  onBlur: _react.PropTypes.func,
 	
 	  /**
-	   * Called when a result is selected.
-	   *
-	   * @param {SyntheticEvent} event - React's original SyntheticEvent.
-	   * @param {object} data - All props.
-	   */
-	  onResultSelect: _react.PropTypes.func,
-	
-	  /**
-	   * Called on search input change.
-	   *
-	   * @param {SyntheticEvent} event - React's original SyntheticEvent.
-	   * @param {string} value - Current value of search input.
-	   */
-	  onSearchChange: _react.PropTypes.func,
-	
-	  /**
 	   * Called on focus.
 	   *
 	   * @param {SyntheticEvent} event - React's original SyntheticEvent.
@@ -63515,6 +63478,22 @@
 	   * @param {object} data - All props.
 	   */
 	  onMouseDown: _react.PropTypes.func,
+	
+	  /**
+	   * Called when a result is selected.
+	   *
+	   * @param {SyntheticEvent} event - React's original SyntheticEvent.
+	   * @param {object} data - All props.
+	   */
+	  onResultSelect: _react.PropTypes.func,
+	
+	  /**
+	   * Called on search input change.
+	   *
+	   * @param {SyntheticEvent} event - React's original SyntheticEvent.
+	   * @param {string} value - Current value of search input.
+	   */
+	  onSearchChange: _react.PropTypes.func,
 	
 	  // ------------------------------------
 	  // Style
@@ -63535,9 +63514,11 @@
 	  /** A search input can take up the width of its container. */
 	  input: _lib.customPropTypes.itemShorthand,
 	
-	  size: _react.PropTypes.oneOf(_meta.props.size),
+	  /** A search can show a loading indicator. */
+	  loading: _react.PropTypes.bool,
 	
-	  loading: _react.PropTypes.bool
+	  /** A search can have different sizes. */
+	  size: _react.PropTypes.oneOf((0, _without3.default)(_lib.SUI.SIZES, 'medium'))
 	} : void 0;
 	Search.handledProps = ['aligned', 'as', 'category', 'categoryRenderer', 'className', 'defaultOpen', 'defaultValue', 'fluid', 'icon', 'input', 'loading', 'minCharacters', 'noResultsDescription', 'noResultsMessage', 'onBlur', 'onFocus', 'onMouseDown', 'onResultSelect', 'onSearchChange', 'open', 'placeholder', 'resultRenderer', 'results', 'selectFirstResult', 'showNoResults', 'size', 'value'];
 
@@ -63715,13 +63696,13 @@
 	
 	var _extends3 = _interopRequireDefault(_extends2);
 	
-	var _react = __webpack_require__(6);
-	
-	var _react2 = _interopRequireDefault(_react);
-	
 	var _classnames = __webpack_require__(556);
 	
 	var _classnames2 = _interopRequireDefault(_classnames);
+	
+	var _react = __webpack_require__(6);
+	
+	var _react2 = _interopRequireDefault(_react);
 	
 	var _lib = __webpack_require__(393);
 	
@@ -63819,13 +63800,13 @@
 	
 	var _inherits3 = _interopRequireDefault(_inherits2);
 	
-	var _react = __webpack_require__(6);
-	
-	var _react2 = _interopRequireDefault(_react);
-	
 	var _classnames = __webpack_require__(556);
 	
 	var _classnames2 = _interopRequireDefault(_classnames);
+	
+	var _react = __webpack_require__(6);
+	
+	var _react2 = _interopRequireDefault(_react);
 	
 	var _lib = __webpack_require__(393);
 	
@@ -63980,13 +63961,13 @@
 	
 	var _extends3 = _interopRequireDefault(_extends2);
 	
-	var _react = __webpack_require__(6);
-	
-	var _react2 = _interopRequireDefault(_react);
-	
 	var _classnames = __webpack_require__(556);
 	
 	var _classnames2 = _interopRequireDefault(_classnames);
+	
+	var _react = __webpack_require__(6);
+	
+	var _react2 = _interopRequireDefault(_react);
 	
 	var _lib = __webpack_require__(393);
 	
@@ -66730,7 +66711,7 @@
 	
 	/**
 	 * An item view presents large collections of site content for display
-	 **/
+	 */
 	function Item(props) {
 	  var children = props.children,
 	      className = props.className,
@@ -66862,7 +66843,7 @@
 	
 	/**
 	 * An item can contain content
-	 **/
+	 */
 	function ItemContent(props) {
 	  var children = props.children,
 	      className = props.className,
@@ -66977,7 +66958,7 @@
 	
 	/**
 	 * An item can contain a header
-	 **/
+	 */
 	function ItemHeader(props) {
 	  var children = props.children,
 	      className = props.className,
@@ -67049,7 +67030,7 @@
 	
 	/**
 	 * An item can contain a description with a single or multiple paragraphs
-	 **/
+	 */
 	function ItemDescription(props) {
 	  var children = props.children,
 	      className = props.className,
@@ -67121,7 +67102,7 @@
 	
 	/**
 	 * An item can contain extra content meant to be formatted separately from the main content
-	 **/
+	 */
 	function ItemExtra(props) {
 	  var children = props.children,
 	      className = props.className,
@@ -67193,7 +67174,7 @@
 	
 	/**
 	 * An item can contain content metadata.
-	 **/
+	 */
 	function ItemMeta(props) {
 	  var children = props.children,
 	      className = props.className,
@@ -67277,7 +67258,7 @@
 	
 	/**
 	 * A group of items
-	 **/
+	 */
 	function ItemGroup(props) {
 	  var children = props.children,
 	      className = props.className,
@@ -67377,7 +67358,7 @@
 	
 	/**
 	 * An item can contain an image
-	 **/
+	 */
 	function ItemImage(props) {
 	  var size = props.size;
 	
@@ -67395,7 +67376,7 @@
 	
 	 true ? ItemImage.propTypes = {
 	  /** An image may appear at different sizes */
-	  size: _react.PropTypes.oneOf(_Image2.default._meta.props.size)
+	  size: _Image2.default.propTypes.size
 	} : void 0;
 	
 	exports.default = ItemImage;

@@ -13,7 +13,7 @@ We use a ``post-receive`` git hook to puplish the repository on the live server.
 He triggers on every push to the git repo on the server.
 
 The ``post-receive`` hook uses the path defined in the ``livepath`` variable.
-Make sure that this path exists on the server before pushing.
+Make sure that this path exists on the server before pushing the first time.
 
 The hook triggers ``make deploylive`` which is defined in ``Makefile``.
 This copy the production settings to ``settings.json``, install the dependencies and

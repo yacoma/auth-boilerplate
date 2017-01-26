@@ -10,9 +10,6 @@ do
                 cd $livepath
                 make deploylive
                 echo 'Changes pushed live.'
-
-
-
         fi
 done
 cd /home/yacoma/git/auth-boilerplate.git

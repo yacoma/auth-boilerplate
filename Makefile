@@ -5,12 +5,12 @@ install: env/bin/python
 env/bin/python:
 	virtualenv  -p python3.5 --no-site-packages env
 	env/bin/pip install --upgrade pip setuptools
-	env/bin/pip install -Ue .
 
 .PHONY:	deploylive
 
 deploylive: env/bin/python
 	cp -af deploy/live_settings.json settings.json
+	env/bin/pip install -Ue .
 	npm install
 
 	# For production you should use this
@@ -25,6 +25,7 @@ deploylive: env/bin/python
 
 setuplocal: env/bin/python
 	cp -af deploy/local_settings.json settings.json
+	env/bin/pip install -Ue .
 	npm install
 	npm run build
 
