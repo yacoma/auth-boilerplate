@@ -1,16 +1,23 @@
 import json
 from pony.orm import db_session
+from pymitter import EventEmitter
 
 import morepath
+from reg import match_key
 from more.jwtauth import JWTIdentityPolicy
 
 
 class App(morepath.App):
-    pass
+
+    ee = EventEmitter()
+
+    @morepath.dispatch_method(match_key('name'))
+    def service(self, name):
+        raise NotImplementedError
 
 
-with open('settings.json') as config:
-    settings_dict = json.load(config)
+with open('settings.json') as settings:
+    settings_dict = json.load(settings)
 
 App.init_settings(settings_dict)
 

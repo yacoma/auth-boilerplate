@@ -4,7 +4,7 @@
     "default_language": "en-US"
   },
   "jwtauth": {
-    "master_secret": "b894da6ab8d041e9a9ec8507644c4413",
+    "master_secret": "13ad14ebf1644e50bdfdfe0d47c37d2d",
     "leeway": 10
   },
   "database": {
@@ -13,17 +13,16 @@
     "kwargs": {"create_db": true}
   },
   "authentication": {
-    "confirm_email": false
+    "confirm_email": true
   },
   "smtp":{
-    "username": "henri@art.bieszczady.pl",
-    "host": "smtp.gmail.com",
-    "port": "587",
-    "starttls": true,
-    "smtp_skip_login": false
+    "host": "localhost",
+    "port": "25",
+    "starttls": false,
+    "smtp_skip_login": true
   },
   "token": {
-    "secret": "edba63b558ae4aee9ce47c38e48b6e5b",
+    "secret": "e07763a54d6e422aa5b37ee1e60c4d05",
     "max_age": 604800
   }
 }

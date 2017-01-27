@@ -1,3 +1,4 @@
+from base64 import urlsafe_b64encode
 from argon2 import PasswordHasher
 from argon2.exceptions import VerifyMismatchError
 
@@ -6,7 +7,7 @@ from morepath import redirect
 
 from .app import App
 from .collection import UserCollection, GroupCollection
-from .model import Root, Login, User, Group
+from .model import Root, Login, User, Group, ConfirmEmail
 
 
 @App.json(model=Root)
@@ -30,7 +31,7 @@ def login(self, request):
         else:
             valid_credentials = True
 
-    if valid_credentials:
+    if valid_credentials and u.email_confirmed:
         @request.after
         def remember(response):
             admin = Group.get(name='Admin')
@@ -48,6 +49,15 @@ def login(self, request):
             '@type': request.class_link(UserCollection)
         }
 
+    elif valid_credentials:
+        @request.after
+        def email_not_confirmed(response):
+            response.status_code = 403
+
+        return {
+            'validationError': 'Your email address has not been confirmed yet'
+        }
+
     else:
         @request.after
         def credentials_not_valid(response):
@@ -63,9 +73,39 @@ def user_get(self, request):
         '@type': request.class_link(UserCollection),
         'nickname': self.nickname,
         'email': self.email,
+        'email_confirmed': self.email_confirmed,
         'language': self.language,
         'groups': [group.name for group in self.groups],
     }
+
+
+@App.html(model=ConfirmEmail)
+def confirm_email(self, request):
+    u = User[self.id]
+    token = self.token
+    token_service = request.app.service(name='token')
+    base_url = request.host_url
+    path = '/'
+    flash_type = 'info'
+    if u.email_confirmed:
+        flash = 'Your email is already confirmed. Please log in.'
+        path = '/login'
+    else:
+        if token_service.validate(token, 'email-confirmation-salt'):
+            u.email_confirmed = True
+            flash = 'Thank you for confirming your email address.'
+            flash_type = 'success'
+        else:
+            flash = 'The confirmation link is invalid or has expired.'
+            flash_type = 'error'
+            path = '/register'
+
+    flash = urlsafe_b64encode(
+        flash.encode('utf-8')
+    ).replace(b'=', b'').decode('utf-8')
+
+    query = '?flash=' + flash + '&flashtype=' + flash_type
+    return morepath.redirect(base_url + path + query)
 
 
 @App.json(model=UserCollection)
@@ -94,6 +134,8 @@ def user_collection_add(self, request):
             nickname=nickname, email=email, password=password,
             language=language, creation_ip=creation_ip, group_ids=group_ids
         )
+
+        request.app.ee.emit('user.created', user, request)
 
         @request.after
         def after(response):

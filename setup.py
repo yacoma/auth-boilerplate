@@ -24,8 +24,12 @@ setup(
     install_requires=[
         'more.jwtauth',
         'pony',
+        'pymitter',
         'argon2_cffi',
         'gunicorn',
+        'itsdangerous',
+        'yagmail',
+        'keyrings.alt',
     ],
     extras_require=dict(
         test=[

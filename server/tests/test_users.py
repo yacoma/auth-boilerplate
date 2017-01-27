@@ -65,6 +65,18 @@ def test_login():
 
     response = c.post(
         '/login',
+        json.dumps({"email": "mary@example.com", "password": "test2"}),
+        status=403
+    )
+    assert response.json == {
+        "validationError": "Your email address has not been confirmed yet"
+    }
+
+    with db_session:
+        User[2].email_confirmed = True
+
+    response = c.post(
+        '/login',
         json.dumps({"email": "mary@example.com", "password": "test2"})
     )
     assert response.json == {
@@ -86,7 +98,7 @@ def test_user():
     assert_dict_contains_subset(user, response.json)
 
 
-def test_add_user():
+def test_add_user(smtp_server):
     c = Client(App(), extra_environ=dict(REMOTE_ADDR='127.0.0.1'))
 
     new_user_json = json.dumps({

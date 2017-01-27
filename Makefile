@@ -9,7 +9,7 @@ env/bin/python:
 .PHONY:	deploylive
 
 deploylive: env/bin/python
-	cp -af deploy/live_settings.json settings.json
+	cp -af deploy/settings_live.json settings.json
 	env/bin/pip install -Ue .
 	npm install
 
@@ -24,7 +24,7 @@ deploylive: env/bin/python
 .PHONY:	setuplocal
 
 setuplocal: env/bin/python
-	cp -af deploy/local_settings.json settings.json
+	cp -af deploy/settings_local.json settings.json
 	env/bin/pip install -Ue .
 	npm install
 	npm run build
