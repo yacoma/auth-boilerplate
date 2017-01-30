@@ -1,6 +1,6 @@
 from .app import App
 from .collection import UserCollection, GroupCollection
-from .model import Root, Login, User, Group
+from .model import Root, Login, User, Group, ConfirmEmail
 
 
 @App.path(model=Root, path='/')
@@ -14,20 +14,25 @@ def get_login():
 
 
 @App.path(model=User, path='users/{id}')
-def get_user(request, id):
+def get_user(id):
     return User[id]
 
 
+@App.path(model=ConfirmEmail, path='users/{id}/confirm/{token}')
+def get_confirm_email(id, token):
+    return ConfirmEmail(id, token)
+
+
 @App.path(model=UserCollection, path='users')
-def get_user_collection(request):
+def get_user_collection():
     return UserCollection()
 
 
 @App.path(model=Group, path='groups/{id}')
-def get_group(request, id):
+def get_group(id):
     return Group[id]
 
 
 @App.path(model=GroupCollection, path='groups')
-def get_group_collection(request):
+def get_group_collection():
     return GroupCollection()

@@ -13,11 +13,18 @@ class Login(object):
     pass
 
 
+class ConfirmEmail(object):
+    def __init__(self, id, token):
+        self.id = id
+        self.token = token
+
+
 class User(db.Entity):
     _table_ = 'users'
 
     nickname = Required(str, 255)
     email = Required(str, 255, unique=True)
+    email_confirmed = Required(bool, default=False)
     password = Required(str, 255)
     language = Optional(str, 16)
     creation_ip = Optional(str, 255)

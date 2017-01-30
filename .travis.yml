@@ -9,6 +9,8 @@ before_install:
 - pip install --upgrade pip setuptools
 install:
 - pip install tox
+before_script:
+- cp -af deploy/settings_test.json settings.json
 script:
 - tox -e $TOXENV
 addons:

@@ -2,7 +2,6 @@ import {state, input} from 'cerebral/tags'
 import {set, when} from 'cerebral/operators'
 import {isValidForm} from 'cerebral-forms'
 import {httpPost} from 'cerebral-provider-http'
-import initUser from '../actions/initUser'
 
 export default [
   isValidForm(state`user.register`), {
@@ -25,7 +24,6 @@ export default [
               set(state`user.register.email.value`, ''),
               set(state`user.register.password.value`, ''),
               set(state`user.register.confirmPassword.value`, ''),
-              initUser,
               set(state`user.register.isLoading`, false),
               when(state`app.lastVisited`), {
                 true: [set(state`app.currentPage`, state`app.lastVisited`)],
