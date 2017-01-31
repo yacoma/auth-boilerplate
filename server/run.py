@@ -2,6 +2,7 @@ from argon2 import PasswordHasher
 import morepath
 from pony.orm import db_session
 import webob
+from webob.exc import HTTPNotFound
 from webob.static import DirectoryApp, FileApp
 from .app import App
 from .model import db, User, Group
