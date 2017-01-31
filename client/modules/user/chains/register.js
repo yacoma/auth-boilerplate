@@ -15,27 +15,12 @@ export default [
         success: [
           set(state`user.register.showErrors`, false),
           set(state`user.register.integrityError`, null),
-          httpPost('/login', {
-            email: state`user.register.email.value`,
-            password: state`user.register.password.value`
-          }), {
-            success: [
-              set(state`user.register.nickname.value`, ''),
-              set(state`user.register.email.value`, ''),
-              set(state`user.register.password.value`, ''),
-              set(state`user.register.confirmPassword.value`, ''),
-              set(state`user.register.isLoading`, false),
-              when(state`app.lastVisited`), {
-                true: [set(state`app.currentPage`, state`app.lastVisited`)],
-                false: [set(state`app.currentPage`, 'home')]
-              }
-            ],
-            error: [
-              set(state`user.register.password.value`, ''),
-              set(state`user.register.confirmPassword.value`, ''),
-              set(state`user.register.isLoading`, false)
-            ]
-          }
+          set(state`user.register.nickname.value`, ''),
+          set(state`user.register.email.value`, ''),
+          set(state`user.register.password.value`, ''),
+          set(state`user.register.confirmPassword.value`, ''),
+          set(state`user.register.isLoading`, false),
+          set(state`app.currentPage`, 'login')
         ],
         error: [
           set(state`user.register.password.value`, ''),

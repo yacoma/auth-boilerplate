@@ -29717,10 +29717,9 @@
 	    _templateObject6 = _taggedTemplateLiteral(['user.register.showErrors'], ['user.register.showErrors']),
 	    _templateObject7 = _taggedTemplateLiteral(['user.register.integrityError'], ['user.register.integrityError']),
 	    _templateObject8 = _taggedTemplateLiteral(['user.register.confirmPassword.value'], ['user.register.confirmPassword.value']),
-	    _templateObject9 = _taggedTemplateLiteral(['app.lastVisited'], ['app.lastVisited']),
-	    _templateObject10 = _taggedTemplateLiteral(['app.currentPage'], ['app.currentPage']),
-	    _templateObject11 = _taggedTemplateLiteral(['status'], ['status']),
-	    _templateObject12 = _taggedTemplateLiteral(['result.integrityError'], ['result.integrityError']);
+	    _templateObject9 = _taggedTemplateLiteral(['app.currentPage'], ['app.currentPage']),
+	    _templateObject10 = _taggedTemplateLiteral(['status'], ['status']),
+	    _templateObject11 = _taggedTemplateLiteral(['result.integrityError'], ['result.integrityError']);
 	
 	var _tags = __webpack_require__(207);
 	
@@ -29738,20 +29737,11 @@
 	    email: (0, _tags.state)(_templateObject4),
 	    password: (0, _tags.state)(_templateObject5)
 	  }), {
-	    success: [(0, _operators.set)((0, _tags.state)(_templateObject6), false), (0, _operators.set)((0, _tags.state)(_templateObject7), null), (0, _cerebralProviderHttp.httpPost)('/login', {
-	      email: (0, _tags.state)(_templateObject4),
-	      password: (0, _tags.state)(_templateObject5)
-	    }), {
-	      success: [(0, _operators.set)((0, _tags.state)(_templateObject3), ''), (0, _operators.set)((0, _tags.state)(_templateObject4), ''), (0, _operators.set)((0, _tags.state)(_templateObject5), ''), (0, _operators.set)((0, _tags.state)(_templateObject8), ''), (0, _operators.set)((0, _tags.state)(_templateObject2), false), (0, _operators.when)((0, _tags.state)(_templateObject9)), {
-	        true: [(0, _operators.set)((0, _tags.state)(_templateObject10), (0, _tags.state)(_templateObject9))],
-	        false: [(0, _operators.set)((0, _tags.state)(_templateObject10), 'home')]
-	      }],
-	      error: [(0, _operators.set)((0, _tags.state)(_templateObject5), ''), (0, _operators.set)((0, _tags.state)(_templateObject8), ''), (0, _operators.set)((0, _tags.state)(_templateObject2), false)]
-	    }],
-	    error: [(0, _operators.set)((0, _tags.state)(_templateObject5), ''), (0, _operators.set)((0, _tags.state)(_templateObject8), ''), (0, _operators.set)((0, _tags.state)(_templateObject6), false), (0, _operators.when)((0, _tags.input)(_templateObject11), function (status) {
+	    success: [(0, _operators.set)((0, _tags.state)(_templateObject6), false), (0, _operators.set)((0, _tags.state)(_templateObject7), null), (0, _operators.set)((0, _tags.state)(_templateObject3), ''), (0, _operators.set)((0, _tags.state)(_templateObject4), ''), (0, _operators.set)((0, _tags.state)(_templateObject5), ''), (0, _operators.set)((0, _tags.state)(_templateObject8), ''), (0, _operators.set)((0, _tags.state)(_templateObject2), false), (0, _operators.set)((0, _tags.state)(_templateObject9), 'login')],
+	    error: [(0, _operators.set)((0, _tags.state)(_templateObject5), ''), (0, _operators.set)((0, _tags.state)(_templateObject8), ''), (0, _operators.set)((0, _tags.state)(_templateObject6), false), (0, _operators.when)((0, _tags.input)(_templateObject10), function (status) {
 	      return status === 409;
 	    }), {
-	      true: [(0, _operators.set)((0, _tags.state)(_templateObject7), (0, _tags.input)(_templateObject12))],
+	      true: [(0, _operators.set)((0, _tags.state)(_templateObject7), (0, _tags.input)(_templateObject11))],
 	      false: [(0, _operators.set)((0, _tags.state)(_templateObject7), 'Could not register')]
 	    }, (0, _operators.set)((0, _tags.state)(_templateObject2), false)]
 	  }],
