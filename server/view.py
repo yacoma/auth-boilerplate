@@ -135,10 +135,9 @@ def user_collection_add(self, request):
             language=language, creation_ip=creation_ip, group_ids=group_ids
         )
 
-        request.app.ee.emit('user.created', user, request)
-
         @request.after
         def after(response):
+            request.app.ee.emit('user.created', user, request)
             response.status = 201
 
         return {
