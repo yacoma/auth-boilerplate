@@ -40,25 +40,25 @@ def wsgi_factory():   # pragma: no cover
     morepath.autoscan()
     App.commit()
 
+    index = FileApp('static/index.html')
+    static = DirectoryApp('static')
     app = App()
 
     setup_db(app)
 
     @webob.dec.wsgify
     def morepath_with_static_absorb(request):
+        peek = request.path_info_peek()
+        if peek != 'api' and peek != 'static':
+            return request.get_response(index)
+
         popped = request.path_info_pop()
         if popped == 'api':
             return request.get_response(app)
         elif popped == 'static':
-            static = DirectoryApp('static')
             return request.get_response(static)
-        else:
-            query = ''
-            if request.query_string:
-                query = '?' + request.query_string
-            index_path = 'static/index.html' + query
-            index = FileApp(index_path)
-            return request.get_response(index)
+
+        raise HTTPNotFound()
 
     return morepath_with_static_absorb
 
