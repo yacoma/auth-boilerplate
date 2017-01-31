@@ -16,8 +16,8 @@
     "confirm_email": false
   },
   "smtp":{
-    "username": "henri@art.bieszczady.pl",
-    "host": "smtp.gmail.com",
+    "username": "admin@yacoma.it",
+    "host": "mail.yacoma.it",
     "port": "587",
     "starttls": true,
     "smtp_skip_login": false

@@ -16,10 +16,11 @@
     "confirm_email": true
   },
   "smtp":{
-    "host": "localhost",
-    "port": "25",
-    "starttls": false,
-    "smtp_skip_login": true
+    "username": "admin@yacoma.it",
+    "host": "mail.yacoma.it",
+    "port": "587",
+    "starttls": true,
+    "smtp_skip_login": false
   },
   "token": {
     "secret": "e07763a54d6e422aa5b37ee1e60c4d05",

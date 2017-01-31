@@ -29730,12 +29730,6 @@
 	
 	var _cerebralProviderHttp = __webpack_require__(228);
 	
-	var _initUser = __webpack_require__(280);
-	
-	var _initUser2 = _interopRequireDefault(_initUser);
-	
-	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
-	
 	function _taggedTemplateLiteral(strings, raw) { return Object.freeze(Object.defineProperties(strings, { raw: { value: Object.freeze(raw) } })); }
 	
 	exports.default = [(0, _cerebralForms.isValidForm)((0, _tags.state)(_templateObject)), {
@@ -29748,7 +29742,7 @@
 	      email: (0, _tags.state)(_templateObject4),
 	      password: (0, _tags.state)(_templateObject5)
 	    }), {
-	      success: [(0, _operators.set)((0, _tags.state)(_templateObject3), ''), (0, _operators.set)((0, _tags.state)(_templateObject4), ''), (0, _operators.set)((0, _tags.state)(_templateObject5), ''), (0, _operators.set)((0, _tags.state)(_templateObject8), ''), _initUser2.default, (0, _operators.set)((0, _tags.state)(_templateObject2), false), (0, _operators.when)((0, _tags.state)(_templateObject9)), {
+	      success: [(0, _operators.set)((0, _tags.state)(_templateObject3), ''), (0, _operators.set)((0, _tags.state)(_templateObject4), ''), (0, _operators.set)((0, _tags.state)(_templateObject5), ''), (0, _operators.set)((0, _tags.state)(_templateObject8), ''), (0, _operators.set)((0, _tags.state)(_templateObject2), false), (0, _operators.when)((0, _tags.state)(_templateObject9)), {
 	        true: [(0, _operators.set)((0, _tags.state)(_templateObject10), (0, _tags.state)(_templateObject9))],
 	        false: [(0, _operators.set)((0, _tags.state)(_templateObject10), 'home')]
 	      }],
