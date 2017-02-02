@@ -30,6 +30,7 @@ setup(
         'itsdangerous',
         'yagmail',
         'keyrings.alt',
+        'email_validator',
     ],
     extras_require=dict(
         test=[

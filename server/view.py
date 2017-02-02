@@ -1,6 +1,7 @@
 from base64 import urlsafe_b64encode
 from argon2 import PasswordHasher
 from argon2.exceptions import VerifyMismatchError
+from email_validator import EmailSyntaxError, EmailUndeliverableError
 
 import morepath
 from morepath import redirect
@@ -20,8 +21,22 @@ def login(self, request):
     email = request.json['email']
     password = request.json['password']
 
+    validation_service = request.app.service(name='email_validation')
+
+    try:
+        normalized_email = validation_service.validate_email(email)
+
+    except EmailSyntaxError:
+        @request.after
+        def after(response):
+            response.status = 409
+
+        return {
+            'integrityError': 'Not valid email'
+        }
+
     ph = PasswordHasher()
-    u = User.get(email=email)
+    u = User.get(email=normalized_email)
     valid_credentials = False
     if u:
         try:
@@ -129,30 +144,54 @@ def user_collection_add(self, request):
     group_ids = request.json.get('groups', [])
     creation_ip = request.remote_addr
 
-    if not User.exists(email=email):
-        user = self.add(
-            nickname=nickname, email=email, password=password,
-            language=language, creation_ip=creation_ip, group_ids=group_ids
-        )
+    validation_service = request.app.service(name='email_validation')
 
-        @request.after
-        def after(response):
-            request.app.ee.emit('user.created', user, request)
-            response.status = 201
+    try:
+        normalized_email = validation_service.validate_email(email, True)
 
-        return {
-            '@id': request.class_link(User, variables={'id': user.id}),
-            '@type': request.class_link(UserCollection)
-        }
-
-    else:
+    except EmailSyntaxError:
         @request.after
         def after(response):
             response.status = 409
 
         return {
-            'integrityError': 'Email already exists'
+            'integrityError': 'Not valid email'
         }
+
+    except EmailUndeliverableError:
+        @request.after
+        def after(response):
+            response.status = 409
+
+        return {
+            'integrityError': 'Email could not be delivered'
+        }
+
+    else:
+        if not User.exists(email=normalized_email):
+            user = self.add(
+                nickname=nickname, email=normalized_email, password=password,
+                language=language, creation_ip=creation_ip, group_ids=group_ids
+            )
+
+            @request.after
+            def after(response):
+                request.app.signal.emit('user.created', user, request)
+                response.status = 201
+
+            return {
+                '@id': request.class_link(User, variables={'id': user.id}),
+                '@type': request.class_link(UserCollection)
+            }
+
+        else:
+            @request.after
+            def after(response):
+                response.status = 409
+
+            return {
+                'integrityError': 'Email already exists'
+            }
 
 
 @App.json(model=User, request_method='PUT')

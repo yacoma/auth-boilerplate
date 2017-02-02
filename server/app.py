@@ -9,7 +9,7 @@ from more.jwtauth import JWTIdentityPolicy
 
 class App(morepath.App):
 
-    ee = EventEmitter()
+    signal = EventEmitter()
 
     @morepath.dispatch_method(match_key('name'))
     def service(self, name):

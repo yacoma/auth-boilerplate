@@ -25,5 +25,8 @@
   "token": {
     "secret": "edba63b558ae4aee9ce47c38e48b6e5b",
     "max_age": 604800
+  },
+  "email_validation": {
+    "from_address": "verify@example.com"
   }
 }

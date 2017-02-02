@@ -2,7 +2,7 @@ from .app import App
 from .model import ConfirmEmail
 
 
-@App.ee.on('user.created')
+@App.signal.on('user.created')
 def send_confirmation_mail(user, request):
     settings = request.app.settings
     token_service = request.app.service(name='token')

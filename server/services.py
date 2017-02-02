@@ -1,5 +1,8 @@
 from itsdangerous import URLSafeTimedSerializer, BadSignature
 import yagmail
+from email_validator import validate_email, EmailUndeliverableError
+import smtplib
+
 
 from .app import App
 
@@ -29,6 +32,48 @@ def mailer_service(app, name):
         username=username, password=password, host=host,
         port=port, starttls=starttls, smtp_skip_login=smtp_skip_login
     )
+
+
+class EmailValidationService(object):
+    def __init__(self, from_address):
+        self.from_address = from_address
+
+    def validate_email(self, email, check_deliverability=False):
+        v = validate_email(
+            email, check_deliverability=check_deliverability
+        )
+        normalized_email = v['email']
+        if v['domain_i18n'] == 'googlemail.com':
+            normalized_email = v['local'] + '@gmail.com'
+        if check_deliverability:
+            server = smtplib.SMTP()
+            server.set_debuglevel(0)
+            email_found = False
+            for mx in v['mx']:
+                mx_name = mx[1]
+                server.connect(mx_name)
+                server.helo(server.local_hostname)
+                server.mail(self.from_address)
+                code, message = server.rcpt(str(normalized_email))
+                server.quit()
+                if code == 250:
+                    email_found = True
+                    break
+
+            if not email_found:
+                raise EmailUndeliverableError(
+                    "The email %s could not be found." % normalized_email
+                )
+
+        return normalized_email
+
+
+@App.method(App.service, name='email_validation')
+def email_validation_service(app, name):
+    from_address = getattr(
+        app.settings.email_validation, 'from_address', 'verify@example.com'
+    )
+    return EmailValidationService(from_address)
 
 
 class TokenService(object):
