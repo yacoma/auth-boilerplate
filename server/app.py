@@ -1,4 +1,4 @@
-import json
+import yaml
 from pony.orm import db_session
 from pymitter import EventEmitter
 
@@ -16,10 +16,10 @@ class App(morepath.App):
         raise NotImplementedError
 
 
-with open('settings.json') as settings:
-    settings_dict = json.load(settings)
+with open('server/settings/default.yml') as defaults:
+    defaults_dict = yaml.load(defaults)
 
-App.init_settings(settings_dict)
+App.init_settings(defaults_dict)
 
 
 @App.tween_factory(over=morepath.EXCVIEW)
@@ -41,3 +41,23 @@ def get_identity_policy(settings):
 @App.verify_identity()
 def verify_identity(identity):
     return True
+
+
+class ProductionApp(App):
+    pass
+
+
+with open('server/settings/production.yml') as settings:
+    settings_dict = yaml.load(settings)
+
+ProductionApp.init_settings(settings_dict)
+
+
+class TestApp(App):
+    pass
+
+
+with open('server/settings/test.yml') as settings:
+    settings_dict = yaml.load(settings)
+
+TestApp.init_settings(settings_dict)

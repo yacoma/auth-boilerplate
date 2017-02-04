@@ -1,0 +1,32 @@
+---
+locale:
+  accepted_languages:
+  - en-GB
+  - en-US
+  default_language: en-US
+
+jwtauth:
+  master_secret: b894da6ab8d041e9a9ec8507644c4413
+  leeway: 10
+
+database:
+  provider: sqlite
+  args:
+  - auth.db
+  kwargs:
+    create_db: true
+
+authentication:
+  confirm_email: true
+
+smtp:
+  username: null
+  password: null
+  host: mail.yacoma.it
+  port: '587'
+  starttls: true
+  smtp_skip_login: false
+
+token:
+  secret: edba63b558ae4aee9ce47c38e48b6e5b
+  max_age: 604800

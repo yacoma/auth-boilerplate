@@ -1,10 +1,12 @@
+import os
+
 from argon2 import PasswordHasher
-import morepath
 from pony.orm import db_session
 import webob
-from webob.exc import HTTPNotFound
 from webob.static import DirectoryApp, FileApp
-from .app import App
+import morepath
+
+from server import App, ProductionApp
 from .model import db, User, Group
 
 
@@ -39,27 +41,28 @@ def setup_db(app):
 
 def wsgi_factory():   # pragma: no cover
     morepath.autoscan()
-    App.commit()
+
+    if os.getenv('MOREPATH_ENV') == 'production':
+        ProductionApp.commit()
+        app = ProductionApp()
+    else:
+        App.commit()
+        app = App()
 
     index = FileApp('static/index.html')
     static = DirectoryApp('static')
-    app = App()
 
     setup_db(app)
 
     @webob.dec.wsgify
     def morepath_with_static_absorb(request):
-        peek = request.path_info_peek()
-        if peek != 'api' and peek != 'static':
-            return request.get_response(index)
-
         popped = request.path_info_pop()
         if popped == 'api':
             return request.get_response(app)
         elif popped == 'static':
             return request.get_response(static)
-
-        raise HTTPNotFound()
+        else:
+            return request.get_response(index)
 
     return morepath_with_static_absorb
 

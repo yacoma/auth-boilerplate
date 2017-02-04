@@ -9,7 +9,6 @@ env/bin/python:
 .PHONY:	deploylive
 
 deploylive: env/bin/python
-	cp -af deploy/settings_live.json settings.json
 	env/bin/pip install -Ue .
 	npm install
 
@@ -19,18 +18,22 @@ deploylive: env/bin/python
 	# We want here the debugger to work so we do
 	npm run build
 
-	touch server/run.py  # trigger reload
+	# check gunicorn config and create database if not present
+	env/bin/gunicorn --check-config server.run
 
 .PHONY:	setuplocal
 
 setuplocal: env/bin/python
-	cp -af deploy/settings_local.json settings.json
 	env/bin/pip install -Ue .
 	npm install
 	npm run build
+
+	# check gunicorn config and create database if not present
+	env/bin/gunicorn --check-config server.run
 
 .PHONY:	clean
 
 clean:
 	- rm -rf env node_modules
-	- rm static/auth.js static/auth.js.map static/index.html
+	- rm -f static/auth.js static/auth.js.map static/index.html
+	- rm -f server/auth.db

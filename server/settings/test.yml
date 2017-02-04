@@ -1,0 +1,17 @@
+---
+jwtauth:
+  master_secret: 4713a0c71df14310b5b46a2da6a67923
+  leeway: 10
+
+authentication:
+  confirm_email: true
+
+smtp:
+  host: localhost
+  port: '1125'
+  starttls: false
+  smtp_skip_login: true
+
+token:
+  secret: 2e999240aeb847d0a20ed830da2a3668
+  max_age: 604800

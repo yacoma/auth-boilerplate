@@ -7,7 +7,7 @@ import morepath
 from .utils import assert_dict_contains_subset
 
 import server
-from server import App
+from server import TestApp as App
 from server.model import db, User, Group
 
 

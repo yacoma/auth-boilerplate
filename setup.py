@@ -31,6 +31,7 @@ setup(
         'yagmail',
         'keyrings.alt',
         'email_validator',
+        'pyyaml',
     ],
     extras_require=dict(
         test=[
