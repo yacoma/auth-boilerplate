@@ -14,13 +14,6 @@ def setup_module(module):
     morepath.scan(server)
     morepath.commit(App)
 
-    try:
-        db.bind('sqlite', ':memory:')
-    except TypeError:
-        pass
-    else:
-        db.generate_mapping(check_tables=False)
-
 
 def setup_function(function):
     db.drop_all_tables(with_all_data=True)

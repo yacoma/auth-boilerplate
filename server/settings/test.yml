@@ -3,10 +3,17 @@ jwtauth:
   master_secret: 4713a0c71df14310b5b46a2da6a67923
   leeway: 10
 
+database:
+  provider: sqlite
+  args:
+  - ":memory:"
+  kwargs: {}
+
 authentication:
   confirm_email: true
 
 smtp:
+  username: test@example.com
   host: localhost
   port: '1125'
   starttls: false

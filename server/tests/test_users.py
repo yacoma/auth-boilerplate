@@ -15,13 +15,6 @@ def setup_module(module):
     morepath.scan(server)
     morepath.commit(App)
 
-    try:
-        db.bind('sqlite', ':memory:')
-    except TypeError:
-        pass
-    else:
-        db.generate_mapping(check_tables=False)
-
 
 def setup_function(function):
     db.drop_all_tables(with_all_data=True)
@@ -101,6 +94,8 @@ def test_user():
 def test_add_user(smtp_server):
     c = Client(App(), extra_environ=dict(REMOTE_ADDR='127.0.0.1'))
 
+    assert len(smtp_server.outbox) == 0
+
     new_user_json = json.dumps({
         "nickname": "NewUser",
         "email": "newuser@example.com",
@@ -118,10 +113,18 @@ def test_add_user(smtp_server):
         assert User.get(nickname='NewUser').language == 'de_DE'
         assert User.get(nickname='NewUser').creation_ip == '127.0.0.1'
 
+    assert len(smtp_server.outbox) == 1
+    message = smtp_server.outbox[0]
+    assert message['subject'] == 'Confirm Your Email Address'
+    assert message['To'] == 'newuser@example.com'
+
+
     response = c.post('/users', new_user_json, status=409)
     assert response.json == {
         "integrityError": "Email already exists"
     }
+
+    assert len(smtp_server.outbox) == 1
 
     with db_session:
         editor_id = Group.get(name='Editor').get_pk()
@@ -136,6 +139,37 @@ def test_add_user(smtp_server):
         assert User.exists(nickname='NewEditor')
         assert Group.get(name='Editor') \
             in User.get(nickname='NewEditor').groups
+
+    assert len(smtp_server.outbox) == 2
+    message = smtp_server.outbox[1]
+    assert message['subject'] == 'Confirm Your Email Address'
+    assert message['To'] == 'neweditor@example.com'
+
+
+    new_user_json = json.dumps({
+        "nickname": "NewUser",
+        "email": "newuser@this.server.doesnt.exist.com",
+        "password": "test10",
+        "language": "de_DE"
+    })
+
+    response = c.post('/users', new_user_json, status=409)
+    assert response.json == {
+        "integrityError": "Email could not be delivered"
+    }
+
+
+    new_user_json = json.dumps({
+        "nickname": "NewUser",
+        "email": "newuser@example",
+        "password": "test9",
+        "language": "de_DE"
+    })
+
+    response = c.post('/users', new_user_json, status=409)
+    assert response.json == {
+        "integrityError": "Not valid email"
+    }
 
 
 def test_update_user():

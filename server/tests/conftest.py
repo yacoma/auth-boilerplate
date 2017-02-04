@@ -1,51 +1,18 @@
-import smtpd
-import asyncore
-from threading import Thread
-from queue import Queue
-
 import pytest
 
 
-@pytest.fixture(scope='module')
+@pytest.fixture(scope="session")
 def smtp_server():
-    """
-    Adopted from https://gist.github.com/devsli/acce0c8508327ae57340.
-    Return dummy SMTP server to check outgoing messages.
-    The ``queue.Queue`` of ``tuple`` objects is yelded
-    Sent queue example usage::
-        def test_get_msg(SmtpServer):
-            addr, sender, recipients, body = SmtpServer.get()
-    Note that execution will be freezed until something is retrieved
-    from ``sent`` queue. You can use ``Queue.get_nowait()`` or
-    ``timeout`` parameter to avoid such behavior.
-    Read more about
-    `queues <https://docs.python.org/3/library/queue.html>`_
-    """
-    sent = Queue()
+    from pytest_localserver import smtp
+
     port = 1125
-    host = '0.0.0.0'
+    server = smtp.Server(port=port)
+    server.start()
+    yield server
+    server.stop()
 
-    class _TestSmtpServer(smtpd.SMTPServer):
-        def __init__(self, sent_queue, *args, **kwargs):
-            smtpd.SMTPServer.__init__(self, *args, **kwargs)
-            self.sent_queue = sent_queue
 
-        def process_message(self, *args):
-            self.sent_queue.put(args)
-
-    class _SmtpServerThread(Thread):
-        def __init__(self, host, port, sent_queue):
-            Thread.__init__(self)
-            self.smtpd = _TestSmtpServer(sent_queue, (host, port), None)
-
-        def run(self):
-            asyncore.loop()
-
-        def stop(self):
-            self.smtpd.close()
-            self.join()
-
-    s = _SmtpServerThread(host, port, sent)
-    s.start()
-    yield sent
-    s.stop()
+@pytest.fixture(scope="function")
+def smtp(smtp_server):
+    yield smtp_server
+    del smtp_server.outbox[:]

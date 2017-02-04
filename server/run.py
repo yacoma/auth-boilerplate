@@ -6,7 +6,7 @@ import webob
 from webob.static import DirectoryApp, FileApp
 import morepath
 
-from server import App, ProductionApp
+from server import App, ProductionApp, TestApp
 from .model import db, User, Group
 
 
@@ -42,9 +42,12 @@ def setup_db(app):
 def wsgi_factory():   # pragma: no cover
     morepath.autoscan()
 
-    if os.getenv('MOREPATH_ENV') == 'production':
+    if os.getenv('RUN_ENV') == 'production':
         ProductionApp.commit()
         app = ProductionApp()
+    elif os.getenv('RUN_ENV') == 'test':
+        TestApp.commit()
+        app = TestApp()
     else:
         App.commit()
         app = App()
