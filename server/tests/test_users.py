@@ -1,3 +1,4 @@
+from base64 import urlsafe_b64encode
 import json
 from argon2 import PasswordHasher
 from pony.orm import db_session
@@ -77,6 +78,15 @@ def test_login():
         "@type": "http://localhost/users"
     }
 
+    response = c.post(
+        '/login',
+        json.dumps({"email": "test@example", "password": "secret"}),
+        status=409
+    )
+    assert response.json == {
+        "validationError": "Not valid email"
+    }
+
 
 def test_user():
     c = Client(App())
@@ -92,9 +102,9 @@ def test_user():
 
 
 def test_add_user(smtp_server):
-    c = Client(App(), extra_environ=dict(REMOTE_ADDR='127.0.0.1'))
-
     assert len(smtp_server.outbox) == 0
+
+    c = Client(App(), extra_environ=dict(REMOTE_ADDR='127.0.0.1'))
 
     new_user_json = json.dumps({
         "nickname": "NewUser",
@@ -118,7 +128,6 @@ def test_add_user(smtp_server):
     assert message['subject'] == 'Confirm Your Email Address'
     assert message['To'] == 'newuser@example.com'
 
-
     response = c.post('/users', new_user_json, status=409)
     assert response.json == {
         "integrityError": "Email already exists"
@@ -130,7 +139,7 @@ def test_add_user(smtp_server):
         editor_id = Group.get(name='Editor').get_pk()
         new_editor_json = json.dumps({
             "nickname": "NewEditor",
-            "email": "neweditor@example.com",
+            "email": "neweditor@googlemail.com",
             "password": "test8",
             "groups": [editor_id]
         })
@@ -139,12 +148,12 @@ def test_add_user(smtp_server):
         assert User.exists(nickname='NewEditor')
         assert Group.get(name='Editor') \
             in User.get(nickname='NewEditor').groups
+        assert User.get(nickname='NewEditor').email == 'neweditor@gmail.com'
 
     assert len(smtp_server.outbox) == 2
     message = smtp_server.outbox[1]
     assert message['subject'] == 'Confirm Your Email Address'
-    assert message['To'] == 'neweditor@example.com'
-
+    assert message['To'] == 'neweditor@gmail.com'
 
     new_user_json = json.dumps({
         "nickname": "NewUser",
@@ -157,7 +166,6 @@ def test_add_user(smtp_server):
     assert response.json == {
         "integrityError": "Email could not be delivered"
     }
-
 
     new_user_json = json.dumps({
         "nickname": "NewUser",
@@ -210,3 +218,54 @@ def test_delete_user():
 
     with db_session:
         assert not User.exists(nickname='Mary')
+
+
+def test_confirm_email():
+    c = Client(App(), extra_environ=dict(REMOTE_ADDR='127.0.0.1'))
+
+    new_user_json = json.dumps({
+        "nickname": "NewUser",
+        "email": "newuser@example.com",
+        "password": "test7",
+        "language": "de_DE"
+    })
+    c.post('/users', new_user_json, status=201)
+
+    response = c.get(
+        '/users/4/confirm/' +
+        'Im5ld.WrongToken.jFaRE',
+        status=302
+    )
+
+    flash = urlsafe_b64encode(
+        'The confirmation link is invalid or has expired.'.encode('utf-8')
+    ).replace(b'=', b'').decode('utf-8')
+    assert '302 Found' in response.text
+    assert 'flash=' + flash in response.text
+    assert 'flashtype=error' in response.text
+
+    response = c.get(
+        '/users/4/confirm/' +
+        'Im5ld3VzZXJAZXhhbXBsZS5jb20i.C3dnsw.2meomRPK3wnYwB2AERt2ygjFaRE',
+        status=302
+    )
+
+    flash = urlsafe_b64encode(
+        'Thank you for confirming your email address.'.encode('utf-8')
+    ).replace(b'=', b'').decode('utf-8')
+    assert '302 Found' in response.text
+    assert 'flash=' + flash in response.text
+    assert 'flashtype=success' in response.text
+
+    response = c.get(
+        '/users/4/confirm/' +
+        'Im5ld3VzZXJAZXhhbXBsZS5jb20i.C3dnsw.2meomRPK3wnYwB2AERt2ygjFaRE',
+        status=302
+    )
+
+    flash = urlsafe_b64encode(
+        'Your email is already confirmed. Please log in.'.encode('utf-8')
+    ).replace(b'=', b'').decode('utf-8')
+    assert '302 Found' in response.text
+    assert 'flash=' + flash in response.text
+    assert 'flashtype=info' in response.text

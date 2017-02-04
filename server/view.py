@@ -32,7 +32,7 @@ def login(self, request):
             response.status = 409
 
         return {
-            'integrityError': 'Not valid email'
+            'validationError': 'Not valid email'
         }
 
     ph = PasswordHasher()
@@ -94,7 +94,7 @@ def user_get(self, request):
     }
 
 
-@App.html(model=ConfirmEmail)
+@App.json(model=ConfirmEmail)
 def confirm_email(self, request):
     u = User[self.id]
     token = self.token
