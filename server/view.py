@@ -8,7 +8,7 @@ from morepath import redirect
 
 from .app import App
 from .collection import UserCollection, GroupCollection
-from .model import Root, Login, User, Group, ConfirmEmail
+from .model import Root, Login, User, Group, ConfirmEmail, ResetPassword
 
 
 @App.json(model=Root)
@@ -24,7 +24,7 @@ def login(self, request):
     validation_service = request.app.service(name='email_validation')
 
     try:
-        normalized_email = validation_service.validate_email(email)
+        normalized_email = validation_service.normalize(email)
 
     except EmailSyntaxError:
         @request.after
@@ -37,41 +37,48 @@ def login(self, request):
 
     ph = PasswordHasher()
     u = User.get(email=normalized_email)
-    valid_credentials = False
+    credentials_valid = False
     if u:
         try:
             ph.verify(u.password, password)
         except VerifyMismatchError:
             pass
         else:
-            valid_credentials = True
+            credentials_valid = True
 
-    if valid_credentials and u.email_confirmed:
-        @request.after
-        def remember(response):
-            admin = Group.get(name='Admin')
-            is_admin = False
-            # Checks if user is member of Admin group or a group to which
-            # belong Admin group (recursive).
-            if u.groups and admin:
-                is_admin = admin in u.groups.basegroups
-            identity = morepath.Identity(email, nickname=u.nickname,
-                                         language=u.language, isAdmin=is_admin)
-            request.app.remember_identity(response, request, identity)
+        if credentials_valid and u.email_confirmed:
+            @request.after
+            def remember(response):
+                admin = Group.get(name='Admin')
+                is_admin = False
+                # Checks if user is member of Admin group or a group to which
+                # belong Admin group (recursive).
+                if u.groups and admin:
+                    is_admin = admin in u.groups.basegroups
+                identity = morepath.Identity(email, nickname=u.nickname,
+                                             language=u.language, isAdmin=is_admin)
+                request.app.remember_identity(response, request, identity)
 
-        return {
-            '@id': request.class_link(User, variables={'id': u.id}),
-            '@type': request.class_link(UserCollection)
-        }
+            return {
+                '@id': request.class_link(User, variables={'id': u.id}),
+                '@type': request.class_link(UserCollection)
+            }
 
-    elif valid_credentials:
-        @request.after
-        def email_not_confirmed(response):
-            response.status_code = 403
+        elif not credentials_valid:
+            @request.after
+            def credentials_not_valid(response):
+                response.status_code = 403
 
-        return {
-            'validationError': 'Your email address has not been confirmed yet'
-        }
+            return {'validationError': 'Invalid username or password'}
+
+        else:
+            @request.after
+            def email_not_confirmed(response):
+                response.status_code = 403
+
+            return {
+                'validationError': 'Your email address has not been confirmed yet'
+            }
 
     else:
         @request.after
@@ -92,35 +99,6 @@ def user_get(self, request):
         'language': self.language,
         'groups': [group.name for group in self.groups],
     }
-
-
-@App.json(model=ConfirmEmail)
-def confirm_email(self, request):
-    u = User[self.id]
-    token = self.token
-    token_service = request.app.service(name='token')
-    base_url = request.host_url
-    path = '/'
-    flash_type = 'info'
-    if u.email_confirmed:
-        flash = 'Your email is already confirmed. Please log in.'
-        path = '/login'
-    else:
-        if token_service.validate(token, 'email-confirmation-salt'):
-            u.email_confirmed = True
-            flash = 'Thank you for confirming your email address.'
-            flash_type = 'success'
-        else:
-            flash = 'The confirmation link is invalid or has expired.'
-            flash_type = 'error'
-            path = '/register'
-
-    flash = urlsafe_b64encode(
-        flash.encode('utf-8')
-    ).replace(b'=', b'').decode('utf-8')
-
-    query = '?flash=' + flash + '&flashtype=' + flash_type
-    return morepath.redirect(base_url + path + query)
 
 
 @App.json(model=UserCollection)
@@ -147,7 +125,7 @@ def user_collection_add(self, request):
     validation_service = request.app.service(name='email_validation')
 
     try:
-        normalized_email = validation_service.validate_email(email, True)
+        normalized_email = validation_service.normalize(email, True)
 
     except EmailSyntaxError:
         @request.after
@@ -258,3 +236,71 @@ def group_update(self, request):
 @App.json(model=Group, request_method='DELETE')
 def group_remove(self, request):
     self.remove()
+
+
+@App.json(model=ConfirmEmail)
+def confirm_email(self, request):
+    u = User[self.id]
+    base_url = request.host_url
+    token_service = request.app.service(name='token')
+    if u.email_confirmed:
+        path = '/login'
+        flash = 'Your email is already confirmed. Please log in.'
+        flash_type = 'info'
+    else:
+        if token_service.validate(self.token, 'email-confirmation-salt'):
+            path = '/'
+            u.email_confirmed = True
+            flash = 'Thank you for confirming your email address.'
+            flash_type = 'success'
+        else:
+            path = '/register'
+            flash = 'The confirmation link is invalid or has been expired.'
+            flash_type = 'error'
+
+    flash_encoded = urlsafe_b64encode(
+        flash.encode('utf-8')
+    ).replace(b'=', b'').decode('utf-8')
+
+    query = '?flash=' + flash_encoded + '&flashtype=' + flash_type
+    return morepath.redirect(base_url + path + query)
+
+
+@App.json(model=ResetPassword)
+def reset_password(self, request):
+    u = User[self.id]
+    base_url = request.host_url
+    query = ''
+    token_service = request.app.service(name='token')
+    token_valid = token_service.validate(self.token, 'password-reset-salt')
+
+    if token_valid and u.email_confirmed:
+        @request.after
+        def remember(response):
+            admin = Group.get(name='Admin')
+            is_admin = False
+            if u.groups and admin:
+                is_admin = admin in u.groups.basegroups
+            identity = morepath.Identity(u.email, nickname=u.nickname,
+                                         language=u.language, isAdmin=is_admin)
+            request.app.remember_identity(response, request, identity)
+
+        path = '/reset'
+
+    elif not token_valid:
+        path = '/login'
+        flash = 'The password reset link is invalid or has been expired.'
+        flash_encoded = urlsafe_b64encode(
+            flash.encode('utf-8')
+        ).replace(b'=', b'').decode('utf-8')
+        query = '?flash=' + flash_encoded + '&flashtype=error'
+
+    else:
+        path = '/login'
+        flash = 'Your email must be confirmed before resetting the password.'
+        flash_encoded = urlsafe_b64encode(
+            flash.encode('utf-8')
+        ).replace(b'=', b'').decode('utf-8')
+        query = '?flash=' + flash_encoded + '&flashtype=error'
+
+    return morepath.redirect(base_url + path + query)

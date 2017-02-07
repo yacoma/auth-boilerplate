@@ -66,6 +66,39 @@ export default {
       showErrors: false,
       integrityError: null,
       isLoading: false
+    }),
+    emailForm: form({
+      email: {
+        value: '',
+        validationRules: ['isEmail'],
+        validationMessages: ['Not valid email'],
+        isRequired: true,
+        requiredMessage: 'Email is required'
+      },
+      showErrors: false,
+      integrityError: null,
+      isLoading: false
+    }),
+    passwordForm: form({
+      password: {
+        value: '',
+        validationRules: ['minLength:5'],
+        validationMessages: ['Too short'],
+        dependsOn: 'user.passwordForm.confirmPassword',
+        isRequired: true,
+        requiredMessage: 'Password is required'
+      },
+      confirmPassword: {
+        value: '',
+        validationRules: ['equalsField:password'],
+        validationMessages: ['Not equal to password'],
+        dependsOn: 'user.passwordForm.password',
+        isRequired: true,
+        requiredMessage: 'You must confirm password'
+      },
+      showErrors: false,
+      integrityError: null,
+      isLoading: false
     })
   },
 

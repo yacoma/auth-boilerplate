@@ -239,7 +239,7 @@ def test_confirm_email():
     )
 
     flash = urlsafe_b64encode(
-        'The confirmation link is invalid or has expired.'.encode('utf-8')
+        'The confirmation link is invalid or has been expired.'.encode('utf-8')
     ).replace(b'=', b'').decode('utf-8')
     assert '302 Found' in response.text
     assert 'flash=' + flash in response.text

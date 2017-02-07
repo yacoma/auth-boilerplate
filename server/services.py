@@ -1,9 +1,8 @@
 from itsdangerous import URLSafeTimedSerializer, BadSignature
 import yagmail
-from email_validator import validate_email
-
 
 from .app import App
+from .utils import normalize_email
 
 
 class MailerService(object):
@@ -34,15 +33,8 @@ def mailer_service(app, name):
 
 
 class EmailValidationService(object):
-    def validate_email(self, email, check_deliverability=False):
-        v = validate_email(
-            email, check_deliverability=check_deliverability
-        )
-        normalized_email = v['email']
-        if v['domain_i18n'] == 'googlemail.com':
-            normalized_email = v['local'] + '@gmail.com'
-
-        return normalized_email
+    def normalize(self, email, check_deliverability=False):
+        return normalize_email(email, check_deliverability)
 
 
 @App.method(App.service, name='email_validation')

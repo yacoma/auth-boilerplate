@@ -2,6 +2,8 @@ from datetime import datetime
 from argon2 import PasswordHasher
 from pony.orm import Database, Required, Optional, Set
 
+from .utils import normalize_email
+
 db = Database()
 
 
@@ -14,6 +16,12 @@ class Login(object):
 
 
 class ConfirmEmail(object):
+    def __init__(self, id, token):
+        self.id = id
+        self.token = token
+
+
+class ResetPassword(object):
     def __init__(self, id, token):
         self.id = id
         self.token = token
@@ -41,6 +49,11 @@ class User(db.Entity):
             if attribute == 'groups':
                 for group_id in value:
                     self.groups.add(Group[group_id])
+            elif attribute == 'email':
+                normalized_email = normalize_email(
+                    value, check_deliverability=False
+                )
+                update_payload['email'] = normalized_email
             elif attribute == 'password':
                 ph = PasswordHasher()
                 password_hash = ph.hash(value)

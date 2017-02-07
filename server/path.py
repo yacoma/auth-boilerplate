@@ -1,6 +1,6 @@
 from .app import App
 from .collection import UserCollection, GroupCollection
-from .model import Root, Login, User, Group, ConfirmEmail
+from .model import Root, Login, User, Group, ConfirmEmail, ResetPassword
 
 
 @App.path(model=Root, path='/')
@@ -21,6 +21,11 @@ def get_user(id):
 @App.path(model=ConfirmEmail, path='users/{id}/confirm/{token}')
 def get_confirm_email(id, token):
     return ConfirmEmail(id, token)
+
+
+@App.path(model=ResetPassword, path='users/{id}/reset/{token}')
+def get_reset_password(id, token):
+    return ResetPassword(id, token)
 
 
 @App.path(model=UserCollection, path='users')
