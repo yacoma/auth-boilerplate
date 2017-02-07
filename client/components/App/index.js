@@ -6,6 +6,7 @@ import Home from '../Home'
 import Private from '../Private'
 import Login from '../Login'
 import Register from '../Register'
+import Flash from '../Flash'
 
 const pages = {
   home: Home,
@@ -23,6 +24,7 @@ export default connect({
     return (
       <div>
         <Navbar />
+        <Flash />
         <Page />
       </div>
     )

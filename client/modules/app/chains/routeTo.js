@@ -1,8 +1,17 @@
 import {set, equals, when} from 'cerebral/operators'
 import {state, props} from 'cerebral/tags'
+import removeFlash from './removeFlash'
 
 export default [
   set(state`app.currentPage`, props`page`),
+  when(state`app.showFlash`), {
+    true: [
+      set(state`app.showFlash`, false)
+    ],
+    false: [
+      ...removeFlash
+    ]
+  },
   equals(props`page`), {
     login: [
       set(state`user.signIn.validationError`, null)
