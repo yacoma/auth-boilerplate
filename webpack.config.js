@@ -9,7 +9,15 @@ const plugins = [
 ];
 
 if (process.env.NODE_ENV === 'production') {
-  plugins.push(new webpack.optimize.UglifyJsPlugin({ compress: { warnings: false } }));
+  plugins.push(new webpack.optimize.UglifyJsPlugin({
+    sourceMap: true
+  }));
+  plugins.push(new webpack.LoaderOptionsPlugin({
+    options: {
+      minimize: true,
+      context: __dirname
+    }
+  }));
 }
 
 module.exports = {
@@ -21,15 +29,18 @@ module.exports = {
     filename: 'auth.js'
   },
   module: {
-    loaders: [{
+    rules: [{
       test: /\.css$/,
-      loader: 'style!css'
+      use: [
+        "style-loader",
+        "css-loader"
+      ]
     }, {
       test: /\.js?$/,
       include: /client/,
-      loader: 'babel',
-      query: {
-        presets: ['react', 'es2015']
+      loader: 'babel-loader',
+      options: {
+        presets: [['es2015', {modules: false}], 'react']
       }
     }]
   },

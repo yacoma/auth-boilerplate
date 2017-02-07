@@ -5,7 +5,7 @@ import {Grid, Header, Icon, Form, Segment, Input, Button, Label, Message, Dimmer
     from 'semantic-ui-react'
 
 export default connect({
-  register: state`user.register.**`,
+  register: state`user.register`,
   fieldChanged: signal`user.fieldChanged`,
   formSubmitted: signal`user.registerFormSubmitted`
 },
@@ -66,7 +66,7 @@ export default connect({
                     value: event.target.value
                   })}
                 />
-                <Label
+                <Label
                   pointing
                   basic
                   color='red'

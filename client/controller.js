@@ -1,5 +1,5 @@
 import {Controller} from 'cerebral'
-import {input} from 'cerebral/tags'
+import {props} from 'cerebral/tags'
 import Devtools from 'cerebral/devtools'
 import Router from 'cerebral-router'
 import HttpProvider from 'cerebral-provider-http'
@@ -12,7 +12,6 @@ const jwtHeader = localStorage.getItem('jwtHeader')
   : null
 
 const controller = Controller({
-  options: {strictRender: true},
   devtools: process.env.NODE_ENV === 'production' ? null : Devtools(),
   modules: {
     app: App,
@@ -22,7 +21,7 @@ const controller = Controller({
       routes: [
         {
           path: '/:page?',
-          map: {page: input`page`},
+          map: {page: props`page`},
           signal: 'app.pageRouted'
         }
       ]

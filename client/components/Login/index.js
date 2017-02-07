@@ -6,7 +6,7 @@ import {
 } from 'semantic-ui-react'
 
 export default connect({
-  signIn: state`user.signIn.**`,
+  signIn: state`user.signIn`,
   fieldChanged: signal`user.fieldChanged`,
   signInSubmitted: signal`user.loginFormSubmitted`
 },
@@ -68,7 +68,7 @@ export default connect({
                     value: event.target.value
                   })}
                 />
-                <Label
+                <Label
                   pointing
                   basic
                   color='red'

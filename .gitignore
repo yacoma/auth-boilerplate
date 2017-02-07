@@ -22,7 +22,7 @@ docs/_build/
 # Javascript
 node_modules
 .eslint*
-*.log
+*.log*
 
 # Database
 *.db

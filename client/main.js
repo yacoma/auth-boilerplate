@@ -1,5 +1,5 @@
 import './styles.css'
-import 'file?name=[name].[ext]!./index.html'
+import 'file-loader?name=[name].[ext]!./index.html'
 
 import React from 'react'
 import {render} from 'react-dom'

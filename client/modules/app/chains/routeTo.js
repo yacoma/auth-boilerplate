@@ -1,9 +1,9 @@
 import {set, equals, when} from 'cerebral/operators'
-import {state, input} from 'cerebral/tags'
+import {state, props} from 'cerebral/tags'
 
 export default [
-  set(state`app.currentPage`, input`page`),
-  equals(input`page`), {
+  set(state`app.currentPage`, props`page`),
+  equals(props`page`), {
     login: [
       set(state`user.signIn.validationError`, null)
     ],
@@ -20,7 +20,7 @@ export default [
       }
     ],
     otherwise: [
-      set(state`app.lastVisited`, input`page`)
+      set(state`app.lastVisited`, props`page`)
     ]
   }
 ]

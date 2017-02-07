@@ -1,4 +1,4 @@
-import {state, input} from 'cerebral/tags'
+import {state, props} from 'cerebral/tags'
 import {set, when} from 'cerebral/operators'
 import {isValidForm} from 'cerebral-forms'
 import {httpPost} from 'cerebral-provider-http'
@@ -26,9 +26,9 @@ export default [
           set(state`user.register.password.value`, ''),
           set(state`user.register.confirmPassword.value`, ''),
           set(state`user.register.showErrors`, false),
-          when(input`status`, (status) => status === 409), {
-            true: [set(state`user.register.integrityError`, input`result.integrityError`)],
-            false: [set(state`user.register.integrityError`, 'Could not register')]
+          when(props`status`, (status) => status === 409), {
+            true: [set(state`user.register.integrityError`, props`result.integrityError`)],
+            false: [set(state`user.register.integrityError`, 'Could not register!')]
           },
           set(state`user.register.isLoading`, false)
         ]

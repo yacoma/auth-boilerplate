@@ -1,5 +1,5 @@
 export default [
-  function initUser ({input, state}) {
+  function initUser ({state}) {
     localStorage.removeItem('jwtHeader')
     state.set('user.email', '')
     state.set('user.nickname', '')
