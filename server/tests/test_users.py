@@ -5,11 +5,12 @@ from pony.orm import db_session
 from webtest import TestApp as Client
 
 import morepath
-from .utils import assert_dict_contains_subset
 
 import server
 from server import TestApp as App
 from server.model import db, User, Group
+
+from .utils import assert_dict_contains_subset
 
 
 def setup_module(module):
