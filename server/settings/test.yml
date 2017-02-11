@@ -21,4 +21,4 @@ smtp:
 
 token:
   secret: 2e999240aeb847d0a20ed830da2a3668
-  max_age: 604800
+  max_age: null

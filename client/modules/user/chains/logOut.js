@@ -1,11 +1,9 @@
-import {set} from 'cerebral/operators'
-import {props} from 'cerebral/tags'
-
 import removeUser from '../actions/removeUser'
-import routeTo from '../../app/chains/routeTo'
+import routeTo from '../../app/factories/routeTo'
+import showFlash from '../../app/factories/showFlash'
 
 export default [
   removeUser,
-  set(props`page`, 'home'),
-  ...routeTo
+  ...routeTo('home'),
+  ...showFlash('Good bye!', 'info')
 ]

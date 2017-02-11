@@ -21,10 +21,20 @@ class ConfirmEmail(object):
         self.token = token
 
 
+class SendResetEmail(object):
+    pass
+
+
 class ResetPassword(object):
     def __init__(self, id, token):
         self.id = id
         self.token = token
+
+    def update(self, password):
+        ph = PasswordHasher()
+        password_hash = ph.hash(password)
+        user = User[self.id]
+        user.password = password_hash
 
 
 class User(db.Entity):

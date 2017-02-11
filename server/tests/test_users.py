@@ -75,14 +75,14 @@ def test_login():
         json.dumps({"email": "mary@example.com", "password": "test2"})
     )
     assert response.json == {
-        "@id": "http://localhost/users/2",
-        "@type": "http://localhost/users"
+        "@id": "/users/2",
+        "@type": "/users"
     }
 
     response = c.post(
         '/login',
         json.dumps({"email": "test@example", "password": "secret"}),
-        status=409
+        status=403
     )
     assert response.json == {
         "validationError": "Not valid email"
@@ -93,8 +93,8 @@ def test_user():
     c = Client(App())
     response = c.get('/users/1')
     user = {
-        "@id": "http://localhost/users/1",
-        "@type": "http://localhost/users",
+        "@id": "/users/1",
+        "@type": "/users",
         "nickname": "Leader",
         "email": "leader@example.com",
         "groups": ["Admin"]
@@ -116,8 +116,8 @@ def test_add_user(smtp_server):
 
     response = c.post('/users', new_user_json, status=201)
     assert response.json == {
-        "@id": "http://localhost/users/4",
-        "@type": "http://localhost/users"
+        "@id": "/users/4",
+        "@type": "/users"
     }
     with db_session:
         assert User.exists(nickname='NewUser')
@@ -131,7 +131,7 @@ def test_add_user(smtp_server):
 
     response = c.post('/users', new_user_json, status=409)
     assert response.json == {
-        "integrityError": "Email already exists"
+        "validationError": "Email already exists"
     }
 
     assert len(smtp_server.outbox) == 1
@@ -165,7 +165,7 @@ def test_add_user(smtp_server):
 
     response = c.post('/users', new_user_json, status=409)
     assert response.json == {
-        "integrityError": "Email could not be delivered"
+        "validationError": "Email could not be delivered"
     }
 
     new_user_json = json.dumps({
@@ -177,7 +177,7 @@ def test_add_user(smtp_server):
 
     response = c.post('/users', new_user_json, status=409)
     assert response.json == {
-        "integrityError": "Not valid email"
+        "validationError": "Not valid email"
     }
 
 
@@ -239,7 +239,7 @@ def test_confirm_email():
     )
 
     flash = urlsafe_b64encode(
-        'The confirmation link is invalid or has been expired.'.encode('utf-8')
+        'The confirmation link is invalid or has been expired'.encode('utf-8')
     ).replace(b'=', b'').decode('utf-8')
     assert '302 Found' in response.text
     assert 'flash=' + flash in response.text
@@ -252,7 +252,7 @@ def test_confirm_email():
     )
 
     flash = urlsafe_b64encode(
-        'Thank you for confirming your email address.'.encode('utf-8')
+        'Thank you for confirming your email address'.encode('utf-8')
     ).replace(b'=', b'').decode('utf-8')
     assert '302 Found' in response.text
     assert 'flash=' + flash in response.text

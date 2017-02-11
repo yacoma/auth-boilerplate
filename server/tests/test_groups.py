@@ -36,8 +36,8 @@ def test_group():
     c = Client(App())
     response = c.get('/groups/1')
     group = {
-        "@id": "http://localhost/groups/1",
-        "@type": "http://localhost/groups",
+        "@id": "/groups/1",
+        "@type": "/groups",
         "name": "Admin",
         "subgroups": ["Admin"],
         "users": ["Leader"]
@@ -85,15 +85,15 @@ def test_add_group():
 
     response = c.post('/groups', new_group_json, status=201)
     assert response.json == {
-        "@id": "http://localhost/groups/4",
-        "@type": "http://localhost/groups"
+        "@id": "/groups/4",
+        "@type": "/groups"
     }
     with db_session:
         assert Group.exists(name='NewGroup')
 
     response = c.post('/groups', new_group_json, status=409)
     assert response.json == {
-        "integrityError": "Group already exists"
+        "validationError": "Group already exists"
     }
 
     with db_session:

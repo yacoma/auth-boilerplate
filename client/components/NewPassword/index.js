@@ -3,14 +3,14 @@ import {connect} from 'cerebral/react'
 import {state, signal} from 'cerebral/tags'
 import {Grid, Header, Icon, Form, Segment, Button, Message, Dimmer, Loader}
     from 'semantic-ui-react'
-import {NicknameField, EmailField, PasswordField, ConfirmPasswordField} from '../fields'
+import {PasswordField, ConfirmPasswordField} from '../fields'
 
 export default connect({
-  register: state`user.register`,
+  passwordForm: state`user.passwordForm`,
   fieldChanged: signal`user.fieldChanged`,
-  formSubmitted: signal`user.registerFormSubmitted`
+  formSubmitted: signal`user.passwordFormSubmitted`
 },
-  function Register ({register, fieldChanged, formSubmitted}) {
+  function NewPassword ({passwordForm, fieldChanged, formSubmitted}) {
     const handleSubmit = (event) => {
       event.preventDefault()
       formSubmitted()
@@ -20,31 +20,29 @@ export default connect({
         <Grid.Column>
           <Header as='h1' textAlign='center' color='blue' icon>
             <Icon name='user' />
-            Create account
+            New Password
           </Header>
           <Message
             warning
-            header={register.validationError}
-            hidden={!register.validationError}
+            header={passwordForm.validationError}
+            hidden={!passwordForm.validationError}
           />
           <Form size='large'>
             <Segment>
               <Dimmer
                 inverted
-                active={register.isLoading}
+                active={passwordForm.isLoading}
               >
                 <Loader />
               </Dimmer>
-              <NicknameField form={register} path={'user.register.nickname'} />
-              <EmailField form={register} path={'user.register.email'} />
-              <PasswordField form={register} path={'user.register.password'} />
-              <ConfirmPasswordField form={register} path={'user.register.confirmPassword'} />
+              <PasswordField form={passwordForm} path={'user.passwordForm.password'} />
+              <ConfirmPasswordField form={passwordForm} path={'user.passwordForm.confirmPassword'} />
               <Button
                 fluid size='large'
                 color='blue'
                 onClick={handleSubmit}
               >
-                Sign up
+                Update
               </Button>
             </Segment>
           </Form>

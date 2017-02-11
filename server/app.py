@@ -43,6 +43,11 @@ def verify_identity(identity):
     return True
 
 
+@App.link_prefix()
+def simple_link_prefix(request):
+    return ''
+
+
 class ProductionApp(App):
     pass
 

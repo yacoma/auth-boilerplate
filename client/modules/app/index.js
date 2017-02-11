@@ -1,22 +1,25 @@
 import base64UrlDecode from 'jwt-decode/lib/base64_url_decode'
 
 import routeTo from './chains/routeTo'
-import removeFlash from './chains/removeFlash'
 
-export default (module) => {
-  let showFlash = false
+export default ({controller, path}) => {
+  let initialFlash = false
   let flash = null
   let flashType = null
   const location = window.location
   const urlParams = new URLSearchParams(location.search)
+  let urlParamsChanged = false
   if (urlParams.has('flash')) {
-    showFlash = true
+    initialFlash = true
     flash = base64UrlDecode(urlParams.get('flash'))
     urlParams.delete('flash')
     if (urlParams.has('flashtype')) {
       flashType = urlParams.get('flashtype')
       urlParams.delete('flashtype')
     }
+    urlParamsChanged = true
+  }
+  if (urlParamsChanged) {
     window.history.replaceState({}, '', `${location.pathname}?${urlParams}`)
   }
 
@@ -26,11 +29,10 @@ export default (module) => {
       lastVisited: null,
       flash: flash,
       flashType: flashType,
-      showFlash: showFlash
+      initialFlash: initialFlash
     },
     signals: {
-      pageRouted: routeTo,
-      flashClosed: removeFlash
+      pageRouted: routeTo
     }
   }
 }

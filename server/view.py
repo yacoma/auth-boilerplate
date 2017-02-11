@@ -1,4 +1,6 @@
 from base64 import urlsafe_b64encode
+from urllib.parse import urlencode
+
 from argon2 import PasswordHasher
 from argon2.exceptions import VerifyMismatchError
 from email_validator import EmailSyntaxError, EmailUndeliverableError
@@ -8,7 +10,8 @@ from morepath import redirect
 
 from .app import App
 from .collection import UserCollection, GroupCollection
-from .model import Root, Login, User, Group, ConfirmEmail, ResetPassword
+from .model import (Root, Login, User, Group, ConfirmEmail,
+                    ResetPassword, SendResetEmail)
 
 
 @App.json(model=Root)
@@ -29,38 +32,39 @@ def login(self, request):
     except EmailSyntaxError:
         @request.after
         def after(response):
-            response.status = 409
+            response.status = 403
 
         return {
             'validationError': 'Not valid email'
         }
 
     ph = PasswordHasher()
-    u = User.get(email=normalized_email)
+    user = User.get(email=normalized_email)
     credentials_valid = False
-    if u:
+    if user:
         try:
-            ph.verify(u.password, password)
+            ph.verify(user.password, password)
         except VerifyMismatchError:
             pass
         else:
             credentials_valid = True
 
-        if credentials_valid and u.email_confirmed:
+        if credentials_valid and user.email_confirmed:
             @request.after
             def remember(response):
                 admin = Group.get(name='Admin')
                 is_admin = False
                 # Checks if user is member of Admin group or a group to which
                 # belong Admin group (recursive).
-                if u.groups and admin:
-                    is_admin = admin in u.groups.basegroups
-                identity = morepath.Identity(email, nickname=u.nickname,
-                                             language=u.language, isAdmin=is_admin)
+                if user.groups and admin:
+                    is_admin = admin in user.groups.basegroups
+                identity = morepath.Identity(email, nickname=user.nickname,
+                                             language=user.language,
+                                             isAdmin=is_admin)
                 request.app.remember_identity(response, request, identity)
 
             return {
-                '@id': request.class_link(User, variables={'id': u.id}),
+                '@id': request.class_link(User, variables={'id': user.id}),
                 '@type': request.class_link(UserCollection)
             }
 
@@ -77,7 +81,8 @@ def login(self, request):
                 response.status_code = 403
 
             return {
-                'validationError': 'Your email address has not been confirmed yet'
+                'validationError':
+                    'Your email address has not been confirmed yet'
             }
 
     else:
@@ -133,7 +138,7 @@ def user_collection_add(self, request):
             response.status = 409
 
         return {
-            'integrityError': 'Not valid email'
+            'validationError': 'Not valid email'
         }
 
     except EmailUndeliverableError:
@@ -142,7 +147,7 @@ def user_collection_add(self, request):
             response.status = 409
 
         return {
-            'integrityError': 'Email could not be delivered'
+            'validationError': 'Email could not be delivered'
         }
 
     else:
@@ -168,7 +173,7 @@ def user_collection_add(self, request):
                 response.status = 409
 
             return {
-                'integrityError': 'Email already exists'
+                'validationError': 'Email already exists'
             }
 
 
@@ -224,7 +229,7 @@ def group_collection_add(self, request):
             response.status = 409
 
         return {
-            'integrityError': 'Group already exists'
+            'validationError': 'Group already exists'
         }
 
 
@@ -240,22 +245,22 @@ def group_remove(self, request):
 
 @App.json(model=ConfirmEmail)
 def confirm_email(self, request):
-    u = User[self.id]
+    user = User[self.id]
     base_url = request.host_url
     token_service = request.app.service(name='token')
-    if u.email_confirmed:
+    if user.email_confirmed:
         path = '/login'
         flash = 'Your email is already confirmed. Please log in.'
         flash_type = 'info'
     else:
         if token_service.validate(self.token, 'email-confirmation-salt'):
             path = '/'
-            u.email_confirmed = True
-            flash = 'Thank you for confirming your email address.'
+            user.email_confirmed = True
+            flash = 'Thank you for confirming your email address'
             flash_type = 'success'
         else:
             path = '/register'
-            flash = 'The confirmation link is invalid or has been expired.'
+            flash = 'The confirmation link is invalid or has been expired'
             flash_type = 'error'
 
     flash_encoded = urlsafe_b64encode(
@@ -266,30 +271,71 @@ def confirm_email(self, request):
     return morepath.redirect(base_url + path + query)
 
 
+@App.json(model=SendResetEmail, request_method='POST')
+def send_reset_email(self, request):
+    email = request.json['email']
+
+    validation_service = request.app.service(name='email_validation')
+
+    try:
+        normalized_email = validation_service.normalize(email)
+
+    except EmailSyntaxError:
+        @request.after
+        def after(response):
+            response.status = 403
+
+        return {
+            'validationError': 'Not valid email'
+        }
+
+    user = User.get(email=normalized_email)
+    if user:
+        if user.email_confirmed:
+            mailer = request.app.service(name='mailer')
+            mailer.send_reset_email(user, request)
+
+            return
+
+        else:
+            @request.after
+            def email_not_confirmed(response):
+                response.status_code = 403
+
+            return {
+                'validationError': 'Your email must be confirmed before ' +
+                                   'resetting the password.'
+            }
+
+    else:
+        @request.after
+        def credentials_not_valid(response):
+            response.status_code = 403
+
+        return {'validationError': 'Email not found'}
+
+
 @App.json(model=ResetPassword)
-def reset_password(self, request):
-    u = User[self.id]
+def request_reset_password(self, request):
+    user = User[self.id]
     base_url = request.host_url
     query = ''
     token_service = request.app.service(name='token')
     token_valid = token_service.validate(self.token, 'password-reset-salt')
 
-    if token_valid and u.email_confirmed:
-        @request.after
-        def remember(response):
-            admin = Group.get(name='Admin')
-            is_admin = False
-            if u.groups and admin:
-                is_admin = admin in u.groups.basegroups
-            identity = morepath.Identity(u.email, nickname=u.nickname,
-                                         language=u.language, isAdmin=is_admin)
-            request.app.remember_identity(response, request, identity)
-
-        path = '/reset'
+    if token_valid and user.email_confirmed:
+        path = '/newpassword'
+        query_dict = {
+            '@id': request.class_link(ResetPassword, variables={
+                'id': self.id,
+                'token': self.token
+            })
+        }
+        query = '?' + urlencode(query_dict)
 
     elif not token_valid:
         path = '/login'
-        flash = 'The password reset link is invalid or has been expired.'
+        flash = 'The password reset link is invalid or has been expired'
         flash_encoded = urlsafe_b64encode(
             flash.encode('utf-8')
         ).replace(b'=', b'').decode('utf-8')
@@ -297,10 +343,39 @@ def reset_password(self, request):
 
     else:
         path = '/login'
-        flash = 'Your email must be confirmed before resetting the password.'
+        flash = 'Your email must be confirmed before resetting the password'
         flash_encoded = urlsafe_b64encode(
             flash.encode('utf-8')
         ).replace(b'=', b'').decode('utf-8')
         query = '?flash=' + flash_encoded + '&flashtype=error'
 
     return morepath.redirect(base_url + path + query)
+
+
+@App.json(model=ResetPassword, request_method='PUT')
+def reset_password(self, request):
+    user = User[self.id]
+    token_service = request.app.service(name='token')
+    token_valid = token_service.validate(self.token, 'password-reset-salt')
+    if token_valid and user.email_confirmed:
+        self.update(request.json['password'])
+
+    elif not token_valid:
+            @request.after
+            def email_not_confirmed(response):
+                response.status_code = 403
+
+            return {
+                'validationError':
+                    'The password reset link is invalid or has been expired'
+            }
+
+    else:
+            @request.after
+            def email_not_confirmed(response):
+                response.status_code = 403
+
+            return {
+                'validationError': 'Your email must be confirmed ' +
+                                   'before resetting the password'
+            }

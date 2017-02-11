@@ -3,14 +3,14 @@ import {connect} from 'cerebral/react'
 import {state, signal} from 'cerebral/tags'
 import {Grid, Header, Icon, Form, Segment, Button, Message, Dimmer, Loader}
     from 'semantic-ui-react'
-import {NicknameField, EmailField, PasswordField, ConfirmPasswordField} from '../fields'
+import {EmailField} from '../fields'
 
 export default connect({
-  register: state`user.register`,
+  emailForm: state`user.emailForm`,
   fieldChanged: signal`user.fieldChanged`,
-  formSubmitted: signal`user.registerFormSubmitted`
+  formSubmitted: signal`user.emailFormSubmitted`
 },
-  function Register ({register, fieldChanged, formSubmitted}) {
+  function ResetPassword ({emailForm, fieldChanged, formSubmitted}) {
     const handleSubmit = (event) => {
       event.preventDefault()
       formSubmitted()
@@ -20,31 +20,28 @@ export default connect({
         <Grid.Column>
           <Header as='h1' textAlign='center' color='blue' icon>
             <Icon name='user' />
-            Create account
+            Reset your Password
           </Header>
           <Message
             warning
-            header={register.validationError}
-            hidden={!register.validationError}
+            header={emailForm.validationError}
+            hidden={!emailForm.validationError}
           />
           <Form size='large'>
             <Segment>
               <Dimmer
                 inverted
-                active={register.isLoading}
+                active={emailForm.isLoading}
               >
                 <Loader />
               </Dimmer>
-              <NicknameField form={register} path={'user.register.nickname'} />
-              <EmailField form={register} path={'user.register.email'} />
-              <PasswordField form={register} path={'user.register.password'} />
-              <ConfirmPasswordField form={register} path={'user.register.confirmPassword'} />
+              <EmailField form={emailForm} path={'user.emailForm.email'} />
               <Button
                 fluid size='large'
                 color='blue'
                 onClick={handleSubmit}
               >
-                Sign up
+                Submit
               </Button>
             </Segment>
           </Form>

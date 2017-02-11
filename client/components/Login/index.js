@@ -1,17 +1,16 @@
 import React from 'react'
 import {connect} from 'cerebral/react'
 import {state, signal} from 'cerebral/tags'
-import {
-  Grid, Header, Icon, Form, Segment, Input, Button, Label, Message, Dimmer, Loader
-} from 'semantic-ui-react'
+import {Grid, Header, Icon, Form, Segment, Button, Message, Dimmer, Loader}
+    from 'semantic-ui-react'
+import {EmailField, PasswordField} from '../fields'
 
 export default connect({
   signIn: state`user.signIn`,
   fieldChanged: signal`user.fieldChanged`,
   signInSubmitted: signal`user.loginFormSubmitted`
 },
-  function Login ({fieldChanged, signInSubmitted, signIn}) {
-    const showError = field => signIn.showErrors && !field.isValid
+  function Login ({signIn, fieldChanged, signInSubmitted}) {
     const handleSubmit = (event) => {
       event.preventDefault()
       signInSubmitted()
@@ -36,47 +35,8 @@ export default connect({
               >
                 <Loader />
               </Dimmer>
-              <Form.Field error={showError(signIn.email)}>
-                <Input
-                  icon='mail'
-                  iconPosition='left'
-                  placeholder='E-mail address'
-                  value={signIn.email.value}
-                  onChange={(event) => fieldChanged({
-                    field: 'user.signIn.email',
-                    value: event.target.value
-                  })}
-                />
-                <Label
-                  pointing
-                  basic
-                  color='red'
-                  style={{display: showError(signIn.email) ? 'inline-block' : 'none'}}
-                >
-                  {signIn.email.errorMessage}
-                </Label>
-              </Form.Field>
-              <Form.Field error={showError(signIn.password)}>
-                <Input
-                  type='password'
-                  icon='lock'
-                  iconPosition='left'
-                  placeholder='Password'
-                  value={signIn.password.value}
-                  onChange={(event) => fieldChanged({
-                    field: 'user.signIn.password',
-                    value: event.target.value
-                  })}
-                />
-                <Label
-                  pointing
-                  basic
-                  color='red'
-                  style={{display: showError(signIn.password) ? 'inline-block' : 'none'}}
-                 >
-                  {signIn.password.errorMessage}
-                </Label>
-              </Form.Field>
+              <EmailField form={signIn} path={'user.signIn.email'} />
+              <PasswordField form={signIn} path={'user.signIn.password'} />
               <Button
                 fluid
                 size='large'
@@ -90,6 +50,10 @@ export default connect({
           <Message>
             New to us?
             <a href='/register'> Sign Up</a>
+          </Message>
+          <Message>
+            Forgot your password?
+            <a href='/reset'> Reset Password</a>
           </Message>
         </Grid.Column>
       </Grid>

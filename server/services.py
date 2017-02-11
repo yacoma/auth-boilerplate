@@ -2,19 +2,55 @@ from itsdangerous import URLSafeTimedSerializer, BadSignature
 import yagmail
 
 from .app import App
+from .model import ConfirmEmail, ResetPassword
 from .utils import normalize_email
 
 
 class MailerService(object):
     def __init__(self, username, password, host, port,
-                 starttls, smtp_skip_login):
+                 starttls, smtp_skip_login, token_service):
         self.smtp = yagmail.SMTP(
             username, password, host, port,
             smtp_starttls=starttls, smtp_skip_login=smtp_skip_login
         )
+        self.token_service = token_service
 
     def send(self, email, subject, message):
         return self.smtp.send(email, subject, message)
+
+    def send_confirmation_email(self, user, request):
+            token = self.token_service.create(
+                user.email, 'email-confirmation-salt'
+            )
+
+            confirm_url = request.application_url + request.class_link(
+                ConfirmEmail,
+                variables={'id': user.id, 'token': token}
+            )
+
+            with open("server/templates/email_confirmation.html") as f:
+                email_template = f.read()
+
+            html = email_template.format(confirm_url=confirm_url)
+
+            self.send(user.email, 'Confirm Your Email Address', html)
+
+    def send_reset_email(self, user, request):
+            token = self.token_service.create(
+                user.email, 'password-reset-salt'
+            )
+
+            reset_url = request.application_url + request.class_link(
+                ResetPassword,
+                variables={'id': user.id, 'token': token}
+            )
+
+            with open("server/templates/password_reset.html") as f:
+                email_template = f.read()
+
+            html = email_template.format(reset_url=reset_url)
+
+            self.send(user.email, 'Password Reset Requested', html)
 
 
 @App.method(App.service, name='mailer')
@@ -25,10 +61,12 @@ def mailer_service(app, name):
     port = getattr(app.settings.smtp, 'port', '587')
     starttls = getattr(app.settings.smtp, 'starttls', True)
     smtp_skip_login = getattr(app.settings.smtp, 'smtp_skip_login', False)
+    token_service = app.service(name='token')
 
     return MailerService(
         username=username, password=password, host=host,
-        port=port, starttls=starttls, smtp_skip_login=smtp_skip_login
+        port=port, starttls=starttls, smtp_skip_login=smtp_skip_login,
+        token_service=token_service
     )
 
 

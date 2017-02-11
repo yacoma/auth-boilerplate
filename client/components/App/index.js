@@ -2,17 +2,21 @@ import React from 'react'
 import {connect} from 'cerebral/react'
 import {state} from 'cerebral/tags'
 import Navbar from '../Navbar'
+import Flash from '../Flash'
 import Home from '../Home'
 import Private from '../Private'
 import Login from '../Login'
 import Register from '../Register'
-import Flash from '../Flash'
+import ResetPassword from '../ResetPassword'
+import NewPassword from '../NewPassword'
 
 const pages = {
   home: Home,
   private: Private,
   login: Login,
-  register: Register
+  register: Register,
+  reset: ResetPassword,
+  newpassword: NewPassword
 }
 
 export default connect({
