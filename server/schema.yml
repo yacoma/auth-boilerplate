@@ -1,0 +1,53 @@
+---
+login:
+  email:
+    type: string
+    coerce: normalize_email
+    required: true
+  password:
+    type: string
+    minlength: 5
+    required: true
+
+send_reset_email:
+  email:
+    type: string
+    coerce: normalize_email
+    required: true
+
+reset_password:
+  password:
+    type: string
+    minlength: 5
+    required: true
+
+user:
+  nickname:
+    type: string
+    minlength: 3
+    required: true
+  email:
+    type: string
+    validator: verify_email
+    coerce: normalize_email
+    required: true
+  password:
+    type: string
+    minlength: 5
+    required: true
+  language:
+    type: string
+    maxlength: 16
+  groups:
+    type: list
+
+group:
+  name:
+    type: string
+    required: true
+  basegroups:
+    type: list
+  subgroups:
+    type: list
+  users:
+    type: list

@@ -1,9 +1,10 @@
 from base64 import urlsafe_b64encode
+from datetime import datetime
 from urllib.parse import urlencode
 
 from argon2 import PasswordHasher
 from argon2.exceptions import VerifyMismatchError
-from email_validator import EmailSyntaxError, EmailUndeliverableError
+import yaml
 
 import morepath
 from morepath import redirect
@@ -12,6 +13,11 @@ from .app import App
 from .collection import UserCollection, GroupCollection
 from .model import (Root, Login, User, Group, ConfirmEmail,
                     ResetPassword, SendResetEmail)
+from .error import Error
+from .loader import loader
+
+with open('server/schema.yml') as settings:
+    schema = yaml.load(settings)
 
 
 @App.json(model=Root)
@@ -19,27 +25,16 @@ def root_default(self, request):
     return redirect('/api/users')
 
 
-@App.json(model=Login, request_method='POST')
-def login(self, request):
-    email = request.json['email']
-    password = request.json['password']
+login_schema_load = loader(schema['login'])
 
-    validation_service = request.app.service(name='email_validation')
 
-    try:
-        normalized_email = validation_service.normalize(email)
-
-    except EmailSyntaxError:
-        @request.after
-        def after(response):
-            response.status = 403
-
-        return {
-            'validationError': 'Not valid email'
-        }
+@App.json(model=Login, request_method='POST', load=login_schema_load)
+def login(self, request, json):
+    email = json['email']
+    password = json['password']
 
     ph = PasswordHasher()
-    user = User.get(email=normalized_email)
+    user = User.get(email=email)
     credentials_valid = False
     if user:
         try:
@@ -50,6 +45,8 @@ def login(self, request):
             credentials_valid = True
 
         if credentials_valid and user.email_confirmed:
+            user.last_logged_in = datetime.now()
+
             @request.after
             def remember(response):
                 admin = Group.get(name='Admin')
@@ -113,73 +110,55 @@ def user_collection_get(self, request):
     }
 
 
-@App.json(model=UserCollection, request_method='POST')
-def user_collection_add(self, request):
-    nickname = request.json.get('nickname')
-    email = request.json.get('email')
-    password = request.json.get('password')
+user_schema_load = loader(schema['user'])
+
+
+@App.json(model=UserCollection, request_method='POST', load=user_schema_load)
+def user_collection_add(self, request, json):
+    nickname = json['nickname']
+    email = json['email']
+    password = json['password']
     locale_settings = request.app.settings.locale
     preferred_language = request.accept_language.best_match(
         locale_settings.accepted_languages,
         default_match=locale_settings.default_language
     )
-    language = request.json.get('language', preferred_language)
-    group_ids = request.json.get('groups', [])
+    language = json.get('language', preferred_language)
+    group_ids = json.get('groups', [])
     creation_ip = request.remote_addr
 
-    validation_service = request.app.service(name='email_validation')
+    if not User.exists(email=email):
+        user = self.add(
+            nickname=nickname, email=email, password=password,
+            language=language, creation_ip=creation_ip, group_ids=group_ids
+        )
 
-    try:
-        normalized_email = validation_service.normalize(email, True)
-
-    except EmailSyntaxError:
         @request.after
         def after(response):
-            response.status = 409
+            request.app.signal.emit('user.created', user, request)
+            response.status = 201
 
         return {
-            'validationError': 'Not valid email'
-        }
-
-    except EmailUndeliverableError:
-        @request.after
-        def after(response):
-            response.status = 409
-
-        return {
-            'validationError': 'Email could not be delivered'
+            '@id': request.class_link(User, variables={'id': user.id}),
+            '@type': request.class_link(UserCollection)
         }
 
     else:
-        if not User.exists(email=normalized_email):
-            user = self.add(
-                nickname=nickname, email=normalized_email, password=password,
-                language=language, creation_ip=creation_ip, group_ids=group_ids
-            )
+        @request.after
+        def after(response):
+            response.status = 409
 
-            @request.after
-            def after(response):
-                request.app.signal.emit('user.created', user, request)
-                response.status = 201
-
-            return {
-                '@id': request.class_link(User, variables={'id': user.id}),
-                '@type': request.class_link(UserCollection)
-            }
-
-        else:
-            @request.after
-            def after(response):
-                response.status = 409
-
-            return {
-                'validationError': 'Email already exists'
-            }
+        return {
+            'validationError': 'Email already exists'
+        }
 
 
-@App.json(model=User, request_method='PUT')
-def user_update(self, request):
-    self.update(request.json)
+user_schema_update_load = loader(schema['user'], update=True)
+
+
+@App.json(model=User, request_method='PUT', load=user_schema_update_load)
+def user_update(self, request, json):
+    self.update(json)
 
 
 @App.json(model=User, request_method='DELETE')
@@ -206,10 +185,13 @@ def group_collection_get(self, request):
     }
 
 
-@App.json(model=GroupCollection, request_method='POST')
-def group_collection_add(self, request):
-    name = request.json.get('name')
-    basegroup_ids = request.json.get('basegroups', [])
+group_schema_load = loader(schema['group'])
+
+
+@App.json(model=GroupCollection, request_method='POST', load=group_schema_load)
+def group_collection_add(self, request, json):
+    name = json.get('name')
+    basegroup_ids = json.get('basegroups', [])
 
     if not Group.exists(name=name):
         group = self.add(name=name, basegroup_ids=basegroup_ids)
@@ -233,9 +215,12 @@ def group_collection_add(self, request):
         }
 
 
-@App.json(model=Group, request_method='PUT')
-def group_update(self, request):
-    self.update(request.json)
+group_schema_update_load = loader(schema['group'], update=True)
+
+
+@App.json(model=Group, request_method='PUT', load=group_schema_update_load)
+def group_update(self, request, json):
+    self.update(json)
 
 
 @App.json(model=Group, request_method='DELETE')
@@ -271,25 +256,17 @@ def confirm_email(self, request):
     return morepath.redirect(base_url + path + query)
 
 
-@App.json(model=SendResetEmail, request_method='POST')
-def send_reset_email(self, request):
-    email = request.json['email']
+send_reset_email_schema_load = loader(schema['send_reset_email'])
 
-    validation_service = request.app.service(name='email_validation')
 
-    try:
-        normalized_email = validation_service.normalize(email)
-
-    except EmailSyntaxError:
-        @request.after
-        def after(response):
-            response.status = 403
-
-        return {
-            'validationError': 'Not valid email'
-        }
-
-    user = User.get(email=normalized_email)
+@App.json(
+    model=SendResetEmail,
+    request_method='POST',
+    load=send_reset_email_schema_load
+)
+def send_reset_email(self, request, json):
+    email = json['email']
+    user = User.get(email=email)
     if user:
         if user.email_confirmed:
             mailer = request.app.service(name='mailer')
@@ -352,13 +329,20 @@ def request_reset_password(self, request):
     return morepath.redirect(base_url + path + query)
 
 
-@App.json(model=ResetPassword, request_method='PUT')
-def reset_password(self, request):
+reset_password_schema_load = loader(schema['reset_password'])
+
+
+@App.json(
+    model=ResetPassword,
+    request_method='PUT',
+    load=reset_password_schema_load
+)
+def reset_password(self, request, json):
     user = User[self.id]
     token_service = request.app.service(name='token')
     token_valid = token_service.validate(self.token, 'password-reset-salt')
     if token_valid and user.email_confirmed:
-        self.update(request.json['password'])
+        self.update(json['password'])
 
     elif not token_valid:
             @request.after
@@ -379,3 +363,11 @@ def reset_password(self, request):
                 'validationError': 'Your email must be confirmed ' +
                                    'before resetting the password'
             }
+
+
+@App.json(model=Error)
+def validation_error_default(self, request):
+    @request.after
+    def adjust_status(response):
+        response.status = 409
+    return self.errors

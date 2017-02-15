@@ -30,6 +30,7 @@ setup(
         'itsdangerous',
         'yagmail',
         'keyrings.alt',
+        'cerberus',
         'email_validator',
         'pyyaml',
     ],

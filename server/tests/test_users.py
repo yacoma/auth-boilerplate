@@ -60,6 +60,15 @@ def test_login():
 
     response = c.post(
         '/login',
+        json.dumps({"email": "test@example", "password": "secret"}),
+        status=403
+    )
+    assert response.json == {
+        "validationError": "Invalid username or password"
+    }
+
+    response = c.post(
+        '/login',
         json.dumps({"email": "mary@example.com", "password": "test2"}),
         status=403
     )
@@ -72,20 +81,11 @@ def test_login():
 
     response = c.post(
         '/login',
-        json.dumps({"email": "mary@example.com", "password": "test2"})
+        json.dumps({"email": "mary@EXAMPLE.COM", "password": "test2"})
     )
     assert response.json == {
         "@id": "/users/2",
         "@type": "/users"
-    }
-
-    response = c.post(
-        '/login',
-        json.dumps({"email": "test@example", "password": "secret"}),
-        status=403
-    )
-    assert response.json == {
-        "validationError": "Not valid email"
     }
 
 
@@ -140,7 +140,7 @@ def test_add_user(smtp_server):
         editor_id = Group.get(name='Editor').get_pk()
         new_editor_json = json.dumps({
             "nickname": "NewEditor",
-            "email": "neweditor@googlemail.com",
+            "email": "neweditor@GoogleMail.com",
             "password": "test8",
             "groups": [editor_id]
         })
@@ -165,7 +165,7 @@ def test_add_user(smtp_server):
 
     response = c.post('/users', new_user_json, status=409)
     assert response.json == {
-        "validationError": "Email could not be delivered"
+        'email': ['Email could not be delivered']
     }
 
     new_user_json = json.dumps({
@@ -177,7 +177,7 @@ def test_add_user(smtp_server):
 
     response = c.post('/users', new_user_json, status=409)
     assert response.json == {
-        "validationError": "Not valid email"
+        'email': ['Not valid email']
     }
 
 
@@ -189,6 +189,24 @@ def test_update_user():
 
     with db_session:
         assert User[1].nickname == "Guru"
+
+    update_user_json = json.dumps({"nickname": "Guru"})
+    c.put('/users/1', update_user_json)
+
+    with db_session:
+        assert User[1].nickname == "Guru"
+
+    update_user_json = json.dumps({"email": "guru@example"})
+    response = c.put('/users/1', update_user_json, status=409)
+    assert response.json == {
+        'email': ['Not valid email']
+    }
+
+    update_user_json = json.dumps({"email": "guru@EXAMPLE.COM"})
+    c.put('/users/1', update_user_json)
+
+    with db_session:
+        assert User[1].email == "guru@example.com"
 
     update_user_json = json.dumps({"password": "secret0"})
     c.put('/users/1', update_user_json)

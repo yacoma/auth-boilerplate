@@ -2,8 +2,6 @@ from datetime import datetime
 from argon2 import PasswordHasher
 from pony.orm import Database, Required, Optional, Set
 
-from .utils import normalize_email
-
 db = Database()
 
 
@@ -47,11 +45,8 @@ class User(db.Entity):
     language = Optional(str, 16)
     creation_ip = Optional(str, 255)
     groups = Set('Group')
-    create_time = Required(datetime, 0, default=datetime.utcnow)
-    access_time = Required(datetime, 0, default=datetime.utcnow)
-
-    def before_update(self):
-        self.access_time = datetime.now()
+    create_time = Required(datetime, 0, default=datetime.now)
+    last_logged_in = Optional(datetime, 0)
 
     def update(self, payload={}):
         update_payload = {}
@@ -59,11 +54,6 @@ class User(db.Entity):
             if attribute == 'groups':
                 for group_id in value:
                     self.groups.add(Group[group_id])
-            elif attribute == 'email':
-                normalized_email = normalize_email(
-                    value, check_deliverability=False
-                )
-                update_payload['email'] = normalized_email
             elif attribute == 'password':
                 ph = PasswordHasher()
                 password_hash = ph.hash(value)

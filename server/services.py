@@ -1,9 +1,9 @@
 from itsdangerous import URLSafeTimedSerializer, BadSignature
 import yagmail
+from email_validator import validate_email, EmailSyntaxError
 
 from .app import App
 from .model import ConfirmEmail, ResetPassword
-from .utils import normalize_email
 
 
 class MailerService(object):
@@ -71,8 +71,29 @@ def mailer_service(app, name):
 
 
 class EmailValidationService(object):
-    def normalize(self, email, check_deliverability=False):
-        return normalize_email(email, check_deliverability)
+    def normalize(self, email):
+        try:
+            v = validate_email(email, check_deliverability=False)
+            normalized_email = v['email']
+            if v['domain_i18n'] == 'googlemail.com':
+                normalized_email = v['local'] + '@gmail.com'
+
+            return normalized_email
+
+        except EmailSyntaxError:
+            return email
+
+    def validate(self, email):
+        v = validate_email(email, check_deliverability=False)
+        validated_email = v['email']
+
+        return validated_email
+
+    def verify(self, email):
+        v = validate_email(email, check_deliverability=True)
+        verified_email = v['email']
+
+        return verified_email
 
 
 @App.method(App.service, name='email_validation')

@@ -15,6 +15,7 @@ export default [
         success: [
           set(state`user.passwordForm.showErrors`, false),
           set(state`user.passwordForm.validationError`, null),
+          set(state`user.api.@id`, null),
           set(state`user.passwordForm.password.value`, ''),
           set(state`user.passwordForm.confirmPassword.value`, ''),
           set(state`user.passwordForm.isLoading`, false),
