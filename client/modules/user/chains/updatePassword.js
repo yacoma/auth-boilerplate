@@ -26,7 +26,7 @@ export default [
           set(state`user.passwordForm.password.value`, ''),
           set(state`user.passwordForm.confirmPassword.value`, ''),
           set(state`user.passwordForm.showErrors`, false),
-          when(props`status`, (status) => status === 403), {
+          when(props`status`, (status) => status === 403 || status === 422), {
             true: [set(state`user.passwordForm.validationError`, props`result.validationError`)],
             false: [
               set(state`user.passwordForm.validationError`, 'Could not update Password!')

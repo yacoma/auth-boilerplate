@@ -22,7 +22,7 @@ export default [
         ],
         error: [
           set(state`user.emailForm.showErrors`, false),
-          when(props`status`, (status) => status === 403), {
+          when(props`status`, (status) => status === 403 || status === 422), {
             true: [set(
               state`user.emailForm.validationError`,
               props`result.validationError`

@@ -27,7 +27,7 @@ export default [
         error: [
           set(state`user.signIn.password.value`, ''),
           set(state`user.signIn.showErrors`, false),
-          when(props`status`, (status) => status === 403), {
+          when(props`status`, (status) => status === 403 || status === 422), {
             true: [set(state`user.signIn.validationError`, props`result.validationError`)],
             false: [set(state`user.signIn.validationError`, 'Could not log-in!')]
           },

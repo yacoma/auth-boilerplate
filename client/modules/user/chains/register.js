@@ -29,7 +29,7 @@ export default [
           set(state`user.register.password.value`, ''),
           set(state`user.register.confirmPassword.value`, ''),
           set(state`user.register.showErrors`, false),
-          when(props`status`, (status) => status === 409), {
+          when(props`status`, (status) => status === 409 || status === 422), {
             true: [set(state`user.register.validationError`, props`result.validationError`)],
             false: [set(state`user.register.validationError`, 'Could not register!')]
           },

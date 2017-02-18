@@ -5,9 +5,10 @@ from pymitter import EventEmitter
 import morepath
 from reg import match_key
 from more.jwtauth import JWTIdentityPolicy
+from more.cerberus import CerberusApp
 
 
-class App(morepath.App):
+class App(CerberusApp):
 
     signal = EventEmitter()
 

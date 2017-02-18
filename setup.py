@@ -23,6 +23,7 @@ setup(
     platforms='any',
     install_requires=[
         'more.jwtauth',
+        'more.cerberus',
         'pony',
         'pymitter',
         'argon2_cffi',
@@ -30,7 +31,6 @@ setup(
         'itsdangerous',
         'yagmail',
         'keyrings.alt',
-        'cerberus',
         'email_validator',
         'pyyaml',
     ],

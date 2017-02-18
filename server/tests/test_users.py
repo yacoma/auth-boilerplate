@@ -163,7 +163,7 @@ def test_add_user(smtp_server):
         "language": "de_DE"
     })
 
-    response = c.post('/users', new_user_json, status=409)
+    response = c.post('/users', new_user_json, status=422)
     assert response.json == {
         'email': ['Email could not be delivered']
     }
@@ -175,7 +175,7 @@ def test_add_user(smtp_server):
         "language": "de_DE"
     })
 
-    response = c.post('/users', new_user_json, status=409)
+    response = c.post('/users', new_user_json, status=422)
     assert response.json == {
         'email': ['Not valid email']
     }
@@ -197,7 +197,7 @@ def test_update_user():
         assert User[1].nickname == "Guru"
 
     update_user_json = json.dumps({"email": "guru@example"})
-    response = c.put('/users/1', update_user_json, status=409)
+    response = c.put('/users/1', update_user_json, status=422)
     assert response.json == {
         'email': ['Not valid email']
     }
