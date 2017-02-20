@@ -12,7 +12,9 @@ const jwtHeader = localStorage.getItem('jwtHeader')
   : null
 
 const controller = Controller({
-  devtools: process.env.NODE_ENV === 'production' ? null : Devtools(),
+  devtools: Devtools({
+    remoteDebugger: '127.0.0.1:8585'
+  }),
   modules: {
     app: App,
     user: User,

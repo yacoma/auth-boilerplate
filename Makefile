@@ -11,12 +11,7 @@ env/bin/python:
 deploylive: env/bin/python
 	env/bin/pip install -Ue .
 	npm install
-
-	# For production you should use this
-	# npm run build:production
-
-	# We want here the debugger to work so we do
-	npm run build
+	npm run build:production
 
 	# check gunicorn config and create database if not present
 	env/bin/gunicorn --check-config server.run
