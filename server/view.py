@@ -19,16 +19,19 @@ from .validator import Validator
 with open('server/schema.yml') as schema:
     schema = yaml.load(schema)
 
+login_validator = Validator(schema['login'])
+user_validator = Validator(schema['user'])
+group_validator = Validator(schema['group'])
+send_reset_email_validator = Validator(schema['send_reset_email'])
+reset_password_validator = Validator(schema['reset_password'])
+
 
 @App.json(model=Root)
 def root_default(self, request):
     return redirect('/api/users')
 
 
-validator = Validator(schema['login'])
-
-
-@App.json(model=Login, request_method='POST', load=validator.load)
+@App.json(model=Login, request_method='POST', load=login_validator.load)
 def login(self, request, json):
     email = json['email']
     password = json['password']
@@ -110,10 +113,8 @@ def user_collection_get(self, request):
     }
 
 
-validator = Validator(schema['user'])
-
-
-@App.json(model=UserCollection, request_method='POST', load=validator.load)
+@App.json(model=UserCollection, request_method='POST',
+          load=user_validator.load)
 def user_collection_add(self, request, json):
     nickname = json['nickname']
     email = json['email']
@@ -153,7 +154,7 @@ def user_collection_add(self, request, json):
         }
 
 
-@App.json(model=User, request_method='PUT', load=validator.update_load)
+@App.json(model=User, request_method='PUT', load=user_validator.update_load)
 def user_update(self, request, json):
     self.update(json)
 
@@ -182,10 +183,8 @@ def group_collection_get(self, request):
     }
 
 
-validator = Validator(schema['group'])
-
-
-@App.json(model=GroupCollection, request_method='POST', load=validator.load)
+@App.json(model=GroupCollection, request_method='POST',
+          load=group_validator.load)
 def group_collection_add(self, request, json):
     name = json.get('name')
     basegroup_ids = json.get('basegroups', [])
@@ -212,7 +211,7 @@ def group_collection_add(self, request, json):
         }
 
 
-@App.json(model=Group, request_method='PUT', load=validator.update_load)
+@App.json(model=Group, request_method='PUT', load=group_validator.update_load)
 def group_update(self, request, json):
     self.update(json)
 
@@ -250,14 +249,8 @@ def confirm_email(self, request):
     return morepath.redirect(base_url + path + query)
 
 
-validator = Validator(schema['send_reset_email'])
-
-
-@App.json(
-    model=SendResetEmail,
-    request_method='POST',
-    load=validator.load
-)
+@App.json(model=SendResetEmail, request_method='POST',
+          load=send_reset_email_validator.load)
 def send_reset_email(self, request, json):
     email = json['email']
     user = User.get(email=email)
@@ -323,14 +316,8 @@ def request_reset_password(self, request):
     return morepath.redirect(base_url + path + query)
 
 
-validator = Validator(schema['reset_password'])
-
-
-@App.json(
-    model=ResetPassword,
-    request_method='PUT',
-    load=validator.load
-)
+@App.json(model=ResetPassword, request_method='PUT',
+          load=reset_password_validator.load)
 def reset_password(self, request, json):
     user = User[self.id]
     token_service = request.app.service(name='token')
