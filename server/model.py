@@ -84,6 +84,9 @@ class Group(db.Entity):
             elif attribute == 'subgroups':
                 for group_id in value:
                     self.subgroups.add(Group[group_id])
+            elif attribute == 'users':
+                for user_id in value:
+                    self.users.add(User[user_id])
             else:
                 update_payload[attribute] = value
         self.set(**update_payload)

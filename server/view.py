@@ -172,7 +172,7 @@ def group_get(self, request):
         'name': self.name,
         'basegroups': [group.name for group in self.basegroups],
         'subgroups': [group.name for group in self.subgroups],
-        'users': [user.nickname for user in self.users]
+        'users': [user.email for user in self.users]
     }
 
 
@@ -188,9 +188,11 @@ def group_collection_get(self, request):
 def group_collection_add(self, request, json):
     name = json.get('name')
     basegroup_ids = json.get('basegroups', [])
+    user_ids = json.get('users', [])
 
     if not Group.exists(name=name):
-        group = self.add(name=name, basegroup_ids=basegroup_ids)
+        group = self.add(name=name, basegroup_ids=basegroup_ids,
+                         user_ids=user_ids)
 
         @request.after
         def after(response):

@@ -26,11 +26,15 @@ class GroupCollection(object):
     def query(self):
         return Group.select()
 
-    def add(self, name, basegroup_ids=[]):
+    def add(self, name, basegroup_ids=[], user_ids=[]):
         basegroups = []
+        users = []
         if basegroup_ids:
             for group_id in basegroup_ids:
                 basegroups.append(Group[group_id])
-        group = Group(name=name, basegroups=basegroups)
+        if user_ids:
+            for user_id in user_ids:
+                users.append(User[user_id])
+        group = Group(name=name, basegroups=basegroups, users=users)
         group.flush()
         return group

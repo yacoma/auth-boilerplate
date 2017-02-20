@@ -40,7 +40,7 @@ def test_group():
         "@type": "/groups",
         "name": "Admin",
         "subgroups": ["Admin"],
-        "users": ["Leader"]
+        "users": ["leader@example.com"]
     }
     assert_dict_contains_subset(group, response.json)
 
@@ -108,6 +108,18 @@ def test_add_group():
         assert Group.get(name='Editor') \
             in Group.get(name='SubGroup').basegroups
 
+    with_users_json = json.dumps({
+        "name": "UserGroup",
+        "users": [1, 2, 3]
+    })
+    c.post('/groups', with_users_json)
+
+    with db_session:
+        assert Group.exists(name='UserGroup')
+        assert User[1] in Group.get(name='UserGroup').users
+        assert User[2] in Group.get(name='UserGroup').users
+        assert User[3] in Group.get(name='UserGroup').users
+
 
 def test_update_group():
     c = Client(App())
@@ -136,6 +148,12 @@ def test_update_group():
         moderator = Group.get(name='Moderator')
 
         assert moderator in g.subgroups
+
+        updateted_group_json = json.dumps({"users": [2, 3]})
+        c.put('/groups/1', updateted_group_json)
+
+        assert User[2] in g.users
+        assert User[3] in g.users
 
 
 def test_delete_group():
