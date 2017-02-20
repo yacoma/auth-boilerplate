@@ -46,7 +46,7 @@ def test_login():
         status=403
     )
     assert response.json == {
-        "validationError": "Invalid username or password"
+        "validationError": "Invalid email or password"
     }
 
     response = c.post(
@@ -55,7 +55,7 @@ def test_login():
         status=403
     )
     assert response.json == {
-        "validationError": "Invalid username or password"
+        "validationError": "Invalid email or password"
     }
 
     response = c.post(

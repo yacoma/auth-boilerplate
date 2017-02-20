@@ -73,7 +73,7 @@ def login(self, request):
             def credentials_not_valid(response):
                 response.status_code = 403
 
-            return {'validationError': 'Invalid username or password'}
+            return {'validationError': 'Invalid email or password'}
 
         else:
             @request.after
@@ -90,7 +90,7 @@ def login(self, request):
         def credentials_not_valid(response):
             response.status_code = 403
 
-        return {'validationError': 'Invalid username or password'}
+        return {'validationError': 'Invalid email or password'}
 
 
 @App.json(model=User)
