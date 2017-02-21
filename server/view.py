@@ -8,22 +8,23 @@ import yaml
 
 import morepath
 from morepath import redirect
+from more.cerberus import loader
 
 from .app import App
 from .collection import UserCollection, GroupCollection
 from .model import (Root, Login, User, Group, ConfirmEmail,
                     ResetPassword, SendResetEmail)
-from .validator import Validator
+from .validator import EmailValidator
 
 
 with open('server/schema.yml') as schema:
     schema = yaml.load(schema)
 
-login_validator = Validator(schema['login'])
-user_validator = Validator(schema['user'])
-group_validator = Validator(schema['group'])
-send_reset_email_validator = Validator(schema['send_reset_email'])
-reset_password_validator = Validator(schema['reset_password'])
+login_validator = loader(schema['login'], EmailValidator)
+user_validator = loader(schema['user'], EmailValidator)
+group_validator = loader(schema['group'])
+send_reset_email_validator = loader(schema['send_reset_email'], EmailValidator)
+reset_password_validator = loader(schema['reset_password'], update=False)
 
 
 @App.json(model=Root)
@@ -31,7 +32,7 @@ def root_default(self, request):
     return redirect('/api/users')
 
 
-@App.json(model=Login, request_method='POST', load=login_validator.load)
+@App.json(model=Login, request_method='POST', load=login_validator)
 def login(self, request, json):
     email = json['email']
     password = json['password']
@@ -113,8 +114,7 @@ def user_collection_get(self, request):
     }
 
 
-@App.json(model=UserCollection, request_method='POST',
-          load=user_validator.load)
+@App.json(model=UserCollection, request_method='POST', load=user_validator)
 def user_collection_add(self, request, json):
     nickname = json['nickname']
     email = json['email']
@@ -154,7 +154,7 @@ def user_collection_add(self, request, json):
         }
 
 
-@App.json(model=User, request_method='PUT', load=user_validator.update_load)
+@App.json(model=User, request_method='PUT', load=user_validator)
 def user_update(self, request, json):
     self.update(json)
 
@@ -183,8 +183,7 @@ def group_collection_get(self, request):
     }
 
 
-@App.json(model=GroupCollection, request_method='POST',
-          load=group_validator.load)
+@App.json(model=GroupCollection, request_method='POST', load=group_validator)
 def group_collection_add(self, request, json):
     name = json.get('name')
     basegroup_ids = json.get('basegroups', [])
@@ -213,7 +212,7 @@ def group_collection_add(self, request, json):
         }
 
 
-@App.json(model=Group, request_method='PUT', load=group_validator.update_load)
+@App.json(model=Group, request_method='PUT', load=group_validator)
 def group_update(self, request, json):
     self.update(json)
 
@@ -252,7 +251,7 @@ def confirm_email(self, request):
 
 
 @App.json(model=SendResetEmail, request_method='POST',
-          load=send_reset_email_validator.load)
+          load=send_reset_email_validator)
 def send_reset_email(self, request, json):
     email = json['email']
     user = User.get(email=email)
@@ -319,7 +318,7 @@ def request_reset_password(self, request):
 
 
 @App.json(model=ResetPassword, request_method='PUT',
-          load=reset_password_validator.load)
+          load=reset_password_validator)
 def reset_password(self, request, json):
     user = User[self.id]
     token_service = request.app.service(name='token')
