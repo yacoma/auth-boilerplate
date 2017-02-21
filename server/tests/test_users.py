@@ -288,3 +288,161 @@ def test_confirm_email():
     assert '302 Found' in response.text
     assert 'flash=' + flash in response.text
     assert 'flashtype=info' in response.text
+
+
+def test_send_reset_email(smtp_server):
+    c = Client(App(), extra_environ=dict(REMOTE_ADDR='127.0.0.1'))
+
+    new_user_json = json.dumps({
+        "nickname": "NewUser",
+        "email": "newuser@example.com",
+        "password": "test7",
+        "language": "de_DE"
+    })
+    c.post('/users', new_user_json, status=201)
+    assert len(smtp_server.outbox) == 4
+
+    response = c.post(
+        '/reset',
+        json.dumps({"email": "not_exist@example.com"}),
+        status=403
+    )
+    assert response.json == {'validationError': 'Email not found'}
+
+    response = c.post(
+        '/reset',
+        json.dumps({"email": "newuser@example.com"}),
+        status=403
+    )
+    assert response.json == {
+        'validationError':
+        'Your email must be confirmed before resetting the password.'
+    }
+
+    c.get(
+        '/users/4/confirm/' +
+        'Im5ld3VzZXJAZXhhbXBsZS5jb20i.C3dnsw.2meomRPK3wnYwB2AERt2ygjFaRE',
+        status=302
+    )
+
+    response = c.post(
+        '/reset',
+        json.dumps({"email": "newuser@example.com"})
+    )
+
+    assert len(smtp_server.outbox) == 5
+    message = smtp_server.outbox[4]
+    assert message['subject'] == 'Password Reset Requested'
+    assert message['To'] == 'newuser@example.com'
+
+
+def test_reset_password(smtp_server):
+    c = Client(App(), extra_environ=dict(REMOTE_ADDR='127.0.0.1'))
+
+    new_user_json = json.dumps({
+        "nickname": "NewUser",
+        "email": "newuser@example.com",
+        "password": "test7",
+        "language": "de_DE"
+    })
+    c.post('/users', new_user_json, status=201)
+    assert len(smtp_server.outbox) == 6
+
+    response = c.get(
+        '/users/4/reset/' +
+        'Im5ld3VzZXJAZXhhbXBsZS5jb20i.WrongToken.JrUGhlAxao46VsQevI',
+        status=302
+    )
+
+    flash = urlsafe_b64encode(
+        'The password reset link is invalid or has been expired'
+        .encode('utf-8')
+    ).replace(b'=', b'').decode('utf-8')
+    assert '302 Found' in response.text
+    assert 'flash=' + flash in response.text
+    assert 'flashtype=error' in response.text
+
+    response = c.get(
+        '/users/4/reset/' +
+        'Im5ld3VzZXJAZXhhbXBsZS5jb20i.C40RUQ.5JhlEE36_JrUGhlAxao46VsQevI',
+        status=302
+    )
+
+    flash = urlsafe_b64encode(
+        'Your email must be confirmed before resetting the password'
+        .encode('utf-8')
+    ).replace(b'=', b'').decode('utf-8')
+    assert '302 Found' in response.text
+    assert 'flash=' + flash in response.text
+    assert 'flashtype=error' in response.text
+
+    c.get(
+        '/users/4/confirm/' +
+        'Im5ld3VzZXJAZXhhbXBsZS5jb20i.C3dnsw.2meomRPK3wnYwB2AERt2ygjFaRE',
+        status=302
+    )
+
+    response = c.get(
+        '/users/4/reset/' +
+        'Im5ld3VzZXJAZXhhbXBsZS5jb20i.C40RUQ.5JhlEE36_JrUGhlAxao46VsQevI',
+        status=302
+    )
+
+    assert response.location == (
+        'http://localhost/newpassword?%40id=%2Fusers%2F4%2Freset%2F' +
+        'Im5ld3VzZXJAZXhhbXBsZS5jb20i.C40RUQ.5JhlEE36_JrUGhlAxao46VsQevI'
+    )
+
+
+def test_update_password(smtp_server):
+    c = Client(App(), extra_environ=dict(REMOTE_ADDR='127.0.0.1'))
+
+    new_user_json = json.dumps({
+        "nickname": "NewUser",
+        "email": "newuser@example.com",
+        "password": "test7",
+        "language": "de_DE"
+    })
+    c.post('/users', new_user_json, status=201)
+    assert len(smtp_server.outbox) == 7
+
+    update_password_json = json.dumps({"password": "new_secret"})
+    response = c.put(
+        '/users/4/reset/' +
+        'Im5ld3VzZXJAZXhhbXBsZS5jb20i.WrongToken.JrUGhlAxao46VsQevI',
+        update_password_json,
+        status=403
+    )
+
+    assert response.json == {
+        'validationError':
+        'The password reset link is invalid or has been expired'
+    }
+
+    response = c.put(
+        '/users/4/reset/' +
+        'Im5ld3VzZXJAZXhhbXBsZS5jb20i.C40RUQ.5JhlEE36_JrUGhlAxao46VsQevI',
+        update_password_json,
+        status=403
+    )
+
+    assert response.json == {
+        'validationError':
+        'Your email must be confirmed before resetting the password'
+    }
+
+    c.get(
+        '/users/4/confirm/' +
+        'Im5ld3VzZXJAZXhhbXBsZS5jb20i.C3dnsw.2meomRPK3wnYwB2AERt2ygjFaRE',
+        status=302
+    )
+
+    response = c.put(
+        '/users/4/reset/' +
+        'Im5ld3VzZXJAZXhhbXBsZS5jb20i.C40RUQ.5JhlEE36_JrUGhlAxao46VsQevI',
+        update_password_json
+    )
+
+    ph = PasswordHasher()
+    with db_session:
+        assert ph.verify(User[4].password, 'new_secret')
