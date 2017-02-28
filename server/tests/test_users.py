@@ -1,16 +1,18 @@
 from base64 import urlsafe_b64encode
+from calendar import timegm
+from datetime import datetime
 import json
+from uuid import uuid4
+
 from argon2 import PasswordHasher
+import morepath
+from more.jwtauth import JWTIdentityPolicy
 from pony.orm import db_session
 from webtest import TestApp as Client
-
-import morepath
 
 import server
 from server import TestApp as App
 from server.model import db, User, Group
-
-from .utils import assert_dict_contains_subset
 
 
 def setup_module(module):
@@ -38,7 +40,8 @@ def setup_function(function):
 
 
 def test_login():
-    c = Client(App())
+    app = App()
+    c = Client(app)
 
     response = c.post(
         '/login',
@@ -88,6 +91,74 @@ def test_login():
         "@type": "/users"
     }
 
+    jwtauth_settings = app.settings.jwtauth.__dict__.copy()
+    identity_policy = JWTIdentityPolicy(**jwtauth_settings)
+
+    authtype, token = response.headers['Authorization'].split(' ', 1)
+    claims_set_decoded = identity_policy.decode_jwt(token)
+
+    assert identity_policy.get_userid(claims_set_decoded) == 'mary@example.com'
+
+
+def test_refresh_token():
+    app = App()
+    c = Client(app)
+
+    with db_session:
+        User[2].email_confirmed = True
+
+    response = c.post(
+        '/login',
+        json.dumps({"email": "mary@example.com", "password": "test2"})
+    )
+
+    auth_header = response.headers['Authorization']
+    headers = {'Authorization': auth_header}
+
+    response = c.get('/refresh', headers=headers)
+    assert response.json == {
+        "@id": "/users/2",
+        "@type": "/users"
+    }
+
+    jwtauth_settings = app.settings.jwtauth.__dict__.copy()
+    identity_policy = JWTIdentityPolicy(**jwtauth_settings)
+
+    authtype, token = response.headers['Authorization'].split(' ', 1)
+    claims_set_decoded = identity_policy.decode_jwt(token)
+    print(claims_set_decoded)
+
+    assert identity_policy.get_userid(claims_set_decoded) == 'mary@example.com'
+
+    with db_session:
+        # set new nonce to invalid current tokens for this user
+        User[2].nonce = uuid4().hex
+
+    response = c.get('/refresh', headers=headers, status=403)
+    assert response.json == {
+        'validationError': 'Could not refresh your token'
+    }
+
+    now = timegm(datetime.utcnow().utctimetuple())
+
+    with db_session:
+        nonce = User.get(email='mary@example.com').nonce
+
+    claims_set = {
+        'sub': 'mary@example.com',
+        'refresh_until': now - 3,
+        'nonce': nonce,
+        'exp': now + 3
+    }
+
+    token = identity_policy.encode_jwt(claims_set)
+    headers = {'Authorization': 'JWT ' + token}
+
+    response = c.get('/refresh', headers=headers, status=403)
+    assert response.json == {
+        'validationError': 'Your session has expired'
+    }
+
 
 def test_user():
     c = Client(App())
@@ -97,9 +168,26 @@ def test_user():
         "@type": "/users",
         "nickname": "Leader",
         "email": "leader@example.com",
+        "email_confirmed": False,
+        "language": '',
         "groups": ["Admin"]
     }
-    assert_dict_contains_subset(user, response.json)
+    assert response.json == user
+
+
+def test_users_collection():
+    c = Client(App())
+    response = c.get('/users')
+    user_1 = {
+        "@id": "/users/1",
+        "@type": "/users",
+        "nickname": "Leader",
+        "email": "leader@example.com",
+        "email_confirmed": False,
+        "language": '',
+        "groups": ["Admin"]
+    }
+    assert user_1 in response.json['users']
 
 
 def test_add_user(smtp_server):

@@ -1,5 +1,6 @@
 import os
 
+from webtest import TestApp as Client
 import morepath
 
 import server
@@ -21,3 +22,20 @@ def test_settings():
     assert app.settings.smtp.username == 'test@example.com'
     assert app.settings.smtp.port == '1125'
     assert app.settings.database.args == [':memory:']
+
+
+def test_root():
+    app = App()
+    c = Client(app)
+
+    response = c.get('/')
+    assert response.json == {
+        'collections': {
+            'users': {
+                '@id': '/users'
+            },
+            'groups': {
+                '@id': '/groups'
+            }
+        }
+    }

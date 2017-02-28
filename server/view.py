@@ -9,10 +9,13 @@ import yaml
 import morepath
 from morepath import redirect
 from more.cerberus import loader
+from more.jwtauth import (
+    verify_refresh_request, InvalidTokenError, ExpiredSignatureError
+)
 
 from .app import App
 from .collection import UserCollection, GroupCollection
-from .model import (Root, Login, User, Group, ConfirmEmail,
+from .model import (Root, Login, Refresh, User, Group, ConfirmEmail,
                     ResetPassword, SendResetEmail)
 from .validator import EmailValidator
 
@@ -29,7 +32,16 @@ reset_password_validator = loader(schema['reset_password'], update=False)
 
 @App.json(model=Root)
 def root_default(self, request):
-    return redirect('/api/users')
+    return {
+        'collections': {
+            'users': {
+                '@id': request.class_link(UserCollection)
+            },
+            'groups': {
+                '@id': request.class_link(GroupCollection)
+            },
+        }
+    }
 
 
 @App.json(model=Login, request_method='POST', load=login_validator)
@@ -92,6 +104,43 @@ def login(self, request, json):
             response.status_code = 403
 
         return {'validationError': 'Invalid email or password'}
+
+
+@App.json(model=Refresh)
+def refresh(self, request):
+    try:
+        email = verify_refresh_request(request)
+    except ExpiredSignatureError:
+        @request.after
+        def expired_nonce_or_token(response):
+            response.status_code = 403
+        return {'validationError': 'Your session has expired'}
+    except InvalidTokenError:
+        @request.after
+        def invalid_token(response):
+            response.status_code = 403
+        return {'validationError': 'Could not refresh your token'}
+    else:
+        user = User.get(email=email)
+
+        @request.after
+        def remember(response):
+            admin = Group.get(name='Admin')
+            is_admin = False
+            # Checks if user is member of Admin group or a group to which
+            # belong Admin group (recursive).
+            if user.groups and admin:
+                is_admin = admin in user.groups.basegroups
+            identity = morepath.Identity(
+                email, nickname=user.nickname,
+                language=user.language, isAdmin=is_admin
+            )
+            request.app.remember_identity(response, request, identity)
+
+        return {
+            '@id': request.class_link(User, variables={'id': user.id}),
+            '@type': request.class_link(UserCollection)
+        }
 
 
 @App.json(model=User)
@@ -247,7 +296,7 @@ def confirm_email(self, request):
     ).replace(b'=', b'').decode('utf-8')
 
     query = '?flash=' + flash_encoded + '&flashtype=' + flash_type
-    return morepath.redirect(base_url + path + query)
+    return redirect(base_url + path + query)
 
 
 @App.json(model=SendResetEmail, request_method='POST',
@@ -314,7 +363,7 @@ def request_reset_password(self, request):
         ).replace(b'=', b'').decode('utf-8')
         query = '?flash=' + flash_encoded + '&flashtype=error'
 
-    return morepath.redirect(base_url + path + query)
+    return redirect(base_url + path + query)
 
 
 @App.json(model=ResetPassword, request_method='PUT',

@@ -7,7 +7,10 @@ locale:
 
 jwtauth:
   master_secret: b894da6ab8d041e9a9ec8507644c4413
-  leeway: 10
+  leeway: 0
+  allow_refresh: true
+  refresh_delta: 30
+  refresh_nonce_handler: 'server.handler.refresh_nonce_handler'
 
 database:
   provider: sqlite

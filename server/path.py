@@ -1,6 +1,6 @@
 from .app import App
 from .collection import UserCollection, GroupCollection
-from .model import (Root, Login, User, Group,
+from .model import (Root, Login, Refresh, User, Group,
                     ConfirmEmail, ResetPassword, SendResetEmail)
 
 
@@ -12,6 +12,11 @@ def get_root():
 @App.path(model=Login, path='login')
 def get_login():
     return Login()
+
+
+@App.path(model=Refresh, path='refresh')
+def get_refresh():
+    return Refresh()
 
 
 @App.path(model=User, path='users/{id}')

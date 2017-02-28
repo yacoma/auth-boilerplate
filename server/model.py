@@ -1,4 +1,5 @@
 from datetime import datetime
+from uuid import uuid4
 from argon2 import PasswordHasher
 from pony.orm import Database, Required, Optional, Set
 
@@ -10,6 +11,10 @@ class Root(object):
 
 
 class Login(object):
+    pass
+
+
+class Refresh(object):
     pass
 
 
@@ -42,6 +47,7 @@ class User(db.Entity):
     email = Required(str, 255, unique=True)
     email_confirmed = Required(bool, default=False)
     password = Required(str, 255)
+    nonce = Required(str, 32, default=uuid4().hex)
     language = Optional(str, 16)
     creation_ip = Optional(str, 255)
     groups = Set('Group')

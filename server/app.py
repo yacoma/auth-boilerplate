@@ -14,7 +14,7 @@ class App(CerberusApp):
 
     @morepath.dispatch_method(match_key('name'))
     def service(self, name):
-        raise NotImplementedError
+        raise NotImplementedError   # pragma: no cover
 
 
 with open('server/settings/default.yml') as defaults:

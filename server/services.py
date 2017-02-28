@@ -83,12 +83,6 @@ class EmailValidationService(object):
         except EmailSyntaxError:
             return email
 
-    def validate(self, email):
-        v = validate_email(email, check_deliverability=False)
-        validated_email = v['email']
-
-        return validated_email
-
     def verify(self, email):
         v = validate_email(email, check_deliverability=True)
         verified_email = v['email']

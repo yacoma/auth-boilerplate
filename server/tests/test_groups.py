@@ -1,13 +1,14 @@
 import json
-from pony.orm import db_session
-from webtest import TestApp as Client
 
 import morepath
-from .utils import assert_dict_contains_subset
+from pony.orm import db_session
+from webtest import TestApp as Client
 
 import server
 from server import TestApp as App
 from server.model import db, User, Group
+
+from .utils import assert_dict_contains_subset
 
 
 def setup_module(module):
@@ -76,6 +77,19 @@ def test_recursive_groups():
         assert mike not in moderator.subgroups.users
         assert admin not in mike.groups.basegroups
         assert mike not in admin.subgroups.users
+
+
+def test_groups_collection():
+    c = Client(App())
+    response = c.get('/groups')
+    group_1 = {
+        "@id": "/groups/1",
+        "@type": "/groups",
+        "name": "Admin",
+        "subgroups": ["Admin"],
+        "users": ["leader@example.com"]
+    }
+    assert_dict_contains_subset(group_1, response.json['groups'][0])
 
 
 def test_add_group():

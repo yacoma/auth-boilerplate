@@ -1,7 +1,6 @@
 ---
 jwtauth:
   master_secret: 4713a0c71df14310b5b46a2da6a67923
-  leeway: 10
 
 database:
   provider: sqlite
