@@ -50,7 +50,8 @@
       "*.spec.js"
     ],
     "globals": [
-      "localStorage"
+      "localStorage",
+      "URLSearchParams"
     ]
   }
 }

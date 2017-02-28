@@ -1,10 +1,10 @@
 import {form, changeField} from 'cerebral-forms'
 
-import signIn from './chains/signIn'
-import register from './chains/register'
-import logOut from './chains/logOut'
-import sendResetEmail from './chains/sendResetEmail'
-import updatePassword from './chains/updatePassword'
+import loginFormSubmitted from './signals/loginFormSubmitted'
+import registerFormSubmitted from './signals/registerFormSubmitted'
+import emailFormSubmitted from './signals/emailFormSubmitted'
+import passwordFormSubmitted from './signals/passwordFormSubmitted'
+import logoutButtonClicked from './signals/logoutButtonClicked'
 
 export default (module) => {
   let uid = null
@@ -20,6 +20,15 @@ export default (module) => {
   }
 
   return {
+    signals: {
+      fieldChanged: changeField,
+      loginFormSubmitted,
+      registerFormSubmitted,
+      emailFormSubmitted,
+      passwordFormSubmitted,
+      logoutButtonClicked
+    },
+
     state: {
       email: '',
       nickname: '',
@@ -117,15 +126,6 @@ export default (module) => {
         validationError: null,
         isLoading: false
       })
-    },
-
-    signals: {
-      fieldChanged: changeField,
-      loginFormSubmitted: signIn,
-      registerFormSubmitted: register,
-      emailFormSubmitted: sendResetEmail,
-      passwordFormSubmitted: updatePassword,
-      logoutButtonClicked: logOut
     }
   }
 }

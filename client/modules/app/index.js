@@ -1,6 +1,6 @@
 import base64UrlDecode from 'jwt-decode/lib/base64_url_decode'
 
-import routeTo from './chains/routeTo'
+import pageRouted from './signals/pageRouted'
 
 export default ({controller, path}) => {
   let initialFlash = false
@@ -24,15 +24,15 @@ export default ({controller, path}) => {
   }
 
   return {
+    signals: {
+      pageRouted
+    },
     state: {
       currentPage: null,
       lastVisited: null,
       flash: flash,
       flashType: flashType,
       initialFlash: initialFlash
-    },
-    signals: {
-      pageRouted: routeTo
     }
   }
 }

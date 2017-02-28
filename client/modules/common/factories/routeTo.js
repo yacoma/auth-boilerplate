@@ -1,6 +1,6 @@
 import {set, equals, when} from 'cerebral/operators'
 import {state} from 'cerebral/tags'
-import showFlash from '../factories/showFlash'
+import showFlash from './showFlash'
 
 function routeTo (page) {
   return [

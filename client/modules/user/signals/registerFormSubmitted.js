@@ -2,8 +2,8 @@ import {state, props} from 'cerebral/tags'
 import {set, when} from 'cerebral/operators'
 import {isValidForm} from 'cerebral-forms'
 import {httpPost} from 'cerebral-provider-http'
-import routeTo from '../../app/factories/routeTo'
-import showFlash from '../../app/factories/showFlash'
+import routeTo from '../../common/factories/routeTo'
+import showFlash from '../../common/factories/showFlash'
 
 export default [
   isValidForm(state`user.register`), {

@@ -1,6 +1,6 @@
 import removeUser from '../actions/removeUser'
-import routeTo from '../../app/factories/routeTo'
-import showFlash from '../../app/factories/showFlash'
+import routeTo from '../../common/factories/routeTo'
+import showFlash from '../../common/factories/showFlash'
 
 export default [
   removeUser,
