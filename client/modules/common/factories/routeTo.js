@@ -1,13 +1,14 @@
+import {sequence} from 'cerebral'
 import {set, equals, when} from 'cerebral/operators'
 import {state} from 'cerebral/tags'
 import showFlash from './showFlash'
 
 function routeTo (page) {
-  return [
+  return sequence('Route to', [
     set(state`app.currentPage`, page),
     when(state`app.initialFlash`), {
       true: [
-        ...showFlash(state`app.flash`, state`app.flashType`),
+        showFlash(state`app.flash`, state`app.flashType`),
         set(state`app.initialFlash`, false)
       ],
       false: []
@@ -21,7 +22,7 @@ function routeTo (page) {
           true: [],
           false: [
             set(state`app.currentPage`, 'login'),
-            ...showFlash('You must log in to view this page', 'info')
+            showFlash('You must log in to view this page', 'info')
           ]
         }
       ],
@@ -30,16 +31,15 @@ function routeTo (page) {
           true: [],
           false: [
             set(state`app.currentPage`, 'login'),
-            ...showFlash('You must log in to change your password', 'info')
+            showFlash('You must log in to change your password', 'info')
           ]
-
         }
       ],
       otherwise: [
         set(state`app.lastVisited`, page)
       ]
     }
-  ]
+  ])
 }
 
 export default routeTo

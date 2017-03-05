@@ -1,7 +1,7 @@
 import {state, props} from 'cerebral/tags'
 import {set, when} from 'cerebral/operators'
 import {isValidForm} from 'cerebral-forms'
-import {httpPost} from 'cerebral-provider-http'
+import {httpPost} from 'cerebral-provider-http/operators'
 import routeTo from '../../common/factories/routeTo'
 import showFlash from '../../common/factories/showFlash'
 
@@ -22,23 +22,21 @@ export default [
           set(state`user.register.password.value`, ''),
           set(state`user.register.confirmPassword.value`, ''),
           set(state`user.register.isLoading`, false),
-          ...routeTo('login'),
-          ...showFlash('Please check your email to confirm your email address', 'success')
+          routeTo('login'),
+          showFlash('Please check your email to confirm your email address', 'success')
         ],
         error: [
           set(state`user.register.password.value`, ''),
           set(state`user.register.confirmPassword.value`, ''),
           set(state`user.register.showErrors`, false),
           when(props`status`, (status) => status === 409 || status === 422), {
-            true: [set(state`user.register.validationError`, props`result.validationError`)],
-            false: [set(state`user.register.validationError`, 'Could not register!')]
+            true: set(state`user.register.validationError`, props`result.validationError`),
+            false: set(state`user.register.validationError`, 'Could not register!')
           },
           set(state`user.register.isLoading`, false)
         ]
       }
     ],
-    false: [
-      set(state`user.register.showErrors`, true)
-    ]
+    false: set(state`user.register.showErrors`, true)
   }
 ]

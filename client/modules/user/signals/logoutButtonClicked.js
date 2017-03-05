@@ -4,6 +4,6 @@ import showFlash from '../../common/factories/showFlash'
 
 export default [
   removeUser,
-  ...routeTo('home'),
-  ...showFlash('Good bye!', 'info')
+  routeTo('home'),
+  showFlash('Good bye!', 'info')
 ]
