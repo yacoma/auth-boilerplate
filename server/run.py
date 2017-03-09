@@ -21,6 +21,7 @@ def add_admin():   # pragma: no cover
         User(
             nickname='Admin',
             email='admin@example.com',
+            email_confirmed=True,
             password=password_hash,
             groups=[admin]
         )
