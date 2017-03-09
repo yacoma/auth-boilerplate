@@ -21,8 +21,9 @@ docs/_build/
 
 # Javascript
 node_modules
-.eslint*
 *.log*
+.nyc_output/
+coverage/
 
 # Database
 *.db
