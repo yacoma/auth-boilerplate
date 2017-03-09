@@ -4,7 +4,7 @@ import {state} from 'cerebral/tags'
 
 const showFlashDebounce = debounce.shared()
 
-function showFlash (flash, flashType = null, ms = 30000) {
+function showFlash (flash, flashType = null, ms = 7000) {
   return sequence('Route to', [
     set(state`app.flash`, flash),
     set(state`app.flashType`, flashType),

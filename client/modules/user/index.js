@@ -6,19 +6,7 @@ import emailFormSubmitted from './signals/emailFormSubmitted'
 import passwordFormSubmitted from './signals/passwordFormSubmitted'
 import logoutButtonClicked from './signals/logoutButtonClicked'
 
-export default (module) => {
-  let uid = null
-  const location = window.location
-  const urlParams = new URLSearchParams(location.search)
-  let urlParamsChanged = false
-  if (urlParams.has('@id')) {
-    uid = decodeURIComponent(urlParams.get('@id'))
-    urlParams.delete('@id')
-  }
-  if (urlParamsChanged) {
-    window.history.replaceState({}, '', `${location.pathname}?${urlParams}`)
-  }
-
+export default (urlParams) => (module) => {
   return {
     signals: {
       fieldChanged: changeField,
@@ -37,7 +25,7 @@ export default (module) => {
       isLoggedIn: false,
       token: {},
       api: {
-        '@id': uid
+        '@id': urlParams['@id']
       },
       signIn: form({
         email: {
