@@ -47,14 +47,6 @@ group:
   name:
     type: string
     required: true
-  basegroups:
-    type: list
-    schema:
-      type: integer
-  subgroups:
-    type: list
-    schema:
-      type: integer
   users:
     type: list
     schema:

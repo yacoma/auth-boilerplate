@@ -28,8 +28,8 @@ def setup_function(function):
 
     with db_session:
         editor = Group(id=3, name='Editor')
-        moderator = Group(id=2, name='Moderator', basegroups=[editor])
-        admin = Group(id=1, name='Admin', basegroups=[moderator, editor])
+        moderator = Group(id=2, name='Moderator')
+        admin = Group(id=1, name='Admin')
 
         User(id=1, nickname='Leader', email='leader@example.com',
              password=ph.hash('test1'), groups=[admin])

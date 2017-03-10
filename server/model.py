@@ -74,23 +74,12 @@ class User(db.Entity):
 
 class Group(db.Entity):
     name = Required(str, 255, unique=True)
-    basegroups = Set('Group', reverse='subgroups')
-    subgroups = Set('Group')
     users = Set(User)
-
-    def before_insert(self):
-        self.basegroups.add(self)
 
     def update(self, payload={}):
         update_payload = {}
         for attribute, value in payload.items():
-            if attribute == 'basegroups':
-                for group_id in value:
-                    self.basegroups.add(Group[group_id])
-            elif attribute == 'subgroups':
-                for group_id in value:
-                    self.subgroups.add(Group[group_id])
-            elif attribute == 'users':
+            if attribute == 'users':
                 for user_id in value:
                     self.users.add(User[user_id])
             else:

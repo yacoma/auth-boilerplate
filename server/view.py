@@ -67,10 +67,9 @@ def login(self, request, json):
             def remember(response):
                 admin = Group.get(name='Admin')
                 is_admin = False
-                # Checks if user is member of Admin group or a group to which
-                # belong Admin group (recursive).
+                # Checks if user is member of Admin group.
                 if user.groups and admin:
-                    is_admin = admin in user.groups.basegroups
+                    is_admin = admin in user.groups
                 identity = morepath.Identity(email, nickname=user.nickname,
                                              language=user.language,
                                              isAdmin=is_admin)
@@ -127,10 +126,9 @@ def refresh(self, request):
         def remember(response):
             admin = Group.get(name='Admin')
             is_admin = False
-            # Checks if user is member of Admin group or a group to which
-            # belong Admin group (recursive).
+            # Checks if user is member of Admin group.
             if user.groups and admin:
-                is_admin = admin in user.groups.basegroups
+                is_admin = admin in user.groups
             identity = morepath.Identity(
                 email, nickname=user.nickname,
                 language=user.language, isAdmin=is_admin
@@ -219,8 +217,6 @@ def group_get(self, request):
         '@id': request.link(self),
         '@type': request.class_link(GroupCollection),
         'name': self.name,
-        'basegroups': [group.name for group in self.basegroups],
-        'subgroups': [group.name for group in self.subgroups],
         'users': [user.email for user in self.users]
     }
 
@@ -235,12 +231,10 @@ def group_collection_get(self, request):
 @App.json(model=GroupCollection, request_method='POST', load=group_validator)
 def group_collection_add(self, request, json):
     name = json.get('name')
-    basegroup_ids = json.get('basegroups', [])
     user_ids = json.get('users', [])
 
     if not Group.exists(name=name):
-        group = self.add(name=name, basegroup_ids=basegroup_ids,
-                         user_ids=user_ids)
+        group = self.add(name=name, user_ids=user_ids)
 
         @request.after
         def after(response):
