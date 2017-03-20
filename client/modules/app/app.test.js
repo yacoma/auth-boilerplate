@@ -1,101 +1,79 @@
-import t from 'tap'
-import {RunSignal} from 'cerebral/test'
+import test from 'ava'
+import {CerebralTest} from 'cerebral/test'
 
 import App from '.'
 import User from '../user'
 
-t.test('test App module', function (t) {
-  let runSignal
-  t.beforeEach(function (done) {
-    runSignal = RunSignal({
-      modules: {
-        app: App({'flash': null, 'flashType': null}),
-        user: User({'@id': null})
-      }
-    })
-    done()
-  })
+let cerebral
 
-  t.test('page should route to home', function (t) {
-    return runSignal('app.pageRouted', {page: 'home'})
-      .then(({state}) => [
-        t.equal(state.app.currentPage, 'home'),
-        t.equal(state.app.lastVisited, 'home'),
-        t.equal(state.user.isLoggedIn, false)
-      ])
-      .catch(t.threw)
-      .then(t.end)
+test.beforeEach(t => {
+  cerebral = CerebralTest({
+    modules: {
+      app: App({'flash': null, 'flashType': null}),
+      user: User({'@id': null})
+    }
   })
-
-  t.test('route to login should not change lastVisited', function (t) {
-    return runSignal('app.pageRouted', {page: 'login'})
-      .then(({state}) => [
-        t.equal(state.app.currentPage, 'login'),
-        t.notEqual(state.app.lastVisited, 'login')
-      ])
-      .catch(t.threw)
-      .then(t.end)
-  })
-
-  t.test('route to register should not change lastVisited', function (t) {
-    return runSignal('app.pageRouted', {page: 'register'})
-      .then(({state}) => [
-        t.equal(state.app.currentPage, 'register'),
-        t.notEqual(state.app.lastVisited, 'register')
-      ])
-      .catch(t.threw)
-      .then(t.end)
-  })
-
-  t.test('route to private should redirect to login', function (t) {
-    return runSignal('app.pageRouted', {page: 'private'})
-      .then(({state}) => [
-        t.equal(state.user.isLoggedIn, false),
-        t.equal(state.app.currentPage, 'login'),
-        t.equal(state.app.lastVisited, 'private'),
-        t.equal(state.app.flash, null),
-        t.equal(state.app.flashType, null)
-      ])
-      .catch(t.threw)
-      .then(t.end)
-  })
-
-  t.test('route to newpassword should redirect to login', function (t) {
-    return runSignal('app.pageRouted', {page: 'newpassword'})
-      .then(({state}) => [
-        t.equal(state.user.api['@id'], null),
-        t.equal(state.app.currentPage, 'login'),
-        t.notEqual(state.app.lastVisited, 'newpassword'),
-        t.equal(state.app.flash, null),
-        t.equal(state.app.flashType, null)
-      ])
-      .catch(t.threw)
-      .then(t.end)
-  })
-  t.end()
 })
 
-t.test('test App module with passed @id', function (t) {
-  let runSignal
-  t.beforeEach(function (done) {
-    runSignal = RunSignal({
-      modules: {
-        app: App({'flash': null, 'flashType': null}),
-        user: User({'@id': '/user/1'})
-      }
-    })
-    done()
+test('page should route to home', t => {
+  return cerebral.runSignal('app.pageRouted', {page: 'home'})
+    .then(({state}) => [
+      t.is(state.app.currentPage, 'home'),
+      t.is(state.app.lastVisited, 'home'),
+      t.false(state.user.isLoggedIn)
+    ])
+})
+
+test('route to login should not change lastVisited', t => {
+  return cerebral.runSignal('app.pageRouted', {page: 'login'})
+    .then(({state}) => [
+      t.is(state.app.currentPage, 'login'),
+      t.not(state.app.lastVisited, 'login')
+    ])
+})
+
+test('route to register should not change lastVisited', t => {
+  return cerebral.runSignal('app.pageRouted', {page: 'register'})
+    .then(({state}) => [
+      t.is(state.app.currentPage, 'register'),
+      t.not(state.app.lastVisited, 'register')
+    ])
+})
+
+test('route to private should redirect to login', t => {
+  return cerebral.runSignal('app.pageRouted', {page: 'private'})
+    .then(({state}) => [
+      t.false(state.user.isLoggedIn),
+      t.is(state.app.currentPage, 'login'),
+      t.is(state.app.lastVisited, 'private'),
+      t.is(state.app.flash, 'You must log in to view this page'),
+      t.is(state.app.flashType, 'info')
+    ])
+})
+
+test('route to newpassword should redirect to login', t => {
+  return cerebral.runSignal('app.pageRouted', {page: 'newpassword'})
+    .then(({state}) => [
+      t.is(state.user.api['@id'], null),
+      t.is(state.app.currentPage, 'login'),
+      t.not(state.app.lastVisited, 'newpassword'),
+      t.is(state.app.flash, null),
+      t.is(state.app.flashType, null)
+    ])
+})
+
+test('route to newpassword with passed @id', t => {
+  cerebral = CerebralTest({
+    modules: {
+      app: App({'flash': null, 'flashType': null}),
+      user: User({'@id': '/user/1'})
+    }
   })
 
-  t.test('route to newpassword with passed @id', function (t) {
-    return runSignal('app.pageRouted', {page: 'newpassword'})
-      .then(({state}) => [
-        t.equal(state.user.api['@id'], '/user/1'),
-        t.equal(state.app.currentPage, 'newpassword'),
-        t.notEqual(state.app.lastVisited, 'newpassword')
-      ])
-      .catch(t.threw)
-      .then(t.end)
-  })
-  t.end()
+  return cerebral.runSignal('app.pageRouted', {page: 'newpassword'})
+    .then(({state}) => [
+      t.is(state.user.api['@id'], '/user/1'),
+      t.is(state.app.currentPage, 'newpassword'),
+      t.not(state.app.lastVisited, 'newpassword')
+    ])
 })
