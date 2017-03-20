@@ -7,10 +7,9 @@ import {PasswordField, ConfirmPasswordField} from '../fields'
 
 export default connect({
   passwordForm: state`user.passwordForm`,
-  fieldChanged: signal`user.fieldChanged`,
   formSubmitted: signal`user.passwordFormSubmitted`
 },
-  function NewPassword ({passwordForm, fieldChanged, formSubmitted}) {
+  function NewPassword ({passwordForm, formSubmitted}) {
     const handleSubmit = (event) => {
       event.preventDefault()
       formSubmitted()

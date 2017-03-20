@@ -7,10 +7,9 @@ import {EmailField, PasswordField} from '../fields'
 
 export default connect({
   signIn: state`user.signIn`,
-  fieldChanged: signal`user.fieldChanged`,
   signInSubmitted: signal`user.loginFormSubmitted`
 },
-  function Login ({signIn, fieldChanged, signInSubmitted}) {
+  function Login ({signIn, signInSubmitted}) {
     const handleSubmit = (event) => {
       event.preventDefault()
       signInSubmitted()

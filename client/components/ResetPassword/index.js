@@ -7,10 +7,9 @@ import {EmailField} from '../fields'
 
 export default connect({
   emailForm: state`user.emailForm`,
-  fieldChanged: signal`user.fieldChanged`,
   formSubmitted: signal`user.emailFormSubmitted`
 },
-  function ResetPassword ({emailForm, fieldChanged, formSubmitted}) {
+  function ResetPassword ({emailForm, formSubmitted}) {
     const handleSubmit = (event) => {
       event.preventDefault()
       formSubmitted()

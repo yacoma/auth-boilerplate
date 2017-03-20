@@ -5,15 +5,22 @@ import {props} from 'cerebral/tags'
 import Devtools from 'cerebral/devtools'
 import Router from 'cerebral-router'
 import HttpProvider from 'cerebral-provider-http'
+import FormsProvider from 'cerebral-provider-forms'
 
 import App from './modules/app'
 import User from './modules/user'
-import Admin from './modules/admin'
 
 const jwtHeader = localStorage.getItem('jwtHeader')
   ? JSON.parse(localStorage.getItem('jwtHeader'))
   : null
 
+/**
+ * Extract URL search params from query string and remove
+ * extracted parameters from URL in current page
+ * @param {string[]} keys - Array of query keys to extract
+ * @returns {Object} - Object with keys and extracted values.
+ *  If the key was not found the value is set to null.
+ */
 function getUrlParams (keys) {
   const urlParams = new URLSearchParams(location.search)
   let urlParamsChanged = false
@@ -45,7 +52,6 @@ const controller = Controller({
       'flashType': urlParams['flashtype']
     }),
     user: User({'@id': urlParams['@id']}),
-    admin: Admin,
     router: Router({
       filterFalsy: true,
       routes: [
@@ -64,6 +70,19 @@ const controller = Controller({
         'Content-Type': 'application/json; charset=UTF-8',
         'Accept': 'application/json',
         'Authorization': jwtHeader
+      }
+    }),
+    FormsProvider({
+      errorMessages: {
+        minLength (value, minLength) {
+          return `${value} is too short - should be equal or more than ${minLength}`
+        },
+        isEmail (value) {
+          return `${value} is not a valid email`
+        },
+        equalsField (value, field) {
+          return `Not equal to ${field}`
+        }
       }
     })
   ]

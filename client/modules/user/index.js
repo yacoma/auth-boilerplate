@@ -1,5 +1,4 @@
-import {form, changeField} from 'cerebral-forms'
-
+import fieldChanged from './signals/fieldChanged'
 import loginFormSubmitted from './signals/loginFormSubmitted'
 import registerFormSubmitted from './signals/registerFormSubmitted'
 import emailFormSubmitted from './signals/emailFormSubmitted'
@@ -9,7 +8,7 @@ import logoutButtonClicked from './signals/logoutButtonClicked'
 export default (urlParams) => (module) => {
   return {
     signals: {
-      fieldChanged: changeField,
+      fieldChanged,
       loginFormSubmitted,
       registerFormSubmitted,
       emailFormSubmitted,
@@ -27,93 +26,71 @@ export default (urlParams) => (module) => {
       api: {
         '@id': urlParams['@id']
       },
-      signIn: form({
+      signIn: {
         email: {
           value: '',
           validationRules: ['isEmail'],
-          validationMessages: ['Not valid email'],
-          isRequired: true,
-          requiredMessage: 'Email is required'
+          isRequired: true
         },
         password: {
           value: '',
           validationRules: ['minLength:5'],
-          validationMessages: ['Too short'],
-          isRequired: true,
-          requiredMessage: 'Password is required'
+          isRequired: true
         },
         showErrors: false,
         validationError: null,
         isLoading: false
-      }),
-      register: form({
+      },
+      register: {
         nickname: {
           value: '',
           validationRules: ['minLength:3'],
-          validationMessages: ['Too short'],
-          isRequired: true,
-          requiredMessage: 'Nickname is required'
+          isRequired: true
         },
         email: {
           value: '',
           validationRules: ['isEmail'],
-          validationMessages: ['Not valid email'],
-          isRequired: true,
-          requiredMessage: 'Email is required'
+          isRequired: true
         },
         password: {
           value: '',
           validationRules: ['minLength:5'],
-          validationMessages: ['Too short'],
-          dependsOn: 'user.register.confirmPassword',
-          isRequired: true,
-          requiredMessage: 'Password is required'
+          isRequired: true
         },
         confirmPassword: {
           value: '',
           validationRules: ['equalsField:password'],
-          validationMessages: ['Not equal to password'],
-          dependsOn: 'user.register.password',
-          isRequired: true,
-          requiredMessage: 'You must confirm password'
+          isRequired: true
         },
         showErrors: false,
         validationError: null,
         isLoading: false
-      }),
-      emailForm: form({
+      },
+      emailForm: {
         email: {
           value: '',
           validationRules: ['isEmail'],
-          validationMessages: ['Not valid email'],
-          isRequired: true,
-          requiredMessage: 'Email is required'
+          isRequired: true
         },
         showErrors: false,
         validationError: null,
         isLoading: false
-      }),
-      passwordForm: form({
+      },
+      passwordForm: {
         password: {
           value: '',
           validationRules: ['minLength:5'],
-          validationMessages: ['Too short'],
-          dependsOn: 'user.passwordForm.confirmPassword',
-          isRequired: true,
-          requiredMessage: 'Password is required'
+          isRequired: true
         },
         confirmPassword: {
           value: '',
           validationRules: ['equalsField:password'],
-          validationMessages: ['Not equal to password'],
-          dependsOn: 'user.passwordForm.password',
-          isRequired: true,
-          requiredMessage: 'You must confirm password'
+          isRequired: true
         },
         showErrors: false,
         validationError: null,
         isLoading: false
-      })
+      }
     }
   }
 }

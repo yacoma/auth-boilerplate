@@ -7,10 +7,9 @@ import {NicknameField, EmailField, PasswordField, ConfirmPasswordField} from '..
 
 export default connect({
   register: state`user.register`,
-  fieldChanged: signal`user.fieldChanged`,
   formSubmitted: signal`user.registerFormSubmitted`
 },
-  function Register ({register, fieldChanged, formSubmitted}) {
+  function Register ({register, formSubmitted}) {
     const handleSubmit = (event) => {
       event.preventDefault()
       formSubmitted()

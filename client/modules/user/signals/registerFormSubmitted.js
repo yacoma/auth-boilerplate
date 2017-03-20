@@ -1,9 +1,10 @@
-import {state, props} from 'cerebral/tags'
-import {set, when} from 'cerebral/operators'
-import {isValidForm} from 'cerebral-forms'
+import {state} from 'cerebral/tags'
+import {set} from 'cerebral/operators'
+import {isValidForm} from 'cerebral-provider-forms/operators'
 import {httpPost} from 'cerebral-provider-http/operators'
 import routeTo from '../../common/factories/routeTo'
 import showFlash from '../../common/factories/showFlash'
+import setValidationError from '../factories/setValidationError'
 
 export default [
   isValidForm(state`user.register`), {
@@ -29,10 +30,10 @@ export default [
           set(state`user.register.password.value`, ''),
           set(state`user.register.confirmPassword.value`, ''),
           set(state`user.register.showErrors`, false),
-          when(props`status`, (status) => status === 409 || status === 422), {
-            true: set(state`user.register.validationError`, props`result.validationError`),
-            false: set(state`user.register.validationError`, 'Could not register!')
-          },
+          setValidationError(
+            'user.register.validationError',
+            'Could not register!'
+          ),
           set(state`user.register.isLoading`, false)
         ]
       }
