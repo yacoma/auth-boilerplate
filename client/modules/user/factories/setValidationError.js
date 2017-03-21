@@ -10,7 +10,9 @@ function setValidationErrorFactory (errorPath, defaultErrorMessage) {
         let errorMessages = Object.keys(props.result).reduce(
           (errorMessages, errorField) => {
             if (Array.isArray(props.result[errorField])) {
-              errorMessages.push(props.result[errorField].join('\n'))
+              errorMessages.push(
+                errorField + ': ' + props.result[errorField].join(', ')
+              )
             }
             return errorMessages
           }, []

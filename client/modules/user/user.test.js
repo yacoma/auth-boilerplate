@@ -179,32 +179,6 @@ test.serial('should not register when email exists', t => {
     ]))
 })
 
-test.serial('should not register when email exists', t => {
-  mock.post('/api/users', (req, res) => {
-    return res
-      .status(409)
-      .header('Content-Type', 'application/json')
-      .body(JSON.stringify({
-        'validationError': 'Email already exists'
-      }))
-  })
-
-  cerebral.setState('user.register.nickname.value', 'Admin')
-  cerebral.setState('user.register.email.value', 'admin@example.com')
-  cerebral.setState('user.register.password.value', 'admin0')
-  cerebral.setState('user.register.confirmPassword.value', 'admin0')
-
-  return cerebral.runSignal('user.registerFormSubmitted')
-    .then(({state}) => ([
-      t.is(state.user.register.validationError, 'Email already exists'),
-      t.is(state.user.register.nickname.value, 'Admin'),
-      t.is(state.user.register.email.value, 'admin@example.com'),
-      t.is(state.user.register.password.value, ''),
-      t.is(state.user.register.confirmPassword.value, ''),
-      t.false(state.user.register.showErrors)
-    ]))
-})
-
 test.serial('should not register when email server does not exists', t => {
   mock.post('/api/users', (req, res) => {
     return res
@@ -223,7 +197,7 @@ test.serial('should not register when email server does not exists', t => {
 
   return cerebral.runSignal('user.registerFormSubmitted')
     .then(({state}) => ([
-      t.is(state.user.register.validationError, 'Email could not be delivered'),
+      t.is(state.user.register.validationError, 'email: Email could not be delivered'),
       t.is(state.user.register.nickname.value, 'Admin'),
       t.is(state.user.register.email.value, 'admin@example.com'),
       t.is(state.user.register.password.value, ''),

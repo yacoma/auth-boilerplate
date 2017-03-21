@@ -6664,7 +6664,7 @@ function setValidationErrorFactory(errorPath, defaultErrorMessage) {
       case 422:
         var errorMessages = Object.keys(props.result).reduce(function (errorMessages, errorField) {
           if (Array.isArray(props.result[errorField])) {
-            errorMessages.push(props.result[errorField].join('\n'));
+            errorMessages.push(errorField + ': ' + props.result[errorField].join(', '));
           }
           return errorMessages;
         }, []);
