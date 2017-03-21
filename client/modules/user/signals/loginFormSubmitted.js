@@ -2,6 +2,7 @@ import {state} from 'cerebral/tags'
 import {set, when} from 'cerebral/operators'
 import {isValidForm} from 'cerebral-provider-forms/operators'
 import {httpPost} from 'cerebral-provider-http/operators'
+import routeTo from '../../common/factories/routeTo'
 import initUser from '../actions/initUser'
 import setValidationError from '../factories/setValidationError'
 
@@ -21,8 +22,8 @@ export default [
           initUser,
           set(state`user.signIn.isLoading`, false),
           when(state`app.lastVisited`), {
-            true: set(state`app.currentPage`, state`app.lastVisited`),
-            false: set(state`app.currentPage`, 'home')
+            true: routeTo(state`app.lastVisited`),
+            false: routeTo('home')
           }
         ],
         error: [
