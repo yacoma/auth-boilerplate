@@ -29746,12 +29746,15 @@ exports.default = (0, _react3.connect)({
       path = _ref.path,
       fieldChanged = _ref.fieldChanged;
 
+  var hasError = function hasError(field) {
+    return form.showErrors && !field.isValid;
+  };
   var showError = function showError(field) {
-    return form.showErrors && !field.isValid && field.errorMessage !== null;
+    return form.showErrors && !field.isValid && field.hasValue && field.errorMessage !== null;
   };
   return _react2.default.createElement(
     _semanticUiReact.Form.Field,
-    { error: showError(form.confirmPassword) },
+    { error: hasError(form.confirmPassword) },
     _react2.default.createElement(_semanticUiReact.Input, {
       type: 'password',
       icon: 'lock',
@@ -29818,12 +29821,15 @@ exports.default = (0, _react3.connect)({
       path = _ref.path,
       fieldChanged = _ref.fieldChanged;
 
+  var hasError = function hasError(field) {
+    return form.showErrors && !field.isValid;
+  };
   var showError = function showError(field) {
-    return form.showErrors && !field.isValid && field.errorMessage !== null;
+    return form.showErrors && !field.isValid && field.hasValue && field.errorMessage !== null;
   };
   return _react2.default.createElement(
     _semanticUiReact.Form.Field,
-    { error: showError(form.email) },
+    { error: hasError(form.email) },
     _react2.default.createElement(_semanticUiReact.Input, {
       icon: 'mail',
       iconPosition: 'left',
@@ -29889,12 +29895,15 @@ exports.default = (0, _react3.connect)({
       path = _ref.path,
       fieldChanged = _ref.fieldChanged;
 
+  var hasError = function hasError(field) {
+    return form.showErrors && !field.isValid;
+  };
   var showError = function showError(field) {
-    return form.showErrors && !field.isValid && field.errorMessage !== null;
+    return form.showErrors && !field.isValid && field.hasValue && field.errorMessage !== null;
   };
   return _react2.default.createElement(
     _semanticUiReact.Form.Field,
-    { error: showError(form.nickname) },
+    { error: hasError(form.nickname) },
     _react2.default.createElement(_semanticUiReact.Input, {
       icon: 'user',
       iconPosition: 'left',
@@ -29960,12 +29969,15 @@ exports.default = (0, _react3.connect)({
       path = _ref.path,
       fieldChanged = _ref.fieldChanged;
 
+  var hasError = function hasError(field) {
+    return form.showErrors && !field.isValid;
+  };
   var showError = function showError(field) {
-    return form.showErrors && !field.isValid && field.errorMessage !== null;
+    return form.showErrors && !field.isValid && field.hasValue && field.errorMessage !== null;
   };
   return _react2.default.createElement(
     _semanticUiReact.Form.Field,
-    { error: showError(form.password) },
+    { error: hasError(form.password) },
     _react2.default.createElement(_semanticUiReact.Input, {
       type: 'password',
       icon: 'lock',

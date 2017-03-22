@@ -10,11 +10,14 @@ export default connect({
   fieldChanged: signal`user.fieldChanged`
 },
   function EmailField ({form, path, fieldChanged}) {
+    const hasError = (field) => (
+      form.showErrors && !field.isValid
+    )
     const showError = (field) => (
-      form.showErrors && !field.isValid && field.errorMessage !== null
+      form.showErrors && !field.isValid && field.hasValue && field.errorMessage !== null
     )
     return (
-      <Form.Field error={showError(form.email)}>
+      <Form.Field error={hasError(form.email)}>
         <Input
           icon='mail'
           iconPosition='left'

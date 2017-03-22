@@ -10,11 +10,14 @@ export default connect({
   fieldChanged: signal`user.fieldChanged`
 },
   function NicknameField ({form, path, fieldChanged}) {
+    const hasError = (field) => (
+      form.showErrors && !field.isValid
+    )
     const showError = (field) => (
-      form.showErrors && !field.isValid && field.errorMessage !== null
+      form.showErrors && !field.isValid && field.hasValue && field.errorMessage !== null
     )
     return (
-      <Form.Field error={showError(form.nickname)}>
+      <Form.Field error={hasError(form.nickname)}>
         <Input
           icon='user'
           iconPosition='left'
