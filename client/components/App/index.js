@@ -9,6 +9,7 @@ import Login from '../Login'
 import Register from '../Register'
 import ResetPassword from '../ResetPassword'
 import NewPassword from '../NewPassword'
+import Admin from '../Admin'
 
 const pages = {
   home: Home,
@@ -16,7 +17,8 @@ const pages = {
   login: Login,
   register: Register,
   reset: ResetPassword,
-  newpassword: NewPassword
+  newpassword: NewPassword,
+  admin: Admin
 }
 
 export default connect({

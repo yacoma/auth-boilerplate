@@ -14,6 +14,8 @@ import server
 from server import TestApp as App
 from server.model import db, User, Group
 
+from .utils import assert_dict_contains_subset
+
 
 def setup_module(module):
     morepath.scan(server)
@@ -86,10 +88,6 @@ def test_login():
         '/login',
         json.dumps({"email": "mary@EXAMPLE.COM", "password": "test2"})
     )
-    assert response.json == {
-        "@id": "/users/2",
-        "@type": "/users"
-    }
 
     jwtauth_settings = app.settings.jwtauth.__dict__.copy()
     identity_policy = JWTIdentityPolicy(**jwtauth_settings)
@@ -112,21 +110,15 @@ def test_refresh_token():
         json.dumps({"email": "mary@example.com", "password": "test2"})
     )
 
-    auth_header = response.headers['Authorization']
-    headers = {'Authorization': auth_header}
+    headers = {'Authorization': response.headers['Authorization']}
 
     response = c.get('/refresh', headers=headers)
-    assert response.json == {
-        "@id": "/users/2",
-        "@type": "/users"
-    }
 
     jwtauth_settings = app.settings.jwtauth.__dict__.copy()
     identity_policy = JWTIdentityPolicy(**jwtauth_settings)
 
     authtype, token = response.headers['Authorization'].split(' ', 1)
     claims_set_decoded = identity_policy.decode_jwt(token)
-    print(claims_set_decoded)
 
     assert identity_policy.get_userid(claims_set_decoded) == 'mary@example.com'
 
@@ -146,6 +138,7 @@ def test_refresh_token():
 
     claims_set = {
         'sub': 'mary@example.com',
+        'uid': '/user/2',
         'refresh_until': now - 3,
         'nonce': nonce,
         'exp': now + 3
@@ -160,34 +153,104 @@ def test_refresh_token():
     }
 
 
+def test_reset_nonce():
+    c = Client(App())
+
+    with db_session:
+        original_nonce = User[1].nonce
+
+    c.get('/users/1/signout')
+
+    with db_session:
+        assert User[1].nonce != original_nonce
+
+
 def test_user():
     c = Client(App())
-    response = c.get('/users/1')
+
+    with db_session:
+        User[2].email_confirmed = True
+
+    response = c.post(
+        '/login',
+        json.dumps({"email": "mary@example.com", "password": "test2"})
+    )
+
+    headers = {'Authorization': response.headers['Authorization']}
+
+    response = c.get('/users/2', headers=headers)
     user = {
-        "@id": "/users/1",
-        "@type": "/users",
-        "nickname": "Leader",
-        "email": "leader@example.com",
-        "email_confirmed": False,
+        "@id": "/users/2",
+        "nickname": "Mary",
+        "email": "mary@example.com",
+        "isAdmin": False,
+        "emailConfirmed": True,
         "language": '',
-        "groups": ["Admin"]
+        "registerIP": '',
     }
-    assert response.json == user
+
+    assert_dict_contains_subset(user, response.json)
 
 
 def test_users_collection():
     c = Client(App())
-    response = c.get('/users')
+
+    with db_session:
+        User[1].email_confirmed = True
+
+    response = c.post(
+        '/login',
+        json.dumps({"email": "leader@example.com", "password": "test1"})
+    )
+
+    headers = {'Authorization': response.headers['Authorization']}
+
+    response = c.get('/users', headers=headers)
     user_1 = {
         "@id": "/users/1",
-        "@type": "/users",
         "nickname": "Leader",
         "email": "leader@example.com",
-        "email_confirmed": False,
+        "emailConfirmed": True,
+        "isAdmin": True,
         "language": '',
-        "groups": ["Admin"]
+        "registerIP": '',
     }
-    assert user_1 in response.json['users']
+
+    assert_dict_contains_subset(user_1, response.json['users'][0])
+
+
+def test_sorted_users_collection():
+    c = Client(App())
+
+    with db_session:
+        User[1].email_confirmed = True
+
+    response = c.post(
+        '/login',
+        json.dumps({"email": "leader@example.com", "password": "test1"})
+    )
+
+    headers = {'Authorization': response.headers['Authorization']}
+
+    response = c.get('/users?sortby=nickname', headers=headers)
+
+    assert response.json['users'][0]['nickname'] == 'Leader'
+
+    response = c.get('/users?sortby=email&sortdir=desc', headers=headers)
+
+    assert response.json['users'][0]['email'] == 'mike@example.com'
+
+    response = c.get('/users?sortby=emailConfirmed', headers=headers)
+
+    assert response.json['users'][0]['nickname'] == 'Mary'
+
+    response = c.get('/users?sortby=lastLogin', headers=headers)
+
+    assert response.json['users'][0]['nickname'] == 'Mary'
+
+    response = c.get('/users?sortby=registerIP', headers=headers)
+
+    assert response.json['users'][0]['nickname'] == 'Leader'
 
 
 def test_add_user(smtp_server):
@@ -203,14 +266,10 @@ def test_add_user(smtp_server):
     })
 
     response = c.post('/users', new_user_json, status=201)
-    assert response.json == {
-        "@id": "/users/4",
-        "@type": "/users"
-    }
     with db_session:
         assert User.exists(nickname='NewUser')
         assert User.get(nickname='NewUser').language == 'de_DE'
-        assert User.get(nickname='NewUser').creation_ip == '127.0.0.1'
+        assert User.get(nickname='NewUser').register_ip == '127.0.0.1'
 
     assert len(smtp_server.outbox) == 1
     message = smtp_server.outbox[0]
@@ -225,12 +284,11 @@ def test_add_user(smtp_server):
     assert len(smtp_server.outbox) == 1
 
     with db_session:
-        editor_id = Group.get(name='Editor').get_pk()
         new_editor_json = json.dumps({
             "nickname": "NewEditor",
             "email": "neweditor@GoogleMail.com",
             "password": "test8",
-            "groups": [editor_id]
+            "groups": ["Editor"]
         })
         c.post('/users', new_editor_json)
 
@@ -272,56 +330,87 @@ def test_add_user(smtp_server):
 def test_update_user():
     c = Client(App())
 
+    with db_session:
+        User[1].email_confirmed = True
+
+    response = c.post(
+        '/login',
+        json.dumps({"email": "leader@example.com", "password": "test1"})
+    )
+
+    headers = {'Authorization': response.headers['Authorization']}
+
     update_user_json = json.dumps({"nickname": "Guru"})
-    c.put('/users/1', update_user_json)
+    c.put('/users/1', update_user_json, headers=headers)
 
     with db_session:
         assert User[1].nickname == "Guru"
 
     update_user_json = json.dumps({"nickname": "Guru"})
-    c.put('/users/1', update_user_json)
+    c.put('/users/1', update_user_json, headers=headers)
 
     with db_session:
         assert User[1].nickname == "Guru"
 
     update_user_json = json.dumps({"email": "guru@example"})
-    response = c.put('/users/1', update_user_json, status=422)
+    response = c.put('/users/1', update_user_json, headers=headers, status=422)
     assert response.json == {
         'email': ['Not valid email']
     }
 
     update_user_json = json.dumps({"email": "guru@EXAMPLE.COM"})
-    c.put('/users/1', update_user_json)
+    c.put('/users/2', update_user_json, headers=headers)
 
     with db_session:
-        assert User[1].email == "guru@example.com"
+        assert User[2].email == "guru@example.com"
 
     update_user_json = json.dumps({"password": "secret0"})
-    c.put('/users/1', update_user_json)
+    c.put('/users/1', update_user_json, headers=headers)
 
     ph = PasswordHasher()
     with db_session:
         assert ph.verify(User[1].password, 'secret0')
 
-        moderator_id = Group.get(name='Moderator').get_pk()
-        update_user_json = json.dumps({"groups": [moderator_id]})
-        c.put('/users/3', update_user_json)
+    update_user_json = json.dumps({'groups': ['Moderator']})
+    c.put('/users/3', update_user_json, headers=headers)
 
+    with db_session:
         u = User[3]
         editor = Group.get(name='Editor')
         moderator = Group.get(name='Moderator')
 
-        assert editor in u.groups
+        assert editor not in u.groups
         assert moderator in u.groups
+
+    update_user_json = json.dumps({'groups': []})
+    c.put('/users/3', update_user_json, headers=headers)
+
+    with db_session:
+        u = User[3]
+        editor = Group.get(name='Editor')
+        moderator = Group.get(name='Moderator')
+
+        assert editor not in u.groups
+        assert moderator not in u.groups
 
 
 def test_delete_user():
     c = Client(App())
 
     with db_session:
+        User[2].email_confirmed = True
+
+    response = c.post(
+        '/login',
+        json.dumps({"email": "mary@example.com", "password": "test2"})
+    )
+
+    headers = {'Authorization': response.headers['Authorization']}
+
+    with db_session:
         assert User.exists(nickname='Mary')
 
-    c.delete('/users/2')
+    c.delete('/users/2', headers=headers)
 
     with db_session:
         assert not User.exists(nickname='Mary')

@@ -41,7 +41,7 @@ user:
   groups:
     type: list
     schema:
-      type: integer
+      type: string
 
 group:
   name:
@@ -50,4 +50,4 @@ group:
   users:
     type: list
     schema:
-      type: integer
+      type: string

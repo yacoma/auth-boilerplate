@@ -2,6 +2,7 @@ import {sequence} from 'cerebral'
 import {set, equals, when} from 'cerebral/operators'
 import {state} from 'cerebral/tags'
 import showFlash from './showFlash'
+import fetchUsers from '../../admin/actions/fetchUsers'
 
 function routeTo (page) {
   return sequence('Route to', [
@@ -23,6 +24,19 @@ function routeTo (page) {
           false: [
             set(state`app.currentPage`, 'login'),
             showFlash('You must log in to view this page', 'info')
+          ]
+        }
+      ],
+      admin: [
+        set(state`app.lastVisited`, 'admin'),
+        when(state`user.isAdmin`), {
+          true: fetchUsers,
+          false: [
+            set(state`app.currentPage`, 'login'),
+            showFlash(
+              'You need Admin permissions to view this page',
+              'info'
+            )
           ]
         }
       ],

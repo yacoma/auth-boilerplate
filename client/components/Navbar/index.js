@@ -1,14 +1,15 @@
 import React from 'react'
 import {connect} from 'cerebral/react'
 import {state, signal} from 'cerebral/tags'
-import {Menu, Container, Button} from 'semantic-ui-react'
+import {Menu, Container, Button, Icon} from 'semantic-ui-react'
 
 export default connect({
   currentPage: state`app.currentPage`,
   isLoggedIn: state`user.isLoggedIn`,
+  isAdmin: state`user.isAdmin`,
   logoutButtonClicked: signal`user.logoutButtonClicked`
 },
-  function Navbar ({currentPage, isLoggedIn, logoutButtonClicked}) {
+  function Navbar ({currentPage, isLoggedIn, isAdmin, logoutButtonClicked}) {
     return (
       <Menu
         attached='top'
@@ -49,6 +50,14 @@ export default connect({
           <Menu.Menu position='right'
             style={{display: isLoggedIn ? 'flex' : 'none'}}
           >
+            <Menu.Item name='admin' href='/admin'
+              style={{display: isAdmin ? 'flex' : 'none'}}
+            >
+              <Button inverted color='blue'
+                icon={<Icon name='users' size='large' />}
+                active={currentPage === 'admin'}
+              />
+            </Menu.Item>
             <Menu.Item>
               <Button inverted color='blue'
                 onClick={() => logoutButtonClicked()}

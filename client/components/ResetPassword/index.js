@@ -1,7 +1,7 @@
 import React from 'react'
 import {connect} from 'cerebral/react'
 import {state, signal} from 'cerebral/tags'
-import {Grid, Header, Icon, Form, Segment, Button, Message, Dimmer, Loader}
+import {Grid, Header, Icon, Form, Segment, Button, Dimmer, Loader}
     from 'semantic-ui-react'
 import {EmailField} from '../fields'
 
@@ -15,17 +15,12 @@ export default connect({
       formSubmitted()
     }
     return (
-      <Grid centered>
+      <Grid container stackable padded='vertically' columns={2} centered>
         <Grid.Column>
           <Header as='h1' textAlign='center' color='blue' icon>
             <Icon name='user' />
             Reset your Password
           </Header>
-          <Message
-            warning
-            header={emailForm.validationError}
-            hidden={!emailForm.validationError}
-          />
           <Form size='large'>
             <Segment>
               <Dimmer

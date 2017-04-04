@@ -18,6 +18,15 @@ class Refresh(object):
     pass
 
 
+class ResetNonce(object):
+    def __init__(self, id):
+        self.id = id
+
+    def reset_nonce(self):
+        user = User[self.id]
+        user.nonce = uuid4().hex
+
+
 class ConfirmEmail(object):
     def __init__(self, id, token):
         self.id = id
@@ -46,20 +55,22 @@ class User(db.Entity):
     nickname = Required(str, 255)
     email = Required(str, 255, unique=True)
     email_confirmed = Required(bool, default=False)
+    language = Optional(str, 16)
+    last_login = Optional(datetime, 0)
+    registered = Required(datetime, 0, default=datetime.now)
+    register_ip = Optional(str, 255)
+    groups = Set('Group')
     password = Required(str, 255)
     nonce = Required(str, 32, default=uuid4().hex)
-    language = Optional(str, 16)
-    creation_ip = Optional(str, 255)
-    groups = Set('Group')
-    create_time = Required(datetime, 0, default=datetime.now)
-    last_logged_in = Optional(datetime, 0)
 
     def update(self, payload={}):
         update_payload = {}
         for attribute, value in payload.items():
             if attribute == 'groups':
-                for group_id in value:
-                    self.groups.add(Group[group_id])
+                group_names = []
+                for group in value:
+                    group_names.append(Group.get(name=group))
+                update_payload['groups'] = group_names
             elif attribute == 'password':
                 ph = PasswordHasher()
                 password_hash = ph.hash(value)
@@ -80,8 +91,10 @@ class Group(db.Entity):
         update_payload = {}
         for attribute, value in payload.items():
             if attribute == 'users':
-                for user_id in value:
-                    self.users.add(User[user_id])
+                user_emails = []
+                for user_email in value:
+                    user_emails.append(User.get(email=user_email))
+                update_payload['users'] = user_emails
             else:
                 update_payload[attribute] = value
         self.set(**update_payload)

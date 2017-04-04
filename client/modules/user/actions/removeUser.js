@@ -1,5 +1,10 @@
-function removeUser ({state}) {
-  localStorage.removeItem('jwtHeader')
+function removeUser ({state, storage, http}) {
+  storage.remove('jwtHeader')
+  http.updateOptions({
+    headers: {
+      'Authorization': null
+    }
+  })
   state.set('user.email', '')
   state.set('user.nickname', '')
   state.set('user.language', '')

@@ -4,7 +4,7 @@ import {isValidForm} from 'cerebral-provider-forms/operators'
 import {httpPost} from 'cerebral-provider-http/operators'
 import routeTo from '../../common/factories/routeTo'
 import showFlash from '../../common/factories/showFlash'
-import setValidationError from '../factories/setValidationError'
+import showValidationError from '../../common/factories/showValidationError'
 
 export default [
   isValidForm(state`user.register`), {
@@ -17,7 +17,6 @@ export default [
       }), {
         success: [
           set(state`user.register.showErrors`, false),
-          set(state`user.register.validationError`, null),
           set(state`user.register.nickname.value`, ''),
           set(state`user.register.email.value`, ''),
           set(state`user.register.password.value`, ''),
@@ -30,11 +29,8 @@ export default [
           set(state`user.register.password.value`, ''),
           set(state`user.register.confirmPassword.value`, ''),
           set(state`user.register.showErrors`, false),
-          setValidationError(
-            'user.register.validationError',
-            'Could not register!'
-          ),
-          set(state`user.register.isLoading`, false)
+          set(state`user.register.isLoading`, false),
+          showValidationError('Could not register!')
         ]
       }
     ],

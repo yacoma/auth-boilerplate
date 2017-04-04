@@ -38,7 +38,6 @@ export default (urlParams) => (module) => {
           isRequired: true
         },
         showErrors: false,
-        validationError: null,
         isLoading: false
       },
       register: {
@@ -63,7 +62,6 @@ export default (urlParams) => (module) => {
           isRequired: true
         },
         showErrors: false,
-        validationError: null,
         isLoading: false
       },
       emailForm: {
@@ -73,7 +71,6 @@ export default (urlParams) => (module) => {
           isRequired: true
         },
         showErrors: false,
-        validationError: null,
         isLoading: false
       },
       passwordForm: {
@@ -88,7 +85,6 @@ export default (urlParams) => (module) => {
           isRequired: true
         },
         showErrors: false,
-        validationError: null,
         isLoading: false
       }
     }

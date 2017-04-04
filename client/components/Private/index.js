@@ -8,7 +8,7 @@ export default connect({
 },
   function Private ({nickname}) {
     return (
-      <Grid centered>
+      <Grid container stackable padded='vertically' columns={2} centered>
         <Grid.Column>
           <Header as='h1' textAlign='center' color='blue'>
             Hello {nickname}!

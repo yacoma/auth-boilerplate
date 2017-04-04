@@ -6,10 +6,9 @@ import {Form, Input, Label} from 'semantic-ui-react'
 
 export default connect({
   form: form(props`form`),
-  path: props`path`,
   fieldChanged: signal`user.fieldChanged`
 },
-  function EmailField ({form, path, fieldChanged}) {
+  function EmailField ({path, form, fieldChanged}) {
     const hasError = (field) => (
       form.showErrors && !field.isValid
     )

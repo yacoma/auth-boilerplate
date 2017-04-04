@@ -1,6 +1,11 @@
 ---
 jwtauth:
   master_secret: 4713a0c71df14310b5b46a2da6a67923
+  expiration_delta: 300
+  leeway: 0
+  allow_refresh: true
+  refresh_delta: 604800
+  refresh_nonce_handler: 'server.handler.refresh_nonce_handler'
 
 database:
   provider: sqlite

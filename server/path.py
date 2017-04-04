@@ -1,6 +1,6 @@
 from .app import App
 from .collection import UserCollection, GroupCollection
-from .model import (Root, Login, Refresh, User, Group,
+from .model import (Root, Login, Refresh, ResetNonce, User, Group,
                     ConfirmEmail, ResetPassword, SendResetEmail)
 
 
@@ -17,6 +17,11 @@ def get_login():
 @App.path(model=Refresh, path='refresh')
 def get_refresh():
     return Refresh()
+
+
+@App.path(model=ResetNonce, path='users/{id}/signout')
+def get_reset_nonce(id):
+    return ResetNonce(id)
 
 
 @App.path(model=User, path='users/{id}')
@@ -40,8 +45,8 @@ def get_reset_password(id, token):
 
 
 @App.path(model=UserCollection, path='users')
-def get_user_collection():
-    return UserCollection()
+def get_user_collection(sortby='', sortdir='asc'):
+    return UserCollection(sortby, sortdir)
 
 
 @App.path(model=Group, path='groups/{id}')

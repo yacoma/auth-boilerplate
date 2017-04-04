@@ -1,4 +1,3 @@
-import './styles.css'
 import 'file-loader?name=[name].[ext]!./index.html'
 
 import React from 'react'

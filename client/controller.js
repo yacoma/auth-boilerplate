@@ -6,9 +6,13 @@ import Devtools from 'cerebral/devtools'
 import Router from 'cerebral-router'
 import HttpProvider from 'cerebral-provider-http'
 import FormsProvider from 'cerebral-provider-forms'
+import StorageProvider from 'cerebral-provider-storage'
+import {ContextProvider} from 'cerebral/providers'
+import uuid from 'uuid'
 
 import App from './modules/app'
 import User from './modules/user'
+import Admin from './modules/admin'
 
 const jwtHeader = localStorage.getItem('jwtHeader')
   ? JSON.parse(localStorage.getItem('jwtHeader'))
@@ -52,6 +56,7 @@ const controller = Controller({
       'flashType': urlParams['flashtype']
     }),
     user: User({'@id': urlParams['@id']}),
+    admin: Admin,
     router: Router({
       filterFalsy: true,
       routes: [
@@ -84,7 +89,9 @@ const controller = Controller({
           return `Not equal to ${field}`
         }
       }
-    })
+    }),
+    StorageProvider({target: localStorage}),
+    ContextProvider({uuid})
   ]
 })
 

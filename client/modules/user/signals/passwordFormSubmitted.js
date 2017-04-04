@@ -4,7 +4,7 @@ import {isValidForm} from 'cerebral-provider-forms/operators'
 import {httpPut} from 'cerebral-provider-http/operators'
 import routeTo from '../../common/factories/routeTo'
 import showFlash from '../../common/factories/showFlash'
-import setValidationError from '../factories/setValidationError'
+import showValidationError from '../../common/factories/showValidationError'
 
 export default [
   isValidForm(state`user.passwordForm`), {
@@ -15,7 +15,6 @@ export default [
       }), {
         success: [
           set(state`user.passwordForm.showErrors`, false),
-          set(state`user.passwordForm.validationError`, null),
           set(state`user.api.@id`, null),
           set(state`user.passwordForm.password.value`, ''),
           set(state`user.passwordForm.confirmPassword.value`, ''),
@@ -27,11 +26,8 @@ export default [
           set(state`user.passwordForm.password.value`, ''),
           set(state`user.passwordForm.confirmPassword.value`, ''),
           set(state`user.passwordForm.showErrors`, false),
-          setValidationError(
-            'user.passwordForm.validationError',
-            'Could not update Password!'
-          ),
-          set(state`user.passwordForm.isLoading`, false)
+          set(state`user.passwordForm.isLoading`, false),
+          showValidationError('Could not update Password!')
         ]
       }
     ],

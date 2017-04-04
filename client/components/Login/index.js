@@ -15,17 +15,12 @@ export default connect({
       signInSubmitted()
     }
     return (
-      <Grid centered>
+      <Grid container stackable padded='vertically' columns={2} centered>
         <Grid.Column>
           <Header as='h1' textAlign='center' color='blue' icon>
             <Icon name='user' />
             Log-in to your account
           </Header>
-          <Message
-            warning
-            header={signIn.validationError}
-            hidden={!signIn.validationError}
-          />
           <Form size='large'>
             <Segment>
               <Dimmer

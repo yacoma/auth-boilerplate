@@ -4,7 +4,7 @@ import {isValidForm} from 'cerebral-provider-forms/operators'
 import {httpPost} from 'cerebral-provider-http/operators'
 import routeTo from '../../common/factories/routeTo'
 import initUser from '../actions/initUser'
-import setValidationError from '../factories/setValidationError'
+import showValidationError from '../../common/factories/showValidationError'
 
 export default [
   isValidForm(state`user.signIn`), {
@@ -18,7 +18,6 @@ export default [
           set(state`user.signIn.email.value`, ''),
           set(state`user.signIn.password.value`, ''),
           set(state`user.signIn.showErrors`, false),
-          set(state`user.signIn.validationError`, null),
           initUser,
           set(state`user.signIn.isLoading`, false),
           when(state`app.lastVisited`), {
@@ -29,11 +28,8 @@ export default [
         error: [
           set(state`user.signIn.password.value`, ''),
           set(state`user.signIn.showErrors`, false),
-          setValidationError(
-            'user.signIn.validationError',
-            'Could not log-in!'
-          ),
-          set(state`user.signIn.isLoading`, false)
+          set(state`user.signIn.isLoading`, false),
+          showValidationError('Could not log-in!')
         ]
       }
     ],

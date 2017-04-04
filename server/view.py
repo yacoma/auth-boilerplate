@@ -15,8 +15,9 @@ from more.jwtauth import (
 
 from .app import App
 from .collection import UserCollection, GroupCollection
-from .model import (Root, Login, Refresh, User, Group, ConfirmEmail,
-                    ResetPassword, SendResetEmail)
+from .model import (Root, Login, Refresh, ResetNonce, User, Group,
+                    ConfirmEmail, ResetPassword, SendResetEmail)
+from .permissions import ViewPermission, EditPermission
 from .validator import EmailValidator
 
 
@@ -61,24 +62,20 @@ def login(self, request, json):
             credentials_valid = True
 
         if credentials_valid and user.email_confirmed:
-            user.last_logged_in = datetime.now()
+            user.last_login = datetime.now()
 
             @request.after
             def remember(response):
-                admin = Group.get(name='Admin')
-                is_admin = False
                 # Checks if user is member of Admin group.
-                if user.groups and admin:
-                    is_admin = admin in user.groups
-                identity = morepath.Identity(email, nickname=user.nickname,
-                                             language=user.language,
-                                             isAdmin=is_admin)
+                is_admin = Group.get(name='Admin') in user.groups
+                identity = morepath.Identity(
+                    email,
+                    nickname=user.nickname,
+                    language=user.language,
+                    isAdmin=is_admin,
+                    uid=request.class_link(User, variables={'id': user.id})
+                )
                 request.app.remember_identity(response, request, identity)
-
-            return {
-                '@id': request.class_link(User, variables={'id': user.id}),
-                '@type': request.class_link(UserCollection)
-            }
 
         elif not credentials_valid:
             @request.after
@@ -124,44 +121,54 @@ def refresh(self, request):
 
         @request.after
         def remember(response):
-            admin = Group.get(name='Admin')
-            is_admin = False
             # Checks if user is member of Admin group.
-            if user.groups and admin:
-                is_admin = admin in user.groups
+            is_admin = Group.get(name='Admin') in user.groups
             identity = morepath.Identity(
-                email, nickname=user.nickname,
-                language=user.language, isAdmin=is_admin
+                email,
+                nickname=user.nickname,
+                language=user.language,
+                isAdmin=is_admin,
+                uid=request.class_link(User, variables={'id': user.id})
             )
             request.app.remember_identity(response, request, identity)
 
-        return {
-            '@id': request.class_link(User, variables={'id': user.id}),
-            '@type': request.class_link(UserCollection)
-        }
+
+@App.json(model=ResetNonce)
+def reset_nonce_get(self, request):
+    self.reset_nonce()
 
 
-@App.json(model=User)
+@App.json(model=User, permission=ViewPermission)
 def user_get(self, request):
+    # Checks if user is member of Admin group.
+    is_admin = Group.get(name='Admin') in self.groups
     return {
         '@id': request.link(self),
-        '@type': request.class_link(UserCollection),
         'nickname': self.nickname,
         'email': self.email,
-        'email_confirmed': self.email_confirmed,
+        'emailConfirmed': self.email_confirmed,
+        'isAdmin': is_admin,
         'language': self.language,
-        'groups': [group.name for group in self.groups],
+        'lastLogin': (
+            self.last_login.strftime("%Y-%m-%d %H:%M:%S")
+            if self.last_login
+            else None
+        ),
+        'registered': self.registered.strftime("%Y-%m-%d %H:%M:%S"),
+        'registerIP': self.register_ip,
     }
 
 
-@App.json(model=UserCollection)
+@App.json(model=UserCollection, permission=ViewPermission)
 def user_collection_get(self, request):
     return {
         'users': [request.view(user) for user in self.query()]
     }
 
 
-@App.json(model=UserCollection, request_method='POST', load=user_validator)
+@App.json(
+    model=UserCollection, request_method='POST', load=user_validator
+)
 def user_collection_add(self, request, json):
     nickname = json['nickname']
     email = json['email']
@@ -172,24 +179,23 @@ def user_collection_add(self, request, json):
         default_match=locale_settings.default_language
     )
     language = json.get('language', preferred_language)
-    group_ids = json.get('groups', [])
-    creation_ip = request.remote_addr
+    groups = json.get('groups', [])
+    register_ip = request.remote_addr
 
     if not User.exists(email=email):
         user = self.add(
-            nickname=nickname, email=email, password=password,
-            language=language, creation_ip=creation_ip, group_ids=group_ids
+            nickname=nickname,
+            email=email,
+            password=password,
+            language=language,
+            register_ip=register_ip,
+            groups=groups
         )
 
         @request.after
         def after(response):
             request.app.signal.emit('user.created', user, request)
             response.status = 201
-
-        return {
-            '@id': request.class_link(User, variables={'id': user.id}),
-            '@type': request.class_link(UserCollection)
-        }
 
     else:
         @request.after
@@ -201,48 +207,56 @@ def user_collection_add(self, request, json):
         }
 
 
-@App.json(model=User, request_method='PUT', load=user_validator)
+@App.json(
+    model=User,
+    request_method='PUT',
+    load=user_validator,
+    permission=EditPermission
+)
 def user_update(self, request, json):
     self.update(json)
 
 
-@App.json(model=User, request_method='DELETE')
+@App.json(model=User, request_method='DELETE', permission=EditPermission)
 def user_remove(self, request):
     self.remove()
 
 
 @App.json(model=Group)
-def group_get(self, request):
+def group_get(self, request, permission=ViewPermission):
     return {
         '@id': request.link(self),
-        '@type': request.class_link(GroupCollection),
         'name': self.name,
         'users': [user.email for user in self.users]
     }
 
 
-@App.json(model=GroupCollection)
+@App.json(model=GroupCollection, permission=ViewPermission)
 def group_collection_get(self, request):
     return {
         'groups': [request.view(group) for group in self.query()]
     }
 
 
-@App.json(model=GroupCollection, request_method='POST', load=group_validator)
+@App.json(
+    model=GroupCollection,
+    request_method='POST',
+    load=group_validator,
+    permission=EditPermission
+)
 def group_collection_add(self, request, json):
     name = json.get('name')
-    user_ids = json.get('users', [])
+    users = json.get('users', [])
 
     if not Group.exists(name=name):
-        group = self.add(name=name, user_ids=user_ids)
+        group = self.add(name=name, users=users)
 
         @request.after
         def after(response):
             response.status = 201
 
         return {
-            '@id': request.class_link(Group, variables={'id': group.id}),
-            '@type': request.class_link(GroupCollection)
+            '@id': request.class_link(Group, variables={'id': group.id})
         }
 
     else:
@@ -255,12 +269,17 @@ def group_collection_add(self, request, json):
         }
 
 
-@App.json(model=Group, request_method='PUT', load=group_validator)
+@App.json(
+    model=Group,
+    request_method='PUT',
+    load=group_validator,
+    permission=EditPermission
+)
 def group_update(self, request, json):
     self.update(json)
 
 
-@App.json(model=Group, request_method='DELETE')
+@App.json(model=Group, request_method='DELETE', permission=EditPermission)
 def group_remove(self, request):
     self.remove()
 
