@@ -45,8 +45,14 @@ def get_reset_password(id, token):
 
 
 @App.path(model=UserCollection, path='users')
-def get_user_collection(sortby='', sortdir='asc'):
-    return UserCollection(sortby, sortdir)
+def get_user_collection(
+    sortby='',
+    sortdir='asc',
+    search='',
+    page=0,
+    pagesize=30
+):
+    return UserCollection(sortby, sortdir, search, page, pagesize)
 
 
 @App.path(model=Group, path='groups/{id}')

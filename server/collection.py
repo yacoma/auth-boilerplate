@@ -1,10 +1,13 @@
+from math import ceil
+
 from argon2 import PasswordHasher
-from pony.orm import desc
+from pony.orm import desc, count
+
 from .model import User, Group
 
 
 class UserCollection(object):
-    def __init__(self, sort_by, sort_dir):
+    def __init__(self, sort_by, sort_dir, search, page, pagesize):
         if sort_by == 'emailConfirmed':
             self.sort_by = 'email_confirmed'
         elif sort_by == 'lastLogin':
@@ -15,16 +18,31 @@ class UserCollection(object):
             self.sort_by = sort_by
 
         self.sort_dir = sort_dir
+        self.search = search
+        if page > 0 and pagesize > 0:
+            self.page = page
+            self.pagesize = pagesize
+            self.pages = ceil(count(u for u in User) / pagesize)
+        else:
+            self.page = 0
 
     def query(self):
-        if self.sort_by == '':
-            return User.select()
-        else:
+        user_select = User.select()
+        if self.search != '':
+            user_select = User.select(
+                lambda u: self.search in u.nickname or self.search in u.email
+            )
+        if self.sort_by != '':
             if self.sort_dir == 'desc':
                 sort_by = desc(getattr(User, self.sort_by))
             else:
                 sort_by = getattr(User, self.sort_by)
-            return User.select().order_by(sort_by)
+
+            user_select = user_select.order_by(sort_by)
+        if self.page != 0:
+            user_select = user_select.page(self.page, pagesize=self.pagesize)
+
+        return user_select
 
     def add(self, nickname, email, password,
             language='', register_ip='', groups=[]):

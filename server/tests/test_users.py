@@ -37,7 +37,7 @@ def setup_function(function):
              password=ph.hash('test1'), groups=[admin])
         User(id=2, nickname='Mary', email='mary@example.com',
              password=ph.hash('test2'), groups=[moderator])
-        User(id=3, nickname='Mike', email='mike@example.com',
+        User(id=3, nickname='Jürgen', email='juergen@example.com',
              password=ph.hash('test3'), groups=[editor])
 
 
@@ -192,7 +192,7 @@ def test_user():
     assert_dict_contains_subset(user, response.json)
 
 
-def test_users_collection():
+def test_user_collection():
     c = Client(App())
 
     with db_session:
@@ -219,7 +219,7 @@ def test_users_collection():
     assert_dict_contains_subset(user_1, response.json['users'][0])
 
 
-def test_sorted_users_collection():
+def test_sorted_user_collection():
     c = Client(App())
 
     with db_session:
@@ -234,11 +234,11 @@ def test_sorted_users_collection():
 
     response = c.get('/users?sortby=nickname', headers=headers)
 
-    assert response.json['users'][0]['nickname'] == 'Leader'
+    assert response.json['users'][0]['nickname'] == 'Jürgen'
 
     response = c.get('/users?sortby=email&sortdir=desc', headers=headers)
 
-    assert response.json['users'][0]['email'] == 'mike@example.com'
+    assert response.json['users'][0]['email'] == 'mary@example.com'
 
     response = c.get('/users?sortby=emailConfirmed', headers=headers)
 
@@ -251,6 +251,87 @@ def test_sorted_users_collection():
     response = c.get('/users?sortby=registerIP', headers=headers)
 
     assert response.json['users'][0]['nickname'] == 'Leader'
+
+
+def test_paginated_user_collection():
+    c = Client(App())
+
+    with db_session:
+        User[1].email_confirmed = True
+
+    response = c.post(
+        '/login',
+        json.dumps({"email": "leader@example.com", "password": "test1"})
+    )
+
+    headers = {'Authorization': response.headers['Authorization']}
+
+    response = c.get('/users?page=1&pagesize=2', headers=headers)
+
+    assert len(response.json['users']) == 2
+    assert response.json['page'] == 1
+    assert response.json['pagesize'] == 2
+    assert response.json['pages'] == 2
+
+    response = c.get('/users?page=2&pagesize=2', headers=headers)
+
+    assert len(response.json['users']) == 1
+    assert response.json['page'] == 2
+    assert response.json['pagesize'] == 2
+    assert response.json['pages'] == 2
+
+
+def test_search_user_collection():
+    c = Client(App())
+
+    with db_session:
+        User[1].email_confirmed = True
+
+    response = c.post(
+        '/login',
+        json.dumps({"email": "leader@example.com", "password": "test1"})
+    )
+
+    headers = {'Authorization': response.headers['Authorization']}
+
+    response = c.get('/users?search=j%C3%BCrgen', headers=headers)
+
+    assert len(response.json['users']) == 1
+    assert response.json['users'][0]['nickname'] == 'Jürgen'
+
+    response = c.get('/users?search=leader@example.com', headers=headers)
+
+    assert len(response.json['users']) == 1
+    assert response.json['users'][0]['nickname'] == 'Leader'
+
+    response = c.get('/users?search=example.com', headers=headers)
+
+    assert len(response.json['users']) == 3
+
+
+def test_user_collection_combined_query():
+    c = Client(App())
+
+    with db_session:
+        User[1].email_confirmed = True
+
+    response = c.post(
+        '/login',
+        json.dumps({"email": "leader@example.com", "password": "test1"})
+    )
+
+    headers = {'Authorization': response.headers['Authorization']}
+
+    response = c.get(
+        '/users?search=example.com&sortby=nickname&page=1&pagesize=2',
+        headers=headers
+    )
+
+    assert len(response.json['users']) == 2
+    assert response.json['page'] == 1
+    assert response.json['pagesize'] == 2
+    assert response.json['pages'] == 2
+    assert response.json['users'][0]['nickname'] == 'Jürgen'
 
 
 def test_add_user(smtp_server):
