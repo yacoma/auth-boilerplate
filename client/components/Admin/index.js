@@ -4,6 +4,7 @@ import {state, signal} from 'cerebral/tags'
 import {Grid, Header, Icon, Table}
     from 'semantic-ui-react'
 import sortedUsers from '../../computed/sortedUsers'
+import Search from './Search'
 import UserRow from './UserRow'
 
 export default connect({
@@ -23,7 +24,9 @@ export default connect({
           <Table inverted striped definition sortable unstackable>
             <Table.Header fullWidth>
               <Table.Row>
-                <Table.HeaderCell />
+                <Table.HeaderCell>
+                  <Search />
+                </Table.HeaderCell>
                 <Table.HeaderCell
                   sorted={usersSortBy === 'nickname' ? usersSortDir : null}
                   onClick={() => sortUsersClicked({sortBy: 'nickname'})}

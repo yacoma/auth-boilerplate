@@ -6,6 +6,7 @@ import removeUserButtonClicked from './signals/removeUserButtonClicked'
 import removeUserConfirmed from './signals/removeUserConfirmed'
 import removeUserCancelled from './signals/removeUserCancelled'
 import toggleAdminClicked from './signals/toggleAdminClicked'
+import searchSubmitted from './signals/searchSubmitted'
 
 export default (module) => {
   return {
@@ -17,7 +18,8 @@ export default (module) => {
       removeUserButtonClicked,
       removeUserCancelled,
       removeUserConfirmed,
-      toggleAdminClicked
+      toggleAdminClicked,
+      searchSubmitted
     },
     state: {
       users: {},
@@ -25,7 +27,9 @@ export default (module) => {
       usersSortDir: 'ascending',
       showConfirmSignOut: false,
       showConfirmRemoveUser: false,
-      activeUid: null
+      activeUid: null,
+      searchString: '',
+      searchIsLoading: false
     }
   }
 }
