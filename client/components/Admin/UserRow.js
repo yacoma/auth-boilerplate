@@ -9,10 +9,12 @@ export default connect({
   user: state`admin.users.${props`uid`}`,
   signOutButtonClicked: signal`admin.signOutButtonClicked`,
   removeUserButtonClicked: signal`admin.removeUserButtonClicked`,
-  toggleAdminClicked: signal`admin.toggleAdminClicked`
+  toggleAdminClicked: signal`admin.toggleAdminClicked`,
+  toggleAdminIsLoading: state`admin.users.${props`uid`}.toggleAdminIsLoading`
 },
   function UserRow ({
-    uid, user, signOutButtonClicked, removeUserButtonClicked, toggleAdminClicked
+    uid, user, signOutButtonClicked, removeUserButtonClicked,
+    toggleAdminClicked, toggleAdminIsLoading
   }) {
     return (
       <Table.Row>
@@ -42,6 +44,7 @@ export default connect({
         />
         <Table.Cell textAlign='center'>
           <Button inverted basic color='blue'
+            loading={toggleAdminIsLoading}
             disabled={user.nickname === 'Admin'}
             icon={user.isAdmin
               ? <Icon name='checkmark' color='green' size='large' />

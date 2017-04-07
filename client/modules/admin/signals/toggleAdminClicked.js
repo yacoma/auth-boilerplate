@@ -5,7 +5,7 @@ import {httpPut} from 'cerebral-provider-http/operators'
 import showValidationError from '../../common/factories/showValidationError'
 
 export default sequence('Toggle is Admin', [
-  set(props`isAdmin`, state`admin.users.${props`uid`}.isAdmin`),
+  set(state`admin.users.${props`uid`}.toggleAdminIsLoading`, true),
   when(state`admin.users.${props`uid`}.isAdmin`), {
     true: [
       set(props`isAdmin`, false),
@@ -25,5 +25,6 @@ export default sequence('Toggle is Admin', [
     error: showValidationError(
       string`Admin could not be toggled for ${state`admin.users.${props`uid`}.nickname`}`
     )
-  }
+  },
+  set(state`admin.users.${props`uid`}.toggleAdminIsLoading`, false)
 ])
