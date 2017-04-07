@@ -185,7 +185,6 @@ def test_user():
         "email": "mary@example.com",
         "isAdmin": False,
         "emailConfirmed": True,
-        "language": '',
         "registerIP": '',
     }
 
@@ -212,7 +211,6 @@ def test_user_collection():
         "email": "leader@example.com",
         "emailConfirmed": True,
         "isAdmin": True,
-        "language": '',
         "registerIP": '',
     }
 
@@ -343,13 +341,11 @@ def test_add_user(smtp_server):
         "nickname": "NewUser",
         "email": "newuser@example.com",
         "password": "test7",
-        "language": "de_DE"
     })
 
     response = c.post('/users', new_user_json, status=201)
     with db_session:
         assert User.exists(nickname='NewUser')
-        assert User.get(nickname='NewUser').language == 'de_DE'
         assert User.get(nickname='NewUser').register_ip == '127.0.0.1'
 
     assert len(smtp_server.outbox) == 1
@@ -386,8 +382,7 @@ def test_add_user(smtp_server):
     new_user_json = json.dumps({
         "nickname": "NewUser",
         "email": "newuser@this.server.doesnt.exist.com",
-        "password": "test10",
-        "language": "de_DE"
+        "password": "test10"
     })
 
     response = c.post('/users', new_user_json, status=422)
@@ -398,8 +393,7 @@ def test_add_user(smtp_server):
     new_user_json = json.dumps({
         "nickname": "NewUser",
         "email": "newuser@example",
-        "password": "test9",
-        "language": "de_DE"
+        "password": "test9"
     })
 
     response = c.post('/users', new_user_json, status=422)
@@ -503,8 +497,7 @@ def test_confirm_email():
     new_user_json = json.dumps({
         "nickname": "NewUser",
         "email": "newuser@example.com",
-        "password": "test7",
-        "language": "de_DE"
+        "password": "test7"
     })
     c.post('/users', new_user_json, status=201)
 
@@ -554,8 +547,7 @@ def test_send_reset_email(smtp_server):
     new_user_json = json.dumps({
         "nickname": "NewUser",
         "email": "newuser@example.com",
-        "password": "test7",
-        "language": "de_DE"
+        "password": "test7"
     })
     c.post('/users', new_user_json, status=201)
     assert len(smtp_server.outbox) == 4
@@ -600,8 +592,7 @@ def test_reset_password(smtp_server):
     new_user_json = json.dumps({
         "nickname": "NewUser",
         "email": "newuser@example.com",
-        "password": "test7",
-        "language": "de_DE"
+        "password": "test7"
     })
     c.post('/users', new_user_json, status=201)
     assert len(smtp_server.outbox) == 6
@@ -658,8 +649,7 @@ def test_update_password(smtp_server):
     new_user_json = json.dumps({
         "nickname": "NewUser",
         "email": "newuser@example.com",
-        "password": "test7",
-        "language": "de_DE"
+        "password": "test7"
     })
     c.post('/users', new_user_json, status=201)
     assert len(smtp_server.outbox) == 7

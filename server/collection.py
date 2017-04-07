@@ -45,7 +45,7 @@ class UserCollection(object):
         return user_select
 
     def add(self, nickname, email, password,
-            language='', register_ip='', groups=[]):
+            register_ip='', groups=[]):
         ph = PasswordHasher()
         password_hash = ph.hash(password)
         group_names = []
@@ -54,7 +54,7 @@ class UserCollection(object):
                 group_names.append(Group.get(name=group))
         user = User(
             nickname=nickname, email=email, password=password_hash,
-            language=language, register_ip=register_ip, groups=group_names
+            register_ip=register_ip, groups=group_names
         )
         user.flush()
         return user

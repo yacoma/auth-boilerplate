@@ -9,7 +9,6 @@ function initApp ({state, storage}) {
       state.set('user.api.@id', claims.uid)
       state.set('user.email', claims.sub)
       state.set('user.nickname', claims.nickname)
-      state.set('user.language', claims.language)
       state.set('user.isAdmin', claims.isAdmin)
       if (claims.exp) {
         state.set('user.token.exp', claims.exp)

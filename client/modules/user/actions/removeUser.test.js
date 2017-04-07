@@ -20,7 +20,6 @@ test('should remove user state', t => {
       user: {
         email: 'admin@example.com',
         nickname: 'Admin',
-        language: '',
         isAdmin: true,
         isLoggedIn: true,
         token: {},
@@ -47,7 +46,6 @@ test('should remove user state', t => {
     t.deepEqual(state.user.token, {}),
     t.is(state.user.email, ''),
     t.is(state.user.nickname, ''),
-    t.is(state.user.language, ''),
     t.false(state.user.isAdmin),
     t.is(localStorage.getItem('jwtHeader'), null)
   ])

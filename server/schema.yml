@@ -35,9 +35,6 @@ user:
     type: string
     minlength: 5
     required: true
-  language:
-    type: string
-    maxlength: 16
   groups:
     type: list
     schema:

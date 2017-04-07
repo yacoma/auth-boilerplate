@@ -18,7 +18,6 @@ test('should initialize user state', t => {
       user: {
         email: '',
         nickname: '',
-        language: '',
         isAdmin: false,
         isLoggedIn: false,
         token: {},
@@ -47,7 +46,6 @@ test('should initialize user state', t => {
     t.is(state.user.api['@id'], '/users/1'),
     t.is(state.user.email, 'admin@example.com'),
     t.is(state.user.nickname, 'Admin'),
-    t.is(state.user.language, ''),
     t.true(state.user.isAdmin),
     t.is(localStorage.getItem('jwtHeader'), '"' + jwtHeader + '"')
   ])

@@ -71,7 +71,6 @@ def login(self, request, json):
                 identity = morepath.Identity(
                     email,
                     nickname=user.nickname,
-                    language=user.language,
                     isAdmin=is_admin,
                     uid=request.class_link(User, variables={'id': user.id})
                 )
@@ -126,7 +125,6 @@ def refresh(self, request):
             identity = morepath.Identity(
                 email,
                 nickname=user.nickname,
-                language=user.language,
                 isAdmin=is_admin,
                 uid=request.class_link(User, variables={'id': user.id})
             )
@@ -148,7 +146,6 @@ def user_get(self, request):
         'email': self.email,
         'emailConfirmed': self.email_confirmed,
         'isAdmin': is_admin,
-        'language': self.language,
         'lastLogin': (
             self.last_login.strftime("%Y-%m-%d %H:%M:%S")
             if self.last_login
@@ -178,12 +175,6 @@ def user_collection_add(self, request, json):
     nickname = json['nickname']
     email = json['email']
     password = json['password']
-    locale_settings = request.app.settings.locale
-    preferred_language = request.accept_language.best_match(
-        locale_settings.accepted_languages,
-        default_match=locale_settings.default_language
-    )
-    language = json.get('language', preferred_language)
     groups = json.get('groups', [])
     register_ip = request.remote_addr
 
@@ -192,7 +183,6 @@ def user_collection_add(self, request, json):
             nickname=nickname,
             email=email,
             password=password,
-            language=language,
             register_ip=register_ip,
             groups=groups
         )

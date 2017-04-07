@@ -55,7 +55,6 @@ class User(db.Entity):
     nickname = Required(str, 255)
     email = Required(str, 255, unique=True)
     email_confirmed = Required(bool, default=False)
-    language = Optional(str, 16)
     last_login = Optional(datetime, 0)
     registered = Required(datetime, 0, default=datetime.now)
     register_ip = Optional(str, 255)

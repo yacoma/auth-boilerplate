@@ -19,7 +19,6 @@ export default (urlParams) => (module) => {
     state: {
       email: '',
       nickname: '',
-      language: '',
       isAdmin: false,
       isLoggedIn: false,
       token: {},

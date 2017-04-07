@@ -50,7 +50,6 @@ export default connect({
             onClick={() => toggleAdminClicked({uid})}
           />
         </Table.Cell>
-        <Table.Cell>{user.language}</Table.Cell>
         <Table.Cell>{user.lastLogin}</Table.Cell>
         <Table.Cell>{user.registered}</Table.Cell>
         <Table.Cell>{user.registerIP}</Table.Cell>

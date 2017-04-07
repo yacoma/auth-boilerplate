@@ -46,12 +46,6 @@ export default connect({
                   Admin
                 </Table.HeaderCell>
                 <Table.HeaderCell
-                  sorted={usersSortBy === 'language' ? usersSortDir : null}
-                  onClick={() => sortUsersClicked({sortBy: 'language'})}
-                >
-                  Language
-                </Table.HeaderCell>
-                <Table.HeaderCell
                   sorted={usersSortBy === 'lastLogin' ? usersSortDir : null}
                   onClick={() => sortUsersClicked({sortBy: 'lastLogin'})}
                 >

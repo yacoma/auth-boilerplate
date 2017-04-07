@@ -1,10 +1,4 @@
 ---
-locale:
-  accepted_languages:
-  - en-GB
-  - en-US
-  default_language: en-US
-
 jwtauth:
   master_secret: b894da6ab8d041e9a9ec8507644c4413
   expiration_delta: 600
