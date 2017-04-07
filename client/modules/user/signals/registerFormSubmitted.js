@@ -1,3 +1,4 @@
+import {sequence} from 'cerebral'
 import {state} from 'cerebral/tags'
 import {set} from 'cerebral/operators'
 import {isValidForm} from 'cerebral-provider-forms/operators'
@@ -6,7 +7,7 @@ import routeTo from '../../common/factories/routeTo'
 import showFlash from '../../common/factories/showFlash'
 import showValidationError from '../../common/factories/showValidationError'
 
-export default [
+export default sequence('Register new user', [
   isValidForm(state`user.register`), {
     true: [
       set(state`user.register.isLoading`, true),
@@ -36,4 +37,4 @@ export default [
     ],
     false: set(state`user.register.showErrors`, true)
   }
-]
+])

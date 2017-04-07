@@ -1,3 +1,4 @@
+import {sequence} from 'cerebral'
 import {state} from 'cerebral/tags'
 import {set, when} from 'cerebral/operators'
 import {isValidForm} from 'cerebral-provider-forms/operators'
@@ -6,7 +7,7 @@ import routeTo from '../../common/factories/routeTo'
 import initUser from '../actions/initUser'
 import showValidationError from '../../common/factories/showValidationError'
 
-export default [
+export default sequence('Sign-in user', [
   isValidForm(state`user.signIn`), {
     true: [
       set(state`user.signIn.isLoading`, true),
@@ -35,4 +36,4 @@ export default [
     ],
     false: set(state`user.signIn.showErrors`, true)
   }
-]
+])

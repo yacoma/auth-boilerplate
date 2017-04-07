@@ -1,3 +1,4 @@
+import {sequence} from 'cerebral'
 import {state} from 'cerebral/tags'
 import {unset} from 'cerebral/operators'
 import {httpGet} from 'cerebral-provider-http/operators'
@@ -5,7 +6,7 @@ import {removeStorage} from 'cerebral-provider-storage/operators'
 import initUser from './initUser'
 import showValidationError from '../../common/factories/showValidationError'
 
-export default [
+export default sequence('Refresh token', [
   httpGet('/refresh'), {
     success: initUser,
     error: [
@@ -14,4 +15,4 @@ export default [
     ]
   },
   unset(state`user.token.shouldRefresh`)
-]
+])

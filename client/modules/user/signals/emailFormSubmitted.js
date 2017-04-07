@@ -1,3 +1,4 @@
+import {sequence} from 'cerebral'
 import {state} from 'cerebral/tags'
 import {set} from 'cerebral/operators'
 import {isValidForm} from 'cerebral-provider-forms/operators'
@@ -6,7 +7,7 @@ import routeTo from '../../common/factories/routeTo'
 import showFlash from '../../common/factories/showFlash'
 import showValidationError from '../../common/factories/showValidationError'
 
-export default [
+export default sequence('Request password reset', [
   isValidForm(state`user.emailForm`), {
     true: [
       set(state`user.emailForm.isLoading`, true),
@@ -29,4 +30,4 @@ export default [
     ],
     false: set(state`user.emailForm.showErrors`, true)
   }
-]
+])
