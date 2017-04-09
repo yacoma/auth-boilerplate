@@ -267,15 +267,11 @@ def test_paginated_user_collection():
     response = c.get('/users?page=1&pagesize=2', headers=headers)
 
     assert len(response.json['users']) == 2
-    assert response.json['page'] == 1
-    assert response.json['pagesize'] == 2
     assert response.json['pages'] == 2
 
     response = c.get('/users?page=2&pagesize=2', headers=headers)
 
     assert len(response.json['users']) == 1
-    assert response.json['page'] == 2
-    assert response.json['pagesize'] == 2
     assert response.json['pages'] == 2
 
 
@@ -326,8 +322,6 @@ def test_user_collection_combined_query():
     )
 
     assert len(response.json['users']) == 2
-    assert response.json['page'] == 1
-    assert response.json['pagesize'] == 2
     assert response.json['pages'] == 2
     assert response.json['users'][0]['nickname'] == 'Jürgen'
 

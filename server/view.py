@@ -162,8 +162,6 @@ def user_collection_get(self, request):
         'users': [request.view(user) for user in self.query()]
     }
     if self.page != 0:
-        user_collection['page'] = self.page
-        user_collection['pagesize'] = self.pagesize
         user_collection['pages'] = self.pages
     return user_collection
 
