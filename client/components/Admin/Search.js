@@ -14,7 +14,7 @@ export default connect({
         icon='users'
         iconPosition='left'
         onChange={
-          (event) => searchSubmitted({value: event.target.value})
+          (e, {value}) => searchSubmitted({value})
         }
       />
     )

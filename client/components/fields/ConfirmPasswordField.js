@@ -23,10 +23,7 @@ export default connect({
           iconPosition='left'
           placeholder='confirm password'
           value={form.confirmPassword.value}
-          onChange={(event) => fieldChanged({
-            field: path,
-            value: event.target.value
-          })}
+          onChange={(e, {value}) => fieldChanged({value, field: path})}
         />
         <Label
           pointing

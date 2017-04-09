@@ -7,6 +7,8 @@ import removeUserConfirmed from './signals/removeUserConfirmed'
 import removeUserCancelled from './signals/removeUserCancelled'
 import toggleAdminClicked from './signals/toggleAdminClicked'
 import searchSubmitted from './signals/searchSubmitted'
+import pageSizeChanged from './signals/pageSizeChanged'
+import changePageClicked from './signals/changePageClicked'
 
 export default (module) => {
   return {
@@ -19,7 +21,9 @@ export default (module) => {
       removeUserCancelled,
       removeUserConfirmed,
       toggleAdminClicked,
-      searchSubmitted
+      searchSubmitted,
+      pageSizeChanged,
+      changePageClicked
     },
     state: {
       users: {},
@@ -29,7 +33,10 @@ export default (module) => {
       showConfirmRemoveUser: false,
       activeUid: null,
       searchString: '',
-      searchIsLoading: false
+      searchIsLoading: false,
+      currentPage: 1,
+      pages: 1,
+      pageSize: 30
     }
   }
 }

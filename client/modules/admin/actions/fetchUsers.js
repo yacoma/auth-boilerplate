@@ -13,11 +13,20 @@ export default sequence('Fetch users from database', [
   set(props`sort`,
     string`sortby=${state`admin.usersSortBy`}&sortdir=${props`sortDir`}`
   ),
-  set(props`search`, string`search=${state`admin.searchString`}`),
+  set(props`pagination`,
+    string`&page=${state`admin.currentPage`}&pagesize=${state`admin.pageSize`}`
+  ),
+  when(state`admin.searchString`, (searchString) => searchString !== ''), {
+    true: set(props`search`, string`&search=${state`admin.searchString`}`),
+    false: set(props`search`, '')
+  },
   httpGet(
-    string`/users?${props`sort`}&${props`search`}`
+    string`/users?${props`sort`}${props`pagination`}${props`search`}`
   ), {
-    success: mergeUsers,
+    success: [
+      mergeUsers,
+      set(state`admin.pages`, props`result.pages`)
+    ],
     error: showFlash('Could not fetch users from database', 'error')
   }
 ])

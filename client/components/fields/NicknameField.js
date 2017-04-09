@@ -22,10 +22,7 @@ export default connect({
           iconPosition='left'
           placeholder='Nickname'
           value={form.nickname.value}
-          onChange={(event) => fieldChanged({
-            field: path,
-            value: event.target.value
-          })}
+          onChange={(e, {value}) => fieldChanged({value, field: path})}
         />
         <Label
           pointing
