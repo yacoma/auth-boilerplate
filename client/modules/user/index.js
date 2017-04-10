@@ -25,7 +25,7 @@ export default (urlParams) => (module) => {
       api: {
         '@id': urlParams['@id']
       },
-      signIn: {
+      loginForm: {
         email: {
           value: '',
           validationRules: ['isEmail'],
@@ -39,7 +39,7 @@ export default (urlParams) => (module) => {
         showErrors: false,
         isLoading: false
       },
-      register: {
+      registerForm: {
         nickname: {
           value: '',
           validationRules: ['minLength:3'],

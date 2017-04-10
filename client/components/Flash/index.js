@@ -10,7 +10,7 @@ export default connect({
   function Flash ({flash, flashType}) {
     const flashTypeAttr = flashType ? {[flashType]: true} : {}
     return (
-      <Grid container stackable padded='vertically' columns={2} centered>
+      <Grid stackable padded='vertically' columns={2} centered>
         <Grid.Column>
           <Message
             {...flashTypeAttr}

@@ -187,7 +187,7 @@ def user_collection_add(self, request, json):
 
         @request.after
         def after(response):
-            request.app.signal.emit('user.created', user, request)
+            request.app.signal.emit('user.email_updated', user, request)
             response.status = 201
 
     else:
@@ -207,7 +207,23 @@ def user_collection_add(self, request, json):
     permission=EditPermission
 )
 def user_update(self, request, json):
-    self.update(json)
+    if 'email' in json and User.exists(email=json['email']):
+        @request.after
+        def after(response):
+            response.status = 409
+
+        return {
+            'validationError': 'Email already exists'
+        }
+
+    else:
+        self.update(json)
+        if 'email' in json:
+            self.email_confirmed = False
+
+            @request.after
+            def after(response):
+                request.app.signal.emit('user.email_updated', self, request)
 
 
 @App.json(model=User, request_method='DELETE', permission=EditPermission)

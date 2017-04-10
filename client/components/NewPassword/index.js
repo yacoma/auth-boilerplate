@@ -15,32 +15,38 @@ export default connect({
       formSubmitted()
     }
     return (
-      <Grid container stackable padded='vertically' columns={2} centered>
-        <Grid.Column>
-          <Header as='h1' textAlign='center' color='blue' icon>
-            <Icon name='user' />
-            New Password
-          </Header>
-          <Form size='large'>
-            <Segment>
-              <Dimmer
-                inverted
-                active={passwordForm.isLoading}
-              >
-                <Loader />
-              </Dimmer>
-              <PasswordField form={passwordForm} path={'user.passwordForm.password'} />
-              <ConfirmPasswordField form={passwordForm} path={'user.passwordForm.confirmPassword'} />
-              <Button
-                fluid size='large'
-                color='blue'
-                onClick={handleSubmit}
-              >
-                Update
-              </Button>
-            </Segment>
-          </Form>
-        </Grid.Column>
+      <Grid stackable padded='vertically' columns={2} centered>
+        <Grid.Row>
+          <Grid.Column>
+            <Header inverted as='h1' textAlign='center' color='blue' icon>
+              <Icon name='user' />
+              New Password
+            </Header>
+          </Grid.Column>
+        </Grid.Row>
+        <Grid.Row>
+          <Grid.Column>
+            <Form size='large'>
+              <Segment>
+                <Dimmer
+                  inverted
+                  active={passwordForm.isLoading}
+                >
+                  <Loader />
+                </Dimmer>
+                <PasswordField form={passwordForm} path={'user.passwordForm.password'} />
+                <ConfirmPasswordField form={passwordForm} path={'user.passwordForm.confirmPassword'} />
+                <Button
+                  fluid size='large'
+                  color='blue'
+                  onClick={handleSubmit}
+                >
+                  Update
+                </Button>
+              </Segment>
+            </Form>
+          </Grid.Column>
+        </Grid.Row>
       </Grid>
     )
   }

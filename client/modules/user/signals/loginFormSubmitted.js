@@ -8,32 +8,32 @@ import initUser from '../actions/initUser'
 import showValidationError from '../../common/factories/showValidationError'
 
 export default sequence('Sign-in user', [
-  isValidForm(state`user.signIn`), {
+  isValidForm(state`user.loginForm`), {
     true: [
-      set(state`user.signIn.isLoading`, true),
+      set(state`user.loginForm.isLoading`, true),
       httpPost('/login', {
-        email: state`user.signIn.email.value`,
-        password: state`user.signIn.password.value`
+        email: state`user.loginForm.email.value`,
+        password: state`user.loginForm.password.value`
       }), {
         success: [
-          set(state`user.signIn.email.value`, ''),
-          set(state`user.signIn.password.value`, ''),
-          set(state`user.signIn.showErrors`, false),
+          set(state`user.loginForm.email.value`, ''),
+          set(state`user.loginForm.password.value`, ''),
+          set(state`user.loginForm.showErrors`, false),
           initUser,
-          set(state`user.signIn.isLoading`, false),
+          set(state`user.loginForm.isLoading`, false),
           when(state`app.lastVisited`), {
             true: routeTo(state`app.lastVisited`),
             false: routeTo('home')
           }
         ],
         error: [
-          set(state`user.signIn.password.value`, ''),
-          set(state`user.signIn.showErrors`, false),
-          set(state`user.signIn.isLoading`, false),
+          set(state`user.loginForm.password.value`, ''),
+          set(state`user.loginForm.showErrors`, false),
+          set(state`user.loginForm.isLoading`, false),
           showValidationError('Could not log-in!')
         ]
       }
     ],
-    false: set(state`user.signIn.showErrors`, true)
+    false: set(state`user.loginForm.showErrors`, true)
   }
 ])

@@ -13,9 +13,6 @@ database:
   - ":memory:"
   kwargs: {}
 
-authentication:
-  confirm_email: true
-
 smtp:
   username: test@example.com
   host: localhost

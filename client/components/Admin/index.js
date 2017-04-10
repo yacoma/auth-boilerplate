@@ -15,13 +15,17 @@ export default connect({
 },
   function Admin ({sortedUsers, usersSortBy, usersSortDir, sortUsersClicked}) {
     return (
-      <Grid container stackable padded='vertically' centered>
-        <Grid.Column>
-          <Header as='h1' textAlign='center' color='blue' icon>
-            <Icon name='users' />
-            User Admin
-          </Header>
-          <div style={{width: '100%', overflowX: 'auto'}}>
+      <Grid stackable padded='vertically' centered>
+        <Grid.Row>
+          <Grid.Column>
+            <Header inverted as='h1' textAlign='center' color='blue' icon>
+              <Icon name='users' />
+              User Admin
+            </Header>
+          </Grid.Column>
+        </Grid.Row>
+        <Grid.Row>
+          <Grid.Column style={{width: '100%', overflowX: 'auto'}}>
             <Table inverted striped definition sortable unstackable>
               <Table.Header fullWidth>
                 <Table.Row>
@@ -84,8 +88,8 @@ export default connect({
                 </Table.Row>
               </Table.Footer>
             </Table>
-          </div>
-        </Grid.Column>
+          </Grid.Column>
+        </Grid.Row>
       </Grid>
     )
   }

@@ -9,9 +9,6 @@ database:
   kwargs:
     create_db: true
 
-authentication:
-  confirm_email: true
-
 smtp:
   username: admin@yacoma.it
 

@@ -2,9 +2,10 @@ import {sequence} from 'cerebral'
 import {set, equals, when} from 'cerebral/operators'
 import {state} from 'cerebral/tags'
 import showFlash from './showFlash'
+import prepareSettingsForm from '../../settings/actions/prepareSettingsForm'
 import fetchUsers from '../../admin/actions/fetchUsers'
 
-function routeTo (page) {
+function routeTo (page, tab) {
   return sequence('Route to', [
     set(state`app.currentPage`, page),
     when(state`app.initialFlash`), {
@@ -21,6 +22,30 @@ function routeTo (page) {
         set(state`app.lastVisited`, 'private'),
         when(state`user.isLoggedIn`), {
           true: [],
+          false: [
+            set(state`app.currentPage`, 'login'),
+            showFlash('You must log in to view this page', 'info')
+          ]
+        }
+      ],
+      settings: [
+        set(state`app.lastVisited`, 'settings'),
+        when(state`user.isLoggedIn`), {
+          true: [
+            when(state`user.nickname`, nickname => nickname !== 'Admin'), {
+              true: [
+                when(tab), {
+                  true: set(state`settings.currentTab`, tab),
+                  false: []
+                },
+                prepareSettingsForm
+              ],
+              false: [
+                set(state`app.currentPage`, 'login'),
+                showFlash('Admin cannot edit his settings', 'warning')
+              ]
+            }
+          ],
           false: [
             set(state`app.currentPage`, 'login'),
             showFlash('You must log in to view this page', 'info')

@@ -13,6 +13,7 @@ import uuid from 'uuid'
 import App from './modules/app'
 import User from './modules/user'
 import Admin from './modules/admin'
+import Settings from './modules/settings'
 
 const jwtHeader = localStorage.getItem('jwtHeader')
   ? JSON.parse(localStorage.getItem('jwtHeader'))
@@ -58,9 +59,15 @@ const controller = Controller({
     }),
     user: User({'@id': urlParams['@id']}),
     admin: Admin,
+    settings: Settings,
     router: Router({
       filterFalsy: true,
       routes: [
+        {
+          path: '/settings/:tab?',
+          map: {tab: props`tab`},
+          signal: 'app.settingsRouted'
+        },
         {
           path: '/:page?',
           map: {page: props`page`},

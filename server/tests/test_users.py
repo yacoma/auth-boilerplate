@@ -326,8 +326,8 @@ def test_user_collection_combined_query():
     assert response.json['users'][0]['nickname'] == 'Jürgen'
 
 
-def test_add_user(smtp_server):
-    assert len(smtp_server.outbox) == 0
+def test_add_user(smtp):
+    assert len(smtp.outbox) == 0
 
     c = Client(App(), extra_environ=dict(REMOTE_ADDR='127.0.0.1'))
 
@@ -342,8 +342,8 @@ def test_add_user(smtp_server):
         assert User.exists(nickname='NewUser')
         assert User.get(nickname='NewUser').register_ip == '127.0.0.1'
 
-    assert len(smtp_server.outbox) == 1
-    message = smtp_server.outbox[0]
+    assert len(smtp.outbox) == 1
+    message = smtp.outbox[0]
     assert message['subject'] == 'Confirm Your Email Address'
     assert message['To'] == 'newuser@example.com'
 
@@ -352,7 +352,7 @@ def test_add_user(smtp_server):
         "validationError": "Email already exists"
     }
 
-    assert len(smtp_server.outbox) == 1
+    assert len(smtp.outbox) == 1
 
     with db_session:
         new_editor_json = json.dumps({
@@ -368,8 +368,8 @@ def test_add_user(smtp_server):
             in User.get(nickname='NewEditor').groups
         assert User.get(nickname='NewEditor').email == 'neweditor@gmail.com'
 
-    assert len(smtp_server.outbox) == 2
-    message = smtp_server.outbox[1]
+    assert len(smtp.outbox) == 2
+    message = smtp.outbox[1]
     assert message['subject'] == 'Confirm Your Email Address'
     assert message['To'] == 'neweditor@gmail.com'
 
@@ -396,7 +396,7 @@ def test_add_user(smtp_server):
     }
 
 
-def test_update_user():
+def test_update_user(smtp):
     c = Client(App())
 
     with db_session:
@@ -432,6 +432,17 @@ def test_update_user():
 
     with db_session:
         assert User[2].email == "guru@example.com"
+
+    assert len(smtp.outbox) == 1
+    message = smtp.outbox[0]
+    assert message['subject'] == 'Confirm Your Email Address'
+    assert message['To'] == 'guru@example.com'
+
+    response = c.put('/users/2', update_user_json, headers=headers, status=409)
+    assert response.json == {
+        "validationError": "Email already exists"
+    }
+    assert len(smtp.outbox) == 1
 
     update_user_json = json.dumps({"password": "secret0"})
     c.put('/users/1', update_user_json, headers=headers)
@@ -535,7 +546,7 @@ def test_confirm_email():
     assert 'flashtype=info' in response.text
 
 
-def test_send_reset_email(smtp_server):
+def test_send_reset_email(smtp):
     c = Client(App(), extra_environ=dict(REMOTE_ADDR='127.0.0.1'))
 
     new_user_json = json.dumps({
@@ -544,7 +555,7 @@ def test_send_reset_email(smtp_server):
         "password": "test7"
     })
     c.post('/users', new_user_json, status=201)
-    assert len(smtp_server.outbox) == 4
+    assert len(smtp.outbox) == 2
 
     response = c.post(
         '/reset',
@@ -574,13 +585,13 @@ def test_send_reset_email(smtp_server):
         json.dumps({"email": "newuser@example.com"})
     )
 
-    assert len(smtp_server.outbox) == 5
-    message = smtp_server.outbox[4]
+    assert len(smtp.outbox) == 3
+    message = smtp.outbox[2]
     assert message['subject'] == 'Password Reset Requested'
     assert message['To'] == 'newuser@example.com'
 
 
-def test_reset_password(smtp_server):
+def test_reset_password(smtp):
     c = Client(App(), extra_environ=dict(REMOTE_ADDR='127.0.0.1'))
 
     new_user_json = json.dumps({
@@ -589,7 +600,7 @@ def test_reset_password(smtp_server):
         "password": "test7"
     })
     c.post('/users', new_user_json, status=201)
-    assert len(smtp_server.outbox) == 6
+    assert len(smtp.outbox) == 1
 
     response = c.get(
         '/users/4/reset/' +
@@ -637,7 +648,7 @@ def test_reset_password(smtp_server):
     )
 
 
-def test_update_password(smtp_server):
+def test_update_password(smtp):
     c = Client(App(), extra_environ=dict(REMOTE_ADDR='127.0.0.1'))
 
     new_user_json = json.dumps({
@@ -646,7 +657,7 @@ def test_update_password(smtp_server):
         "password": "test7"
     })
     c.post('/users', new_user_json, status=201)
-    assert len(smtp_server.outbox) == 7
+    assert len(smtp.outbox) == 1
 
     update_password_json = json.dumps({"password": "new_secret"})
     response = c.put(

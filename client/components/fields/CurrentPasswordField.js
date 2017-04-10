@@ -9,24 +9,24 @@ export default connect({
   form: form(props`form`),
   fieldChanged: signal`user.fieldChanged`
 },
-  function ConfirmPasswordField ({path, form, fieldChanged}) {
+  function CurrentPasswordField ({path, form, fieldChanged}) {
     return (
-      <Form.Field error={hasError(form, form.confirmPassword)}>
+      <Form.Field error={hasError(form, form.currentPassword)}>
         <Input
           type='password'
           icon='lock'
           iconPosition='left'
-          placeholder='confirm password'
-          value={form.confirmPassword.value}
+          placeholder='current password'
+          value={form.currentPassword.value}
           onChange={(e, {value}) => fieldChanged({value, field: path})}
         />
         <Label
           pointing
           basic
           color='red'
-          style={{display: showError(form, form.confirmPassword) ? 'inline-block' : 'none'}}
+          style={{display: showError(form, form.currentPassword) ? 'inline-block' : 'none'}}
         >
-          {form.confirmPassword.errorMessage}
+          {form.currentPassword.errorMessage}
         </Label>
       </Form.Field>
     )

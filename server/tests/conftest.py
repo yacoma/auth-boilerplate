@@ -10,3 +10,9 @@ def smtp_server():
     server.start()
     yield server
     server.stop()
+
+
+@pytest.fixture(scope="function")
+def smtp(smtp_server):
+    yield smtp_server
+    del smtp_server.outbox[:]

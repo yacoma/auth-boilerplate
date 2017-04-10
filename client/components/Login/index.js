@@ -6,50 +6,56 @@ import {Grid, Header, Icon, Form, Segment, Button, Message, Dimmer, Loader}
 import {EmailField, PasswordField} from '../fields'
 
 export default connect({
-  signIn: state`user.signIn`,
-  signInSubmitted: signal`user.loginFormSubmitted`
+  loginForm: state`user.loginForm`,
+  formSubmitted: signal`user.loginFormSubmitted`
 },
-  function Login ({signIn, signInSubmitted}) {
+  function Login ({loginForm, formSubmitted}) {
     const handleSubmit = (event) => {
       event.preventDefault()
-      signInSubmitted()
+      formSubmitted()
     }
     return (
-      <Grid container stackable padded='vertically' columns={2} centered>
-        <Grid.Column>
-          <Header as='h1' textAlign='center' color='blue' icon>
-            <Icon name='user' />
-            Log-in to your account
-          </Header>
-          <Form size='large'>
-            <Segment>
-              <Dimmer
-                inverted
-                active={signIn.isLoading}
-              >
-                <Loader />
-              </Dimmer>
-              <EmailField form={signIn} path={'user.signIn.email'} />
-              <PasswordField form={signIn} path={'user.signIn.password'} />
-              <Button
-                fluid
-                size='large'
-                color='blue'
-                onClick={handleSubmit}
-              >
-                Login
-              </Button>
-            </Segment>
-          </Form>
-          <Message>
-            New to us?
-            <a href='/register'> Sign Up</a>
-          </Message>
-          <Message>
-            Forgot your password?
-            <a href='/reset'> Reset Password</a>
-          </Message>
-        </Grid.Column>
+      <Grid stackable padded='vertically' columns={2} centered>
+        <Grid.Row>
+          <Grid.Column>
+            <Header inverted as='h1' textAlign='center' color='blue' icon>
+              <Icon name='user' />
+              Log-in to your account
+            </Header>
+          </Grid.Column>
+        </Grid.Row>
+        <Grid.Row>
+          <Grid.Column>
+            <Form size='large'>
+              <Segment>
+                <Dimmer
+                  inverted
+                  active={loginForm.isLoading}
+                >
+                  <Loader />
+                </Dimmer>
+                <EmailField form={loginForm} path={'user.loginForm.email'} />
+                <PasswordField form={loginForm} path={'user.loginForm.password'} />
+                <Button
+                  fluid
+                  size='large'
+                  color='blue'
+                  onClick={handleSubmit}
+                >
+                  Login
+                </Button>
+              </Segment>
+            </Form>
+            <Message>
+              New to us?
+              <a href='/register'> Sign Up</a>
+            </Message>
+            <Message>
+              Forgot your password?
+              <a href='/reset'> Reset Password</a>
+            </Message>
+          </Grid.Column>
+        </Grid.Row>
       </Grid>
     )
   }

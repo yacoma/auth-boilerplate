@@ -48,8 +48,8 @@ test.serial('should log in', t => {
       .header('Authorization', jwtHeader)
   })
 
-  cerebral.setState('user.signIn.email.value', 'admin@example.com')
-  cerebral.setState('user.signIn.password.value', 'admin0')
+  cerebral.setState('user.loginForm.email.value', 'admin@example.com')
+  cerebral.setState('user.loginForm.password.value', 'admin0')
 
   return cerebral.runSignal('user.loginFormSubmitted')
     .then(({state}) => ([
@@ -58,9 +58,9 @@ test.serial('should log in', t => {
       t.is(state.user.email, 'admin@example.com'),
       t.is(state.user.nickname, 'Admin'),
       t.true(state.user.isAdmin),
-      t.is(state.user.signIn.email.value, ''),
-      t.is(state.user.signIn.password.value, ''),
-      t.false(state.user.signIn.showErrors),
+      t.is(state.user.loginForm.email.value, ''),
+      t.is(state.user.loginForm.password.value, ''),
+      t.false(state.user.loginForm.showErrors),
       t.is(localStorage.getItem('jwtHeader'), '"' + jwtHeader + '"')
     ]))
 })
@@ -75,14 +75,14 @@ test.serial('should not log in when wrong password', t => {
       }))
   })
 
-  cerebral.setState('user.signIn.email.value', 'admin@example.com')
-  cerebral.setState('user.signIn.password.value', 'wrong_password')
+  cerebral.setState('user.loginForm.email.value', 'admin@example.com')
+  cerebral.setState('user.loginForm.password.value', 'wrong_password')
 
   return cerebral.runSignal('user.loginFormSubmitted')
     .then(({state}) => ([
       t.false(state.user.isLoggedIn),
-      t.is(state.user.signIn.email.value, 'admin@example.com'),
-      t.is(state.user.signIn.password.value, '')
+      t.is(state.user.loginForm.email.value, 'admin@example.com'),
+      t.is(state.user.loginForm.password.value, '')
     ]))
 })
 
@@ -92,14 +92,14 @@ test.serial('should not log in on server error', t => {
       .status(501)
   })
 
-  cerebral.setState('user.signIn.email.value', 'admin@example.com')
-  cerebral.setState('user.signIn.password.value', 'admin0')
+  cerebral.setState('user.loginForm.email.value', 'admin@example.com')
+  cerebral.setState('user.loginForm.password.value', 'admin0')
 
   return cerebral.runSignal('user.loginFormSubmitted')
     .then(({state}) => ([
       t.false(state.user.isLoggedIn),
-      t.is(state.user.signIn.email.value, 'admin@example.com'),
-      t.is(state.user.signIn.password.value, '')
+      t.is(state.user.loginForm.email.value, 'admin@example.com'),
+      t.is(state.user.loginForm.password.value, '')
     ]))
 })
 
@@ -125,19 +125,36 @@ test.serial('should register', t => {
       .header('Content-Type', 'application/json')
   })
 
-  cerebral.setState('user.register.nickname.value', 'Admin')
-  cerebral.setState('user.register.email.value', 'admin@example.com')
-  cerebral.setState('user.register.password.value', 'admin0')
-  cerebral.setState('user.register.confirmPassword.value', 'admin0')
+  cerebral.setState('user.registerForm.nickname.value', 'Test')
+  cerebral.setState('user.registerForm.email.value', 'test@example.com')
+  cerebral.setState('user.registerForm.password.value', 'test0')
+  cerebral.setState('user.registerForm.confirmPassword.value', 'test0')
 
   return cerebral.runSignal('user.registerFormSubmitted')
     .then(({state}) => ([
       t.is(state.app.currentPage, 'login'),
-      t.is(state.user.register.nickname.value, ''),
-      t.is(state.user.register.email.value, ''),
-      t.is(state.user.register.password.value, ''),
-      t.is(state.user.register.confirmPassword.value, ''),
-      t.false(state.user.register.showErrors)
+      t.is(state.user.registerForm.nickname.value, ''),
+      t.is(state.user.registerForm.email.value, ''),
+      t.is(state.user.registerForm.password.value, ''),
+      t.is(state.user.registerForm.confirmPassword.value, ''),
+      t.false(state.user.registerForm.showErrors)
+    ]))
+})
+
+test.serial('should not register when nickname is Admin', t => {
+  cerebral.setState('user.registerForm.nickname.value', 'Admin')
+  cerebral.setState('user.registerForm.email.value', 'admin@example.com')
+  cerebral.setState('user.registerForm.password.value', 'admin0')
+  cerebral.setState('user.registerForm.confirmPassword.value', 'admin0')
+
+  return cerebral.runSignal('user.registerFormSubmitted')
+    .then(({state}) => ([
+      t.is(state.app.currentPage, null),
+      t.is(state.user.registerForm.nickname.value, 'Admin'),
+      t.is(state.user.registerForm.email.value, 'admin@example.com'),
+      t.is(state.user.registerForm.password.value, ''),
+      t.is(state.user.registerForm.confirmPassword.value, ''),
+      t.false(state.user.registerForm.showErrors)
     ]))
 })
 
@@ -151,19 +168,19 @@ test.serial('should not register when email exists', t => {
       }))
   })
 
-  cerebral.setState('user.register.nickname.value', 'Admin')
-  cerebral.setState('user.register.email.value', 'admin@example.com')
-  cerebral.setState('user.register.password.value', 'admin0')
-  cerebral.setState('user.register.confirmPassword.value', 'admin0')
+  cerebral.setState('user.registerForm.nickname.value', 'Test')
+  cerebral.setState('user.registerForm.email.value', 'test@example.com')
+  cerebral.setState('user.registerForm.password.value', 'test0')
+  cerebral.setState('user.registerForm.confirmPassword.value', 'test0')
 
   return cerebral.runSignal('user.registerFormSubmitted')
     .then(({state}) => ([
       t.is(state.app.flash, null),
-      t.is(state.user.register.nickname.value, 'Admin'),
-      t.is(state.user.register.email.value, 'admin@example.com'),
-      t.is(state.user.register.password.value, ''),
-      t.is(state.user.register.confirmPassword.value, ''),
-      t.false(state.user.register.showErrors)
+      t.is(state.user.registerForm.nickname.value, 'Test'),
+      t.is(state.user.registerForm.email.value, 'test@example.com'),
+      t.is(state.user.registerForm.password.value, ''),
+      t.is(state.user.registerForm.confirmPassword.value, ''),
+      t.false(state.user.registerForm.showErrors)
     ]))
 })
 
@@ -178,18 +195,18 @@ test.serial('should not register when email server does not exists', t => {
       }))
   })
 
-  cerebral.setState('user.register.nickname.value', 'Admin')
-  cerebral.setState('user.register.email.value', 'admin@example.com')
-  cerebral.setState('user.register.password.value', 'admin0')
-  cerebral.setState('user.register.confirmPassword.value', 'admin0')
+  cerebral.setState('user.registerForm.nickname.value', 'Test')
+  cerebral.setState('user.registerForm.email.value', 'test@example.com')
+  cerebral.setState('user.registerForm.password.value', 'test0')
+  cerebral.setState('user.registerForm.confirmPassword.value', 'test0')
 
   return cerebral.runSignal('user.registerFormSubmitted')
     .then(({state}) => ([
       t.is(state.app.flash, null),
-      t.is(state.user.register.nickname.value, 'Admin'),
-      t.is(state.user.register.email.value, 'admin@example.com'),
-      t.is(state.user.register.password.value, ''),
-      t.is(state.user.register.confirmPassword.value, ''),
-      t.false(state.user.register.showErrors)
+      t.is(state.user.registerForm.nickname.value, 'Test'),
+      t.is(state.user.registerForm.email.value, 'test@example.com'),
+      t.is(state.user.registerForm.password.value, ''),
+      t.is(state.user.registerForm.confirmPassword.value, ''),
+      t.false(state.user.registerForm.showErrors)
     ]))
 })

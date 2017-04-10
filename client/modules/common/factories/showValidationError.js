@@ -25,7 +25,7 @@ function showValidationError (defaultErrorMessage) {
       422: getSchemaValidationErrorMessages,
       otherwise: set(props`errorMessages`, defaultErrorMessage)
     },
-    showFlash(props`errorMessages`, 'warning')
+    showFlash(props`errorMessages`, 'error')
   ])
 }
 
