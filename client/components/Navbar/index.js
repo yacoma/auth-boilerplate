@@ -53,7 +53,7 @@ export default connect({
           <Menu.Item name='settings' href='/settings'
             style={{display: nickname !== 'Admin' ? 'flex' : 'none'}}
           >
-            <Button inverted color='blue'
+            <Button inverted compact color='blue'
               icon={<Icon name='user' size='large' />}
               active={currentPage === 'settings'}
             />
@@ -61,17 +61,16 @@ export default connect({
           <Menu.Item name='admin' href='/admin'
             style={{display: isAdmin ? 'flex' : 'none'}}
           >
-            <Button inverted color='blue'
+            <Button inverted compact color='blue'
               icon={<Icon name='users' size='large' />}
               active={currentPage === 'admin'}
             />
           </Menu.Item>
           <Menu.Item>
-            <Button inverted color='blue'
+            <Button inverted compact color='blue'
+              icon={<Icon name='sign out' size='large' />}
               onClick={() => logoutButtonClicked()}
-            >
-              Log out
-            </Button>
+            />
           </Menu.Item>
         </Menu.Menu>
       </Menu>
