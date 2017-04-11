@@ -44,7 +44,7 @@ test('page should route to home', t => {
     .then(({state}) => [
       t.is(state.app.currentPage, 'home'),
       t.is(state.app.lastVisited, 'home'),
-      t.false(state.user.isLoggedIn)
+      t.false(state.user.autenticated)
     ])
 })
 
@@ -67,7 +67,7 @@ test('route to register should not change lastVisited', t => {
 test('route to private should redirect to login', t => {
   return cerebral.runSignal('app.pageRouted', {page: 'private'})
     .then(({state}) => [
-      t.false(state.user.isLoggedIn),
+      t.false(state.user.autenticated),
       t.is(state.app.currentPage, 'login'),
       t.is(state.app.lastVisited, 'private'),
       t.is(state.app.flash, 'You must log in to view this page'),
@@ -120,7 +120,7 @@ test('should login when valid token in localStorage', t => {
     .then(({state}) => [
       t.is(state.app.currentPage, 'private'),
       t.is(state.app.lastVisited, 'private'),
-      t.true(state.user.isLoggedIn)
+      t.true(state.user.autenticated)
     ])
 })
 
@@ -172,7 +172,7 @@ test('should refresh token when expired token and refresh allowed', t => {
     .then(({state}) => [
       t.is(state.app.currentPage, 'home'),
       t.is(state.app.lastVisited, 'home'),
-      t.true(state.user.isLoggedIn),
+      t.true(state.user.autenticated),
       t.true(state.user.nickname, 'Admin')
     ])
 })

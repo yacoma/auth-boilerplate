@@ -53,7 +53,7 @@ test.serial('should log in', t => {
 
   return cerebral.runSignal('user.loginFormSubmitted')
     .then(({state}) => ([
-      t.true(state.user.isLoggedIn),
+      t.true(state.user.autenticated),
       t.is(state.user.api['@id'], '/users/1'),
       t.is(state.user.email, 'admin@example.com'),
       t.is(state.user.nickname, 'Admin'),
@@ -80,7 +80,7 @@ test.serial('should not log in when wrong password', t => {
 
   return cerebral.runSignal('user.loginFormSubmitted')
     .then(({state}) => ([
-      t.false(state.user.isLoggedIn),
+      t.false(state.user.autenticated),
       t.is(state.user.loginForm.email.value, 'admin@example.com'),
       t.is(state.user.loginForm.password.value, '')
     ]))
@@ -97,21 +97,21 @@ test.serial('should not log in on server error', t => {
 
   return cerebral.runSignal('user.loginFormSubmitted')
     .then(({state}) => ([
-      t.false(state.user.isLoggedIn),
+      t.false(state.user.autenticated),
       t.is(state.user.loginForm.email.value, 'admin@example.com'),
       t.is(state.user.loginForm.password.value, '')
     ]))
 })
 
 test('should be logged out', t => {
-  cerebral.setState('user.isLoggedIn', true)
+  cerebral.setState('user.autenticated', true)
   cerebral.setState('user.email', 'admin@example.com')
   cerebral.setState('user.nickname', 'Admin')
   cerebral.setState('user.isAdmin', true)
 
   return cerebral.runSignal('user.logoutButtonClicked')
     .then(({state}) => ([
-      t.false(state.user.isLoggedIn),
+      t.false(state.user.autenticated),
       t.is(state.user.email, ''),
       t.is(state.user.nickname, ''),
       t.false(state.user.isAdmin)

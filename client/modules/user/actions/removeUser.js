@@ -8,7 +8,7 @@ function removeUser ({state, storage, http}) {
   state.set('user.email', '')
   state.set('user.nickname', '')
   state.set('user.isAdmin', false)
-  state.set('user.isLoggedIn', false)
+  state.set('user.autenticated', false)
   state.set('user.token', {})
   state.set('user.api', {})
 }

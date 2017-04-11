@@ -9,7 +9,7 @@ function initUser ({props, state, storage, http}) {
       'Authorization': jwtHeader
     }
   })
-  state.set('user.isLoggedIn', true)
+  state.set('user.autenticated', true)
   state.set('user.api.@id', claims.uid)
   state.set('user.email', claims.sub)
   state.set('user.nickname', claims.nickname)

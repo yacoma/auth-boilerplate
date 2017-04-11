@@ -20,7 +20,7 @@ test('should initialize app state', t => {
         email: '',
         nickname: '',
         isAdmin: false,
-        isLoggedIn: false,
+        autenticated: false,
         token: {},
         api: {}
       }
@@ -30,7 +30,7 @@ test('should initialize app state', t => {
     ]
   })
   .then(({state}) => [
-    t.true(state.user.isLoggedIn),
+    t.true(state.user.autenticated),
     t.is(state.user.api['@id'], '/users/1'),
     t.is(state.user.email, 'admin@example.com'),
     t.is(state.user.nickname, 'Admin'),
