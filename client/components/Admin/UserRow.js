@@ -25,7 +25,7 @@ export default connect({
             onClick={() => signOutButtonClicked({uid})}
           />
           <ConfirmSignOut />
-          {user.nickname !== 'Admin' &&
+          {user.email !== 'admin@example.com' &&
             <Button inverted
               icon={<Icon name='remove user' size='large' />}
               color='red'
@@ -45,7 +45,7 @@ export default connect({
         <Table.Cell textAlign='center'>
           <Button inverted basic color='blue'
             loading={toggleAdminIsLoading}
-            disabled={user.nickname === 'Admin'}
+            disabled={user.email === 'admin@example.com'}
             icon={user.isAdmin
               ? <Icon name='checkmark' color='green' size='large' />
               : <Icon name='remove' color='red' size='large' />

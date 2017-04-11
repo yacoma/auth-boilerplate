@@ -5,12 +5,10 @@ import {Menu, Button, Icon} from 'semantic-ui-react'
 
 export default connect({
   currentPage: state`app.currentPage`,
-  isLoggedIn: state`user.isLoggedIn`,
-  isAdmin: state`user.isAdmin`,
-  nickname: state`user.nickname`,
+  user: state`user`,
   logoutButtonClicked: signal`user.logoutButtonClicked`
 },
-  function Navbar ({currentPage, isLoggedIn, isAdmin, nickname, logoutButtonClicked}) {
+  function Navbar ({currentPage, user, logoutButtonClicked}) {
     return (
       <Menu
         attached='top'
@@ -30,7 +28,7 @@ export default connect({
           Private
         </Menu.Item>
         <Menu.Menu position='right'
-          style={{display: isLoggedIn ? 'none' : 'flex'}}
+          style={{display: user.isLoggedIn ? 'none' : 'flex'}}
         >
           <Menu.Item name='login' href='/login'>
             <Button inverted color='yellow'
@@ -48,10 +46,10 @@ export default connect({
           </Menu.Item>
         </Menu.Menu>
         <Menu.Menu position='right'
-          style={{display: isLoggedIn ? 'flex' : 'none'}}
+          style={{display: user.isLoggedIn ? 'flex' : 'none'}}
         >
           <Menu.Item name='settings' href='/settings'
-            style={{display: nickname !== 'Admin' ? 'flex' : 'none'}}
+            style={{display: user.email !== 'admin@example.com' ? 'flex' : 'none'}}
           >
             <Button inverted compact color='blue'
               icon={<Icon name='user' size='large' />}
@@ -59,7 +57,7 @@ export default connect({
             />
           </Menu.Item>
           <Menu.Item name='admin' href='/admin'
-            style={{display: isAdmin ? 'flex' : 'none'}}
+            style={{display: user.isAdmin ? 'flex' : 'none'}}
           >
             <Button inverted compact color='blue'
               icon={<Icon name='users' size='large' />}

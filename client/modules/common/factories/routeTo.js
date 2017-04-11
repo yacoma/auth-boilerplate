@@ -32,7 +32,7 @@ function routeTo (page, tab) {
         set(state`app.lastVisited`, 'settings'),
         when(state`user.isLoggedIn`), {
           true: [
-            when(state`user.nickname`, nickname => nickname !== 'Admin'), {
+            when(state`user.email`, email => email !== 'admin@example.com'), {
               true: [
                 when(tab), {
                   true: set(state`settings.currentTab`, tab),
