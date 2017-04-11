@@ -7,14 +7,15 @@ import ConfirmRemoveUser from './ConfirmRemoveUser'
 
 export default connect({
   user: state`admin.users.${props`uid`}`,
+  email: state`user.email`,
   signOutButtonClicked: signal`admin.signOutButtonClicked`,
   removeUserButtonClicked: signal`admin.removeUserButtonClicked`,
   toggleAdminClicked: signal`admin.toggleAdminClicked`,
   toggleAdminIsLoading: state`admin.users.${props`uid`}.toggleAdminIsLoading`
 },
   function UserRow ({
-    uid, user, signOutButtonClicked, removeUserButtonClicked,
-    toggleAdminClicked, toggleAdminIsLoading
+    uid, user, email, signOutButtonClicked,
+    removeUserButtonClicked, toggleAdminClicked, toggleAdminIsLoading
   }) {
     return (
       <Table.Row>
@@ -25,7 +26,8 @@ export default connect({
             onClick={() => signOutButtonClicked({uid})}
           />
           <ConfirmSignOut />
-          {user.email !== 'admin@example.com' &&
+          {(user.email !== 'admin@example.com' && user.email !== email) &&
+
             <Button inverted
               icon={<Icon name='remove user' size='large' />}
               color='red'
@@ -45,7 +47,7 @@ export default connect({
         <Table.Cell textAlign='center'>
           <Button inverted basic color='blue'
             loading={toggleAdminIsLoading}
-            disabled={user.email === 'admin@example.com'}
+            disabled={user.email === 'admin@example.com' || user.email === email}
             icon={user.isAdmin
               ? <Icon name='checkmark' color='green' size='large' />
               : <Icon name='remove' color='red' size='large' />
