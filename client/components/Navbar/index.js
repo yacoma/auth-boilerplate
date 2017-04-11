@@ -31,14 +31,14 @@ export default connect({
           style={{display: user.autenticated ? 'none' : 'flex'}}
         >
           <Menu.Item name='login' href='/login'>
-            <Button inverted color='yellow'
+            <Button inverted compact color='yellow'
               active={currentPage === 'login'}
             >
               Log in
             </Button>
           </Menu.Item>
           <Menu.Item name='register' href='/register'>
-            <Button inverted color='blue'
+            <Button inverted compact color='blue'
               active={currentPage === 'register'}
             >
               Sign Up
