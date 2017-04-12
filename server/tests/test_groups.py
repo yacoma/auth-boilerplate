@@ -50,9 +50,6 @@ def test_group():
 def test_groups_collection():
     c = Client(App())
 
-    with db_session:
-        User[1].email_confirmed = True
-
     response = c.post(
         '/login',
         json.dumps({"email": "leader@example.com", "password": "test1"})
@@ -71,9 +68,6 @@ def test_groups_collection():
 
 def test_add_group():
     c = Client(App())
-
-    with db_session:
-        User[1].email_confirmed = True
 
     response = c.post(
         '/login',
@@ -112,9 +106,6 @@ def test_add_group():
 def test_update_group():
     c = Client(App())
 
-    with db_session:
-        User[1].email_confirmed = True
-
     response = c.post(
         '/login',
         json.dumps({"email": "leader@example.com", "password": "test1"})
@@ -141,9 +132,6 @@ def test_update_group():
 
 def test_delete_group():
     c = Client(App())
-
-    with db_session:
-        User[1].email_confirmed = True
 
     response = c.post(
         '/login',

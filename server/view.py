@@ -61,7 +61,7 @@ def login(self, request, json):
         else:
             credentials_valid = True
 
-        if credentials_valid and user.email_confirmed:
+        if credentials_valid:
             user.last_login = datetime.now()
 
             @request.after
@@ -76,22 +76,12 @@ def login(self, request, json):
                 )
                 request.app.remember_identity(response, request, identity)
 
-        elif not credentials_valid:
+        else:
             @request.after
             def credentials_not_valid(response):
                 response.status_code = 403
 
             return {'validationError': 'Invalid email or password'}
-
-        else:
-            @request.after
-            def email_not_confirmed(response):
-                response.status_code = 403
-
-            return {
-                'validationError':
-                    'Your email address has not been confirmed yet'
-            }
 
     else:
         @request.after

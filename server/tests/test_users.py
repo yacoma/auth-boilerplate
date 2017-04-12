@@ -74,18 +74,6 @@ def test_login():
 
     response = c.post(
         '/login',
-        json.dumps({"email": "mary@example.com", "password": "test2"}),
-        status=403
-    )
-    assert response.json == {
-        "validationError": "Your email address has not been confirmed yet"
-    }
-
-    with db_session:
-        User[2].email_confirmed = True
-
-    response = c.post(
-        '/login',
         json.dumps({"email": "mary@EXAMPLE.COM", "password": "test2"})
     )
 
@@ -101,9 +89,6 @@ def test_login():
 def test_refresh_token():
     app = App()
     c = Client(app)
-
-    with db_session:
-        User[2].email_confirmed = True
 
     response = c.post(
         '/login',
@@ -168,9 +153,6 @@ def test_reset_nonce():
 def test_user():
     c = Client(App())
 
-    with db_session:
-        User[2].email_confirmed = True
-
     response = c.post(
         '/login',
         json.dumps({"email": "mary@example.com", "password": "test2"})
@@ -184,7 +166,7 @@ def test_user():
         "nickname": "Mary",
         "email": "mary@example.com",
         "isAdmin": False,
-        "emailConfirmed": True,
+        "emailConfirmed": False,
         "registerIP": '',
     }
 
@@ -193,9 +175,6 @@ def test_user():
 
 def test_user_collection():
     c = Client(App())
-
-    with db_session:
-        User[1].email_confirmed = True
 
     response = c.post(
         '/login',
@@ -209,7 +188,7 @@ def test_user_collection():
         "@id": "/users/1",
         "nickname": "Leader",
         "email": "leader@example.com",
-        "emailConfirmed": True,
+        "emailConfirmed": False,
         "isAdmin": True,
         "registerIP": '',
     }
@@ -254,9 +233,6 @@ def test_sorted_user_collection():
 def test_paginated_user_collection():
     c = Client(App())
 
-    with db_session:
-        User[1].email_confirmed = True
-
     response = c.post(
         '/login',
         json.dumps({"email": "leader@example.com", "password": "test1"})
@@ -277,9 +253,6 @@ def test_paginated_user_collection():
 
 def test_search_user_collection():
     c = Client(App())
-
-    with db_session:
-        User[1].email_confirmed = True
 
     response = c.post(
         '/login',
@@ -305,9 +278,6 @@ def test_search_user_collection():
 
 def test_user_collection_combined_query():
     c = Client(App())
-
-    with db_session:
-        User[1].email_confirmed = True
 
     response = c.post(
         '/login',
@@ -399,9 +369,6 @@ def test_add_user(smtp):
 def test_update_user(smtp):
     c = Client(App())
 
-    with db_session:
-        User[1].email_confirmed = True
-
     response = c.post(
         '/login',
         json.dumps({"email": "leader@example.com", "password": "test1"})
@@ -476,9 +443,6 @@ def test_update_user(smtp):
 
 def test_delete_user():
     c = Client(App())
-
-    with db_session:
-        User[2].email_confirmed = True
 
     response = c.post(
         '/login',
