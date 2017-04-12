@@ -40,7 +40,7 @@ test.beforeEach(t => {
   })
 })
 
-test.serial('should log in', t => {
+test.serial('should login', t => {
   mock.post('/api/login', (req, res) => {
     return res
       .status(200)
@@ -118,7 +118,7 @@ test('should be logged out', t => {
     ]))
 })
 
-test.serial('should register', t => {
+test.serial('should login on registration', t => {
   mock.post('/api/users', (req, res) => {
     return res
       .status(201)
@@ -132,7 +132,12 @@ test.serial('should register', t => {
 
   return cerebral.runSignal('user.registerFormSubmitted')
     .then(({state}) => ([
-      t.is(state.app.currentPage, 'login'),
+      t.true(state.user.autenticated),
+      t.is(state.user.api['@id'], '/users/1'),
+      t.is(state.user.email, 'test@example.com'),
+      t.is(state.user.nickname, 'Test'),
+      t.is(localStorage.getItem('jwtHeader'), '"' + jwtHeader + '"'),
+      t.is(state.app.currentPage, 'home'),
       t.is(state.user.registerForm.nickname.value, ''),
       t.is(state.user.registerForm.email.value, ''),
       t.is(state.user.registerForm.password.value, ''),
