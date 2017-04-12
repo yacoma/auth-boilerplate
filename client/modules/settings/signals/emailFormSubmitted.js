@@ -9,6 +9,7 @@ import showValidationError from '../../common/factories/showValidationError'
 export default sequence('Update email address', [
   isValidForm(state`settings.emailForm`), {
     true: [
+      set(state`settings.emailForm.showErrors`, false),
       when(
         state`user.email`, state`settings.emailForm.email.value`,
         (currentEmail, email) => currentEmail !== email
@@ -20,13 +21,12 @@ export default sequence('Update email address', [
             password: state`settings.emailForm.password.value`
           }), {
             success: [
+              set(state`settings.passwordForm.password.value`, ''),
               httpPut(string`${state`user.api.@id`}`, {
                 email: state`settings.emailForm.email.value`
               }), {
                 success: [
                   set(state`user.email`, state`settings.emailForm.email.value`),
-                  set(state`settings.emailForm.showErrors`, false),
-                  set(state`settings.passwordForm.password.value`, ''),
                   set(state`settings.emailForm.isLoading`, false),
                   showFlash(
                     'Please check your email to confirm your new email address',
@@ -34,15 +34,12 @@ export default sequence('Update email address', [
                   )
                 ],
                 error: [
-                  set(state`settings.emailForm.showErrors`, false),
-                  set(state`settings.emailForm.password.value`, ''),
                   set(state`settings.emailForm.isLoading`, false),
                   showValidationError('Could not update email!')
                 ]
               }
             ],
             error: [
-              set(state`settings.emailForm.showErrors`, false),
               set(state`settings.emailForm.password.value`, ''),
               set(state`settings.emailForm.isLoading`, false),
               showFlash('Password is not correct - please try again', 'error')

@@ -10,19 +10,18 @@ import showValidationError from '../../common/factories/showValidationError'
 export default sequence('Request password reset', [
   isValidForm(state`user.emailForm`), {
     true: [
+      set(state`user.emailForm.showErrors`, false),
       set(state`user.emailForm.isLoading`, true),
       httpPost('/reset', {
         email: state`user.emailForm.email.value`
       }), {
         success: [
-          set(state`user.emailForm.showErrors`, false),
           set(state`user.emailForm.email.value`, ''),
           set(state`user.emailForm.isLoading`, false),
           routeTo('login'),
           showFlash('Please check your email for a password reset link', 'success')
         ],
         error: [
-          set(state`user.emailForm.showErrors`, false),
           set(state`user.emailForm.isLoading`, false),
           showValidationError('Could not send password reset email!')
         ]

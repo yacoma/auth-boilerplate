@@ -11,6 +11,8 @@ import initUser from '../actions/initUser'
 export default sequence('Register new user', [
   isValidForm(state`user.registerForm`), {
     true: [
+      set(state`user.registerForm.showErrors`, false),
+      set(state`user.registerForm.confirmPassword.value`, ''),
       set(state`user.registerForm.isLoading`, true),
       httpPost('/users', {
         nickname: state`user.registerForm.nickname.value`,
@@ -34,18 +36,14 @@ export default sequence('Register new user', [
               showValidationError('Could not log-in!')
             ]
           },
-          set(state`user.registerForm.showErrors`, false),
           set(state`user.registerForm.nickname.value`, ''),
           set(state`user.registerForm.email.value`, ''),
           set(state`user.registerForm.password.value`, ''),
-          set(state`user.registerForm.confirmPassword.value`, ''),
           set(state`user.registerForm.isLoading`, false),
           showFlash('Please check your email to confirm your email address', 'success')
         ],
         error: [
           set(state`user.registerForm.password.value`, ''),
-          set(state`user.registerForm.confirmPassword.value`, ''),
-          set(state`user.registerForm.showErrors`, false),
           set(state`user.registerForm.isLoading`, false),
           showValidationError('Could not register!')
         ]

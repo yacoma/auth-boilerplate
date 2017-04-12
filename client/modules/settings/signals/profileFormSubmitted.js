@@ -9,18 +9,17 @@ import showValidationError from '../../common/factories/showValidationError'
 export default sequence('Edit user profile', [
   isValidForm(state`settings.profileForm`), {
     true: [
+      set(state`settings.profileForm.showErrors`, false),
       set(state`settings.profileForm.isLoading`, true),
       httpPut(string`${state`user.api.@id`}`, {
         nickname: state`settings.profileForm.nickname.value`
       }), {
         success: [
           set(state`user.nickname`, state`settings.profileForm.nickname.value`),
-          set(state`settings.profileForm.showErrors`, false),
           set(state`settings.profileForm.isLoading`, false),
           showFlash('Your profile has be saved', 'success')
         ],
         error: [
-          set(state`settings.profileForm.showErrors`, false),
           set(state`settings.profileForm.isLoading`, false),
           showValidationError('Could not save your profile!')
         ]

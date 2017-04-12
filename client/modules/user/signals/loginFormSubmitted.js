@@ -10,6 +10,7 @@ import showValidationError from '../../common/factories/showValidationError'
 export default sequence('Sign-in user', [
   isValidForm(state`user.loginForm`), {
     true: [
+      set(state`user.loginForm.showErrors`, false),
       set(state`user.loginForm.isLoading`, true),
       httpPost('/login', {
         email: state`user.loginForm.email.value`,
@@ -18,7 +19,6 @@ export default sequence('Sign-in user', [
         success: [
           set(state`user.loginForm.email.value`, ''),
           set(state`user.loginForm.password.value`, ''),
-          set(state`user.loginForm.showErrors`, false),
           initUser,
           set(state`user.loginForm.isLoading`, false),
           when(state`app.lastVisited`), {
@@ -28,7 +28,6 @@ export default sequence('Sign-in user', [
         ],
         error: [
           set(state`user.loginForm.password.value`, ''),
-          set(state`user.loginForm.showErrors`, false),
           set(state`user.loginForm.isLoading`, false),
           showValidationError('Could not log-in!')
         ]
