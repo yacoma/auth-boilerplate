@@ -40,7 +40,10 @@ export default sequence('Register new user', [
           set(state`user.registerForm.email.value`, ''),
           set(state`user.registerForm.password.value`, ''),
           set(state`user.registerForm.isLoading`, false),
-          showFlash('Please check your email to confirm your email address', 'success')
+          showFlash(
+            'Welcome! Please check your mailbox to confirm your email address.',
+            'success'
+          )
         ],
         error: [
           set(state`user.registerForm.password.value`, ''),

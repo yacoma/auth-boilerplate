@@ -29,7 +29,7 @@ export default connect({
             </Dimmer>
             <List relaxed>
               <List.Item>
-                <List.Header>
+                <List.Header as='h4'>
                   Nickname
                 </List.Header>
                 <NicknameField form={profileForm} path={'settings.profileForm.nickname'} />

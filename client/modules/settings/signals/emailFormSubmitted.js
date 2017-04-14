@@ -6,7 +6,7 @@ import {httpPost, httpPut} from 'cerebral-provider-http/operators'
 import showFlash from '../../common/factories/showFlash'
 import showValidationError from '../../common/factories/showValidationError'
 
-export default sequence('Update email address', [
+export default sequence('Update your email address', [
   isValidForm(state`settings.emailForm`), {
     true: [
       set(state`settings.emailForm.showErrors`, false),
@@ -21,7 +21,7 @@ export default sequence('Update email address', [
             password: state`settings.emailForm.password.value`
           }), {
             success: [
-              set(state`settings.passwordForm.password.value`, ''),
+              set(state`settings.emailForm.password.value`, ''),
               httpPut(string`${state`user.api.@id`}`, {
                 email: state`settings.emailForm.email.value`
               }), {
@@ -29,7 +29,7 @@ export default sequence('Update email address', [
                   set(state`user.email`, state`settings.emailForm.email.value`),
                   set(state`settings.emailForm.isLoading`, false),
                   showFlash(
-                    'Please check your email to confirm your new email address',
+                    'Please check your mailbox to confirm your new email address',
                     'success'
                   )
                 ],

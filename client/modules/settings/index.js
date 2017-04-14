@@ -1,13 +1,25 @@
 import profileFormSubmitted from './signals/profileFormSubmitted'
 import emailFormSubmitted from './signals/emailFormSubmitted'
 import passwordFormSubmitted from './signals/passwordFormSubmitted'
+import signOutButtonClicked from './signals/signOutButtonClicked'
+import signOutConfirmed from './signals/signOutConfirmed'
+import signOutCancelled from './signals/signOutCancelled'
+import removeUserButtonClicked from './signals/removeUserButtonClicked'
+import removeUserConfirmed from './signals/removeUserConfirmed'
+import removeUserCancelled from './signals/removeUserCancelled'
 
 export default (module) => {
   return {
     signals: {
       profileFormSubmitted,
       emailFormSubmitted,
-      passwordFormSubmitted
+      passwordFormSubmitted,
+      signOutButtonClicked,
+      signOutCancelled,
+      signOutConfirmed,
+      removeUserButtonClicked,
+      removeUserCancelled,
+      removeUserConfirmed
     },
 
     state: {
@@ -49,6 +61,17 @@ export default (module) => {
         confirmPassword: {
           value: '',
           validationRules: ['equalsField:password'],
+          isRequired: true
+        },
+        showErrors: false,
+        isLoading: false
+      },
+      showConfirmSignOut: false,
+      showConfirmRemoveUser: false,
+      accountForm: {
+        password: {
+          value: '',
+          validationRules: ['minLength:5'],
           isRequired: true
         },
         showErrors: false,

@@ -6,7 +6,7 @@ import {httpPost, httpPut} from 'cerebral-provider-http/operators'
 import showFlash from '../../common/factories/showFlash'
 import showValidationError from '../../common/factories/showValidationError'
 
-export default sequence('Change password', [
+export default sequence('Change your password', [
   isValidForm(state`settings.passwordForm`), {
     true: [
       set(state`settings.passwordForm.showErrors`, false),

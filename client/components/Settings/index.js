@@ -5,11 +5,13 @@ import {Grid, Header, Icon, Menu} from 'semantic-ui-react'
 import Profile from './Profile'
 import Email from './Email'
 import Password from './Password'
+import Account from './Account'
 
 const tabs = {
   profile: Profile,
   email: Email,
-  password: Password
+  password: Password,
+  account: Account
 }
 
 export default connect({
@@ -28,7 +30,7 @@ export default connect({
             </Header>
           </Grid.Column>
         </Grid.Row>
-        <Grid.Row columns={4} centered>
+        <Grid.Row columns={3} centered>
           <Grid.Column>
             <Menu
               attached='top'
@@ -38,20 +40,25 @@ export default connect({
               compact
               size='large'
             >
-              <Menu.Item name='home' href='/settings/profile'
+              <Menu.Item name='profile' href='/settings/profile'
                 active={currentTab === 'profile'}
               >
                 Profile
               </Menu.Item>
-              <Menu.Item name='home' href='/settings/email'
+              <Menu.Item name='email' href='/settings/email'
                 active={currentTab === 'email'}
               >
                 E-mail
               </Menu.Item>
-              <Menu.Item name='home' href='/settings/password'
+              <Menu.Item name='password' href='/settings/password'
                 active={currentTab === 'password'}
               >
                 Password
+              </Menu.Item>
+              <Menu.Item name='account' href='/settings/account'
+                active={currentTab === 'account'}
+              >
+                Account
               </Menu.Item>
             </Menu>
           </Grid.Column>

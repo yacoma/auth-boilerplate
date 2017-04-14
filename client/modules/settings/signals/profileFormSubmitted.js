@@ -6,7 +6,7 @@ import {httpPut} from 'cerebral-provider-http/operators'
 import showFlash from '../../common/factories/showFlash'
 import showValidationError from '../../common/factories/showValidationError'
 
-export default sequence('Edit user profile', [
+export default sequence('Edit your user profile', [
   isValidForm(state`settings.profileForm`), {
     true: [
       set(state`settings.profileForm.showErrors`, false),

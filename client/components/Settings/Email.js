@@ -32,12 +32,14 @@ export default connect({
               <Message.Header>
                 Your email address will be updated immediately
               </Message.Header>
-              <p>Remember to confirm the new email if you
-              want to be able to reset your password.</p>
+              <p>
+                Remember to confirm the new email if you
+                want to be able to reset your password.
+              </p>
             </Message>
             <List relaxed>
               <List.Item>
-                <List.Header>
+                <List.Header as='h4'>
                   Current email address
                 </List.Header>
                 <List.Icon name='mail' color='blue' />
@@ -46,19 +48,19 @@ export default connect({
                 </List.Content>
               </List.Item>
               <List.Item>
-                <List.Header>
-                  New email adress
-                </List.Header>
-                <EmailField form={emailForm} path={'settings.emailForm.email'} />
-              </List.Item>
-              <List.Item>
-                <List.Header>
-                  Password
+                <List.Header as='h4'>
+                  We need your password to verify your identity
                 </List.Header>
                 <PasswordField
                   form={emailForm}
                   path={'settings.emailForm.password'}
                 />
+              </List.Item>
+              <List.Item>
+                <List.Header as='h4'>
+                  New email adress
+                </List.Header>
+                <EmailField form={emailForm} path={'settings.emailForm.email'} />
               </List.Item>
             </List>
             <Button
