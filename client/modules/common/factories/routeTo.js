@@ -1,6 +1,6 @@
 import {sequence} from 'cerebral'
 import {set, equals, when} from 'cerebral/operators'
-import {state} from 'cerebral/tags'
+import {state, string} from 'cerebral/tags'
 import showFlash from './showFlash'
 import authenticate from './authenticate'
 import authenticateAdmin from './authenticateAdmin'
@@ -18,17 +18,28 @@ function routeTo (page, tab) {
       false: []
     },
     equals(state`app.currentPage`), {
-      login: [],
-      register: [],
       private: [
         set(state`app.lastVisited`, 'private'),
-        authenticate()
+        authenticate([
+          set(state`app.headerText`, string`Hello ${state`user.nickname`}!`),
+          set(state`app.headerIcon`, null)
+        ])
+      ],
+      login: [
+        set(state`app.headerText`, 'Log in your account'),
+        set(state`app.headerIcon`, 'user')
+      ],
+      register: [
+        set(state`app.headerText`, 'Create account'),
+        set(state`app.headerIcon`, 'user')
       ],
       settings: [
         set(state`app.lastVisited`, 'settings'),
         authenticate([
           when(state`user.email`, email => email !== 'admin@example.com'), {
             true: [
+              set(state`app.headerText`, string`${state`user.nickname`}'s settings`),
+              set(state`app.headerIcon`, 'user'),
               when(tab), {
                 true: set(state`settings.currentTab`, tab),
                 false: []
@@ -44,19 +55,32 @@ function routeTo (page, tab) {
       ],
       admin: [
         set(state`app.lastVisited`, 'admin'),
-        authenticateAdmin(fetchUsers)
+        authenticateAdmin([
+          set(state`app.headerText`, 'User Admin'),
+          set(state`app.headerIcon`, 'users'),
+          fetchUsers
+        ])
       ],
       newpassword: [
         when(state`user.api.@id`), {
-          true: [],
+          true: [
+            set(state`app.headerText`, 'New Password'),
+            set(state`app.headerIcon`, 'user')
+          ],
           false: [
             set(state`app.currentPage`, 'login'),
             showFlash('You must log in to change your password', 'info')
           ]
         }
       ],
+      reset: [
+        set(state`app.headerText`, 'Reset your Password'),
+        set(state`app.headerIcon`, 'user')
+      ],
       otherwise: [
-        set(state`app.lastVisited`, page)
+        set(state`app.lastVisited`, page),
+        set(state`app.headerText`, 'Auth Boilerplate'),
+        set(state`app.headerIcon`, null)
       ]
     }
   ])

@@ -1,7 +1,7 @@
 import React from 'react'
 import {connect} from 'cerebral/react'
 import {state} from 'cerebral/tags'
-import {Grid, Header, Icon, Menu} from 'semantic-ui-react'
+import {Grid, Menu} from 'semantic-ui-react'
 import Profile from './Profile'
 import Email from './Email'
 import Password from './Password'
@@ -22,14 +22,6 @@ export default connect({
     const Tab = tabs[currentTab]
     return (
       <Grid container stackable padded='vertically' centered>
-        <Grid.Row columns={2}>
-          <Grid.Column>
-            <Header inverted as='h1' textAlign='center' color='blue' icon>
-              <Icon name='user' />
-              {nickname}'s settings
-            </Header>
-          </Grid.Column>
-        </Grid.Row>
         <Grid.Row columns={3} centered>
           <Grid.Column>
             <Menu

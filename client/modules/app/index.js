@@ -15,6 +15,8 @@ export default (urlParams) => ({controller, path}) => {
     state: {
       currentPage: null,
       lastVisited: null,
+      headerText: '',
+      headerIcon: null,
       flash: urlParams['flash'],
       flashType: urlParams['flashType'],
       initialFlash: urlParams['flash'] !== null

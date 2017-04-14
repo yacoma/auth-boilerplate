@@ -2,8 +2,6 @@ import React from 'react'
 import {connect} from 'cerebral/react'
 import {state} from 'cerebral/tags'
 import {Container} from 'semantic-ui-react'
-import Navbar from '../Navbar'
-import Flash from '../Flash'
 import Home from '../Home'
 import Private from '../Private'
 import Login from '../Login'
@@ -12,6 +10,9 @@ import ResetPassword from '../ResetPassword'
 import NewPassword from '../NewPassword'
 import Admin from '../Admin'
 import Settings from '../Settings'
+import Navbar from './Navbar'
+import Header from './Header'
+import Flash from './Flash'
 
 const pages = {
   home: Home,
@@ -33,6 +34,7 @@ export default connect({
     return (
       <Container>
         <Navbar />
+        <Header />
         <Flash />
         <Page />
       </Container>

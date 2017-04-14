@@ -1,7 +1,7 @@
 import React from 'react'
 import {connect} from 'cerebral/react'
 import {state, signal} from 'cerebral/tags'
-import {Grid, Header, Icon, Table} from 'semantic-ui-react'
+import {Grid, Table} from 'semantic-ui-react'
 import sortedUsers from '../../computed/sortedUsers'
 import Search from './Search'
 import UserRow from './UserRow'
@@ -16,14 +16,6 @@ export default connect({
   function Admin ({sortedUsers, usersSortBy, usersSortDir, sortUsersClicked}) {
     return (
       <Grid stackable padded='vertically' centered>
-        <Grid.Row>
-          <Grid.Column>
-            <Header inverted as='h1' textAlign='center' color='blue' icon>
-              <Icon name='users' />
-              User Admin
-            </Header>
-          </Grid.Column>
-        </Grid.Row>
         <Grid.Row>
           <Grid.Column style={{width: '100%', overflowX: 'auto'}}>
             <Table inverted striped definition sortable unstackable>

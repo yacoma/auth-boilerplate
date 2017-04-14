@@ -1,8 +1,7 @@
 import React from 'react'
 import {connect} from 'cerebral/react'
 import {state, signal} from 'cerebral/tags'
-import {Grid, Header, Icon, Form, Segment, Button, Dimmer, Loader}
-    from 'semantic-ui-react'
+import {Grid, Form, Segment, Button, Dimmer, Loader} from 'semantic-ui-react'
 import {EmailField} from '../fields'
 
 export default connect({
@@ -16,14 +15,6 @@ export default connect({
     }
     return (
       <Grid stackable padded='vertically' columns={2} centered>
-        <Grid.Row>
-          <Grid.Column>
-            <Header inverted as='h1' textAlign='center' color='blue' icon>
-              <Icon name='user' />
-              Reset your Password
-            </Header>
-          </Grid.Column>
-        </Grid.Row>
         <Grid.Row>
           <Grid.Column>
             <Form size='large'>

@@ -1,16 +1,9 @@
 import React from 'react'
-import { Grid, Header, Segment } from 'semantic-ui-react'
+import { Grid, Segment } from 'semantic-ui-react'
 
 export default function Home () {
   return (
     <Grid stackable padded='vertically' columns={2} centered>
-      <Grid.Row>
-        <Grid.Column>
-          <Header inverted as='h1' textAlign='center' color='blue'>
-            Auth Boilerplate
-          </Header>
-        </Grid.Column>
-      </Grid.Row>
       <Grid.Row>
         <Grid.Column>
           <Segment padded size='big'>
