@@ -47,7 +47,7 @@ function routeTo (page, tab) {
               prepareSettingsForm
             ],
             false: [
-              set(state`app.currentPage`, 'login'),
+              page === 'home' ? [] : routeTo('home'),
               showFlash('Admin cannot edit his settings', 'warning')
             ]
           }
@@ -62,14 +62,16 @@ function routeTo (page, tab) {
         ])
       ],
       newpassword: [
-        when(state`user.api.@id`), {
+        when(state`user.api.@id`, state`user.autenticated`,
+          (uid, autenticated) => uid && !autenticated
+        ), {
           true: [
             set(state`app.headerText`, 'New Password'),
             set(state`app.headerIcon`, 'user')
           ],
           false: [
-            set(state`app.currentPage`, 'login'),
-            showFlash('You must log in to change your password', 'info')
+            page === 'home' ? [] : routeTo('home'),
+            showFlash('To reset your password use the reset link', 'info')
           ]
         }
       ],

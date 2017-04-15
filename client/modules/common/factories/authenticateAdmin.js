@@ -9,6 +9,8 @@ function authenticateAdmin (continueSequence = []) {
       true: continueSequence,
       false: [
         set(state`app.currentPage`, 'login'),
+        set(state`app.headerText`, 'Log in your account'),
+        set(state`app.headerIcon`, 'user'),
         showFlash('You need Admin permissions to view this page', 'info')
       ]
     }

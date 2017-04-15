@@ -75,13 +75,13 @@ test('route to private should redirect to login', t => {
     ])
 })
 
-test('route to newpassword should redirect to login', t => {
+test('route to newpassword should redirect to home', t => {
   return cerebral.runSignal('app.pageRouted', {page: 'newpassword'})
     .then(({state}) => [
       t.is(state.user.api['@id'], null),
-      t.is(state.app.currentPage, 'login'),
+      t.is(state.app.currentPage, 'home'),
       t.not(state.app.lastVisited, 'newpassword'),
-      t.is(state.app.flash, 'You must log in to change your password'),
+      t.is(state.app.flash, 'To reset your password use the reset link'),
       t.is(state.app.flashType, 'info')
     ])
 })
