@@ -62,8 +62,8 @@ function routeTo (page, tab) {
         ])
       ],
       newpassword: [
-        when(state`user.api.@id`, state`user.autenticated`,
-          (uid, autenticated) => uid && !autenticated
+        when(state`user.api.@id`, state`user.authenticated`,
+          (uid, authenticated) => uid && !authenticated
         ), {
           true: [
             set(state`app.headerText`, 'New Password'),

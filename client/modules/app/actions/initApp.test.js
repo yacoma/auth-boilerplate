@@ -19,7 +19,7 @@ test.serial('should initialize app state', t => {
         email: '',
         nickname: '',
         isAdmin: false,
-        autenticated: false,
+        authenticated: false,
         token: {},
         api: {}
       }
@@ -29,7 +29,7 @@ test.serial('should initialize app state', t => {
     ]
   })
   .then(({state}) => [
-    t.true(state.user.autenticated),
+    t.true(state.user.authenticated),
     t.is(state.user.api['@id'], '/users/1'),
     t.is(state.user.email, 'admin@example.com'),
     t.is(state.user.nickname, 'Admin'),
@@ -55,7 +55,7 @@ test.serial('should fail initialize app state when token and refreshUntil expire
         email: '',
         nickname: '',
         isAdmin: false,
-        autenticated: false,
+        authenticated: false,
         token: {},
         api: {}
       }
@@ -65,7 +65,7 @@ test.serial('should fail initialize app state when token and refreshUntil expire
     ]
   })
   .then(({state}) => [
-    t.false(state.user.autenticated),
+    t.false(state.user.authenticated),
     t.is(localStorage.getItem('jwtHeader'), null)
   ])
 })

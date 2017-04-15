@@ -20,7 +20,7 @@ export default (urlParams) => (module) => {
       email: '',
       nickname: '',
       isAdmin: false,
-      autenticated: false,
+      authenticated: false,
       token: {},
       api: {
         '@id': urlParams['@id']

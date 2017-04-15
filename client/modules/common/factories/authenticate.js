@@ -5,7 +5,7 @@ import showFlash from './showFlash'
 
 function authenticate (continueSequence = []) {
   return sequence('Authenticate user', [
-    when(state`user.autenticated`), {
+    when(state`user.authenticated`), {
       true: continueSequence,
       false: [
         set(state`app.currentPage`, 'login'),

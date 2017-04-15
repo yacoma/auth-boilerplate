@@ -28,7 +28,7 @@ export default connect({
           Private
         </Menu.Item>
         <Menu.Menu position='right'
-          style={{display: user.autenticated ? 'none' : 'flex'}}
+          style={{display: user.authenticated ? 'none' : 'flex'}}
         >
           <Menu.Item name='login' href='/login'>
             <Button inverted compact color='yellow'
@@ -46,7 +46,7 @@ export default connect({
           </Menu.Item>
         </Menu.Menu>
         <Menu.Menu position='right'
-          style={{display: user.autenticated ? 'flex' : 'none'}}
+          style={{display: user.authenticated ? 'flex' : 'none'}}
         >
           <Menu.Item name='settings' href='/settings'
             style={{display: user.email !== 'admin@example.com' ? 'flex' : 'none'}}

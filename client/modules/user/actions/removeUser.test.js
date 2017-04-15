@@ -21,7 +21,7 @@ test('should remove user state', t => {
         email: 'admin@example.com',
         nickname: 'Admin',
         isAdmin: true,
-        autenticated: true,
+        authenticated: true,
         token: {},
         api: {
           '@id': '/users/1'
@@ -41,7 +41,7 @@ test('should remove user state', t => {
     ]
   })
   .then(({state}) => [
-    t.false(state.user.autenticated),
+    t.false(state.user.authenticated),
     t.deepEqual(state.user.api, {}),
     t.deepEqual(state.user.token, {}),
     t.is(state.user.email, ''),
