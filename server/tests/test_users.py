@@ -123,7 +123,7 @@ def test_refresh_token():
 
     claims_set = {
         'sub': 'mary@example.com',
-        'uid': '/user/2',
+        'uid': '/users/2',
         'refresh_until': now - 3,
         'nonce': nonce,
         'exp': now + 3
