@@ -1,19 +1,18 @@
 import base64UrlDecode from 'jwt-decode/lib/base64_url_decode'
+import uuid from 'uuid'
 
 import {Controller} from 'cerebral'
-import {props} from 'cerebral/tags'
 import Devtools from 'cerebral/devtools'
-import Router from 'cerebral-router'
 import HttpProvider from 'cerebral-provider-http'
 import FormsProvider from 'cerebral-provider-forms'
 import StorageProvider from 'cerebral-provider-storage'
 import {ContextProvider} from 'cerebral/providers'
-import uuid from 'uuid'
 
 import App from './modules/app'
 import User from './modules/user'
 import Admin from './modules/admin'
 import Settings from './modules/settings'
+import Router from './router'
 
 const jwtHeader = localStorage.getItem('jwtHeader')
   ? JSON.parse(localStorage.getItem('jwtHeader'))
@@ -60,21 +59,7 @@ const controller = Controller({
     user: User({'@id': urlParams['@id']}),
     admin: Admin,
     settings: Settings,
-    router: Router({
-      filterFalsy: true,
-      routes: [
-        {
-          path: '/settings/:tab?',
-          map: {tab: props`tab`},
-          signal: 'app.settingsRouted'
-        },
-        {
-          path: '/:page?',
-          map: {page: props`page`},
-          signal: 'app.pageRouted'
-        }
-      ]
-    })
+    router: Router
   },
   providers: [
     HttpProvider({

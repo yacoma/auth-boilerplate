@@ -38,84 +38,11 @@ test.beforeEach(t => {
   })
 })
 
-test('page should route to home', t => {
-  return cerebral.runSignal('app.pageRouted', {page: 'home'})
-    .then(({state}) => [
-      t.is(state.app.currentPage, 'home'),
-      t.is(state.app.lastVisited, 'home'),
-      t.false(state.user.autenticated)
-    ])
-})
-
-test('route to login should not change lastVisited', t => {
-  return cerebral.runSignal('app.pageRouted', {page: 'login'})
-    .then(({state}) => [
-      t.is(state.app.currentPage, 'login'),
-      t.not(state.app.lastVisited, 'login')
-    ])
-})
-
-test('route to register should not change lastVisited', t => {
-  return cerebral.runSignal('app.pageRouted', {page: 'register'})
-    .then(({state}) => [
-      t.is(state.app.currentPage, 'register'),
-      t.not(state.app.lastVisited, 'register')
-    ])
-})
-
-test('route to private should redirect to login', t => {
-  return cerebral.runSignal('app.pageRouted', {page: 'private'})
-    .then(({state}) => [
-      t.false(state.user.autenticated),
-      t.is(state.app.currentPage, 'login'),
-      t.is(state.app.lastVisited, 'private'),
-      t.is(state.app.flash, 'You must log in to view this page'),
-      t.is(state.app.flashType, 'info')
-    ])
-})
-
-test('route to newpassword should redirect to home', t => {
-  return cerebral.runSignal('app.pageRouted', {page: 'newpassword'})
-    .then(({state}) => [
-      t.is(state.user.api['@id'], null),
-      t.is(state.app.currentPage, 'home'),
-      t.not(state.app.lastVisited, 'newpassword')
-    ])
-})
-
-test('route to newpassword with passed @id', t => {
-  cerebral = CerebralTest({
-    modules: {
-      app: App({'flash': null, 'flashType': null}),
-      user: User({'@id': '/user/1'})
-    },
-    providers: [
-      HttpProvider({
-        baseUrl: '/api',
-        headers: {
-          'Content-Type': 'application/json; charset=UTF-8',
-          'Accept': 'application/json',
-          'Authorization': jwtHeader
-        }
-      }),
-      StorageProvider({target: localStorage})
-    ]
-
-  })
-
-  return cerebral.runSignal('app.pageRouted', {page: 'newpassword'})
-    .then(({state}) => [
-      t.is(state.user.api['@id'], '/user/1'),
-      t.is(state.app.currentPage, 'newpassword'),
-      t.not(state.app.lastVisited, 'newpassword')
-    ])
-})
-
-test('should autenticate when valid token in localStorage', t => {
+test('should authenticate when valid token in localStorage', t => {
   localStorage.setItem('jwtHeader', JSON.stringify(jwtHeader))
   return cerebral.runSignal('app.appMounted')
     .then(({state}) => [
-      t.true(state.user.autenticated),
+      t.true(state.user.authenticated),
       t.is(state.user.nickname, 'Admin')
     ])
 })
@@ -166,7 +93,7 @@ test('should refresh token when expired token and refresh allowed', t => {
 
   return cerebral.runSignal('app.appMounted')
     .then(({state}) => [
-      t.true(state.user.autenticated),
+      t.true(state.user.authenticated),
       t.is(state.user.nickname, 'Admin')
     ])
 })
