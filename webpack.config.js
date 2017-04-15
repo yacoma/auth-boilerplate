@@ -34,7 +34,7 @@ module.exports = {
   devtool: 'source-map',
   output: {
     path: path.resolve('static'),
-    publicPath: '/static',
+    publicPath: '/static/',
     filename: 'auth.js'
   },
   resolve: {
@@ -46,6 +46,21 @@ module.exports = {
   },
   module: {
     rules: [{
+      test: /\.css$/,
+      use: [
+        'style-loader',
+        'css-loader'
+      ]
+    }, {
+      test: /\.html$/,
+      loader: 'file-loader?name=[name].[ext]'
+    }, {
+      test: /\.(png|jpg|gif)$/,
+      loader: 'file-loader?name=img/[name].[ext]'
+    }, {
+      test: /\.(ttf|eot|svg|woff(2)?)$/,
+      loader: 'file-loader?name=fonts/[name].[ext]'
+    }, {
       test: /\.js?$/,
       include: /client/,
       loader: 'babel-loader',

@@ -1,0 +1,9 @@
+body {
+  background-color: #444;
+}
+.ui.form .ui.segment {
+  background-color: #DDD;
+}
+.ui.inverted.sortable.table thead th {
+  color: rgba(255,255,255,.9);
+}
