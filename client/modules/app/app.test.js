@@ -9,10 +9,9 @@ import User from '../user'
 
 const jwtHeader = (
   'JWT eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJ1aWQiOiIvdXNlcnMvMSIs' +
-  'Im5pY2tuYW1lIjoiQWRtaW4iLCJsYW5ndWFnZSI6IiIsIm5vbmNlIjoiOTFlNzg3Z' +
-  'jhhZTllNGE2YTllMzM3NTUzMWNhZTQ5YWMiLCJzdWIiOiJhZG1pbkBleGFtcGxlLm' +
-  'NvbSIsInJlZnJlc2hfdW50aWwiOjE0OTA5NjkxNzksImlzQWRtaW4iOnRydWV9.lE' +
-  'TPoIBVbyZ3XUPzGIstyzNx8SNg9SQYJNCfKFynWiA'
+  'Im5pY2tuYW1lIjoiQWRtaW4iLCJub25jZSI6IjkxZTc4N2Y4YWU5ZTRhNmE5ZTMzN' +
+  'zU1MzFjYWU0OWFjIiwic3ViIjoiYWRtaW5AZXhhbXBsZS5jb20iLCJpc0FkbWluIj' +
+  'p0cnVlfQ.anr0ZkRErPzXT0DAhLjSegaC9vpK7u2FgqETzEg-h-A'
 )
 
 let cerebral
@@ -80,9 +79,7 @@ test('route to newpassword should redirect to home', t => {
     .then(({state}) => [
       t.is(state.user.api['@id'], null),
       t.is(state.app.currentPage, 'home'),
-      t.not(state.app.lastVisited, 'newpassword'),
-      t.is(state.app.flash, 'To reset your password use the reset link'),
-      t.is(state.app.flashType, 'info')
+      t.not(state.app.lastVisited, 'newpassword')
     ])
 })
 
@@ -114,34 +111,40 @@ test('route to newpassword with passed @id', t => {
     ])
 })
 
-test('should login when valid token in localStorage', t => {
+test('should autenticate when valid token in localStorage', t => {
   localStorage.setItem('jwtHeader', JSON.stringify(jwtHeader))
-  return cerebral.runSignal('app.pageRouted', {page: 'private'})
+  return cerebral.runSignal('app.appMounted')
     .then(({state}) => [
-      t.is(state.app.currentPage, 'private'),
-      t.is(state.app.lastVisited, 'private'),
-      t.true(state.user.autenticated)
+      t.true(state.user.autenticated),
+      t.is(state.user.nickname, 'Admin')
     ])
 })
 
 test('should refresh token when expired token and refresh allowed', t => {
   const expiredJwtHeader = (
     'JWT eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJhZG1pbkB' +
-    'leGFtcGxlLmNvbSIsImxhbmd1YWdlIjoiIiwidWlkIjoiL3VzZXJzLzEiLCJ' +
-    'pc0FkbWluIjp0cnVlLCJleHAiOjE0OTA5OTYxMzQuMCwibmlja25hbWUiOiJ' +
-    'BZG1pbiIsIm5vbmNlIjoiOTFlNzg3ZjhhZTllNGE2YTllMzM3NTUzMWNhZTQ' +
-    '5YWMifQ.wxNIdqI__6j6OlrqWp9ftn_hxhS7ANmTGefTzldzjQ0'
+    'leGFtcGxlLmNvbSIsInVpZCI6Ii91c2Vycy8xIiwibmlja25hbWUiOiJBZG1' +
+    'pbiIsImlzQWRtaW4iOnRydWUsImV4cCI6MTQ5MDk5NjEzNCwibm9uY2UiOiI' +
+    '5MWU3ODdmOGFlOWU0YTZhOWUzMzc1NTMxY2FlNDlhYyJ9.Id7aZJ-NajQv6G' +
+    'loYjwq1ZBuNUKVMJo04FqW3WKG_TY'
   )
 
   const returnJwtHeader = (
-    'JWT eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJuaWNrbmFtZSI6IkF' +
-    'kbWluIiwibm9uY2UiOiI3NzY0N2YxODQzZDI0MDkxYTA0MmQzYzY1ZWM3OTd' +
-    'jOSIsImxhbmd1YWdlIjoiIiwiZXhwIjoxNDkxMjYwNDYxLCJ1aWQiOiIvdXN' +
-    'lcnMvMSIsInN1YiI6ImFkbWluQGV4YW1wbGUuY29tIiwiaXNBZG1pbiI6dHJ' +
-    '1ZX0.NkXoo_ryOyvuybbx8zXwlxrGI44XWflifMpufQu_4xk'
+    'JWT eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiJhZG1pbkB' +
+    'leGFtcGxlLmNvbSIsInVpZCI6Ii91c2Vycy8xIiwibmlja25hbWUiOiJBZG1' +
+    'pbiIsImlzQWRtaW4iOnRydWUsIm5vbmNlIjoiNzc2NDdmMTg0M2QyNDA5MWE' +
+    'wNDJkM2M2NWVjNzk3YzkifQ.Xp7_EUm1YFHqHhKFrPOivzMsos1YW0uyE13k' +
+    'XYzuxuc'
   )
 
   localStorage.setItem('jwtHeader', JSON.stringify(expiredJwtHeader))
+
+  mock.get('/api/refresh', (req, res) => {
+    return res
+      .status(200)
+      .header('Content-Type', 'application/json')
+      .header('Authorization', returnJwtHeader)
+  })
 
   cerebral = CerebralTest({
     modules: {
@@ -161,18 +164,9 @@ test('should refresh token when expired token and refresh allowed', t => {
     ]
   })
 
-  mock.post('/api/refresh', (req, res) => {
-    return res
-      .status(200)
-      .header('Content-Type', 'application/json')
-      .header('Authorization', returnJwtHeader)
-  })
-
-  return cerebral.runSignal('app.pageRouted', {page: 'home'})
+  return cerebral.runSignal('app.appMounted')
     .then(({state}) => [
-      t.is(state.app.currentPage, 'home'),
-      t.is(state.app.lastVisited, 'home'),
       t.true(state.user.autenticated),
-      t.true(state.user.nickname, 'Admin')
+      t.is(state.user.nickname, 'Admin')
     ])
 })

@@ -10,10 +10,9 @@ import User from '.'
 
 const jwtHeader = (
   'JWT eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJ1aWQiOiIvdXNlcnMvMSIs' +
-  'Im5pY2tuYW1lIjoiQWRtaW4iLCJsYW5ndWFnZSI6IiIsIm5vbmNlIjoiOTFlNzg3Z' +
-  'jhhZTllNGE2YTllMzM3NTUzMWNhZTQ5YWMiLCJzdWIiOiJhZG1pbkBleGFtcGxlLm' +
-  'NvbSIsInJlZnJlc2hfdW50aWwiOjE0OTA5NjkxNzksImlzQWRtaW4iOnRydWV9.lE' +
-  'TPoIBVbyZ3XUPzGIstyzNx8SNg9SQYJNCfKFynWiA'
+  'Im5pY2tuYW1lIjoiQWRtaW4iLCJub25jZSI6IjkxZTc4N2Y4YWU5ZTRhNmE5ZTMzN' +
+  'zU1MzFjYWU0OWFjIiwic3ViIjoiYWRtaW5AZXhhbXBsZS5jb20iLCJpc0FkbWluIj' +
+  'p0cnVlfQ.anr0ZkRErPzXT0DAhLjSegaC9vpK7u2FgqETzEg-h-A'
 )
 
 let cerebral
@@ -119,10 +118,24 @@ test('should be logged out', t => {
 })
 
 test.serial('should login on registration', t => {
+  const testJwtHeader = (
+    'JWT eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJ1aWQiOiIvdXNlcnMvMiIs' +
+    'Im5pY2tuYW1lIjoiVGVzdCIsIm5vbmNlIjoiOTFlNzg3ZjhhZTllNGE2YTllMzM3N' +
+    'TUzMWNhZTQ5YWMiLCJzdWIiOiJ0ZXN0QGV4YW1wbGUuY29tIiwiaXNBZG1pbiI6Zm' +
+    'Fsc2V9.hdoa3ohnx1evfj35OFavUgT34tmE3DAGm2Ys91Y0gkE'
+  )
+
   mock.post('/api/users', (req, res) => {
     return res
       .status(201)
       .header('Content-Type', 'application/json')
+  })
+
+  mock.post('/api/login', (req, res) => {
+    return res
+      .status(200)
+      .header('Content-Type', 'application/json')
+      .header('Authorization', testJwtHeader)
   })
 
   cerebral.setState('user.registerForm.nickname.value', 'Test')
@@ -133,10 +146,11 @@ test.serial('should login on registration', t => {
   return cerebral.runSignal('user.registerFormSubmitted')
     .then(({state}) => ([
       t.true(state.user.autenticated),
-      t.is(state.user.api['@id'], '/users/1'),
+      t.is(state.user.api['@id'], '/users/2'),
       t.is(state.user.email, 'test@example.com'),
       t.is(state.user.nickname, 'Test'),
-      t.is(localStorage.getItem('jwtHeader'), '"' + jwtHeader + '"'),
+      t.is(state.user.isAdmin, false),
+      t.is(localStorage.getItem('jwtHeader'), '"' + testJwtHeader + '"'),
       t.is(state.app.currentPage, 'home'),
       t.is(state.user.registerForm.nickname.value, ''),
       t.is(state.user.registerForm.email.value, ''),
@@ -146,8 +160,8 @@ test.serial('should login on registration', t => {
     ]))
 })
 
-test.serial('should not register when nickname is Admin', t => {
-  cerebral.setState('user.registerForm.nickname.value', 'Admin')
+test.serial('should not register when email is admin@example.com', t => {
+  cerebral.setState('user.registerForm.nickname.value', 'Admin0')
   cerebral.setState('user.registerForm.email.value', 'admin@example.com')
   cerebral.setState('user.registerForm.password.value', 'admin0')
   cerebral.setState('user.registerForm.confirmPassword.value', 'admin0')
@@ -155,7 +169,7 @@ test.serial('should not register when nickname is Admin', t => {
   return cerebral.runSignal('user.registerFormSubmitted')
     .then(({state}) => ([
       t.is(state.app.currentPage, null),
-      t.is(state.user.registerForm.nickname.value, 'Admin'),
+      t.is(state.user.registerForm.nickname.value, 'Admin0'),
       t.is(state.user.registerForm.email.value, 'admin@example.com'),
       t.is(state.user.registerForm.password.value, ''),
       t.is(state.user.registerForm.confirmPassword.value, ''),
