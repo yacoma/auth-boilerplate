@@ -13,6 +13,8 @@ import User from './modules/user'
 import Admin from './modules/admin'
 import Settings from './modules/settings'
 import Router from './router'
+import {AuthenticationError} from 'modules/common/errors'
+import routeToLogin from 'modules/common/actions/routeToLogin'
 
 const jwtHeader = localStorage.getItem('jwtHeader')
   ? JSON.parse(localStorage.getItem('jwtHeader'))
@@ -85,7 +87,10 @@ const controller = Controller({
     }),
     StorageProvider({target: localStorage}),
     ContextProvider({uuid})
-  ]
+  ],
+  catch: new Map([
+    [AuthenticationError, routeToLogin]
+  ])
 })
 
 export default controller

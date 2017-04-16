@@ -2,8 +2,8 @@ import {sequence} from 'cerebral'
 import {set, equals, when} from 'cerebral/operators'
 import {state, string} from 'cerebral/tags'
 import showFlash from './showFlash'
-import authenticate from './authenticate'
-import authenticateAdmin from './authenticateAdmin'
+import authenticate from '../actions/authenticate'
+import authenticateAdmin from '../actions/authenticateAdmin'
 import prepareSettingsForm from '../../settings/actions/prepareSettingsForm'
 import fetchUsers from '../../admin/actions/fetchUsers'
 
@@ -20,10 +20,9 @@ function routeTo (page, tab) {
     equals(state`app.currentPage`), {
       private: [
         set(state`app.lastVisited`, 'private'),
-        authenticate([
-          set(state`app.headerText`, string`Hello ${state`user.nickname`}!`),
-          set(state`app.headerIcon`, null)
-        ])
+        authenticate,
+        set(state`app.headerText`, string`Hello ${state`user.nickname`}!`),
+        set(state`app.headerIcon`, null)
       ],
       login: [
         set(state`app.headerText`, 'Log in your account'),
@@ -35,31 +34,29 @@ function routeTo (page, tab) {
       ],
       settings: [
         set(state`app.lastVisited`, 'settings'),
-        authenticate([
-          when(state`user.email`, email => email !== 'admin@example.com'), {
-            true: [
-              set(state`app.headerText`, string`${state`user.nickname`}'s settings`),
-              set(state`app.headerIcon`, 'user'),
-              when(tab), {
-                true: set(state`settings.currentTab`, tab),
-                false: []
-              },
-              prepareSettingsForm
-            ],
-            false: [
-              page === 'home' ? [] : routeTo('home'),
-              showFlash('Admin cannot edit his settings', 'warning')
-            ]
-          }
-        ])
+        authenticate,
+        when(state`user.email`, email => email !== 'admin@example.com'), {
+          true: [
+            set(state`app.headerText`, string`${state`user.nickname`}'s settings`),
+            set(state`app.headerIcon`, 'user'),
+            when(tab), {
+              true: set(state`settings.currentTab`, tab),
+              false: []
+            },
+            prepareSettingsForm
+          ],
+          false: [
+            page === 'home' ? [] : routeTo('home'),
+            showFlash('Admin cannot edit his settings', 'warning')
+          ]
+        }
       ],
       admin: [
         set(state`app.lastVisited`, 'admin'),
-        authenticateAdmin([
-          set(state`app.headerText`, 'User Admin'),
-          set(state`app.headerIcon`, 'users'),
-          fetchUsers
-        ])
+        authenticateAdmin,
+        set(state`app.headerText`, 'User Admin'),
+        set(state`app.headerIcon`, 'users'),
+        fetchUsers
       ],
       newpassword: [
         when(state`user.api.@id`, state`user.authenticated`,
