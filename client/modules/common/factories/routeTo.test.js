@@ -56,24 +56,6 @@ test('route to private should set header title', t => {
   ])
 })
 
-test('not authenticated route to private should redirect to login', t => {
-  return runAction(routeTo('private'), {
-    state: {
-      app: {},
-      user: {
-        authenticated: false,
-        nickname: 'Test'
-      }
-    }
-  })
-  .then(({state}) => [
-    t.is(state.app.currentPage, 'login'),
-    t.is(state.app.lastVisited, 'private'),
-    t.is(state.app.flash, 'You must log in to view this page'),
-    t.is(state.app.flashType, 'info')
-  ])
-})
-
 test('route to newpassword should redirect to home', t => {
   return runAction(routeTo('newpassword'), {
     state: {
@@ -151,45 +133,5 @@ test('settings should set currentTab and nickname', t => {
     t.is(state.settings.profileForm.nickname.value, 'Test'),
     t.is(state.app.headerText, "Test's settings"),
     t.is(state.app.headerIcon, 'user')
-  ])
-})
-
-test('settings should redirect to login when not authenticated', t => {
-  return runAction(routeTo('settings', 'email'), {
-    state: {
-      app: {}
-    }
-  })
-  .then(({state}) => [
-    t.is(state.app.currentPage, 'login'),
-    t.is(state.app.lastVisited, 'settings')
-  ])
-})
-
-test('admin should redirect to login when not authenticated', t => {
-  return runAction(routeTo('admin'), {
-    state: {
-      app: {}
-    }
-  })
-  .then(({state}) => [
-    t.is(state.app.currentPage, 'login'),
-    t.is(state.app.lastVisited, 'admin')
-  ])
-})
-
-test('admin should redirect to login when not isAdmin', t => {
-  return runAction(routeTo('admin'), {
-    state: {
-      app: {},
-      user: {
-        authenticated: true,
-        isAdmin: false
-      }
-    }
-  })
-  .then(({state}) => [
-    t.is(state.app.currentPage, 'login'),
-    t.is(state.app.lastVisited, 'admin')
   ])
 })

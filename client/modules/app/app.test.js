@@ -6,6 +6,8 @@ import {CerebralTest} from 'cerebral/test'
 
 import App from '.'
 import User from '../user'
+import {AuthenticationError} from '../common/errors'
+import routeToLogin from '../common/actions/routeToLogin'
 
 const jwtHeader = (
   'JWT eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJ1aWQiOiIvdXNlcnMvMSIs' +
@@ -34,11 +36,14 @@ test.beforeEach(t => {
         }
       }),
       StorageProvider({target: localStorage})
-    ]
+    ],
+    catch: new Map([
+      [AuthenticationError, routeToLogin]
+    ])
   })
 })
 
-test('should authenticate when valid token in localStorage', t => {
+test.serial('should authenticate when valid token in localStorage', t => {
   localStorage.setItem('jwtHeader', JSON.stringify(jwtHeader))
   return cerebral.runSignal('app.appMounted')
     .then(({state}) => [
@@ -47,7 +52,7 @@ test('should authenticate when valid token in localStorage', t => {
     ])
 })
 
-test('should refresh token when expired token and refresh allowed', t => {
+test.serial('should refresh token when expired token and refresh allowed', t => {
   const expiredJwtHeader = (
     'JWT eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJhZG1pbkB' +
     'leGFtcGxlLmNvbSIsInVpZCI6Ii91c2Vycy8xIiwibmlja25hbWUiOiJBZG1' +
@@ -96,4 +101,64 @@ test('should refresh token when expired token and refresh allowed', t => {
       t.true(state.user.authenticated),
       t.is(state.user.nickname, 'Admin')
     ])
+})
+
+test.serial('unauthenticated route to private should redirect to login', async t => {
+  const error = await t.throws(
+    cerebral.runSignal('app.pageRouted', {page: 'private'}),
+    AuthenticationError
+  )
+
+  t.is(error.message, 'You must log in to view this page')
+  t.is(cerebral.getState('app.currentPage'), 'login')
+  t.is(cerebral.getState('app.lastVisited'), 'private')
+})
+
+test.serial('unauthenticated route to settings should redirect to login', async t => {
+  const error = await t.throws(
+    cerebral.runSignal('app.settingsRouted', {tab: 'email'}),
+    AuthenticationError
+  )
+
+  t.is(error.message, 'You must log in to view this page')
+  t.is(cerebral.getState('app.currentPage'), 'login')
+  t.is(cerebral.getState('app.lastVisited'), 'settings')
+})
+
+test.serial('unauthenticated route to admin should redirect to login', async t => {
+  cerebral.setState('user.authenticated', true)
+  const error = await t.throws(
+    cerebral.runSignal('app.pageRouted', {page: 'admin'}),
+    AuthenticationError
+  )
+
+  t.is(error.message, 'You need Admin permissions to view this page')
+  t.is(cerebral.getState('app.currentPage'), 'login')
+  t.is(cerebral.getState('app.lastVisited'), 'admin')
+})
+
+test.serial('route to admin should redirect to login when not isAdmin', async t => {
+  cerebral.setState('user.authenticated', true)
+
+  const error = await t.throws(
+    cerebral.runSignal('app.pageRouted', {page: 'admin'}),
+    AuthenticationError
+  )
+
+  t.is(error.message, 'You need Admin permissions to view this page')
+  t.is(cerebral.getState('app.currentPage'), 'login')
+  t.is(cerebral.getState('app.lastVisited'), 'admin')
+})
+
+test.serial('route to admin should work when isAdmin', t => {
+  cerebral.setState('user.authenticated', true)
+  cerebral.setState('user.isAdmin', true)
+
+  return cerebral.runSignal('app.pageRouted', {page: 'admin'})
+  .then(({state}) => ([
+    t.true(state.user.authenticated),
+    t.true(state.user.isAdmin),
+    t.is(state.app.currentPage, 'admin'),
+    t.is(state.app.lastVisited, 'admin')
+  ]))
 })
