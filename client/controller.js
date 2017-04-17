@@ -1,12 +1,11 @@
 import base64UrlDecode from 'jwt-decode/lib/base64_url_decode'
 import uuid from 'uuid'
 
-import {Controller} from 'cerebral'
+import {Controller, provide} from 'cerebral'
 import Devtools from 'cerebral/devtools'
 import HttpProvider from 'cerebral-provider-http'
 import FormsProvider from 'cerebral-provider-forms'
 import StorageProvider from 'cerebral-provider-storage'
-import {ContextProvider} from 'cerebral/providers'
 
 import App from './modules/app'
 import User from './modules/user'
@@ -64,6 +63,7 @@ const controller = Controller({
     router: Router
   },
   providers: [
+    provide('uuid', uuid),
     HttpProvider({
       baseUrl: '/api',
       headers: {
@@ -85,8 +85,7 @@ const controller = Controller({
         }
       }
     }),
-    StorageProvider({target: localStorage}),
-    ContextProvider({uuid})
+    StorageProvider({target: localStorage})
   ],
   catch: new Map([
     [AuthenticationError, routeToLogin]
