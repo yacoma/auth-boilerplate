@@ -4,7 +4,7 @@ import {set, when} from 'cerebral/operators'
 import {httpPut} from 'cerebral-provider-http/operators'
 import showValidationError from '../../common/factories/showValidationError'
 
-export default sequence('Toggle is Admin', [
+export default sequence('Toggle Admin permissions', [
   set(state`admin.users.${props`uid`}.toggleAdminIsLoading`, true),
   when(state`admin.users.${props`uid`}.isAdmin`), {
     true: [
@@ -16,7 +16,7 @@ export default sequence('Toggle is Admin', [
       set(props`groups`, ['Admin'])
     ]
   },
-  httpPut(string`/${state`admin.users.${props`uid`}.@id`}`, {
+  httpPut(string`${state`admin.users.${props`uid`}.@id`}`, {
     groups: props`groups`
   }), {
     success: [

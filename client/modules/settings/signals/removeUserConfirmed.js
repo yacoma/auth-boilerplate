@@ -19,7 +19,7 @@ export default sequence('Delete yourself', [
       }), {
         success: [
           set(state`settings.accountForm.password.value`, ''),
-          httpDelete(string`/${state`user.api.@id`}`), {
+          httpDelete(string`${state`user.api.@id`}`), {
             success: [
               removeUser,
               set(state`settings.accountForm.isLoading`, false),

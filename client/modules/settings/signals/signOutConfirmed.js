@@ -17,7 +17,7 @@ export default sequence('Sign-out yourself', [
       }), {
         success: [
           set(state`settings.accountForm.password.value`, ''),
-          httpGet(string`/${state`user.api.@id`}/signout`), {
+          httpGet(string`${state`user.api.@id`}/signout`), {
             success: [
               set(state`settings.accountForm.isLoading`, false),
               showFlash(
