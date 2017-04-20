@@ -46,7 +46,7 @@ function routeTo (page, tab) {
             prepareSettingsForm
           ],
           false: [
-            page === 'home' ? [] : routeTo('home'),
+            page !== 'home' ? routeTo('home') : [],
             showFlash('Admin cannot edit his settings', 'warning')
           ]
         }
@@ -67,7 +67,7 @@ function routeTo (page, tab) {
             set(state`app.headerIcon`, 'user')
           ],
           false: [
-            page === 'home' ? [] : routeTo('home'),
+            page !== 'home' ? routeTo('home') : [],
             showFlash('To reset your password use the reset link', 'info')
           ]
         }

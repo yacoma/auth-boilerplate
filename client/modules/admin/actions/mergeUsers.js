@@ -3,12 +3,12 @@ function mergeUsers ({props, state, uuid}) {
     let orderKey = 1
     for (const user of props.result.users) {
       user['orderKey'] = orderKey
-      const usersLoaded = state.get('admin.users')
-      const uidLoaded = Object.keys(usersLoaded).filter(uid => {
-        return usersLoaded[uid]['email'] === user['email']
-      })
-      if (uidLoaded[0]) {
-        state.merge(`admin.users.${uidLoaded[0]}`, user)
+      const usersInState = state.get('admin.users')
+      const uidInState = Object.keys(usersInState).filter(uid => {
+        return usersInState[uid]['email'] === user['email']
+      })[0]
+      if (uidInState) {
+        state.merge(`admin.users.${uidInState}`, user)
       } else {
         state.set(`admin.users.${uuid()}`, user)
       }
