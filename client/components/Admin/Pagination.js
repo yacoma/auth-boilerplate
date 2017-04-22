@@ -53,7 +53,7 @@ export default connect({
         <Menu.Item>
           users/page:
         </Menu.Item>
-        <Dropdown item selection floating className='upward'
+        <Dropdown item selection upward floating
           defaultValue={pageSize}
           options={paginationOptions}
           onChange={(e, {value}) => pageSizeChanged({value})}
