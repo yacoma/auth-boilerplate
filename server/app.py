@@ -1,16 +1,14 @@
 import yaml
-from pony.orm import db_session
-from pymitter import EventEmitter
 
 import morepath
 from reg import match_key
 from more.jwtauth import JWTIdentityPolicy
 from more.cerberus import CerberusApp
+from more.pony import PonyApp
+from more.emit import EmitApp
 
 
-class App(CerberusApp):
-
-    signal = EventEmitter()
+class App(CerberusApp, PonyApp, EmitApp):
 
     @morepath.dispatch_method(match_key('name'))
     def service(self, name):
@@ -21,16 +19,6 @@ with open('server/settings/default.yml') as defaults:
     defaults_dict = yaml.load(defaults)
 
 App.init_settings(defaults_dict)
-
-
-@App.tween_factory(over=morepath.EXCVIEW)
-def pony_tween_factory(app, handler):
-
-    @db_session
-    def pony_tween(request):
-        return handler(request)
-
-    return pony_tween
 
 
 @App.identity_policy()
