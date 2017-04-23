@@ -1,0 +1,43 @@
+{
+  "parserOptions": {
+    "ecmaVersion": 2017,
+    "sourceType": "module",
+    "ecmaFeatures": {
+      "jsx": true
+    }
+  },
+  "env": {
+    "browser": true,
+    "node": true,
+    "es6": true
+  },
+  "plugins": [
+    "ava",
+    "prettier"
+  ],
+  "extends": [
+    "standard",
+    "standard-jsx",
+    "plugin:ava/recommended",
+    "prettier",
+    "prettier/react"
+  ],
+  "rules": {
+    "ava/prefer-async-await": "off",
+    "prettier/prettier": [
+      "error",
+      {
+        "trailingComma": "es5",
+        "singleQuote": true,
+        "bracketSpacing": false,
+        "semi": false
+      }
+    ]
+  },
+  "globals": {
+    "localStorage": true,
+    "URLSearchParams": true,
+    "location": true,
+    "history": true
+  }
+}
