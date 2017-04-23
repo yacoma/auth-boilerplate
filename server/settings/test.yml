@@ -10,7 +10,7 @@ jwtauth:
 database:
   provider: sqlite
   args:
-  - ":memory:"
+    - ":memory:"
   kwargs: {}
 
 smtp:

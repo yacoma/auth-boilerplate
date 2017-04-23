@@ -9,7 +9,7 @@ jwtauth:
 database:
   provider: sqlite
   args:
-  - auth.db
+    - auth.db
   kwargs:
     create_db: true
 
