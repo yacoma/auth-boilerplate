@@ -7,15 +7,16 @@ import Search from './Search'
 import UserRow from './UserRow'
 import Pagination from './Pagination'
 
-export default connect({
-  sortedUsers: sortedUsers,
-  usersSortBy: state`admin.usersSortBy`,
-  usersSortDir: state`admin.usersSortDir`,
-  sortUsersClicked: signal`admin.sortUsersClicked`
-},
-  function Admin ({sortedUsers, usersSortBy, usersSortDir, sortUsersClicked}) {
+export default connect(
+  {
+    sortedUsers: sortedUsers,
+    usersSortBy: state`admin.usersSortBy`,
+    usersSortDir: state`admin.usersSortDir`,
+    sortUsersClicked: signal`admin.sortUsersClicked`,
+  },
+  function Admin({sortedUsers, usersSortBy, usersSortDir, sortUsersClicked}) {
     return (
-      <Grid stackable padded='vertically' centered>
+      <Grid stackable padded="vertically" centered>
         <Grid.Row>
           <Grid.Column style={{width: '100%', overflowX: 'auto'}}>
             <Table inverted striped definition sortable unstackable>
@@ -37,7 +38,9 @@ export default connect({
                     E-mail address
                   </Table.HeaderCell>
                   <Table.HeaderCell
-                    sorted={usersSortBy === 'emailConfirmed' ? usersSortDir : null}
+                    sorted={
+                      usersSortBy === 'emailConfirmed' ? usersSortDir : null
+                    }
                     onClick={() => sortUsersClicked({sortBy: 'emailConfirmed'})}
                   >
                     Confirmed
@@ -66,15 +69,13 @@ export default connect({
                 </Table.Row>
               </Table.Header>
               <Table.Body>
-                {sortedUsers.map((uid) => {
-                  return (
-                    <UserRow key={uid} uid={uid} />
-                  )
+                {sortedUsers.map(uid => {
+                  return <UserRow key={uid} uid={uid} />
                 })}
               </Table.Body>
               <Table.Footer fullWidth>
                 <Table.Row>
-                  <Table.Cell colSpan='8'>
+                  <Table.Cell colSpan="8">
                     <Pagination />
                   </Table.Cell>
                 </Table.Row>

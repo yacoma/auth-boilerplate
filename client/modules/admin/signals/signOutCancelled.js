@@ -4,5 +4,5 @@ import {set} from 'cerebral/operators'
 
 export default sequence('Close confirm-sign-out-user modal', [
   set(state`admin.activeUid`, null),
-  set(state`admin.showConfirmSignOut`, false)
+  set(state`admin.showConfirmSignOut`, false),
 ])

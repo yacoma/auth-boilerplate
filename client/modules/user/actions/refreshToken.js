@@ -7,12 +7,13 @@ import initUser from './initUser'
 import showValidationError from '../../common/factories/showValidationError'
 
 export default sequence('Refresh token', [
-  httpGet('/refresh'), {
+  httpGet('/refresh'),
+  {
     success: initUser,
     error: [
       removeStorage('jwtHeader'),
-      showValidationError('Could not refresh your token!')
-    ]
+      showValidationError('Could not refresh your token!'),
+    ],
   },
-  unset(state`user.token.shouldRefresh`)
+  unset(state`user.token.shouldRefresh`),
 ])

@@ -4,5 +4,5 @@ import {set} from 'cerebral/operators'
 
 export default sequence('Show confirm-remove-user modal', [
   set(state`admin.activeUid`, props`uid`),
-  set(state`admin.showConfirmRemoveUser`, true)
+  set(state`admin.showConfirmRemoveUser`, true),
 ])

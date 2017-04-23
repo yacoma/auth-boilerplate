@@ -28,13 +28,15 @@ test('should have empty message', t => {
 
 test('should extend AuthenticationError', t => {
   class CustomAuthenticationError extends AuthenticationError {
-    constructor (message) {
+    constructor(message) {
       super(message)
       this.name = 'CustomAuthenticationError'
     }
   }
 
-  const error = new CustomAuthenticationError('Admin could not be authenticated')
+  const error = new CustomAuthenticationError(
+    'Admin could not be authenticated'
+  )
 
   t.true(error instanceof Error)
   t.true(error instanceof AuthenticationError)

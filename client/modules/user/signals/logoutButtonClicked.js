@@ -9,5 +9,5 @@ export default sequence('Log user out', [
   set(state`user.loginForm.isLoading`, false),
   removeUser,
   routeTo('home'),
-  showFlash('Good bye!', 'info')
+  showFlash('Good bye!', 'info'),
 ])

@@ -2,7 +2,7 @@ import appMounted from './signals/appMounted'
 import pageRouted from './signals/pageRouted'
 import settingsRouted from './signals/settingsRouted'
 
-export default (urlParams) => ({controller, path}) => {
+export default urlParams => ({controller, path}) => {
   controller.on('initialized', () => {
     controller.getSignal('app.appMounted')({})
   })
@@ -10,7 +10,7 @@ export default (urlParams) => ({controller, path}) => {
     signals: {
       appMounted,
       pageRouted,
-      settingsRouted
+      settingsRouted,
     },
     state: {
       currentPage: null,
@@ -19,7 +19,7 @@ export default (urlParams) => ({controller, path}) => {
       headerIcon: null,
       flash: urlParams['flash'],
       flashType: urlParams['flashType'],
-      initialFlash: urlParams['flash'] !== null
-    }
+      initialFlash: urlParams['flash'] !== null,
+    },
   }
 }

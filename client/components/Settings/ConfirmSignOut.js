@@ -3,21 +3,27 @@ import {connect} from 'cerebral/react'
 import {state, signal} from 'cerebral/tags'
 import {Button, Modal, Icon} from 'semantic-ui-react'
 
-export default connect({
-  showConfirmSignOut: state`settings.showConfirmSignOut`,
-  signOutCancelled: signal`settings.signOutCancelled`,
-  signOutConfirmed: signal`settings.signOutConfirmed`
-},
-  function ConfirmSignOut ({
-    showConfirmSignOut, signOutCancelled, signOutConfirmed
+export default connect(
+  {
+    showConfirmSignOut: state`settings.showConfirmSignOut`,
+    signOutCancelled: signal`settings.signOutCancelled`,
+    signOutConfirmed: signal`settings.signOutConfirmed`,
+  },
+  function ConfirmSignOut({
+    showConfirmSignOut,
+    signOutCancelled,
+    signOutConfirmed,
   }) {
     return (
-      <Modal basic size='small' dimmer='blurring'
+      <Modal
+        basic
+        size="small"
+        dimmer="blurring"
         open={showConfirmSignOut}
         onClose={signOutCancelled}
       >
         <Modal.Header>
-          <Icon name='sign out' />
+          <Icon name="sign out" />
           Invalidate all your tokens
         </Modal.Header>
         <Modal.Content>
@@ -30,18 +36,17 @@ export default connect({
           </p>
         </Modal.Content>
         <Modal.Actions>
-          <Button basic inverted
-            color='red'
-            onClick={() => signOutCancelled()}
-          >
-            <Icon name='remove' />
+          <Button basic inverted color="red" onClick={() => signOutCancelled()}>
+            <Icon name="remove" />
             Cancel
           </Button>
-          <Button basic inverted
-            color='green'
+          <Button
+            basic
+            inverted
+            color="green"
             onClick={() => signOutConfirmed()}
           >
-            <Icon name='checkmark' />
+            <Icon name="checkmark" />
             OK
           </Button>
         </Modal.Actions>

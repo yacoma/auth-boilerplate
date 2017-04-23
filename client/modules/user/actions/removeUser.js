@@ -1,9 +1,9 @@
-function removeUser ({state, storage, http}) {
+function removeUser({state, storage, http}) {
   storage.remove('jwtHeader')
   http.updateOptions({
     headers: {
-      'Authorization': null
-    }
+      Authorization: null,
+    },
   })
   state.set('user.email', '')
   state.set('user.nickname', '')

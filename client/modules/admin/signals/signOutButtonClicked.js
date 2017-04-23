@@ -4,5 +4,5 @@ import {set} from 'cerebral/operators'
 
 export default sequence('Sign user out', [
   set(state`admin.activeUid`, props`uid`),
-  set(state`admin.showConfirmSignOut`, true)
+  set(state`admin.showConfirmSignOut`, true),
 ])

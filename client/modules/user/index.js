@@ -5,7 +5,7 @@ import emailFormSubmitted from './signals/emailFormSubmitted'
 import passwordFormSubmitted from './signals/passwordFormSubmitted'
 import logoutButtonClicked from './signals/logoutButtonClicked'
 
-export default (urlParams) => (module) => {
+export default urlParams => module => {
   return {
     signals: {
       fieldChanged,
@@ -13,7 +13,7 @@ export default (urlParams) => (module) => {
       registerFormSubmitted,
       emailFormSubmitted,
       passwordFormSubmitted,
-      logoutButtonClicked
+      logoutButtonClicked,
     },
 
     state: {
@@ -23,69 +23,69 @@ export default (urlParams) => (module) => {
       authenticated: false,
       token: {},
       api: {
-        '@id': urlParams['@id']
+        '@id': urlParams['@id'],
       },
       loginForm: {
         email: {
           value: '',
           validationRules: ['isEmail'],
-          isRequired: true
+          isRequired: true,
         },
         password: {
           value: '',
           validationRules: ['minLength:5'],
-          isRequired: true
+          isRequired: true,
         },
         showErrors: false,
-        isLoading: false
+        isLoading: false,
       },
       registerForm: {
         nickname: {
           value: '',
           validationRules: ['minLength:3'],
-          isRequired: true
+          isRequired: true,
         },
         email: {
           value: '',
           validationRules: ['isEmail'],
-          isRequired: true
+          isRequired: true,
         },
         password: {
           value: '',
           validationRules: ['minLength:5'],
-          isRequired: true
+          isRequired: true,
         },
         confirmPassword: {
           value: '',
           validationRules: ['equalsField:password'],
-          isRequired: true
+          isRequired: true,
         },
         showErrors: false,
-        isLoading: false
+        isLoading: false,
       },
       emailForm: {
         email: {
           value: '',
           validationRules: ['isEmail'],
-          isRequired: true
+          isRequired: true,
         },
         showErrors: false,
-        isLoading: false
+        isLoading: false,
       },
       passwordForm: {
         password: {
           value: '',
           validationRules: ['minLength:5'],
-          isRequired: true
+          isRequired: true,
         },
         confirmPassword: {
           value: '',
           validationRules: ['equalsField:password'],
-          isRequired: true
+          isRequired: true,
         },
         showErrors: false,
-        isLoading: false
-      }
-    }
+        isLoading: false,
+      },
+    },
   }
 }

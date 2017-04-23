@@ -13,8 +13,9 @@ import App from './components/App'
 import injectTapEventPlugin from 'react-tap-event-plugin'
 injectTapEventPlugin()
 
-render((
+render(
   <Container controller={controller}>
     <App />
-  </Container>
-), document.querySelector('#app'))
+  </Container>,
+  document.querySelector('#app')
+)

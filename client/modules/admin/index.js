@@ -10,7 +10,7 @@ import searchSubmitted from './signals/searchSubmitted'
 import pageSizeChanged from './signals/pageSizeChanged'
 import changePageClicked from './signals/changePageClicked'
 
-export default (module) => {
+export default module => {
   return {
     signals: {
       sortUsersClicked,
@@ -23,7 +23,7 @@ export default (module) => {
       toggleAdminClicked,
       searchSubmitted,
       pageSizeChanged,
-      changePageClicked
+      changePageClicked,
     },
     state: {
       users: {},
@@ -36,7 +36,7 @@ export default (module) => {
       searchIsLoading: false,
       currentPage: 1,
       pages: 1,
-      pageSize: 30
-    }
+      pageSize: 30,
+    },
   }
 }

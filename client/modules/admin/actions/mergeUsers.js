@@ -1,4 +1,4 @@
-function mergeUsers ({props, state, uuid}) {
+function mergeUsers({props, state, uuid}) {
   if (props.result.users && props.result.users.length !== 0) {
     let orderKey = 1
     for (const user of props.result.users) {

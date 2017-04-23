@@ -1,15 +1,15 @@
 import ES6Error from 'es6-error'
 
 export class AuthenticationError extends ES6Error {
-  constructor (message = '') {
+  constructor(message = '') {
     super(message)
     this.name = 'AuthenticationError'
   }
-  toJSON () {
+  toJSON() {
     return {
       name: this.name,
       message: this.message,
-      stack: this.stack
+      stack: this.stack,
     }
   }
 }

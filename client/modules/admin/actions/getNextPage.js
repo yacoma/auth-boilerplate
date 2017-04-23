@@ -1,4 +1,4 @@
-function getNextPage ({props, state}) {
+function getNextPage({props, state}) {
   let nextPage = 1
   switch (props.nextPage) {
     case 'previous':

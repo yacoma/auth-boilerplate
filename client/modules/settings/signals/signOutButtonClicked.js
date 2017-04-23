@@ -3,5 +3,5 @@ import {state} from 'cerebral/tags'
 import {set} from 'cerebral/operators'
 
 export default sequence('Show confirm-sign-out-yourself modal', [
-  set(state`settings.showConfirmSignOut`, true)
+  set(state`settings.showConfirmSignOut`, true),
 ])

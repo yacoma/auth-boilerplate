@@ -26,7 +26,7 @@ const jwtHeader = localStorage.getItem('jwtHeader')
  * @returns {Object} - Object with keys and extracted values.
  *  If the key was not found the value is set to null.
  */
-function getUrlParams (keys) {
+function getUrlParams(keys) {
   const urlParams = new URLSearchParams(location.search)
   let urlParamsChanged = false
   const params = keys.reduce((params, key) => {
@@ -50,17 +50,17 @@ const urlParams = getUrlParams(['flash', 'flashtype', '@id'])
 const controller = Controller({
   devtools: Devtools({
     remoteDebugger: '127.0.0.1:8585',
-    reconnect: false
+    reconnect: false,
   }),
   modules: {
     app: App({
-      'flash': urlParams['flash'] ? base64UrlDecode(urlParams['flash']) : null,
-      'flashType': urlParams['flashtype']
+      flash: urlParams['flash'] ? base64UrlDecode(urlParams['flash']) : null,
+      flashType: urlParams['flashtype'],
     }),
     user: User({'@id': urlParams['@id']}),
     admin: Admin,
     settings: Settings,
-    router: Router
+    router: Router,
   },
   providers: [
     provide('uuid', uuid),
@@ -68,28 +68,26 @@ const controller = Controller({
       baseUrl: '/api',
       headers: {
         'Content-Type': 'application/json; charset=UTF-8',
-        'Accept': 'application/json',
-        'Authorization': jwtHeader
-      }
+        Accept: 'application/json',
+        Authorization: jwtHeader,
+      },
     }),
     FormsProvider({
       errorMessages: {
-        minLength (value, minLength) {
+        minLength(value, minLength) {
           return `${value} is too short - should be equal or more than ${minLength}`
         },
-        isEmail (value) {
+        isEmail(value) {
           return `${value} is not a valid email`
         },
-        equalsField (value, field) {
+        equalsField(value, field) {
           return `Not equal to ${field}`
-        }
-      }
+        },
+      },
     }),
-    StorageProvider({target: localStorage})
+    StorageProvider({target: localStorage}),
   ],
-  catch: new Map([
-    [AuthenticationError, routeToLogin]
-  ])
+  catch: new Map([[AuthenticationError, routeToLogin]]),
 })
 
 export default controller

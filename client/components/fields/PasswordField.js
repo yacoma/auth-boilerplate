@@ -5,26 +5,29 @@ import {form} from 'cerebral-provider-forms'
 import {Form, Input, Label} from 'semantic-ui-react'
 import {hasError, showError} from './utils'
 
-export default connect({
-  form: form(props`form`),
-  fieldChanged: signal`user.fieldChanged`
-},
-  function PasswordField ({path, form, fieldChanged}) {
+export default connect(
+  {
+    form: form(props`form`),
+    fieldChanged: signal`user.fieldChanged`,
+  },
+  function PasswordField({path, form, fieldChanged}) {
     return (
       <Form.Field error={hasError(form, form.password)}>
         <Input
-          type='password'
-          icon='lock'
-          iconPosition='left'
-          placeholder='password'
+          type="password"
+          icon="lock"
+          iconPosition="left"
+          placeholder="password"
           value={form.password.value}
           onChange={(e, {value}) => fieldChanged({value, field: path})}
         />
         <Label
           pointing
           basic
-          color='red'
-          style={{display: showError(form, form.password) ? 'inline-block' : 'none'}}
+          color="red"
+          style={{
+            display: showError(form, form.password) ? 'inline-block' : 'none',
+          }}
         >
           {form.password.errorMessage}
         </Label>

@@ -6,8 +6,9 @@ import refreshToken from '../../user/actions/refreshToken'
 
 export default sequence('Initiate App', [
   initApp,
-  when(state`user.token.shouldRefresh`), {
+  when(state`user.token.shouldRefresh`),
+  {
     true: refreshToken,
-    false: []
-  }
+    false: [],
+  },
 ])

@@ -6,8 +6,9 @@ import showFlash from '../factories/showFlash'
 
 export default sequence('Redirect to login', [
   routeTo('login'),
-  when(props`error.message`), {
+  when(props`error.message`),
+  {
     true: showFlash(props`error.message`, 'info'),
-    false: []
-  }
+    false: [],
+  },
 ])

@@ -22,13 +22,14 @@ const pages = {
   reset: ResetPassword,
   newpassword: NewPassword,
   admin: Admin,
-  settings: Settings
+  settings: Settings,
 }
 
-export default connect({
-  currentPage: state`app.currentPage`
-},
-  function App ({currentPage}) {
+export default connect(
+  {
+    currentPage: state`app.currentPage`,
+  },
+  function App({currentPage}) {
     const Page = pages[currentPage || 'home']
 
     return (

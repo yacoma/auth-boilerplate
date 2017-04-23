@@ -8,7 +8,7 @@ import removeUserButtonClicked from './signals/removeUserButtonClicked'
 import removeUserConfirmed from './signals/removeUserConfirmed'
 import removeUserCancelled from './signals/removeUserCancelled'
 
-export default (module) => {
+export default module => {
   return {
     signals: {
       profileFormSubmitted,
@@ -19,7 +19,7 @@ export default (module) => {
       signOutConfirmed,
       removeUserButtonClicked,
       removeUserCancelled,
-      removeUserConfirmed
+      removeUserConfirmed,
     },
 
     state: {
@@ -28,43 +28,43 @@ export default (module) => {
         nickname: {
           value: '',
           validationRules: ['minLength:3'],
-          isRequired: true
+          isRequired: true,
         },
         showErrors: false,
-        isLoading: false
+        isLoading: false,
       },
       emailForm: {
         password: {
           value: '',
           validationRules: ['minLength:5'],
-          isRequired: true
+          isRequired: true,
         },
         email: {
           value: '',
           validationRules: ['isEmail'],
-          isRequired: true
+          isRequired: true,
         },
         showErrors: false,
-        isLoading: false
+        isLoading: false,
       },
       passwordForm: {
         currentPassword: {
           value: '',
           validationRules: ['minLength:5'],
-          isRequired: true
+          isRequired: true,
         },
         password: {
           value: '',
           validationRules: ['minLength:5'],
-          isRequired: true
+          isRequired: true,
         },
         confirmPassword: {
           value: '',
           validationRules: ['equalsField:password'],
-          isRequired: true
+          isRequired: true,
         },
         showErrors: false,
-        isLoading: false
+        isLoading: false,
       },
       showConfirmSignOut: false,
       showConfirmRemoveUser: false,
@@ -72,11 +72,11 @@ export default (module) => {
         password: {
           value: '',
           validationRules: ['minLength:5'],
-          isRequired: true
+          isRequired: true,
         },
         showErrors: false,
-        isLoading: false
-      }
-    }
+        isLoading: false,
+      },
+    },
   }
 }

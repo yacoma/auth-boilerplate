@@ -7,5 +7,5 @@ export default sequence('Change page size', [
   set(state`admin.pageSize`, props`value`),
   set(state`admin.currentPage`, 1),
   set(state`admin.users`, {}),
-  fetchUsers
+  fetchUsers,
 ])

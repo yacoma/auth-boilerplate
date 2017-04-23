@@ -3,21 +3,27 @@ import {connect} from 'cerebral/react'
 import {state, signal} from 'cerebral/tags'
 import {Button, Modal, Icon} from 'semantic-ui-react'
 
-export default connect({
-  showConfirmRemoveUser: state`settings.showConfirmRemoveUser`,
-  removeUserCancelled: signal`settings.removeUserCancelled`,
-  removeUserConfirmed: signal`settings.removeUserConfirmed`
-},
-  function ConfirmRemoveUser ({
-    showConfirmRemoveUser, removeUserCancelled, removeUserConfirmed
+export default connect(
+  {
+    showConfirmRemoveUser: state`settings.showConfirmRemoveUser`,
+    removeUserCancelled: signal`settings.removeUserCancelled`,
+    removeUserConfirmed: signal`settings.removeUserConfirmed`,
+  },
+  function ConfirmRemoveUser({
+    showConfirmRemoveUser,
+    removeUserCancelled,
+    removeUserConfirmed,
   }) {
     return (
-      <Modal basic size='small' dimmer='blurring'
+      <Modal
+        basic
+        size="small"
+        dimmer="blurring"
         open={showConfirmRemoveUser}
         onClose={removeUserCancelled}
       >
         <Modal.Header>
-          <Icon name='remove user' />
+          <Icon name="remove user" />
           You're about deleting your User Account!
         </Modal.Header>
         <Modal.Content>
@@ -25,18 +31,22 @@ export default connect({
           <p>This can't be undone and all your data will be removed.</p>
         </Modal.Content>
         <Modal.Actions>
-          <Button basic inverted
-            color='red'
+          <Button
+            basic
+            inverted
+            color="red"
             onClick={() => removeUserCancelled()}
           >
-            <Icon name='remove' />
+            <Icon name="remove" />
             Cancel
           </Button>
-          <Button basic inverted
-            color='green'
+          <Button
+            basic
+            inverted
+            color="green"
             onClick={() => removeUserConfirmed()}
           >
-            <Icon name='checkmark' />
+            <Icon name="checkmark" />
             OK
           </Button>
         </Modal.Actions>
