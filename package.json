@@ -22,7 +22,9 @@
     "test": "ava -v",
     "coverage": "nyc ava",
     "coverage:report": "nyc report --reporter=html",
-    "precommit": "lint-staged"
+    "precommit": "lint-staged",
+    "commitmsg": "cz-customizable-ghooks",
+    "commit": "git-cz"
   },
   "dependencies": {
     "cerebral": "2.0.0-b-alpha.a54303bb",
@@ -46,7 +48,10 @@
     "babel-polyfill": "^6.23.0",
     "babel-preset-es2015": "^6.24.1",
     "babel-preset-react": "^6.24.1",
+    "commitizen": "^2.9.6",
     "css-loader": "^0.28.0",
+    "cz-customizable": "^5.0.0",
+    "cz-customizable-ghooks": "^1.5.0",
     "eslint": "^3.19.0",
     "eslint-config-prettier": "^1.7.0",
     "eslint-config-standard": "^10.2.1",
@@ -74,6 +79,14 @@
       "eslint --fix",
       "git add"
     ]
+  },
+  "config": {
+    "commitizen": {
+      "path": "./node_modules/cz-customizable"
+    },
+    "cz-customizable": {
+      "config": ".cz-config.js"
+    }
   },
   "babel": {
     "presets": [
