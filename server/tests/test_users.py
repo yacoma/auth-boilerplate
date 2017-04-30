@@ -190,7 +190,7 @@ def test_user_collection():
         "email": "leader@example.com",
         "emailConfirmed": False,
         "isAdmin": True,
-        "registerIP": '',
+        "registerIP": "",
     }
 
     assert_dict_contains_subset(user_1, response.json['users'][0])
@@ -363,6 +363,17 @@ def test_add_user(smtp):
     response = c.post('/users', new_user_json, status=422)
     assert response.json == {
         'email': ['Not valid email']
+    }
+
+    new_user_json = json.dumps({
+        "nickname": 123,
+        "email": "nickname_not_string@example.com",
+        "password": "test7",
+    })
+
+    response = c.post('/users', new_user_json, status=422)
+    assert response.json == {
+        'nickname': ['must be of string type']
     }
 
 
