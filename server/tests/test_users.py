@@ -74,6 +74,15 @@ def test_login():
 
     response = c.post(
         '/login',
+        json.dumps({"email": "test@example.com", "password": "test"}),
+        status=422
+    )
+    assert response.json == {
+        "password": ["min length is 5"]
+    }
+
+    response = c.post(
+        '/login',
         json.dumps({"email": "mary@EXAMPLE.COM", "password": "test2"})
     )
 
