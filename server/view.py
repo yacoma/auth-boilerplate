@@ -121,7 +121,7 @@ def refresh(self, request):
             request.app.remember_identity(response, request, identity)
 
 
-@App.json(model=ResetNonce)
+@App.json(model=ResetNonce, permission=EditPermission)
 def reset_nonce_get(self, request):
     self.reset_nonce()
 

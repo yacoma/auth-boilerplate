@@ -150,13 +150,40 @@ def test_refresh_token():
 def test_reset_nonce():
     c = Client(App())
 
-    with db_session:
-        original_nonce = User[1].nonce
+    response = c.get('/users/2/signout', status=403)
+    assert response.body == (
+        b'403 Forbidden\n\nAccess was denied to this resource.\n\n   '
+    )
 
-    c.get('/users/1/signout')
+    response = c.post(
+        '/login',
+        json.dumps({"email": "mary@example.com", "password": "test2"})
+    )
+
+    headers = {'Authorization': response.headers['Authorization']}
 
     with db_session:
-        assert User[1].nonce != original_nonce
+        original_nonce = User[2].nonce
+
+    c.get('/users/2/signout', headers=headers)
+
+    with db_session:
+        assert User[2].nonce != original_nonce
+
+    response = c.post(
+        '/login',
+        json.dumps({"email": "leader@example.com", "password": "test1"})
+    )
+
+    headers = {'Authorization': response.headers['Authorization']}
+
+    with db_session:
+        original_nonce = User[2].nonce
+
+    c.get('/users/2/signout', headers=headers)
+
+    with db_session:
+        assert User[2].nonce != original_nonce
 
 
 def test_user():
