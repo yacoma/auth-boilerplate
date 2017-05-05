@@ -287,19 +287,17 @@ def group_remove(self, request):
 def confirm_email(self, request):
     user = User[self.id]
     base_url = request.host_url
+    path = '/'
     token_service = request.app.service(name='token')
     if user.email_confirmed:
-        path = '/login'
         flash = 'Your email is already confirmed. Please log in.'
         flash_type = 'info'
     else:
         if token_service.validate(self.token, 'email-confirmation-salt'):
-            path = '/'
             user.email_confirmed = True
             flash = 'Thank you for confirming your email address'
             flash_type = 'success'
         else:
-            path = '/register'
             flash = 'The confirmation link is invalid or has been expired'
             flash_type = 'error'
 
