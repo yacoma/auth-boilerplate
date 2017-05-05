@@ -1,5 +1,5 @@
-Example for a authentication workflow based on Morepath and Cerebral
-====================================================================
+Boilerplate for an authentication workflow
+==========================================
 
 Morepath REST server
 --------------------
