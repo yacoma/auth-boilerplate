@@ -2,6 +2,7 @@ import {sequence} from 'cerebral'
 import {set, equals, when} from 'cerebral/operators'
 import {state, string} from 'cerebral/tags'
 import showFlash from './showFlash'
+import redirect from './redirect'
 import authenticate from '../actions/authenticate'
 import authenticateAdmin from '../actions/authenticateAdmin'
 import prepareSettingsForm from '../../settings/actions/prepareSettingsForm'
@@ -53,7 +54,7 @@ function routeTo(page, tab) {
             prepareSettingsForm,
           ],
           false: [
-            page !== 'home' ? routeTo('home') : [],
+            page !== 'home' ? redirect('home') : [],
             showFlash('Admin cannot edit his settings', 'warning'),
           ],
         },
@@ -77,7 +78,7 @@ function routeTo(page, tab) {
             set(state`app.headerIcon`, 'user'),
           ],
           false: [
-            page !== 'home' ? routeTo('home') : [],
+            page !== 'home' ? redirect('home') : [],
             showFlash('To reset your password use the reset link', 'info'),
           ],
         },

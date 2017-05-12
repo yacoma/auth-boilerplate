@@ -1,11 +1,11 @@
 import {sequence} from 'cerebral'
 import {when} from 'cerebral/operators'
 import {props} from 'cerebral/tags'
-import routeTo from '../factories/routeTo'
+import redirect from '../factories/redirect'
 import showFlash from '../factories/showFlash'
 
 export default sequence('Redirect to login', [
-  routeTo('login'),
+  redirect('login'),
   when(props`error.message`),
   {
     true: showFlash(props`error.message`, 'info'),

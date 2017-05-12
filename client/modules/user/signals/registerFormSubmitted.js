@@ -3,7 +3,7 @@ import {state} from 'cerebral/tags'
 import {set, when} from 'cerebral/operators'
 import {isValidForm} from 'cerebral-provider-forms/operators'
 import {httpPost} from 'cerebral-provider-http/operators'
-import routeTo from '../../common/factories/routeTo'
+import redirect from '../../common/factories/redirect'
 import showFlash from '../../common/factories/showFlash'
 import showValidationError from '../../common/factories/showValidationError'
 import initUser from '../actions/initUser'
@@ -31,11 +31,11 @@ export default sequence('Register new user', [
               initUser,
               when(state`app.lastVisited`),
               {
-                true: routeTo(state`app.lastVisited`),
-                false: routeTo('home'),
+                true: redirect(state`app.lastVisited`),
+                false: redirect('home'),
               },
             ],
-            error: [routeTo('home'), showValidationError('Could not log-in!')],
+            error: [redirect('home'), showValidationError('Could not log-in!')],
           },
           set(state`user.registerForm.nickname.value`, ''),
           set(state`user.registerForm.email.value`, ''),

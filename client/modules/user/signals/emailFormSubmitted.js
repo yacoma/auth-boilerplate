@@ -3,7 +3,7 @@ import {state} from 'cerebral/tags'
 import {set} from 'cerebral/operators'
 import {isValidForm} from 'cerebral-provider-forms/operators'
 import {httpPost} from 'cerebral-provider-http/operators'
-import routeTo from '../../common/factories/routeTo'
+import redirect from '../../common/factories/redirect'
 import showFlash from '../../common/factories/showFlash'
 import showValidationError from '../../common/factories/showValidationError'
 
@@ -20,7 +20,7 @@ export default sequence('Request password reset', [
         success: [
           set(state`user.emailForm.email.value`, ''),
           set(state`user.emailForm.isLoading`, false),
-          routeTo('login'),
+          redirect('login'),
           showFlash(
             'Please check your email for a password reset link',
             'success'

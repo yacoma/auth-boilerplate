@@ -2,12 +2,12 @@ import {sequence} from 'cerebral'
 import {state} from 'cerebral/tags'
 import {set} from 'cerebral/operators'
 import removeUser from '../actions/removeUser'
-import routeTo from '../../common/factories/routeTo'
+import redirect from '../../common/factories/redirect'
 import showFlash from '../../common/factories/showFlash'
 
 export default sequence('Log user out', [
   set(state`user.loginForm.isLoading`, false),
   removeUser,
-  routeTo('home'),
+  redirect('home'),
   showFlash('Good bye!', 'info'),
 ])

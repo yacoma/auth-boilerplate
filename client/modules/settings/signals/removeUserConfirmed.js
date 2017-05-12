@@ -4,7 +4,7 @@ import {set} from 'cerebral/operators'
 import {httpPost, httpDelete} from 'cerebral-provider-http/operators'
 import {isValidForm} from 'cerebral-provider-forms/operators'
 import removeUser from '../../user/actions/removeUser'
-import routeTo from '../../common/factories/routeTo'
+import redirect from '../../common/factories/redirect'
 import showFlash from '../../common/factories/showFlash'
 
 export default sequence('Delete yourself', [
@@ -26,7 +26,7 @@ export default sequence('Delete yourself', [
             success: [
               removeUser,
               set(state`settings.accountForm.isLoading`, false),
-              routeTo('home'),
+              redirect('home'),
               showFlash(string`You were successfully deleted. Bye!`, 'success'),
             ],
             error: [

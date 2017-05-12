@@ -3,7 +3,7 @@ import {state} from 'cerebral/tags'
 import {set, when} from 'cerebral/operators'
 import {isValidForm} from 'cerebral-provider-forms/operators'
 import {httpPost} from 'cerebral-provider-http/operators'
-import routeTo from '../../common/factories/routeTo'
+import redirect from '../../common/factories/redirect'
 import initUser from '../actions/initUser'
 import showValidationError from '../../common/factories/showValidationError'
 
@@ -25,8 +25,8 @@ export default sequence('Sign-in user', [
           set(state`user.loginForm.isLoading`, false),
           when(state`app.lastVisited`),
           {
-            true: routeTo(state`app.lastVisited`),
-            false: routeTo('home'),
+            true: redirect(state`app.lastVisited`),
+            false: redirect('home'),
           },
         ],
         error: [
