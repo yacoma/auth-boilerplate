@@ -3743,11 +3743,14 @@ function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { de
 Object.defineProperty(exports, "__esModule", {
   value: true
 });
-function redirectFactory(page) {
+function redirectFactory(page, tab) {
   function redirect(_ref) {
     var controller = _ref.controller,
         resolve = _ref.resolve;
 
+    if (page === 'settings' && tab) {
+      controller.getSignal('app.settingsRouted')({ tab: resolve.value(tab) });
+    }
     controller.getSignal('app.pageRouted')({ page: resolve.value(page) });
   }
 

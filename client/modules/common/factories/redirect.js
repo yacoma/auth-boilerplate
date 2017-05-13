@@ -1,6 +1,10 @@
-function redirectFactory(page) {
+function redirectFactory(page, tab) {
   function redirect({controller, resolve}) {
-    controller.getSignal('app.pageRouted')({page: resolve.value(page)})
+    if (page === 'settings' && tab) {
+      controller.getSignal('app.settingsRouted')({tab: resolve.value(tab)})
+    } else {
+      controller.getSignal('app.pageRouted')({page: resolve.value(page)})
+    }
   }
 
   return redirect

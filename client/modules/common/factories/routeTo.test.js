@@ -6,7 +6,7 @@ import App from '../../app'
 
 test('should route to home', t => {
   return runAction(routeTo('home'), {
-    state: {app: {}},
+    state: {app: {lastVisited: 'private'}},
   }).then(({state}) => [
     t.is(state.app.currentPage, 'home'),
     t.is(state.app.lastVisited, 'home'),
@@ -17,10 +17,10 @@ test('should route to home', t => {
 
 test('route to login should not change lastVisited', t => {
   return runAction(routeTo('login'), {
-    state: {app: {}},
+    state: {app: {lastVisited: 'private'}},
   }).then(({state}) => [
     t.is(state.app.currentPage, 'login'),
-    t.not(state.app.lastVisited, 'login'),
+    t.is(state.app.lastVisited, 'private'),
     t.is(state.app.headerText, 'Log in your account'),
     t.is(state.app.headerIcon, 'user'),
   ])
@@ -28,10 +28,10 @@ test('route to login should not change lastVisited', t => {
 
 test('route to register should not change lastVisited', t => {
   return runAction(routeTo('register'), {
-    state: {app: {}},
+    state: {app: {lastVisited: 'private'}},
   }).then(({state}) => [
     t.is(state.app.currentPage, 'register'),
-    t.not(state.app.lastVisited, 'register'),
+    t.is(state.app.lastVisited, 'private'),
     t.is(state.app.headerText, 'Create account'),
     t.is(state.app.headerIcon, 'user'),
   ])
