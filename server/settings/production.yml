@@ -10,6 +10,7 @@ database:
     password: auth_boilerplate0
     host: localhost
     database: yacoma_auth_boilerplate
+    create_db: null
 
 smtp:
   username: admin@yacoma.it

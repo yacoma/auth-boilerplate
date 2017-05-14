@@ -164,7 +164,7 @@ def user_collection_add(self, request, json):
     email = json['email']
     password = json['password']
     groups = json.get('groups', [])
-    register_ip = request.remote_addr
+    register_ip = request.client_addr
 
     if not User.exists(email=email):
         user = self.add(
