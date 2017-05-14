@@ -9,12 +9,12 @@ env/bin/python:
 .PHONY:	deploylive
 
 deploylive: env/bin/python
-	env/bin/pip install -Ue .
+	env/bin/pip install -Ue '.[production]'
 	npm install
 	npm run build:production
 
 	# check gunicorn config and create database if not present
-	env/bin/gunicorn --check-config server.run
+	export RUN_ENV=production; env/bin/gunicorn --check-config server.run
 
 .PHONY:	setuplocal
 

@@ -49,6 +49,9 @@ setup(
         coverage=[
             'pytest-cov',
         ],
+        production=[
+            'psycopg2',
+        ]
     ),
     entry_points=dict(
         morepath=[

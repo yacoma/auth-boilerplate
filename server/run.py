@@ -31,7 +31,7 @@ def setup_db(app):
     provider = app.settings.database.provider
     args = app.settings.database.args
     kwargs = app.settings.database.kwargs
-    db.bind(provider, *args, **kwargs)
+    db.bind(provider, *args, **kwargs) if args else db.bind(provider, **kwargs)
     db.generate_mapping(create_tables=True)
     add_admin()
 

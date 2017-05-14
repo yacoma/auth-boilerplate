@@ -3,11 +3,13 @@ jwtauth:
   master_secret: 13ad14ebf1644e50bdfdfe0d47c37d2d
 
 database:
-  provider: sqlite
-  args:
-    - auth.db
+  provider: postgres
+  args: null
   kwargs:
-    create_db: true
+    user: yacoma_auth
+    password: auth_boilerplate0
+    host: localhost
+    database: yacoma_auth_boilerplate
 
 smtp:
   username: admin@yacoma.it
