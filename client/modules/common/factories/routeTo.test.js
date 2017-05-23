@@ -1,5 +1,5 @@
 import test from 'ava'
-import StorageProvider from 'cerebral-provider-storage'
+import StorageProvider from '@cerebral/storage'
 import {runAction} from 'cerebral/test'
 import routeTo from './routeTo'
 import App from '../../app'

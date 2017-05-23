@@ -1,7 +1,7 @@
 import {sequence} from 'cerebral'
 import {state, string, props} from 'cerebral/tags'
 import {set, when} from 'cerebral/operators'
-import {httpPut} from 'cerebral-provider-http/operators'
+import {httpPut} from '@cerebral/http/operators'
 import showValidationError from '../../common/factories/showValidationError'
 
 export default sequence('Toggle Admin permissions', [

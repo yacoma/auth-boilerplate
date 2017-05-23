@@ -1,7 +1,7 @@
 import {sequence} from 'cerebral'
 import {state, string, props} from 'cerebral/tags'
 import {set} from 'cerebral/operators'
-import {httpGet} from 'cerebral-provider-http/operators'
+import {httpGet} from '@cerebral/http/operators'
 import showFlash from '../../common/factories/showFlash'
 
 export default sequence('Sign out user', [

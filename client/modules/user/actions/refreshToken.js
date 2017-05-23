@@ -1,8 +1,8 @@
 import {sequence} from 'cerebral'
 import {state} from 'cerebral/tags'
 import {unset} from 'cerebral/operators'
-import {httpGet} from 'cerebral-provider-http/operators'
-import {removeStorage} from 'cerebral-provider-storage/operators'
+import {httpGet} from '@cerebral/http/operators'
+import {removeStorage} from '@cerebral/storage/operators'
 import initUser from './initUser'
 import showValidationError from '../../common/factories/showValidationError'
 

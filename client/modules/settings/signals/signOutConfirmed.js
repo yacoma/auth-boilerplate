@@ -1,8 +1,8 @@
 import {sequence} from 'cerebral'
 import {state, string} from 'cerebral/tags'
 import {set} from 'cerebral/operators'
-import {httpPost, httpGet} from 'cerebral-provider-http/operators'
-import {isValidForm} from 'cerebral-provider-forms/operators'
+import {httpPost, httpGet} from '@cerebral/http/operators'
+import {isValidForm} from '@cerebral/forms/operators'
 import showFlash from '../../common/factories/showFlash'
 
 export default sequence('Sign-out yourself', [

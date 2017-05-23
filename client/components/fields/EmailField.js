@@ -1,7 +1,7 @@
 import React from 'react'
 import {connect} from 'cerebral/react'
 import {props, signal} from 'cerebral/tags'
-import {form} from 'cerebral-provider-forms'
+import {form} from '@cerebral/forms'
 import {Form, Input, Label} from 'semantic-ui-react'
 import {hasError, showError} from './utils'
 

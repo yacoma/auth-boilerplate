@@ -3,9 +3,9 @@ import uuid from 'uuid'
 
 import {Controller, provide} from 'cerebral'
 import Devtools from 'cerebral/devtools'
-import HttpProvider from 'cerebral-provider-http'
-import FormsProvider from 'cerebral-provider-forms'
-import StorageProvider from 'cerebral-provider-storage'
+import HttpProvider from '@cerebral/http'
+import FormsProvider from '@cerebral/forms'
+import StorageProvider from '@cerebral/storage'
 
 import App from './modules/app'
 import User from './modules/user'

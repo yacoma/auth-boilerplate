@@ -1,8 +1,8 @@
 import test from 'ava'
 import mock from 'xhr-mock'
 
-import HttpProvider from 'cerebral-provider-http'
-import StorageProvider from 'cerebral-provider-storage'
+import HttpProvider from '@cerebral/http'
+import StorageProvider from '@cerebral/storage'
 import {CerebralTest} from 'cerebral/test'
 
 import App from '../app'

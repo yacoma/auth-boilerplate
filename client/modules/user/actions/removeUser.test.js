@@ -1,6 +1,6 @@
 import test from 'ava'
-import HttpProvider from 'cerebral-provider-http'
-import StorageProvider from 'cerebral-provider-storage'
+import HttpProvider from '@cerebral/http'
+import StorageProvider from '@cerebral/storage'
 import {runAction} from 'cerebral/test'
 import removeUser from './removeUser'
 
