@@ -49,6 +49,9 @@ setup(
         coverage=[
             'pytest-cov',
         ],
+        docs=[
+            'mkdocs',
+        ],
         production=[
             'psycopg2',
         ]
