@@ -29,7 +29,7 @@ You can go to <http://localhost:8000> to see the UI.
 For installing the test suite and running the tests use:
 
 ```console
-(env) $ pip install -Ur develop_requirements.txt
+(env) $ pip install -Ur requirements/develop.txt
 (env) $ py.test
 ```
 
