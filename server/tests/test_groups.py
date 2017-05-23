@@ -123,6 +123,12 @@ def test_update_group():
         assert User[2] in g.users
         assert User[3] in g.users
 
+    updateted_group_json = json.dumps({"name": "Moderator"})
+    response = c.put('/groups/1', updateted_group_json, headers=headers, status=409)
+    assert response.json == {
+        "validationError": "Group already exists"
+    }
+
     updateted_group_json = json.dumps({"name": "Guru"})
     c.put('/groups/1', updateted_group_json, headers=headers)
 

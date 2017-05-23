@@ -275,7 +275,17 @@ def group_collection_add(self, request, json):
     permission=EditPermission
 )
 def group_update(self, request, json):
-    self.update(json)
+    if 'name' in json and Group.exists(name=json['name']):
+        @request.after
+        def after(response):
+            response.status = 409
+
+        return {
+            'validationError': 'Group already exists'
+        }
+
+    else:
+        self.update(json)
 
 
 @App.json(model=Group, request_method='DELETE', permission=EditPermission)
