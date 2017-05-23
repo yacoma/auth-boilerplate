@@ -387,7 +387,7 @@ def reset_password(self, request, json):
 
     elif not token_valid:
             @request.after
-            def email_not_confirmed(response):
+            def token_not_valid(response):
                 response.status_code = 403
 
             return {
