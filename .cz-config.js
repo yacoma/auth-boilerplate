@@ -18,6 +18,7 @@ module.exports = {
   scopes: [
     {name: 'client'},
     {name: 'server'},
+    {name: 'website'},
     {name: 'deploy'}
   ],
 

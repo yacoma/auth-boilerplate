@@ -6,6 +6,7 @@ site_dir: html
 repo_url: https://github.com/yacoma/auth-boilerplate
 
 theme: readthedocs
+theme_dir: 'docs/custom_theme'
 
 pages:
 - Indroduction: 'index.md'
