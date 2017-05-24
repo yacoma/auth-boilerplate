@@ -1,6 +1,14 @@
 Models
 ======
 
+Paths and Views in Morepath are bound to a Model.
+So we will use the Model names as chapters in the API documentation.
+Each model is bound to a Path and has related View method(s).
+
+The permissions are defined in [server/permissions.py](https://github.com/yacoma/auth-boilerplate/blob/master/server/permissions.py).
+
+Details about the Cerberus schemas used by the views can be found in [server/schema.yml](https://github.com/yacoma/auth-boilerplate/blob/master/server/schema.yml).
+
 Root
 ----
 
@@ -19,7 +27,7 @@ http.get('/')
 
 #### Responses
 
-##### 200 - OK:
+##### 200 - OK
 
 **Example response JSON:**
 ```json
@@ -64,7 +72,7 @@ http.get('/users', {
 
 #### Responses
 
-##### 200 - OK:
+##### 200 - OK
 
 **Example response JSON:**
 ```json
@@ -114,7 +122,7 @@ http.post('/users', {
 
 #### Responses
 
-##### 201 - Created:
+##### 201 - Created
 
 User created successfully.
 
@@ -122,7 +130,7 @@ User created successfully.
 
 **Signal emitted:** `user.email_updated`
 
-##### 409 - Conflict:
+##### 409 - Conflict
 
 Email address already exists.
 
@@ -133,7 +141,7 @@ Email address already exists.
 }
 ```
 
-##### 422 - Unprocessable Entity:
+##### 422 - Unprocessable Entity
 
 Validation error either from **EmailValidationService**
 or from **Cerberus** schema validation.
@@ -179,7 +187,7 @@ http.get('/users/1', {}, {
 
 #### Responses
 
-##### 200 - OK:
+##### 200 - OK
 
 **Example response JSON:**
 ```json
@@ -219,7 +227,7 @@ http.put('/users/1', {
 
 #### Responses
 
-##### 200 - OK:
+##### 200 - OK
 
 User updated successfully.
 
@@ -227,7 +235,7 @@ User updated successfully.
 
 **Signal emitted** when email was updated: `user.email_updated`
 
-##### 409 - Conflict:
+##### 409 - Conflict
 
 Email address already exists.
 
@@ -238,7 +246,7 @@ Email address already exists.
 }
 ```
 
-##### 422 - Unprocessable Entity:
+##### 422 - Unprocessable Entity
 
 Validation error either from **EmailValidationService**
 or from **Cerberus** schema validation.
@@ -279,7 +287,7 @@ http.delete('/users/1', {}, {
 
 #### Responses
 
-##### 200 - OK:
+##### 200 - OK
 
 User deleted successfully.
 
@@ -309,7 +317,7 @@ http.post('/login', {
 
 #### Responses
 
-##### 200 - OK:
+##### 200 - OK
 
 User successfully logged in.
 
@@ -317,7 +325,7 @@ User successfully logged in.
 
 **Response Headers:** `'Authorization': jwt_token`
 
-##### 403 - Forbidden:
+##### 403 - Forbidden
 
 Invalid credentials.
 
@@ -328,7 +336,7 @@ Invalid credentials.
 }
 ```
 
-##### 422 - Unprocessable Entity:
+##### 422 - Unprocessable Entity
 
 Validation error from **Cerberus** schema validation.
 
@@ -362,7 +370,7 @@ http.get('/refresh', {}, {
 
 #### Responses
 
-##### 200 - OK:
+##### 200 - OK
 
 Token successfully refreshed.
 
@@ -370,7 +378,7 @@ Token successfully refreshed.
 
 **Response Headers:** `'Authorization': jwt_token`
 
-##### 403 - Forbidden:
+##### 403 - Forbidden
 
 The JWT token could not be refreshed.
 
@@ -409,7 +417,7 @@ http.get('/users/1/signout', {}, {
 
 #### Responses
 
-##### 200 - OK:
+##### 200 - OK
 
 The refresh nonce successfully reset so all current
 JWT tokens of this user cannot be refreshed anymore.
@@ -440,7 +448,7 @@ http.get(
 
 #### Responses
 
-##### 302 - Found:
+##### 302 - Found
 
 After processing the request it redirects to the homepage.
 Examples here are in Python language.
@@ -497,13 +505,13 @@ http.post('/reset', {
 
 #### Responses
 
-##### 200 - OK:
+##### 200 - OK
 
 Password reset email successfully sent.
 
 **Response JSON:** empty
 
-##### 403 - Forbidden:
+##### 403 - Forbidden
 
 Email not in database or email address not yet confirmed.
 
@@ -521,7 +529,7 @@ Email not in database or email address not yet confirmed.
 }
 ```
 
-##### 422 - Unprocessable Entity:
+##### 422 - Unprocessable Entity
 
 Validation error from **Cerberus** schema validation.
 
@@ -556,7 +564,7 @@ http.get(
 
 #### Responses
 
-##### 302 - Found:
+##### 302 - Found
 
 After processing the request it redirects on success to '/newpassword'
 and on error to '/login'.
@@ -597,13 +605,13 @@ http.put(
 
 #### Responses
 
-##### 200 - OK:
+##### 200 - OK
 
 Password resetted successfully.
 
 **Response JSON:** empty
 
-##### 403 - Forbidden:
+##### 403 - Forbidden
 
 Email not in database or email address not yet confirmed.
 
@@ -621,7 +629,7 @@ Email not in database or email address not yet confirmed.
 }
 ```
 
-##### 422 - Unprocessable Entity:
+##### 422 - Unprocessable Entity
 
 Validation error from **Cerberus** schema validation.
 
@@ -652,7 +660,7 @@ http.get('/groups', {}, {
 
 #### Responses
 
-##### 200 - OK:
+##### 200 - OK
 
 **Example response JSON:**
 ```json
@@ -688,7 +696,7 @@ http.post('/groups', {
 
 #### Responses
 
-##### 201 - Created:
+##### 201 - Created
 
 Group created successfully.
 
@@ -700,7 +708,7 @@ Group created successfully.
 ```
 
 
-##### 409 - Conflict:
+##### 409 - Conflict
 
 Group name already exists.
 
@@ -711,7 +719,7 @@ Group name already exists.
 }
 ```
 
-##### 422 - Unprocessable Entity:
+##### 422 - Unprocessable Entity
 
 Validation error from **Cerberus** schema validation.
 
@@ -742,7 +750,7 @@ http.get('/groups/1', {}, {
 
 #### Responses
 
-##### 200 - OK:
+##### 200 - OK
 
 **Example response JSON:**
 ```json
@@ -773,13 +781,13 @@ http.put('/groups/1', {
 
 #### Responses
 
-##### 200 - OK:
+##### 200 - OK
 
 Group updated successfully.
 
 **Response JSON:** empty
 
-##### 409 - Conflict:
+##### 409 - Conflict
 
 Group already exists.
 
@@ -790,7 +798,7 @@ Group already exists.
 }
 ```
 
-##### 422 - Unprocessable Entity:
+##### 422 - Unprocessable Entity
 
 Validation error from **Cerberus** schema validation.
 
@@ -816,7 +824,7 @@ http.delete('/groups/1', {}, {
 
 #### Responses
 
-##### 200 - OK:
+##### 200 - OK
 
 Group deleted successfully.
 

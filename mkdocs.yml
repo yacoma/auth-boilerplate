@@ -9,10 +9,14 @@ theme: readthedocs
 theme_dir: 'docs/custom_theme'
 
 pages:
-- Indroduction: 'index.md'
-- RESTful Server:
-  - Quick Start: 'server/quick-start.md'
-  - API: 'server/api.md'
-- Cerebral Client:
-  - Quick Start: 'client/quick-start.md'
-- Deployment: 'deployment.md'
+    - Indroduction: 'index.md'
+    - RESTful Server:
+        - Quick Start: 'server/quick-start.md'
+        - API: 'server/api.md'
+    - Cerebral Client:
+        - Quick Start: 'client/quick-start.md'
+    - Deployment: 'deployment.md'
+
+markdown_extensions:
+    - toc:
+        permalink: true
