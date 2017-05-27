@@ -1,5 +1,5 @@
 import test from 'ava'
-import {runAction} from 'cerebral/test'
+import { runAction } from 'cerebral/test'
 import showFlash from './showFlash'
 
 test('show flash', t => {
@@ -7,7 +7,7 @@ test('show flash', t => {
     state: {
       app: {},
     },
-  }).then(({state}) => [
+  }).then(({ state }) => [
     t.is(state.app.flash, 'Test message'),
     t.is(state.app.flashType, null),
   ])
@@ -18,7 +18,7 @@ test('show flash 3s', t => {
     state: {
       app: {},
     },
-  }).then(({state}) => [
+  }).then(({ state }) => [
     t.is(state.app.flash, null),
     t.is(state.app.flashType, null),
   ])

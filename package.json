@@ -24,7 +24,8 @@
     "coverage:report": "nyc report --reporter=html",
     "precommit": "lint-staged",
     "commitmsg": "cz-customizable-ghooks",
-    "commit": "git-cz"
+    "commit": "git-cz",
+    "format": "eslint --fix \"client/**/*.js\""
   },
   "dependencies": {
     "@cerebral/forms": "0.0.0-beta.2",

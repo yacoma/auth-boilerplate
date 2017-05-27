@@ -1,6 +1,6 @@
 import React from 'react'
-import {connect} from 'cerebral/react'
-import {state, signal} from 'cerebral/tags'
+import { connect } from 'cerebral/react'
+import { state, signal } from 'cerebral/tags'
 import {
   Grid,
   Header,
@@ -12,7 +12,7 @@ import {
   Loader,
   List,
 } from 'semantic-ui-react'
-import {PasswordField, EmailField} from '../fields'
+import { PasswordField, EmailField } from '../fields'
 
 export default connect(
   {
@@ -20,7 +20,7 @@ export default connect(
     currentEmail: state`user.email`,
     formSubmitted: signal`settings.emailFormSubmitted`,
   },
-  function UpdateEmail({emailForm, currentEmail, formSubmitted}) {
+  function UpdateEmail({ emailForm, currentEmail, formSubmitted }) {
     const handleSubmit = event => {
       event.preventDefault()
       formSubmitted()

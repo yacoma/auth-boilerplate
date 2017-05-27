@@ -1,15 +1,15 @@
 import React from 'react'
-import {connect} from 'cerebral/react'
-import {state} from 'cerebral/tags'
-import {Grid, Message} from 'semantic-ui-react'
+import { connect } from 'cerebral/react'
+import { state } from 'cerebral/tags'
+import { Grid, Message } from 'semantic-ui-react'
 
 export default connect(
   {
     flash: state`app.flash`,
     flashType: state`app.flashType`,
   },
-  function Flash({flash, flashType}) {
-    const flashTypeAttr = flashType ? {[flashType]: true} : {}
+  function Flash({ flash, flashType }) {
+    const flashTypeAttr = flashType ? { [flashType]: true } : {}
     return (
       <Grid stackable padded="vertically" columns={2} centered>
         <Grid.Column>

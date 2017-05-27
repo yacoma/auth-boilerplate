@@ -1,6 +1,6 @@
 /* eslint-env mocha */
 import test from 'ava'
-import {AuthenticationError} from './errors'
+import { AuthenticationError } from './errors'
 
 test('should instanciate AuthenticationError', t => {
   const error = new AuthenticationError('User could not be authenticated')

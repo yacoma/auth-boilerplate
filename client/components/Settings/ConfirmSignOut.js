@@ -1,7 +1,7 @@
 import React from 'react'
-import {connect} from 'cerebral/react'
-import {state, signal} from 'cerebral/tags'
-import {Button, Modal, Icon} from 'semantic-ui-react'
+import { connect } from 'cerebral/react'
+import { state, signal } from 'cerebral/tags'
+import { Button, Modal, Icon } from 'semantic-ui-react'
 
 export default connect(
   {

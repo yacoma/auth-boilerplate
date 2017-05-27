@@ -1,6 +1,6 @@
-import {sequence} from 'cerebral'
-import {when} from 'cerebral/operators'
-import {props} from 'cerebral/tags'
+import { sequence } from 'cerebral'
+import { when } from 'cerebral/operators'
+import { props } from 'cerebral/tags'
 import redirect from '../factories/redirect'
 import showFlash from '../factories/showFlash'
 

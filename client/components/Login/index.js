@@ -1,6 +1,6 @@
 import React from 'react'
-import {connect} from 'cerebral/react'
-import {state, signal} from 'cerebral/tags'
+import { connect } from 'cerebral/react'
+import { state, signal } from 'cerebral/tags'
 import {
   Grid,
   Form,
@@ -10,14 +10,14 @@ import {
   Dimmer,
   Loader,
 } from 'semantic-ui-react'
-import {EmailField, PasswordField} from '../fields'
+import { EmailField, PasswordField } from '../fields'
 
 export default connect(
   {
     loginForm: state`user.loginForm`,
     formSubmitted: signal`user.loginFormSubmitted`,
   },
-  function Login({loginForm, formSubmitted}) {
+  function Login({ loginForm, formSubmitted }) {
     const handleSubmit = event => {
       event.preventDefault()
       formSubmitted()

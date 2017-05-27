@@ -1,7 +1,7 @@
 import React from 'react'
-import {connect} from 'cerebral/react'
-import {state, signal} from 'cerebral/tags'
-import {Menu, Button, Icon} from 'semantic-ui-react'
+import { connect } from 'cerebral/react'
+import { state, signal } from 'cerebral/tags'
+import { Menu, Button, Icon } from 'semantic-ui-react'
 
 export default connect(
   {
@@ -9,7 +9,7 @@ export default connect(
     user: state`user`,
     logoutButtonClicked: signal`user.logoutButtonClicked`,
   },
-  function Navbar({currentPage, user, logoutButtonClicked}) {
+  function Navbar({ currentPage, user, logoutButtonClicked }) {
     return (
       <Menu attached="top" inverted secondary pointing size="large">
         <Menu.Item name="home" href="/" active={currentPage === null}>
@@ -24,7 +24,7 @@ export default connect(
         </Menu.Item>
         <Menu.Menu
           position="right"
-          style={{display: user.authenticated ? 'none' : 'flex'}}
+          style={{ display: user.authenticated ? 'none' : 'flex' }}
         >
           <Menu.Item name="login" href="/login">
             <Button
@@ -49,7 +49,7 @@ export default connect(
         </Menu.Menu>
         <Menu.Menu
           position="right"
-          style={{display: user.authenticated ? 'flex' : 'none'}}
+          style={{ display: user.authenticated ? 'flex' : 'none' }}
         >
           <Menu.Item
             name="settings"
@@ -69,7 +69,7 @@ export default connect(
           <Menu.Item
             name="admin"
             href="/admin"
-            style={{display: user.isAdmin ? 'flex' : 'none'}}
+            style={{ display: user.isAdmin ? 'flex' : 'none' }}
           >
             <Button
               inverted

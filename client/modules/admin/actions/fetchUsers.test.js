@@ -3,8 +3,8 @@ import uuid from 'uuid'
 import mock from 'xhr-mock'
 import StorageProvider from '@cerebral/storage'
 import HttpProvider from '@cerebral/http'
-import {ContextProvider} from 'cerebral/providers'
-import {runSignal} from 'cerebral/test'
+import { ContextProvider } from 'cerebral/providers'
+import { runSignal } from 'cerebral/test'
 
 import App from '../../app'
 import fetchUsers from './fetchUsers'
@@ -44,8 +44,8 @@ test.beforeEach(t => {
           Authorization: jwtHeader,
         },
       }),
-      StorageProvider({target: localStorage}),
-      ContextProvider({uuid}),
+      StorageProvider({ target: localStorage }),
+      ContextProvider({ uuid }),
     ],
   }
 })
@@ -69,7 +69,7 @@ test.serial('should fetch users', t => {
     )
   })
 
-  return runSignal(fetchUsers, cerebral).then(({state}) => [
+  return runSignal(fetchUsers, cerebral).then(({ state }) => [
     t.is(state.admin.pages, 5),
     t.is(state.admin.users[Object.keys(state.admin.users)[0]]['orderKey'], 1),
     t.is(
@@ -128,7 +128,7 @@ test.serial('should update existing user', t => {
     )
   })
 
-  return runSignal(fetchUsers, cerebral).then(({state}) => [
+  return runSignal(fetchUsers, cerebral).then(({ state }) => [
     t.is(state.admin.pages, 15),
     t.is(state.admin.users.testuid000.orderKey, 1),
     t.is(state.admin.users.testuid000['@id'], '/users/1'),
@@ -151,5 +151,5 @@ test.serial('should return noUsersFound', t => {
 
   return runSignal(fetchUsers, cerebral, {
     recordActions: 'byName',
-  }).then(({mergeUsers}) => [t.true(mergeUsers.output.noUsersFound)])
+  }).then(({ mergeUsers }) => [t.true(mergeUsers.output.noUsersFound)])
 })

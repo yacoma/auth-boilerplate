@@ -1,6 +1,6 @@
-import {sequence} from 'cerebral'
-import {when} from 'cerebral/operators'
-import {state} from 'cerebral/tags'
+import { sequence } from 'cerebral'
+import { when } from 'cerebral/operators'
+import { state } from 'cerebral/tags'
 import initApp from '../actions/initApp'
 import refreshToken from '../../user/actions/refreshToken'
 

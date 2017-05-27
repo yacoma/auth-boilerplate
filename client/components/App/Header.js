@@ -1,14 +1,14 @@
 import React from 'react'
-import {connect} from 'cerebral/react'
-import {state} from 'cerebral/tags'
-import {Grid, Header, Icon} from 'semantic-ui-react'
+import { connect } from 'cerebral/react'
+import { state } from 'cerebral/tags'
+import { Grid, Header, Icon } from 'semantic-ui-react'
 
 export default connect(
   {
     headerText: state`app.headerText`,
     headerIcon: state`app.headerIcon`,
   },
-  function PageHeader({headerText, headerIcon}) {
+  function PageHeader({ headerText, headerIcon }) {
     return (
       <Grid stackable columns={2} centered>
         <Grid.Row>

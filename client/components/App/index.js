@@ -1,7 +1,7 @@
 import React from 'react'
-import {connect} from 'cerebral/react'
-import {state} from 'cerebral/tags'
-import {Container} from 'semantic-ui-react'
+import { connect } from 'cerebral/react'
+import { state } from 'cerebral/tags'
+import { Container } from 'semantic-ui-react'
 import Home from '../Home'
 import Private from '../Private'
 import Login from '../Login'
@@ -29,7 +29,7 @@ export default connect(
   {
     currentPage: state`app.currentPage`,
   },
-  function App({currentPage}) {
+  function App({ currentPage }) {
     const Page = pages[currentPage || 'home']
 
     return (

@@ -1,15 +1,15 @@
 import React from 'react'
-import {connect} from 'cerebral/react'
-import {state, signal} from 'cerebral/tags'
-import {Grid, Form, Segment, Button, Dimmer, Loader} from 'semantic-ui-react'
-import {EmailField} from '../fields'
+import { connect } from 'cerebral/react'
+import { state, signal } from 'cerebral/tags'
+import { Grid, Form, Segment, Button, Dimmer, Loader } from 'semantic-ui-react'
+import { EmailField } from '../fields'
 
 export default connect(
   {
     emailForm: state`user.emailForm`,
     formSubmitted: signal`user.emailFormSubmitted`,
   },
-  function ResetPassword({emailForm, formSubmitted}) {
+  function ResetPassword({ emailForm, formSubmitted }) {
     const handleSubmit = event => {
       event.preventDefault()
       formSubmitted()

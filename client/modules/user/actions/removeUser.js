@@ -1,4 +1,4 @@
-function removeUser({state, storage, http}) {
+function removeUser({ state, storage, http }) {
   storage.remove('jwtHeader')
   http.updateOptions({
     headers: {

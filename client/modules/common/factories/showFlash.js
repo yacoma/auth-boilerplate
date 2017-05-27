@@ -1,6 +1,6 @@
-import {sequence} from 'cerebral'
-import {set, debounce} from 'cerebral/operators'
-import {state} from 'cerebral/tags'
+import { sequence } from 'cerebral'
+import { set, debounce } from 'cerebral/operators'
+import { state } from 'cerebral/tags'
 
 const showFlashDebounce = debounce.shared()
 

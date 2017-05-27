@@ -1,5 +1,5 @@
-import {compute} from 'cerebral'
-import {state} from 'cerebral/tags'
+import { compute } from 'cerebral'
+import { state } from 'cerebral/tags'
 
 export default compute(state`admin.users`, users => {
   return Object.keys(users).sort(

@@ -1,7 +1,7 @@
 import React from 'react'
-import {connect} from 'cerebral/react'
-import {state, signal} from 'cerebral/tags'
-import {Menu, Dropdown, Icon} from 'semantic-ui-react'
+import { connect } from 'cerebral/react'
+import { state, signal } from 'cerebral/tags'
+import { Menu, Dropdown, Icon } from 'semantic-ui-react'
 
 export default connect(
   {
@@ -19,11 +19,11 @@ export default connect(
     changePageClicked,
   }) {
     const paginationOptions = [
-      {text: '10', value: 10},
-      {text: '20', value: 20},
-      {text: '30', value: 30},
-      {text: '50', value: 50},
-      {text: '100', value: 100},
+      { text: '10', value: 10 },
+      { text: '20', value: 20 },
+      { text: '30', value: 30 },
+      { text: '50', value: 50 },
+      { text: '100', value: 100 },
     ]
 
     return (
@@ -32,7 +32,7 @@ export default connect(
           as="a"
           icon
           disabled={currentPage === 1}
-          onClick={() => changePageClicked({nextPage: 'first'})}
+          onClick={() => changePageClicked({ nextPage: 'first' })}
         >
           <Icon name="angle double left" />
         </Menu.Item>
@@ -40,7 +40,7 @@ export default connect(
           as="a"
           icon
           disabled={currentPage === 1}
-          onClick={() => changePageClicked({nextPage: 'previous'})}
+          onClick={() => changePageClicked({ nextPage: 'previous' })}
         >
           <Icon name="angle left" />
         </Menu.Item>
@@ -51,7 +51,7 @@ export default connect(
           as="a"
           icon
           disabled={currentPage === pages}
-          onClick={() => changePageClicked({nextPage: 'next'})}
+          onClick={() => changePageClicked({ nextPage: 'next' })}
         >
           <Icon name="angle right" />
         </Menu.Item>
@@ -59,7 +59,7 @@ export default connect(
           as="a"
           icon
           disabled={currentPage === pages}
-          onClick={() => changePageClicked({nextPage: 'last'})}
+          onClick={() => changePageClicked({ nextPage: 'last' })}
         >
           <Icon name="angle double right" />
         </Menu.Item>
@@ -73,7 +73,7 @@ export default connect(
           floating
           defaultValue={pageSize}
           options={paginationOptions}
-          onChange={(e, {value}) => pageSizeChanged({value})}
+          onChange={(e, { value }) => pageSizeChanged({ value })}
         />
       </Menu>
     )

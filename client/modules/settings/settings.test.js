@@ -3,7 +3,7 @@ import mock from 'xhr-mock'
 
 import HttpProvider from '@cerebral/http'
 import StorageProvider from '@cerebral/storage'
-import {CerebralTest} from 'cerebral/test'
+import { CerebralTest } from 'cerebral/test'
 
 import App from '../app'
 import User from '../user'
@@ -22,8 +22,8 @@ test.beforeEach(t => {
   mock.setup()
   cerebral = CerebralTest({
     modules: {
-      app: App({flash: null, flashType: null}),
-      user: User({'@id': null}),
+      app: App({ flash: null, flashType: null }),
+      user: User({ '@id': null }),
       settings: Settings,
     },
     providers: [
@@ -35,7 +35,7 @@ test.beforeEach(t => {
           Authorization: jwtHeader,
         },
       }),
-      StorageProvider({target: localStorage}),
+      StorageProvider({ target: localStorage }),
     ],
   })
 })
@@ -51,7 +51,7 @@ test.serial('should change nickname', t => {
 
   return cerebral
     .runSignal('settings.profileFormSubmitted')
-    .then(({state}) => [t.is(state.user.nickname, 'NewTest')])
+    .then(({ state }) => [t.is(state.user.nickname, 'NewTest')])
 })
 
 test.serial('should change email', t => {
@@ -73,5 +73,5 @@ test.serial('should change email', t => {
 
   return cerebral
     .runSignal('settings.emailFormSubmitted')
-    .then(({state}) => [t.is(state.user.email, 'new-test@example.com')])
+    .then(({ state }) => [t.is(state.user.email, 'new-test@example.com')])
 })

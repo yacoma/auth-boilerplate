@@ -2,11 +2,11 @@ import test from 'ava'
 import mock from 'xhr-mock'
 import StorageProvider from '@cerebral/storage'
 import HttpProvider from '@cerebral/http'
-import {CerebralTest} from 'cerebral/test'
+import { CerebralTest } from 'cerebral/test'
 
 import App from '.'
 import User from '../user'
-import {AuthenticationError} from '../common/errors'
+import { AuthenticationError } from '../common/errors'
 import routeToLogin from '../common/actions/routeToLogin'
 
 const jwtHeader =
@@ -22,8 +22,8 @@ test.beforeEach(t => {
   localStorage.removeItem('jwtHeader')
   cerebral = CerebralTest({
     modules: {
-      app: App({flash: null, flashType: null}),
-      user: User({'@id': null}),
+      app: App({ flash: null, flashType: null }),
+      user: User({ '@id': null }),
     },
     providers: [
       HttpProvider({
@@ -34,7 +34,7 @@ test.beforeEach(t => {
           Authorization: jwtHeader,
         },
       }),
-      StorageProvider({target: localStorage}),
+      StorageProvider({ target: localStorage }),
     ],
     catch: new Map([[AuthenticationError, routeToLogin]]),
   })
@@ -44,7 +44,7 @@ test.serial('should authenticate when valid token in localStorage', t => {
   localStorage.setItem('jwtHeader', JSON.stringify(jwtHeader))
   return cerebral
     .runSignal('app.appMounted')
-    .then(({state}) => [
+    .then(({ state }) => [
       t.true(state.user.authenticated),
       t.is(state.user.nickname, 'Admin'),
     ])
@@ -78,8 +78,8 @@ test.serial(
 
     cerebral = CerebralTest({
       modules: {
-        app: App({flash: null, flashType: null}),
-        user: User({'@id': null}),
+        app: App({ flash: null, flashType: null }),
+        user: User({ '@id': null }),
       },
       providers: [
         HttpProvider({
@@ -90,13 +90,13 @@ test.serial(
             Authorization: expiredJwtHeader,
           },
         }),
-        StorageProvider({target: localStorage}),
+        StorageProvider({ target: localStorage }),
       ],
     })
 
     return cerebral
       .runSignal('app.appMounted')
-      .then(({state}) => [
+      .then(({ state }) => [
         t.true(state.user.authenticated),
         t.is(state.user.nickname, 'Admin'),
       ])
@@ -107,7 +107,7 @@ test.serial(
   'unauthenticated route to private should redirect to login',
   async t => {
     const error = await t.throws(
-      cerebral.runSignal('app.pageRouted', {page: 'private'}),
+      cerebral.runSignal('app.pageRouted', { page: 'private' }),
       AuthenticationError
     )
 
@@ -121,7 +121,7 @@ test.serial(
   'unauthenticated route to settings should redirect to login',
   async t => {
     const error = await t.throws(
-      cerebral.runSignal('app.settingsRouted', {tab: 'email'}),
+      cerebral.runSignal('app.settingsRouted', { tab: 'email' }),
       AuthenticationError
     )
 
@@ -136,7 +136,7 @@ test.serial(
   async t => {
     cerebral.setState('user.authenticated', true)
     const error = await t.throws(
-      cerebral.runSignal('app.pageRouted', {page: 'admin'}),
+      cerebral.runSignal('app.pageRouted', { page: 'admin' }),
       AuthenticationError
     )
 
@@ -152,7 +152,7 @@ test.serial(
     cerebral.setState('user.authenticated', true)
 
     const error = await t.throws(
-      cerebral.runSignal('app.pageRouted', {page: 'admin'}),
+      cerebral.runSignal('app.pageRouted', { page: 'admin' }),
       AuthenticationError
     )
 
@@ -167,8 +167,8 @@ test.serial('route to admin should work when isAdmin', t => {
   cerebral.setState('user.isAdmin', true)
 
   return cerebral
-    .runSignal('app.pageRouted', {page: 'admin'})
-    .then(({state}) => [
+    .runSignal('app.pageRouted', { page: 'admin' })
+    .then(({ state }) => [
       t.true(state.user.authenticated),
       t.true(state.user.isAdmin),
       t.is(state.app.currentPage, 'admin'),

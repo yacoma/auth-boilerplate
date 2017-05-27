@@ -1,6 +1,6 @@
 import test from 'ava'
 import StorageProvider from '@cerebral/storage'
-import {runAction} from 'cerebral/test'
+import { runAction } from 'cerebral/test'
 import initApp from './initApp'
 
 test.serial('should initialize app state when no exp claim', t => {
@@ -23,8 +23,8 @@ test.serial('should initialize app state when no exp claim', t => {
         api: {},
       },
     },
-    providers: [StorageProvider({target: localStorage})],
-  }).then(({state}) => [
+    providers: [StorageProvider({ target: localStorage })],
+  }).then(({ state }) => [
     t.true(state.user.authenticated),
     t.is(state.user.api['@id'], '/users/1'),
     t.is(state.user.email, 'admin@example.com'),
@@ -55,8 +55,8 @@ test.serial('should initialize app state when exp claim is valid', t => {
         api: {},
       },
     },
-    providers: [StorageProvider({target: localStorage})],
-  }).then(({state}) => [
+    providers: [StorageProvider({ target: localStorage })],
+  }).then(({ state }) => [
     t.true(state.user.authenticated),
     t.is(state.user.api['@id'], '/users/1'),
     t.is(state.user.email, 'admin@example.com'),
@@ -91,8 +91,8 @@ test.serial(
           api: {},
         },
       },
-      providers: [StorageProvider({target: localStorage})],
-    }).then(({state}) => [
+      providers: [StorageProvider({ target: localStorage })],
+    }).then(({ state }) => [
       t.false(state.user.authenticated),
       t.is(localStorage.getItem('jwtHeader'), null),
     ])

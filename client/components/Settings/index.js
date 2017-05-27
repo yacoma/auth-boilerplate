@@ -1,7 +1,7 @@
 import React from 'react'
-import {connect} from 'cerebral/react'
-import {state} from 'cerebral/tags'
-import {Grid, Menu} from 'semantic-ui-react'
+import { connect } from 'cerebral/react'
+import { state } from 'cerebral/tags'
+import { Grid, Menu } from 'semantic-ui-react'
 import Profile from './Profile'
 import Email from './Email'
 import Password from './Password'
@@ -19,7 +19,7 @@ export default connect(
     nickname: state`user.nickname`,
     currentTab: state`settings.currentTab`,
   },
-  function Settings({nickname, currentTab}) {
+  function Settings({ nickname, currentTab }) {
     const Tab = tabs[currentTab]
     return (
       <Grid container stackable padded="vertically" centered>

@@ -3,7 +3,7 @@ import mock from 'xhr-mock'
 
 import HttpProvider from '@cerebral/http'
 import StorageProvider from '@cerebral/storage'
-import {CerebralTest} from 'cerebral/test'
+import { CerebralTest } from 'cerebral/test'
 
 import App from '../app'
 import User from '.'
@@ -21,8 +21,8 @@ test.beforeEach(t => {
   mock.setup()
   cerebral = CerebralTest({
     modules: {
-      app: App({flash: null, flashType: null}),
-      user: User({'@id': null}),
+      app: App({ flash: null, flashType: null }),
+      user: User({ '@id': null }),
     },
     providers: [
       HttpProvider({
@@ -33,7 +33,7 @@ test.beforeEach(t => {
           Authorization: jwtHeader,
         },
       }),
-      StorageProvider({target: localStorage}),
+      StorageProvider({ target: localStorage }),
     ],
   })
 })
@@ -51,7 +51,7 @@ test.serial('should login', t => {
 
   return cerebral
     .runSignal('user.loginFormSubmitted')
-    .then(({state}) => [
+    .then(({ state }) => [
       t.true(state.user.authenticated),
       t.is(state.user.api['@id'], '/users/1'),
       t.is(state.user.email, 'admin@example.com'),
@@ -78,7 +78,7 @@ test.serial('should not log in when wrong password', t => {
 
   return cerebral
     .runSignal('user.loginFormSubmitted')
-    .then(({state}) => [
+    .then(({ state }) => [
       t.false(state.user.authenticated),
       t.is(state.user.loginForm.email.value, 'admin@example.com'),
       t.is(state.user.loginForm.password.value, ''),
@@ -95,7 +95,7 @@ test.serial('should not log in on server error', t => {
 
   return cerebral
     .runSignal('user.loginFormSubmitted')
-    .then(({state}) => [
+    .then(({ state }) => [
       t.false(state.user.authenticated),
       t.is(state.user.loginForm.email.value, 'admin@example.com'),
       t.is(state.user.loginForm.password.value, ''),
@@ -110,7 +110,7 @@ test('should be logged out', t => {
 
   return cerebral
     .runSignal('user.logoutButtonClicked')
-    .then(({state}) => [
+    .then(({ state }) => [
       t.false(state.user.authenticated),
       t.is(state.user.email, ''),
       t.is(state.user.nickname, ''),
@@ -143,7 +143,7 @@ test.serial('should login on registration', t => {
 
   return cerebral
     .runSignal('user.registerFormSubmitted')
-    .then(({state}) => [
+    .then(({ state }) => [
       t.true(state.user.authenticated),
       t.is(state.user.api['@id'], '/users/2'),
       t.is(state.user.email, 'test@example.com'),
@@ -167,7 +167,7 @@ test.serial('should not register when email is admin@example.com', t => {
 
   return cerebral
     .runSignal('user.registerFormSubmitted')
-    .then(({state}) => [
+    .then(({ state }) => [
       t.is(state.app.currentPage, null),
       t.is(state.user.registerForm.nickname.value, 'Admin0'),
       t.is(state.user.registerForm.email.value, 'admin@example.com'),
@@ -193,7 +193,7 @@ test.serial('should not register when email exists', t => {
 
   return cerebral
     .runSignal('user.registerFormSubmitted')
-    .then(({state}) => [
+    .then(({ state }) => [
       t.is(state.app.flash, null),
       t.is(state.user.registerForm.nickname.value, 'Test'),
       t.is(state.user.registerForm.email.value, 'test@example.com'),
@@ -220,7 +220,7 @@ test.serial('should not register when email server does not exists', t => {
 
   return cerebral
     .runSignal('user.registerFormSubmitted')
-    .then(({state}) => [
+    .then(({ state }) => [
       t.is(state.app.flash, null),
       t.is(state.user.registerForm.nickname.value, 'Test'),
       t.is(state.user.registerForm.email.value, 'test@example.com'),

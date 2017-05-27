@@ -1,6 +1,6 @@
 import test from 'ava'
 import StorageProvider from '@cerebral/storage'
-import {runAction} from 'cerebral/test'
+import { runAction } from 'cerebral/test'
 import redirect from './redirect'
 import App from '../../app'
 
@@ -10,10 +10,10 @@ test('should redirect to home', t => {
       app: {},
     },
     modules: {
-      app: App({flash: null, flashType: null}),
+      app: App({ flash: null, flashType: null }),
     },
-    providers: [StorageProvider({target: localStorage})],
-  }).then(({state}) => [
+    providers: [StorageProvider({ target: localStorage })],
+  }).then(({ state }) => [
     t.is(state.app.currentPage, 'home'),
     t.is(state.app.lastVisited, 'home'),
     t.is(state.app.headerText, 'Auth Boilerplate'),
@@ -37,15 +37,15 @@ test('should redirect to settings email tab', t => {
       settings: {
         currentTab: 'profile',
         profileForm: {
-          nickname: {value: ''},
+          nickname: { value: '' },
         },
       },
     },
     modules: {
-      app: App({flash: null, flashType: null}),
+      app: App({ flash: null, flashType: null }),
     },
-    providers: [StorageProvider({target: localStorage})],
-  }).then(({state}) => [
+    providers: [StorageProvider({ target: localStorage })],
+  }).then(({ state }) => [
     t.is(state.app.currentPage, 'settings'),
     t.is(state.settings.currentTab, 'email'),
     t.is(state.app.lastVisited, 'settings'),

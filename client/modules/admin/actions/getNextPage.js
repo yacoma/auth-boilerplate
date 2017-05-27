@@ -1,4 +1,4 @@
-function getNextPage({props, state}) {
+function getNextPage({ props, state }) {
   let nextPage = 1
   switch (props.nextPage) {
     case 'previous':
@@ -15,7 +15,7 @@ function getNextPage({props, state}) {
         nextPage = Math.floor(props.nextPage)
       }
   }
-  return {nextPage}
+  return { nextPage }
 }
 
 export default getNextPage

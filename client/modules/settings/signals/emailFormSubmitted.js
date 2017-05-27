@@ -1,8 +1,8 @@
-import {sequence} from 'cerebral'
-import {state, string} from 'cerebral/tags'
-import {set, when} from 'cerebral/operators'
-import {isValidForm} from '@cerebral/forms/operators'
-import {httpPost, httpPut} from '@cerebral/http/operators'
+import { sequence } from 'cerebral'
+import { state, string } from 'cerebral/tags'
+import { set, when } from 'cerebral/operators'
+import { isValidForm } from '@cerebral/forms/operators'
+import { httpPost, httpPut } from '@cerebral/http/operators'
 import showFlash from '../../common/factories/showFlash'
 import showValidationError from '../../common/factories/showValidationError'
 

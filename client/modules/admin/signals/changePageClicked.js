@@ -1,6 +1,6 @@
-import {sequence} from 'cerebral'
-import {state, props} from 'cerebral/tags'
-import {set, when} from 'cerebral/operators'
+import { sequence } from 'cerebral'
+import { state, props } from 'cerebral/tags'
+import { set, when } from 'cerebral/operators'
 import getNextPage from '../actions/getNextPage'
 import fetchUsers from '../actions/fetchUsers'
 

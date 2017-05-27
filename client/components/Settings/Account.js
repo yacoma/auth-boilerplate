@@ -1,6 +1,6 @@
 import React from 'react'
-import {connect} from 'cerebral/react'
-import {state, signal} from 'cerebral/tags'
+import { connect } from 'cerebral/react'
+import { state, signal } from 'cerebral/tags'
 import {
   Grid,
   Header,
@@ -12,7 +12,7 @@ import {
   Loader,
   Icon,
 } from 'semantic-ui-react'
-import {PasswordField} from '../fields'
+import { PasswordField } from '../fields'
 import ConfirmSignOut from './ConfirmSignOut'
 import ConfirmRemoveUser from './ConfirmRemoveUser'
 

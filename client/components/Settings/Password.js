@@ -1,6 +1,6 @@
 import React from 'react'
-import {connect} from 'cerebral/react'
-import {state, signal} from 'cerebral/tags'
+import { connect } from 'cerebral/react'
+import { state, signal } from 'cerebral/tags'
 import {
   Grid,
   Header,
@@ -22,7 +22,7 @@ export default connect(
     passwordForm: state`settings.passwordForm`,
     formSubmitted: signal`settings.passwordFormSubmitted`,
   },
-  function ChangePassword({passwordForm, formSubmitted}) {
+  function ChangePassword({ passwordForm, formSubmitted }) {
     const handleSubmit = event => {
       event.preventDefault()
       formSubmitted()

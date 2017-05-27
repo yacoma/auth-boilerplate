@@ -1,13 +1,13 @@
 import test from 'ava'
 import StorageProvider from '@cerebral/storage'
-import {runAction} from 'cerebral/test'
+import { runAction } from 'cerebral/test'
 import routeTo from './routeTo'
 import App from '../../app'
 
 test('should route to home', t => {
   return runAction(routeTo('home'), {
-    state: {app: {lastVisited: 'private'}},
-  }).then(({state}) => [
+    state: { app: { lastVisited: 'private' } },
+  }).then(({ state }) => [
     t.is(state.app.currentPage, 'home'),
     t.is(state.app.lastVisited, 'home'),
     t.is(state.app.headerText, 'Auth Boilerplate'),
@@ -17,8 +17,8 @@ test('should route to home', t => {
 
 test('route to login should not change lastVisited', t => {
   return runAction(routeTo('login'), {
-    state: {app: {lastVisited: 'private'}},
-  }).then(({state}) => [
+    state: { app: { lastVisited: 'private' } },
+  }).then(({ state }) => [
     t.is(state.app.currentPage, 'login'),
     t.is(state.app.lastVisited, 'private'),
     t.is(state.app.headerText, 'Log in your account'),
@@ -28,8 +28,8 @@ test('route to login should not change lastVisited', t => {
 
 test('route to register should not change lastVisited', t => {
   return runAction(routeTo('register'), {
-    state: {app: {lastVisited: 'private'}},
-  }).then(({state}) => [
+    state: { app: { lastVisited: 'private' } },
+  }).then(({ state }) => [
     t.is(state.app.currentPage, 'register'),
     t.is(state.app.lastVisited, 'private'),
     t.is(state.app.headerText, 'Create account'),
@@ -46,7 +46,7 @@ test('route to private should set header title', t => {
         nickname: 'Test',
       },
     },
-  }).then(({state}) => [
+  }).then(({ state }) => [
     t.is(state.app.currentPage, 'private'),
     t.is(state.app.lastVisited, 'private'),
     t.is(state.app.headerText, 'Hello Test!'),
@@ -64,10 +64,10 @@ test('route to newpassword should redirect to home', t => {
       },
     },
     modules: {
-      app: App({flash: null, flashType: null}),
+      app: App({ flash: null, flashType: null }),
     },
-    providers: [StorageProvider({target: localStorage})],
-  }).then(({state}) => [
+    providers: [StorageProvider({ target: localStorage })],
+  }).then(({ state }) => [
     t.is(state.app.currentPage, 'home'),
     t.not(state.app.lastVisited, 'newpassword'),
   ])
@@ -85,10 +85,10 @@ test('route to newpassword when user authenticated should redirect to home', t =
       },
     },
     modules: {
-      app: App({flash: null, flashType: null}),
+      app: App({ flash: null, flashType: null }),
     },
-    providers: [StorageProvider({target: localStorage})],
-  }).then(({state}) => [t.is(state.app.currentPage, 'home')])
+    providers: [StorageProvider({ target: localStorage })],
+  }).then(({ state }) => [t.is(state.app.currentPage, 'home')])
 })
 
 test('newpassword with passed @id should route to newpassword', t => {
@@ -102,7 +102,7 @@ test('newpassword with passed @id should route to newpassword', t => {
         },
       },
     },
-  }).then(({state}) => [
+  }).then(({ state }) => [
     t.is(state.app.currentPage, 'newpassword'),
     t.is(state.app.headerText, 'New Password'),
     t.is(state.app.headerIcon, 'user'),
@@ -126,7 +126,7 @@ test('settings should set currentTab and nickname', t => {
         nickname: 'Test',
       },
     },
-  }).then(({state}) => [
+  }).then(({ state }) => [
     t.is(state.app.currentPage, 'settings'),
     t.is(state.app.lastVisited, 'settings'),
     t.is(state.settings.currentTab, 'email'),

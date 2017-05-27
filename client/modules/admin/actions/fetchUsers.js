@@ -1,7 +1,7 @@
-import {sequence} from 'cerebral'
-import {state, string, props} from 'cerebral/tags'
-import {set, when} from 'cerebral/operators'
-import {httpGet} from '@cerebral/http/operators'
+import { sequence } from 'cerebral'
+import { state, string, props } from 'cerebral/tags'
+import { set, when } from 'cerebral/operators'
+import { httpGet } from '@cerebral/http/operators'
 import showFlash from '../../common/factories/showFlash'
 import mergeUsers from './mergeUsers'
 

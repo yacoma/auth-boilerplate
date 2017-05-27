@@ -1,7 +1,7 @@
 import base64UrlDecode from 'jwt-decode/lib/base64_url_decode'
 import uuid from 'uuid'
 
-import {Controller, provide} from 'cerebral'
+import { Controller, provide } from 'cerebral'
 import Devtools from 'cerebral/devtools'
 import HttpProvider from '@cerebral/http'
 import FormsProvider from '@cerebral/forms'
@@ -12,7 +12,7 @@ import User from './modules/user'
 import Admin from './modules/admin'
 import Settings from './modules/settings'
 import Router from './router'
-import {AuthenticationError} from 'modules/common/errors'
+import { AuthenticationError } from 'modules/common/errors'
 import routeToLogin from 'modules/common/actions/routeToLogin'
 
 const jwtHeader = localStorage.getItem('jwtHeader')
@@ -57,7 +57,7 @@ const controller = Controller({
       flash: urlParams['flash'] ? base64UrlDecode(urlParams['flash']) : null,
       flashType: urlParams['flashtype'],
     }),
-    user: User({'@id': urlParams['@id']}),
+    user: User({ '@id': urlParams['@id'] }),
     admin: Admin,
     settings: Settings,
     router: Router,
@@ -85,7 +85,7 @@ const controller = Controller({
         },
       },
     }),
-    StorageProvider({target: localStorage}),
+    StorageProvider({ target: localStorage }),
   ],
   catch: new Map([[AuthenticationError, routeToLogin]]),
 })

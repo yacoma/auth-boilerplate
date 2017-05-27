@@ -1,6 +1,6 @@
 import jwtDecode from 'jwt-decode'
 
-function initApp({state, storage}) {
+function initApp({ state, storage }) {
   const jwtHeader = storage.get('jwtHeader')
   if (jwtHeader) {
     const claims = jwtDecode(jwtHeader)

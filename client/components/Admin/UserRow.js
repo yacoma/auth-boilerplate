@@ -1,7 +1,7 @@
 import React from 'react'
-import {connect} from 'cerebral/react'
-import {state, props, signal} from 'cerebral/tags'
-import {Table, Button, Icon} from 'semantic-ui-react'
+import { connect } from 'cerebral/react'
+import { state, props, signal } from 'cerebral/tags'
+import { Table, Button, Icon } from 'semantic-ui-react'
 import ConfirmSignOut from './ConfirmSignOut'
 import ConfirmRemoveUser from './ConfirmRemoveUser'
 
@@ -30,7 +30,7 @@ export default connect(
             inverted
             icon={<Icon name="sign out" size="large" />}
             color="yellow"
-            onClick={() => signOutButtonClicked({uid})}
+            onClick={() => signOutButtonClicked({ uid })}
           />
           <ConfirmSignOut />
           {user.email !== 'admin@example.com' &&
@@ -39,7 +39,7 @@ export default connect(
               inverted
               icon={<Icon name="remove user" size="large" />}
               color="red"
-              onClick={() => removeUserButtonClicked({uid})}
+              onClick={() => removeUserButtonClicked({ uid })}
             />}
           <ConfirmRemoveUser />
         </Table.Cell>
@@ -67,7 +67,7 @@ export default connect(
                 ? <Icon name="checkmark" color="green" size="large" />
                 : <Icon name="remove" color="red" size="large" />
             }
-            onClick={() => toggleAdminClicked({uid})}
+            onClick={() => toggleAdminClicked({ uid })}
           />
         </Table.Cell>
         <Table.Cell>{user.lastLogin}</Table.Cell>

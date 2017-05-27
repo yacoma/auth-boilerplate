@@ -1,6 +1,6 @@
-import {sequence} from 'cerebral'
-import {state, props} from 'cerebral/tags'
-import {set, when, debounce} from 'cerebral/operators'
+import { sequence } from 'cerebral'
+import { state, props } from 'cerebral/tags'
+import { set, when, debounce } from 'cerebral/operators'
 import showFlash from '../../common/factories/showFlash'
 import fetchUsers from '../actions/fetchUsers'
 

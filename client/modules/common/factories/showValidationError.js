@@ -1,9 +1,9 @@
-import {sequence} from 'cerebral'
-import {equals, set} from 'cerebral/operators'
-import {props} from 'cerebral/tags'
+import { sequence } from 'cerebral'
+import { equals, set } from 'cerebral/operators'
+import { props } from 'cerebral/tags'
 import showFlash from './showFlash'
 
-function getSchemaValidationErrorMessages({props}) {
+function getSchemaValidationErrorMessages({ props }) {
   const errorMessages = Object.keys(
     props.error.body
   ).reduce((errorMessages, errorField) => {
@@ -14,7 +14,7 @@ function getSchemaValidationErrorMessages({props}) {
     }
     return errorMessages
   }, [])
-  return {errorMessages: errorMessages.join('\n')}
+  return { errorMessages: errorMessages.join('\n') }
 }
 
 function showValidationError(defaultErrorMessage) {
