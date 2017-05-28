@@ -37,3 +37,6 @@ and controlling gunicord we use supervisor.
 - **web/nginx.conf** - the nginx configuration.
 - **web/supervisord.conf** - the supervisor configuration for
   gunicorn.
+- **web/gunicorn.conf.py** - gunicorn configuration which id used
+  directly from  here.
+  
