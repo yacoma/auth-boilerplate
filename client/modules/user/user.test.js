@@ -159,24 +159,6 @@ test.serial('should login on registration', t => {
     ])
 })
 
-test.serial('should not register when email is admin@example.com', t => {
-  cerebral.setState('user.registerForm.nickname.value', 'Admin0')
-  cerebral.setState('user.registerForm.email.value', 'admin@example.com')
-  cerebral.setState('user.registerForm.password.value', 'admin0')
-  cerebral.setState('user.registerForm.confirmPassword.value', 'admin0')
-
-  return cerebral
-    .runSignal('user.registerFormSubmitted')
-    .then(({ state }) => [
-      t.is(state.app.currentPage, null),
-      t.is(state.user.registerForm.nickname.value, 'Admin0'),
-      t.is(state.user.registerForm.email.value, 'admin@example.com'),
-      t.is(state.user.registerForm.password.value, ''),
-      t.is(state.user.registerForm.confirmPassword.value, ''),
-      t.false(state.user.registerForm.showErrors),
-    ])
-})
-
 test.serial('should not register when email exists', t => {
   mock.post('/api/users', (req, res) => {
     return res.status(409).header('Content-Type', 'application/json').body(
