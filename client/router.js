@@ -1,4 +1,4 @@
-import Router from 'cerebral-router'
+import Router from '@cerebral/router'
 import { props } from 'cerebral/tags'
 
 export default Router({

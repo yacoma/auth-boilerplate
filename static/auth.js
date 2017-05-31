@@ -63,7 +63,7 @@
 /******/ 	__webpack_require__.p = "/static/";
 /******/
 /******/ 	// Load entry module and return exports
-/******/ 	return __webpack_require__(__webpack_require__.s = 532);
+/******/ 	return __webpack_require__(__webpack_require__.s = 536);
 /******/ })
 /************************************************************************/
 /******/ ([
@@ -85,7 +85,7 @@ module.exports = __webpack_require__(92);
 
 exports.__esModule = true;
 
-var _assign = __webpack_require__(578);
+var _assign = __webpack_require__(582);
 
 var _assign2 = _interopRequireDefault(_assign);
 
@@ -490,7 +490,7 @@ exports.default = function (instance, Constructor) {
 
 exports.__esModule = true;
 
-var _defineProperty = __webpack_require__(580);
+var _defineProperty = __webpack_require__(584);
 
 var _defineProperty2 = _interopRequireDefault(_defineProperty);
 
@@ -523,11 +523,11 @@ exports.default = function () {
 
 exports.__esModule = true;
 
-var _setPrototypeOf = __webpack_require__(583);
+var _setPrototypeOf = __webpack_require__(587);
 
 var _setPrototypeOf2 = _interopRequireDefault(_setPrototypeOf);
 
-var _create = __webpack_require__(579);
+var _create = __webpack_require__(583);
 
 var _create2 = _interopRequireDefault(_create);
 
@@ -3741,7 +3741,7 @@ Object.defineProperty(exports, "__esModule", {
   value: true
 });
 
-var _NicknameField = __webpack_require__(529);
+var _NicknameField = __webpack_require__(533);
 
 Object.defineProperty(exports, 'NicknameField', {
   enumerable: true,
@@ -3750,7 +3750,7 @@ Object.defineProperty(exports, 'NicknameField', {
   }
 });
 
-var _EmailField = __webpack_require__(528);
+var _EmailField = __webpack_require__(532);
 
 Object.defineProperty(exports, 'EmailField', {
   enumerable: true,
@@ -3759,7 +3759,7 @@ Object.defineProperty(exports, 'EmailField', {
   }
 });
 
-var _PasswordField = __webpack_require__(530);
+var _PasswordField = __webpack_require__(534);
 
 Object.defineProperty(exports, 'PasswordField', {
   enumerable: true,
@@ -3768,7 +3768,7 @@ Object.defineProperty(exports, 'PasswordField', {
   }
 });
 
-var _ConfirmPasswordField = __webpack_require__(526);
+var _ConfirmPasswordField = __webpack_require__(530);
 
 Object.defineProperty(exports, 'ConfirmPasswordField', {
   enumerable: true,
@@ -3777,7 +3777,7 @@ Object.defineProperty(exports, 'ConfirmPasswordField', {
   }
 });
 
-var _CurrentPasswordField = __webpack_require__(527);
+var _CurrentPasswordField = __webpack_require__(531);
 
 Object.defineProperty(exports, 'CurrentPasswordField', {
   enumerable: true,
@@ -4437,7 +4437,7 @@ module.exports = DOMProperty;
 
 exports.__esModule = true;
 
-var _from = __webpack_require__(575);
+var _from = __webpack_require__(579);
 
 var _from2 = _interopRequireDefault(_from);
 
@@ -5240,11 +5240,11 @@ exports.default = FormsProvider;
 
 exports.__esModule = true;
 
-var _iterator = __webpack_require__(585);
+var _iterator = __webpack_require__(589);
 
 var _iterator2 = _interopRequireDefault(_iterator);
 
-var _symbol = __webpack_require__(584);
+var _symbol = __webpack_require__(588);
 
 var _symbol2 = _interopRequireDefault(_symbol);
 
@@ -6358,12 +6358,12 @@ module.exports = React;
 Object.defineProperty(exports, "__esModule", {
   value: true
 });
-var hasError = exports.hasError = function hasError(form, field) {
-  return form.showErrors && !field.isValid;
+var hasError = exports.hasError = function hasError(field, showErrors) {
+  return showErrors && !field.isValid;
 };
 
-var showError = exports.showError = function showError(form, field) {
-  return form.showErrors && !field.isValid && field.hasValue && field.errorMessage !== null;
+var showError = exports.showError = function showError(field, showErrors) {
+  return showErrors && !field.isValid && field.hasValue && field.errorMessage !== null;
 };
 
 /***/ }),
@@ -6405,7 +6405,7 @@ var _showFlash = __webpack_require__(26);
 
 var _showFlash2 = _interopRequireDefault(_showFlash);
 
-var _mergeUsers = __webpack_require__(534);
+var _mergeUsers = __webpack_require__(538);
 
 var _mergeUsers2 = _interopRequireDefault(_mergeUsers);
 
@@ -7245,7 +7245,7 @@ module.exports = function(key){
 
 "use strict";
 
-var $at  = __webpack_require__(615)(true);
+var $at  = __webpack_require__(619)(true);
 
 // 21.1.3.27 String.prototype[@@iterator]()
 __webpack_require__(272)(String, 'String', function(iterated){
@@ -10345,7 +10345,7 @@ module.exports = function(it){
 /***/ (function(module, exports, __webpack_require__) {
 
 // optional / simple context binding
-var aFunction = __webpack_require__(597);
+var aFunction = __webpack_require__(601);
 module.exports = function(fn, that, length){
   aFunction(fn);
   if(that === undefined)return fn;
@@ -10396,7 +10396,7 @@ module.exports = true;
 
 // 19.1.2.2 / 15.2.3.5 Object.create(O [, Properties])
 var anObject    = __webpack_require__(67)
-  , dPs         = __webpack_require__(612)
+  , dPs         = __webpack_require__(616)
   , enumBugKeys = __webpack_require__(168)
   , IE_PROTO    = __webpack_require__(174)('IE_PROTO')
   , Empty       = function(){ /* empty */ }
@@ -10411,7 +10411,7 @@ var createDict = function(){
     , gt     = '>'
     , iframeDocument;
   iframe.style.display = 'none';
-  __webpack_require__(602).appendChild(iframe);
+  __webpack_require__(606).appendChild(iframe);
   iframe.src = 'javascript:'; // eslint-disable-line no-script-url
   // createDict = iframe.contentWindow.Object;
   // html.removeChild(iframe);
@@ -10549,7 +10549,7 @@ exports.f = __webpack_require__(37);
 /* 180 */
 /***/ (function(module, exports, __webpack_require__) {
 
-__webpack_require__(620);
+__webpack_require__(624);
 var global        = __webpack_require__(57)
   , hide          = __webpack_require__(80)
   , Iterators     = __webpack_require__(81)
@@ -15622,16 +15622,16 @@ function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { de
 
 function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
 
-function createFields(source, form) {
-  return Object.keys(source).reduce(function (fields, key) {
-    if (source[key] === Object(source[key])) {
-      if ('value' in source[key]) {
-        fields[key] = new Field(source[key], form);
+function createFields(form) {
+  return Object.keys(form).reduce(function (fields, key) {
+    if (form[key] === Object(form[key])) {
+      if ('value' in form[key]) {
+        fields[key] = new Field(form[key], form);
       } else {
-        fields[key] = createFields(source[key], form);
+        fields[key] = createFields(form[key], form);
       }
     } else {
-      fields[key] = source[key];
+      fields[key] = form[key];
     }
 
     return fields;
@@ -15639,10 +15639,9 @@ function createFields(source, form) {
 }
 
 var Field = exports.Field = function () {
-  function Field(field, form) {
+  function Field(field) {
     _classCallCheck(this, Field);
 
-    this._form = form;
     Object.assign(this, field, {
       isPristine: typeof field.isPristine === 'undefined' ? true : field.isPristine
     });
@@ -15650,8 +15649,8 @@ var Field = exports.Field = function () {
 
   _createClass(Field, [{
     key: '_validate',
-    value: function _validate() {
-      return Object.assign(this, (0, _runValidation2.default)(this, this._form)).isValid;
+    value: function _validate(get) {
+      return Object.assign(this, (0, _runValidation2.default)(this, get)).isValid;
     }
   }]);
 
@@ -15659,20 +15658,20 @@ var Field = exports.Field = function () {
 }();
 
 var Form = exports.Form = function () {
-  function Form(form) {
+  function Form(form, get) {
     _classCallCheck(this, Form);
 
-    Object.assign(this, createFields(form, this));
-    this.isValid = this._validate();
+    Object.assign(this, createFields(form));
+    this.isValid = this._validate(get);
   }
 
   _createClass(Form, [{
     key: '_validate',
-    value: function _validate() {
+    value: function _validate(get) {
       function validate(obj) {
         return Object.keys(obj).reduce(function (isValid, field) {
           if (obj[field] instanceof Field) {
-            var isFieldValid = obj[field]._validate();
+            var isFieldValid = obj[field]._validate(get);
 
             return isValid ? isFieldValid : false;
           } else if (obj[field] === Object(obj[field])) {
@@ -15708,24 +15707,25 @@ var Form = exports.Form = function () {
 }();
 
 function computedField(fieldValueTag) {
-  return (0, _cerebral.compute)(fieldValueTag, function (fieldValue) {
+  return (0, _cerebral.compute)(fieldValueTag, function (fieldValue, get) {
     if (!fieldValue || (typeof fieldValue === 'undefined' ? 'undefined' : _typeof(fieldValue)) !== 'object') {
       console.warn('Cerebral Forms - Field value: ' + fieldValueTag + ' did not resolve to an object');
       return {};
     }
-    var field = new Field(fieldValue, null);
-    field._validate();
+    var field = new Field(fieldValue);
+    field._validate(get);
     return field;
   });
 }
 
 function computedForm(formValueTag) {
-  return (0, _cerebral.compute)(formValueTag, function (formValue) {
+  return (0, _cerebral.compute)(formValueTag, function (formValue, get) {
     if (!formValue || (typeof formValue === 'undefined' ? 'undefined' : _typeof(formValue)) !== 'object') {
       console.warn('Cerebral Forms - Form value: ' + formValueTag + ' did not resolve to an object');
       return {};
     }
-    return new Form(formValue);
+
+    return new Form(formValue, get);
   });
 }
 //# sourceMappingURL=form.js.map
@@ -15855,7 +15855,14 @@ function resetForm(form) {
 Object.defineProperty(exports, "__esModule", {
   value: true
 });
-/* eslint-disable no-useless-escape */
+
+var _templateObject = _taggedTemplateLiteral(['', '.value'], ['', '.value']);
+
+var _tags = __webpack_require__(6);
+
+function _taggedTemplateLiteral(strings, raw) { return Object.freeze(Object.defineProperties(strings, { raw: { value: Object.freeze(raw) } })); } /* eslint-disable no-useless-escape, no-control-regex */
+
+
 var rules = {
   _errorMessages: {},
   isExisty: function isExisty(value) {
@@ -15864,7 +15871,7 @@ var rules = {
   isEmpty: function isEmpty(value) {
     return value === '';
   },
-  regexp: function regexp(value, _, _regexp) {
+  regexp: function regexp(value, _regexp) {
     return !rules.isExisty(value) || rules.isEmpty(value) || _regexp.test(value);
   },
   isValue: function isValue(value) {
@@ -15874,10 +15881,10 @@ var rules = {
     return value === undefined;
   },
   isEmail: function isEmail(value) {
-    return rules.regexp(value, null, /^((([a-z]|\d|[!#\$%&'\*\+\-\/=\?\^_`{\|}~]|[\u00A0-\uD7FF\uF900-\uFDCF\uFDF0-\uFFEF])+(\.([a-z]|\d|[!#\$%&'\*\+\-\/=\?\^_`{\|}~]|[\u00A0-\uD7FF\uF900-\uFDCF\uFDF0-\uFFEF])+)*)|((\x22)((((\x20|\x09)*(\x0d\x0a))?(\x20|\x09)+)?(([\x01-\x08\x0b\x0c\x0e-\x1f\x7f]|\x21|[\x23-\x5b]|[\x5d-\x7e]|[\u00A0-\uD7FF\uF900-\uFDCF\uFDF0-\uFFEF])|(\\([\x01-\x09\x0b\x0c\x0d-\x7f]|[\u00A0-\uD7FF\uF900-\uFDCF\uFDF0-\uFFEF]))))*(((\x20|\x09)*(\x0d\x0a))?(\x20|\x09)+)?(\x22)))@((([a-z]|\d|[\u00A0-\uD7FF\uF900-\uFDCF\uFDF0-\uFFEF])|(([a-z]|\d|[\u00A0-\uD7FF\uF900-\uFDCF\uFDF0-\uFFEF])([a-z]|\d|-|\.|_|~|[\u00A0-\uD7FF\uF900-\uFDCF\uFDF0-\uFFEF])*([a-z]|\d|[\u00A0-\uD7FF\uF900-\uFDCF\uFDF0-\uFFEF])))\.)+(([a-z]|[\u00A0-\uD7FF\uF900-\uFDCF\uFDF0-\uFFEF])|(([a-z]|[\u00A0-\uD7FF\uF900-\uFDCF\uFDF0-\uFFEF])([a-z]|\d|-|\.|_|~|[\u00A0-\uD7FF\uF900-\uFDCF\uFDF0-\uFFEF])*([a-z]|[\u00A0-\uD7FF\uF900-\uFDCF\uFDF0-\uFFEF])))$/i);
+    return rules.regexp(value, /^((([a-z]|\d|[!#\$%&'\*\+\-\/=\?\^_`{\|}~]|[\u00A0-\uD7FF\uF900-\uFDCF\uFDF0-\uFFEF])+(\.([a-z]|\d|[!#\$%&'\*\+\-\/=\?\^_`{\|}~]|[\u00A0-\uD7FF\uF900-\uFDCF\uFDF0-\uFFEF])+)*)|((\x22)((((\x20|\x09)*(\x0d\x0a))?(\x20|\x09)+)?(([\x01-\x08\x0b\x0c\x0e-\x1f\x7f]|\x21|[\x23-\x5b]|[\x5d-\x7e]|[\u00A0-\uD7FF\uF900-\uFDCF\uFDF0-\uFFEF])|(\\([\x01-\x09\x0b\x0c\x0d-\x7f]|[\u00A0-\uD7FF\uF900-\uFDCF\uFDF0-\uFFEF]))))*(((\x20|\x09)*(\x0d\x0a))?(\x20|\x09)+)?(\x22)))@((([a-z]|\d|[\u00A0-\uD7FF\uF900-\uFDCF\uFDF0-\uFFEF])|(([a-z]|\d|[\u00A0-\uD7FF\uF900-\uFDCF\uFDF0-\uFFEF])([a-z]|\d|-|\.|_|~|[\u00A0-\uD7FF\uF900-\uFDCF\uFDF0-\uFFEF])*([a-z]|\d|[\u00A0-\uD7FF\uF900-\uFDCF\uFDF0-\uFFEF])))\.)+(([a-z]|[\u00A0-\uD7FF\uF900-\uFDCF\uFDF0-\uFFEF])|(([a-z]|[\u00A0-\uD7FF\uF900-\uFDCF\uFDF0-\uFFEF])([a-z]|\d|-|\.|_|~|[\u00A0-\uD7FF\uF900-\uFDCF\uFDF0-\uFFEF])*([a-z]|[\u00A0-\uD7FF\uF900-\uFDCF\uFDF0-\uFFEF])))$/i);
   },
   isUrl: function isUrl(value) {
-    return rules.regexp(value, null, /^(https?|s?ftp):\/\/(((([a-z]|\d|-|\.|_|~|[\u00A0-\uD7FF\uF900-\uFDCF\uFDF0-\uFFEF])|(%[\da-f]{2})|[!\$&'\(\)\*\+,;=]|:)*@)?(((\d|[1-9]\d|1\d\d|2[0-4]\d|25[0-5])\.(\d|[1-9]\d|1\d\d|2[0-4]\d|25[0-5])\.(\d|[1-9]\d|1\d\d|2[0-4]\d|25[0-5])\.(\d|[1-9]\d|1\d\d|2[0-4]\d|25[0-5]))|((([a-z]|\d|[\u00A0-\uD7FF\uF900-\uFDCF\uFDF0-\uFFEF])|(([a-z]|\d|[\u00A0-\uD7FF\uF900-\uFDCF\uFDF0-\uFFEF])([a-z]|\d|-|\.|_|~|[\u00A0-\uD7FF\uF900-\uFDCF\uFDF0-\uFFEF])*([a-z]|\d|[\u00A0-\uD7FF\uF900-\uFDCF\uFDF0-\uFFEF])))\.)+(([a-z]|[\u00A0-\uD7FF\uF900-\uFDCF\uFDF0-\uFFEF])|(([a-z]|[\u00A0-\uD7FF\uF900-\uFDCF\uFDF0-\uFFEF])([a-z]|\d|-|\.|_|~|[\u00A0-\uD7FF\uF900-\uFDCF\uFDF0-\uFFEF])*([a-z]|[\u00A0-\uD7FF\uF900-\uFDCF\uFDF0-\uFFEF])))\.?)(:\d*)?)(\/((([a-z]|\d|-|\.|_|~|[\u00A0-\uD7FF\uF900-\uFDCF\uFDF0-\uFFEF])|(%[\da-f]{2})|[!\$&'\(\)\*\+,;=]|:|@)+(\/(([a-z]|\d|-|\.|_|~|[\u00A0-\uD7FF\uF900-\uFDCF\uFDF0-\uFFEF])|(%[\da-f]{2})|[!\$&'\(\)\*\+,;=]|:|@)*)*)?)?(\?((([a-z]|\d|-|\.|_|~|[\u00A0-\uD7FF\uF900-\uFDCF\uFDF0-\uFFEF])|(%[\da-f]{2})|[!\$&'\(\)\*\+,;=]|:|@)|[\uE000-\uF8FF]|\/|\?)*)?(#((([a-z]|\d|-|\.|_|~|[\u00A0-\uD7FF\uF900-\uFDCF\uFDF0-\uFFEF])|(%[\da-f]{2})|[!\$&'\(\)\*\+,;=]|:|@)|\/|\?)*)?$/i);
+    return rules.regexp(value, /^(https?|s?ftp):\/\/(((([a-z]|\d|-|\.|_|~|[\u00A0-\uD7FF\uF900-\uFDCF\uFDF0-\uFFEF])|(%[\da-f]{2})|[!\$&'\(\)\*\+,;=]|:)*@)?(((\d|[1-9]\d|1\d\d|2[0-4]\d|25[0-5])\.(\d|[1-9]\d|1\d\d|2[0-4]\d|25[0-5])\.(\d|[1-9]\d|1\d\d|2[0-4]\d|25[0-5])\.(\d|[1-9]\d|1\d\d|2[0-4]\d|25[0-5]))|((([a-z]|\d|[\u00A0-\uD7FF\uF900-\uFDCF\uFDF0-\uFFEF])|(([a-z]|\d|[\u00A0-\uD7FF\uF900-\uFDCF\uFDF0-\uFFEF])([a-z]|\d|-|\.|_|~|[\u00A0-\uD7FF\uF900-\uFDCF\uFDF0-\uFFEF])*([a-z]|\d|[\u00A0-\uD7FF\uF900-\uFDCF\uFDF0-\uFFEF])))\.)+(([a-z]|[\u00A0-\uD7FF\uF900-\uFDCF\uFDF0-\uFFEF])|(([a-z]|[\u00A0-\uD7FF\uF900-\uFDCF\uFDF0-\uFFEF])([a-z]|\d|-|\.|_|~|[\u00A0-\uD7FF\uF900-\uFDCF\uFDF0-\uFFEF])*([a-z]|[\u00A0-\uD7FF\uF900-\uFDCF\uFDF0-\uFFEF])))\.?)(:\d*)?)(\/((([a-z]|\d|-|\.|_|~|[\u00A0-\uD7FF\uF900-\uFDCF\uFDF0-\uFFEF])|(%[\da-f]{2})|[!\$&'\(\)\*\+,;=]|:|@)+(\/(([a-z]|\d|-|\.|_|~|[\u00A0-\uD7FF\uF900-\uFDCF\uFDF0-\uFFEF])|(%[\da-f]{2})|[!\$&'\(\)\*\+,;=]|:|@)*)*)?)?(\?((([a-z]|\d|-|\.|_|~|[\u00A0-\uD7FF\uF900-\uFDCF\uFDF0-\uFFEF])|(%[\da-f]{2})|[!\$&'\(\)\*\+,;=]|:|@)|[\uE000-\uF8FF]|\/|\?)*)?(#((([a-z]|\d|-|\.|_|~|[\u00A0-\uD7FF\uF900-\uFDCF\uFDF0-\uFFEF])|(%[\da-f]{2})|[!\$&'\(\)\*\+,;=]|:|@)|\/|\?)*)?$/i);
   },
   isTrue: function isTrue(value) {
     return value === true;
@@ -15890,39 +15897,39 @@ var rules = {
       return true;
     }
 
-    return rules.regexp(value, null, /^[-+]?(?:\d*[.])?\d+$/);
+    return rules.regexp(value, /^[-+]?(?:\d*[.])?\d+$/);
   },
   isAlpha: function isAlpha(value) {
-    return rules.regexp(value, null, /^[A-Z]+$/i);
+    return rules.regexp(value, /^[A-Z]+$/i);
   },
   isAlphanumeric: function isAlphanumeric(value) {
-    return rules.regexp(value, null, /^[0-9A-Z]+$/i);
+    return rules.regexp(value, /^[0-9A-Z]+$/i);
   },
   isInt: function isInt(value) {
-    return rules.regexp(value, null, /^(?:[-+]?(?:0|[1-9]\d*))$/);
+    return rules.regexp(value, /^(?:[-+]?(?:0|[1-9]\d*))$/);
   },
   isFloat: function isFloat(value) {
-    return rules.regexp(value, null, /^(?:[-+]?(?:\d+))?(?:\.\d*)?(?:[eE][\+\-]?(?:\d+))?$/);
+    return rules.regexp(value, /^(?:[-+]?(?:\d+))?(?:\.\d*)?(?:[eE][\+\-]?(?:\d+))?$/);
   },
   isWords: function isWords(value) {
-    return rules.regexp(value, null, /^[A-Z\s]+$/i);
+    return rules.regexp(value, /^[A-Z\s]+$/i);
   },
   isSpecialWords: function isSpecialWords(value) {
-    return rules.regexp(value, null, /^[A-Z\s\u00C0-\u017F]+$/i);
+    return rules.regexp(value, /^[A-Z\s\u00C0-\u017F]+$/i);
   },
-  isLength: function isLength(value, form, length) {
+  isLength: function isLength(value, length) {
     return value.length === length;
   },
-  equals: function equals(value, form, eql) {
+  equals: function equals(value, eql) {
     return value === eql;
   },
-  equalsField: function equalsField(value, form, field) {
-    return value === form[field].value;
+  equalsField: function equalsField(value, field, get) {
+    return value === get((0, _tags.state)(_templateObject, field));
   },
-  maxLength: function maxLength(value, form, length) {
+  maxLength: function maxLength(value, length) {
     return value.length <= length;
   },
-  minLength: function minLength(value, form, length) {
+  minLength: function minLength(value, length) {
     return !rules.isExisty(value) || rules.isEmpty(value) || value.length >= length;
   }
 };
@@ -15948,8 +15955,9 @@ var _rules2 = _interopRequireDefault(_rules);
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
-function validate(form, value) {
-  var validationRules = arguments.length > 2 && arguments[2] !== undefined ? arguments[2] : [];
+function validate(value) {
+  var validationRules = arguments.length > 1 && arguments[1] !== undefined ? arguments[1] : [];
+  var get = arguments[2];
 
   var initialValidation = {
     isValid: true
@@ -15979,7 +15987,7 @@ function validate(form, value) {
       arg = undefined;
     }
 
-    var isValid = rule(value, form, arg);
+    var isValid = rule(value, arg, get);
 
     return isValid ? initialValidation : {
       isValid: isValid,
@@ -16015,9 +16023,10 @@ var _templateObject = _taggedTemplateLiteral(['app.currentPage'], ['app.currentP
     _templateObject9 = _taggedTemplateLiteral(['app.headerIcon'], ['app.headerIcon']),
     _templateObject10 = _taggedTemplateLiteral(['user.email'], ['user.email']),
     _templateObject11 = _taggedTemplateLiteral(['', '\'s settings'], ['', '\'s settings']),
-    _templateObject12 = _taggedTemplateLiteral(['settings.currentTab'], ['settings.currentTab']),
-    _templateObject13 = _taggedTemplateLiteral(['user.api.@id'], ['user.api.@id']),
-    _templateObject14 = _taggedTemplateLiteral(['user.authenticated'], ['user.authenticated']);
+    _templateObject12 = _taggedTemplateLiteral(['tab'], ['tab']),
+    _templateObject13 = _taggedTemplateLiteral(['settings.currentTab'], ['settings.currentTab']),
+    _templateObject14 = _taggedTemplateLiteral(['user.api.@id'], ['user.api.@id']),
+    _templateObject15 = _taggedTemplateLiteral(['user.authenticated'], ['user.authenticated']);
 
 var _cerebral = __webpack_require__(9);
 
@@ -16033,15 +16042,15 @@ var _redirect = __webpack_require__(55);
 
 var _redirect2 = _interopRequireDefault(_redirect);
 
-var _authenticate = __webpack_require__(552);
+var _authenticate = __webpack_require__(556);
 
 var _authenticate2 = _interopRequireDefault(_authenticate);
 
-var _authenticateAdmin = __webpack_require__(553);
+var _authenticateAdmin = __webpack_require__(557);
 
 var _authenticateAdmin2 = _interopRequireDefault(_authenticateAdmin);
 
-var _prepareSettingsForm = __webpack_require__(555);
+var _prepareSettingsForm = __webpack_require__(559);
 
 var _prepareSettingsForm2 = _interopRequireDefault(_prepareSettingsForm);
 
@@ -16064,14 +16073,14 @@ function routeTo(page, tab) {
     settings: [(0, _operators.set)((0, _tags.state)(_templateObject5), 'settings'), _authenticate2.default, (0, _operators.when)((0, _tags.state)(_templateObject10), function (email) {
       return email !== 'admin@example.com';
     }), {
-      true: [(0, _operators.set)((0, _tags.state)(_templateObject6), (0, _tags.string)(_templateObject11, (0, _tags.state)(_templateObject8))), (0, _operators.set)((0, _tags.state)(_templateObject9), 'user'), (0, _operators.when)(tab), {
-        true: (0, _operators.set)((0, _tags.state)(_templateObject12), tab),
+      true: [(0, _operators.set)((0, _tags.state)(_templateObject6), (0, _tags.string)(_templateObject11, (0, _tags.state)(_templateObject8))), (0, _operators.set)((0, _tags.state)(_templateObject9), 'user'), (0, _operators.set)((0, _tags.props)(_templateObject12), tab), (0, _operators.when)((0, _tags.props)(_templateObject12)), {
+        true: (0, _operators.set)((0, _tags.state)(_templateObject13), tab),
         false: []
       }, _prepareSettingsForm2.default],
       false: [page !== 'home' ? (0, _redirect2.default)('home') : [], (0, _showFlash2.default)('Admin cannot edit his settings', 'warning')]
     }],
     admin: [(0, _operators.set)((0, _tags.state)(_templateObject5), 'admin'), _authenticateAdmin2.default, (0, _operators.set)((0, _tags.state)(_templateObject6), 'User Admin'), (0, _operators.set)((0, _tags.state)(_templateObject9), 'users'), _fetchUsers2.default],
-    newpassword: [(0, _operators.when)((0, _tags.state)(_templateObject13), (0, _tags.state)(_templateObject14), function (uid, authenticated) {
+    newpassword: [(0, _operators.when)((0, _tags.state)(_templateObject14), (0, _tags.state)(_templateObject15), function (uid, authenticated) {
       return uid && !authenticated;
     }), {
       true: [(0, _operators.set)((0, _tags.state)(_templateObject6), 'New Password'), (0, _operators.set)((0, _tags.state)(_templateObject9), 'user')],
@@ -16124,11 +16133,11 @@ exports.default = removeUser;
 
 exports.__esModule = true;
 
-var _getPrototypeOf = __webpack_require__(582);
+var _getPrototypeOf = __webpack_require__(586);
 
 var _getPrototypeOf2 = _interopRequireDefault(_getPrototypeOf);
 
-var _getOwnPropertyDescriptor = __webpack_require__(581);
+var _getOwnPropertyDescriptor = __webpack_require__(585);
 
 var _getOwnPropertyDescriptor2 = _interopRequireDefault(_getOwnPropertyDescriptor);
 
@@ -16168,11 +16177,11 @@ exports.default = function get(object, property, receiver) {
 
 exports.__esModule = true;
 
-var _isIterable2 = __webpack_require__(577);
+var _isIterable2 = __webpack_require__(581);
 
 var _isIterable3 = _interopRequireDefault(_isIterable2);
 
-var _getIterator2 = __webpack_require__(576);
+var _getIterator2 = __webpack_require__(580);
 
 var _getIterator3 = _interopRequireDefault(_getIterator2);
 
@@ -16286,7 +16295,7 @@ var LIBRARY        = __webpack_require__(169)
   , hide           = __webpack_require__(80)
   , has            = __webpack_require__(69)
   , Iterators      = __webpack_require__(81)
-  , $iterCreate    = __webpack_require__(606)
+  , $iterCreate    = __webpack_require__(610)
   , setToStringTag = __webpack_require__(173)
   , getPrototypeOf = __webpack_require__(274)
   , ITERATOR       = __webpack_require__(37)('iterator')
@@ -16386,7 +16395,7 @@ module.exports = Object.getPrototypeOf || function(O){
 
 var has          = __webpack_require__(69)
   , toIObject    = __webpack_require__(59)
-  , arrayIndexOf = __webpack_require__(599)(false)
+  , arrayIndexOf = __webpack_require__(603)(false)
   , IE_PROTO     = __webpack_require__(174)('IE_PROTO');
 
 module.exports = function(object, names){
@@ -30855,47 +30864,47 @@ var _tags = __webpack_require__(6);
 
 var _semanticUiReact = __webpack_require__(16);
 
-var _Home = __webpack_require__(513);
+var _Home = __webpack_require__(517);
 
 var _Home2 = _interopRequireDefault(_Home);
 
-var _Private = __webpack_require__(516);
+var _Private = __webpack_require__(520);
 
 var _Private2 = _interopRequireDefault(_Private);
 
-var _Login = __webpack_require__(514);
+var _Login = __webpack_require__(518);
 
 var _Login2 = _interopRequireDefault(_Login);
 
-var _Register = __webpack_require__(517);
+var _Register = __webpack_require__(521);
 
 var _Register2 = _interopRequireDefault(_Register);
 
-var _ResetPassword = __webpack_require__(518);
+var _ResetPassword = __webpack_require__(522);
 
 var _ResetPassword2 = _interopRequireDefault(_ResetPassword);
 
-var _NewPassword = __webpack_require__(515);
+var _NewPassword = __webpack_require__(519);
 
 var _NewPassword2 = _interopRequireDefault(_NewPassword);
 
-var _Admin = __webpack_require__(509);
+var _Admin = __webpack_require__(513);
 
 var _Admin2 = _interopRequireDefault(_Admin);
 
-var _Settings = __webpack_require__(525);
+var _Settings = __webpack_require__(529);
 
 var _Settings2 = _interopRequireDefault(_Settings);
 
-var _Navbar = __webpack_require__(512);
+var _Navbar = __webpack_require__(516);
 
 var _Navbar2 = _interopRequireDefault(_Navbar);
 
-var _Header = __webpack_require__(511);
+var _Header = __webpack_require__(515);
 
 var _Header2 = _interopRequireDefault(_Header);
 
-var _Flash = __webpack_require__(510);
+var _Flash = __webpack_require__(514);
 
 var _Flash2 = _interopRequireDefault(_Flash);
 
@@ -30964,33 +30973,33 @@ var _forms = __webpack_require__(77);
 
 var _forms2 = _interopRequireDefault(_forms);
 
-var _storage = __webpack_require__(497);
+var _storage = __webpack_require__(501);
 
 var _storage2 = _interopRequireDefault(_storage);
 
-var _app = __webpack_require__(548);
+var _app = __webpack_require__(552);
 
 var _app2 = _interopRequireDefault(_app);
 
-var _user = __webpack_require__(567);
+var _user = __webpack_require__(571);
 
 var _user2 = _interopRequireDefault(_user);
 
-var _admin = __webpack_require__(535);
+var _admin = __webpack_require__(539);
 
 var _admin2 = _interopRequireDefault(_admin);
 
-var _settings = __webpack_require__(556);
+var _settings = __webpack_require__(560);
 
 var _settings2 = _interopRequireDefault(_settings);
 
-var _router = __webpack_require__(574);
+var _router = __webpack_require__(578);
 
 var _router2 = _interopRequireDefault(_router);
 
 var _errors = __webpack_require__(162);
 
-var _routeToLogin = __webpack_require__(554);
+var _routeToLogin = __webpack_require__(558);
 
 var _routeToLogin2 = _interopRequireDefault(_routeToLogin);
 
@@ -31028,7 +31037,7 @@ var urlParams = getUrlParams(['flash', 'flashtype', '@id']);
 
 var controller = (0, _cerebral.Controller)({
   devtools: (0, _devtools2.default)({
-    remoteDebugger: '127.0.0.1:8585',
+    host: '127.0.0.1:8585',
     reconnect: false
   }),
   modules: {
@@ -31358,8 +31367,8 @@ var _validate2 = _interopRequireDefault(_validate);
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
-function checkHasValue(form, value, isValueRules) {
-  var result = (0, _validate2.default)(form, value, isValueRules);
+function checkHasValue(value, isValueRules, get) {
+  var result = (0, _validate2.default)(value, isValueRules, get);
   return result.isValid;
 }
 //# sourceMappingURL=checkHasValue.js.map
@@ -31386,15 +31395,15 @@ var _validate2 = _interopRequireDefault(_validate);
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
-function runValidation(field, form) {
+function runValidation(field, get) {
   var isValueRules = field.isValueRules || ['isValue'];
-  var hasValue = (0, _checkHasValue2.default)(form, field.value, isValueRules);
-  var result = (0, _validate2.default)(form, field.value, field.validationRules);
+  var hasValue = (0, _checkHasValue2.default)(field.value, isValueRules, get);
+  var result = (0, _validate2.default)(field.value, field.validationRules, get);
   var isValid = result.isValid && (field.isRequired && hasValue || !field.isRequired);
 
   var validationResult = {
     isValid: isValid,
-    hasValue: (0, _checkHasValue2.default)(form, field.value, isValueRules),
+    hasValue: (0, _checkHasValue2.default)(field.value, isValueRules, get),
     failedRule: result.failedRule
   };
 
@@ -31430,7 +31439,7 @@ exports.default = {
   baseUrl: '',
   headers: {
     'Content-Type': 'application/json; charset=UTF-8',
-    'Accept': 'application/json'
+    Accept: 'application/json'
   },
   onRequest: function onRequest(xhr, options) {
     if (options.headers['Content-Type'] === 'application/x-www-form-urlencoded') {
@@ -31561,6 +31570,7 @@ var _HttpProviderError2 = _interopRequireDefault(_HttpProviderError);
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
 /* eslint-env browser */
+/* eslint-disable prefer-promise-reject-errors */
 function parseResponse(xhr) {
   try {
     return {
@@ -31627,6 +31637,7 @@ function HttpProviderFactory(passedOptions) {
         requests[url] = {
           resolve: resolve,
           reject: reject,
+          // eslint-disable-next-line standard/no-callback-literal
           xhr: cb(function (payload) {
             delete requests[url];
             resolve(payload);
@@ -31896,7 +31907,9 @@ Object.defineProperty(exports, "__esModule", {
 
 var _utils = __webpack_require__(45);
 
-function uploadFileFactory(urlValue, filesValue, optionsValue) {
+function uploadFileFactory(urlValue, filesValue) {
+  var optionsValue = arguments.length > 2 && arguments[2] !== undefined ? arguments[2] : {};
+
   function uploadFile(_ref) {
     var http = _ref.http,
         resolve = _ref.resolve,
@@ -31904,7 +31917,7 @@ function uploadFileFactory(urlValue, filesValue, optionsValue) {
 
     var url = resolve.value(urlValue);
     var files = resolve.value(filesValue);
-    var options = (0, _utils.convertObjectWithTemplates)(optionsValue);
+    var options = (0, _utils.convertObjectWithTemplates)(optionsValue, resolve);
 
     return (0, _utils.processResponse)(http.uploadFile(url, files, options), path);
   }
@@ -32018,5895 +32031,6 @@ function request(options, cb) {
 Object.defineProperty(exports, "__esModule", {
   value: true
 });
-function StorageProvider() {
-  var options = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : {};
-
-  var cachedProvider = null;
-
-  options.json = 'json' in options ? options.json : true;
-  options.prefix = options.prefix ? options.prefix + '.' : '';
-
-  function createProvider(context) {
-    var target = options.target;
-
-    if (options.sync) {
-      context.controller.on('flush', function (changes) {
-        changes.forEach(function (change) {
-          Object.keys(options.sync).forEach(function (syncKey) {
-            if (change.path.join('.').indexOf(options.sync[syncKey]) === 0) {
-              var value = context.controller.getState(options.sync[syncKey]);
-
-              target.setItem(options.prefix + syncKey, options.json ? JSON.stringify(value) : value);
-            }
-          });
-        });
-      });
-    }
-
-    return {
-      get: function get(key) {
-        var value = target.getItem(options.prefix + key);
-
-        if (options.json && value) {
-          return JSON.parse(value);
-        }
-
-        return value;
-      },
-      set: function set(key, value) {
-        target.setItem(options.prefix + key, options.json ? JSON.stringify(value) : value);
-      },
-      remove: function remove(key) {
-        target.removeItem(options.prefix + key);
-      }
-    };
-  }
-
-  return function (context) {
-    context.storage = cachedProvider = cachedProvider || createProvider(context);
-
-    if (context.debugger) {
-      context.debugger.wrapProvider('storage');
-    }
-
-    return context;
-  };
-}
-
-exports.default = StorageProvider;
-//# sourceMappingURL=index.js.map
-
-/***/ }),
-/* 498 */
-/***/ (function(module, exports, __webpack_require__) {
-
-"use strict";
-
-
-Object.defineProperty(exports, "__esModule", {
-  value: true
-});
-function getStorageFactory(key) {
-  function getStorage(_ref) {
-    var storage = _ref.storage,
-        resolve = _ref.resolve;
-
-    return {
-      value: storage.get(resolve.value(key))
-    };
-  }
-
-  return getStorage;
-}
-
-exports.default = getStorageFactory;
-//# sourceMappingURL=getStorage.js.map
-
-/***/ }),
-/* 499 */
-/***/ (function(module, exports, __webpack_require__) {
-
-"use strict";
-
-
-Object.defineProperty(exports, "__esModule", {
-  value: true
-});
-
-var _setStorage = __webpack_require__(501);
-
-Object.defineProperty(exports, 'setStorage', {
-  enumerable: true,
-  get: function get() {
-    return _interopRequireDefault(_setStorage).default;
-  }
-});
-
-var _getStorage = __webpack_require__(498);
-
-Object.defineProperty(exports, 'getStorage', {
-  enumerable: true,
-  get: function get() {
-    return _interopRequireDefault(_getStorage).default;
-  }
-});
-
-var _removeStorage = __webpack_require__(500);
-
-Object.defineProperty(exports, 'removeStorage', {
-  enumerable: true,
-  get: function get() {
-    return _interopRequireDefault(_removeStorage).default;
-  }
-});
-
-function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
-//# sourceMappingURL=index.js.map
-
-/***/ }),
-/* 500 */
-/***/ (function(module, exports, __webpack_require__) {
-
-"use strict";
-
-
-Object.defineProperty(exports, "__esModule", {
-  value: true
-});
-function removeStorageFactory(key) {
-  function removeStorage(_ref) {
-    var storage = _ref.storage,
-        resolve = _ref.resolve;
-
-    return {
-      value: storage.remove(resolve.value(key))
-    };
-  }
-
-  return removeStorage;
-}
-
-exports.default = removeStorageFactory;
-//# sourceMappingURL=removeStorage.js.map
-
-/***/ }),
-/* 501 */
-/***/ (function(module, exports, __webpack_require__) {
-
-"use strict";
-
-
-Object.defineProperty(exports, "__esModule", {
-  value: true
-});
-function setStorageFactory(key, value) {
-  function setStorage(_ref) {
-    var storage = _ref.storage,
-        resolve = _ref.resolve;
-
-    storage.set(resolve.value(key), resolve.value(value));
-  }
-
-  return setStorage;
-}
-
-exports.default = setStorageFactory;
-//# sourceMappingURL=setStorage.js.map
-
-/***/ }),
-/* 502 */
-/***/ (function(module, exports, __webpack_require__) {
-
-module.exports = __webpack_require__(499)
-
-
-/***/ }),
-/* 503 */
-/***/ (function(module, exports, __webpack_require__) {
-
-/* WEBPACK VAR INJECTION */(function(global) {/* global history */
-
-var URL = __webpack_require__(1066)
-var EventEmitter = __webpack_require__(283).EventEmitter
-var instance = null
-
-// Check if IE history polyfill is added
-var location = window.history.location || window.location
-
-module.exports = (function () {
-  if (instance) {
-    return instance
-  }
-
-  var eventEmitter = new EventEmitter()
-
-  eventEmitter.addEventListener = eventEmitter.addListener
-  eventEmitter.removeEventListener = eventEmitter.removeListener
-
-  var initialUrl = location.href
-  var uri = URL(initialUrl)
-  var origin = uri.protocol + '//' + uri.host
-  var isPreventingDefault = false
-  var doReplace = false
-  var prevUrl = ''
-  // var linkClicked = false
-  var isEmitting = false
-  var setSyncUrl = false
-
-  var emitChange = function (url, event) {
-    eventEmitter.emit('change', {
-      preventDefault: function () {
-        event && event.preventDefault()
-        isPreventingDefault = true
-      },
-      target: {
-        value: url ? origin + url : location.href
-      }
-    })
-  }
-
-  var onUrlChange = function (type) {
-    return function (event) {
-      if (location.href === prevUrl) {
-        return
-      }
-
-      // Fixes bug where trailing slash is converted to normal url
-      if (location.href[location.href.length - 1] === '/') {
-        doReplace = true
-      }
-
-      isEmitting = true
-      emitChange()
-      isEmitting = false
-
-      if (!setSyncUrl && isPreventingDefault) {
-        history.replaceState({}, '', (prevUrl || initialUrl).replace(origin, ''))
-      }
-
-      prevUrl = location.href
-      isPreventingDefault = false
-      setSyncUrl = false
-      doReplace = false
-    }
-  }
-
-  // this hack resolves issue with safari
-  // see issue from Page JS for reference https://github.com/visionmedia/page.js/issues/213
-  // see also https://github.com/visionmedia/page.js/pull/240
-  if (document.readyState !== 'complete') {
-    // load event has not fired
-    global.addEventListener('load', function () {
-      setTimeout(function () {
-        global.addEventListener('popstate', onUrlChange('pop'), false)
-      }, 0)
-    }, false)
-  } else {
-    // load event has fired
-    global.addEventListener('popstate', onUrlChange('pop'), false)
-  }
-
-  Object.defineProperty(eventEmitter, 'value', {
-    get: function () {
-      return location.href
-    },
-    set: function (value) {
-      if (typeof value !== 'string') {
-        doReplace = Boolean(value.replace)
-        value = value.value
-      }
-
-      // If emitting a change we flag that we are setting
-      // a url based on the event being emitted
-      if (isEmitting) {
-        setSyncUrl = true
-      }
-
-      // Ensure full url
-      if (value.indexOf(origin) === -1) {
-        value = origin + value
-      }
-
-      // If it is same url, forget about it
-      if (value === location.href) {
-        return
-      }
-
-      // We might need to replace the url if we are fixing
-      // for example trailing slash issue
-      if (doReplace) {
-        history.replaceState({}, '', value.replace(origin, ''))
-        doReplace = false
-      } else {
-        history.pushState({}, '', value.replace(origin, ''))
-      }
-
-      prevUrl = location.href
-      isPreventingDefault = false
-    }
-  })
-
-  // expose URLUtils like API https://developer.mozilla.org/en-US/docs/Web/API/URLUtils
-  // thanks https://github.com/cofounders/urlutils for reference
-  Object.defineProperty(eventEmitter, 'origin', {
-    get: function () {
-      var uri = URL(location.href)
-      return uri.protocol + '//' + uri.host
-    }
-  })
-
-  Object.defineProperty(eventEmitter, 'protocol', {
-    get: function () {
-      return URL(location.href).protocol
-    }
-  })
-
-  Object.defineProperty(eventEmitter, 'port', {
-    get: function () {
-      return URL(location.href).port
-    }
-  })
-
-  Object.defineProperty(eventEmitter, 'hostname', {
-    get: function () {
-      return URL(location.href).hostname
-    }
-  })
-
-  Object.defineProperty(eventEmitter, 'pathname', {
-    get: function () {
-      return URL(location.href).pathname
-    }
-  })
-
-  Object.defineProperty(eventEmitter, 'hash', {
-    get: function () {
-      return URL(location.href).hash
-    }
-  })
-
-  /*
-    This code is from the Page JS source code. Amazing work on handling all
-    kinds of scenarios with hyperlinks, thanks!
-  */
-
-  var isSameOrigin = function (href) {
-    return (href && (href.indexOf(origin) === 0))
-  }
-
-  var getClickedHref = function (event) {
-    // check which button
-    if ((event.which === null ? event.button : event.which) !== 1) { return false }
-
-    // check for modifiers
-    if (event.metaKey || event.ctrlKey || event.shiftKey) { return false }
-    if (event.defaultPrevented) { return false }
-
-    // ensure link
-    var element = event.target
-    while (element && element.nodeName !== 'A') { element = element.parentNode }
-    if (!element || element.nodeName !== 'A') { return false }
-
-    // Ignore if tag has
-    // 1. "download" attribute
-    // 2. rel="external" attribute
-    if (element.hasAttribute('download') || element.getAttribute('rel') === 'external') { return false }
-
-    // Check for mailto: in the href
-    var href = element.getAttribute('href')
-    if (href && href.indexOf('mailto:') > -1) { return false }
-
-    // check target
-    if (element.target) { return false }
-
-    // x-origin
-    if (!isSameOrigin(element.href)) { return false }
-
-    return href
-  }
-
-  global.addEventListener(document.ontouchstart ? 'touchstart' : 'click', function (event) {
-    var href = getClickedHref(event)
-    if (href) {
-      // linkClicked = true
-      isEmitting = true
-      emitChange(href, event)
-      isEmitting = false
-      if (isPreventingDefault) {
-        // linkClicked = false
-      }
-      prevUrl = href
-      isPreventingDefault = false
-    }
-  })
-
-  instance = eventEmitter
-
-  return eventEmitter
-}())
-
-/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(161)))
-
-/***/ }),
-/* 504 */
-/***/ (function(module, exports, __webpack_require__) {
-
-"use strict";
-
-
-Object.defineProperty(exports, "__esModule", {
-  value: true
-});
-
-var _templateObject = _taggedTemplateLiteral(['admin.users.', '.nickname'], ['admin.users.', '.nickname']),
-    _templateObject2 = _taggedTemplateLiteral(['admin.activeUid'], ['admin.activeUid']),
-    _templateObject3 = _taggedTemplateLiteral(['admin.showConfirmRemoveUser'], ['admin.showConfirmRemoveUser']),
-    _templateObject4 = _taggedTemplateLiteral(['admin.removeUserCancelled'], ['admin.removeUserCancelled']),
-    _templateObject5 = _taggedTemplateLiteral(['admin.removeUserConfirmed'], ['admin.removeUserConfirmed']);
-
-var _react = __webpack_require__(0);
-
-var _react2 = _interopRequireDefault(_react);
-
-var _react3 = __webpack_require__(17);
-
-var _tags = __webpack_require__(6);
-
-var _semanticUiReact = __webpack_require__(16);
-
-function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
-
-function _taggedTemplateLiteral(strings, raw) { return Object.freeze(Object.defineProperties(strings, { raw: { value: Object.freeze(raw) } })); }
-
-exports.default = (0, _react3.connect)({
-  nickname: (0, _tags.state)(_templateObject, (0, _tags.state)(_templateObject2)),
-  showConfirmRemoveUser: (0, _tags.state)(_templateObject3),
-  removeUserCancelled: (0, _tags.signal)(_templateObject4),
-  removeUserConfirmed: (0, _tags.signal)(_templateObject5)
-}, function ConfirmRemoveUser(_ref) {
-  var nickname = _ref.nickname,
-      showConfirmRemoveUser = _ref.showConfirmRemoveUser,
-      removeUserCancelled = _ref.removeUserCancelled,
-      removeUserConfirmed = _ref.removeUserConfirmed;
-
-  return _react2.default.createElement(
-    _semanticUiReact.Modal,
-    {
-      basic: true,
-      size: 'small',
-      dimmer: 'blurring',
-      open: showConfirmRemoveUser,
-      onClose: removeUserCancelled
-    },
-    _react2.default.createElement(
-      _semanticUiReact.Modal.Header,
-      null,
-      _react2.default.createElement(_semanticUiReact.Icon, { name: 'remove user' }),
-      'Delete User Account'
-    ),
-    _react2.default.createElement(
-      _semanticUiReact.Modal.Content,
-      null,
-      _react2.default.createElement(
-        'p',
-        null,
-        'Are you sure you want to delete ',
-        nickname,
-        '?'
-      )
-    ),
-    _react2.default.createElement(
-      _semanticUiReact.Modal.Actions,
-      null,
-      _react2.default.createElement(
-        _semanticUiReact.Button,
-        {
-          basic: true,
-          inverted: true,
-          color: 'red',
-          onClick: function onClick() {
-            return removeUserCancelled();
-          }
-        },
-        _react2.default.createElement(_semanticUiReact.Icon, { name: 'remove' }),
-        'Cancel'
-      ),
-      _react2.default.createElement(
-        _semanticUiReact.Button,
-        {
-          basic: true,
-          inverted: true,
-          color: 'green',
-          onClick: function onClick() {
-            return removeUserConfirmed();
-          }
-        },
-        _react2.default.createElement(_semanticUiReact.Icon, { name: 'checkmark' }),
-        'OK'
-      )
-    )
-  );
-});
-
-/***/ }),
-/* 505 */
-/***/ (function(module, exports, __webpack_require__) {
-
-"use strict";
-
-
-Object.defineProperty(exports, "__esModule", {
-  value: true
-});
-
-var _templateObject = _taggedTemplateLiteral(['admin.users.', '.nickname'], ['admin.users.', '.nickname']),
-    _templateObject2 = _taggedTemplateLiteral(['admin.activeUid'], ['admin.activeUid']),
-    _templateObject3 = _taggedTemplateLiteral(['admin.showConfirmSignOut'], ['admin.showConfirmSignOut']),
-    _templateObject4 = _taggedTemplateLiteral(['admin.signOutCancelled'], ['admin.signOutCancelled']),
-    _templateObject5 = _taggedTemplateLiteral(['admin.signOutConfirmed'], ['admin.signOutConfirmed']);
-
-var _react = __webpack_require__(0);
-
-var _react2 = _interopRequireDefault(_react);
-
-var _react3 = __webpack_require__(17);
-
-var _tags = __webpack_require__(6);
-
-var _semanticUiReact = __webpack_require__(16);
-
-function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
-
-function _taggedTemplateLiteral(strings, raw) { return Object.freeze(Object.defineProperties(strings, { raw: { value: Object.freeze(raw) } })); }
-
-exports.default = (0, _react3.connect)({
-  nickname: (0, _tags.state)(_templateObject, (0, _tags.state)(_templateObject2)),
-  showConfirmSignOut: (0, _tags.state)(_templateObject3),
-  signOutCancelled: (0, _tags.signal)(_templateObject4),
-  signOutConfirmed: (0, _tags.signal)(_templateObject5)
-}, function ConfirmSignOut(_ref) {
-  var nickname = _ref.nickname,
-      showConfirmSignOut = _ref.showConfirmSignOut,
-      signOutCancelled = _ref.signOutCancelled,
-      signOutConfirmed = _ref.signOutConfirmed;
-
-  return _react2.default.createElement(
-    _semanticUiReact.Modal,
-    {
-      basic: true,
-      size: 'small',
-      dimmer: 'blurring',
-      open: showConfirmSignOut,
-      onClose: signOutCancelled
-    },
-    _react2.default.createElement(
-      _semanticUiReact.Modal.Header,
-      null,
-      _react2.default.createElement(_semanticUiReact.Icon, { name: 'sign out' }),
-      'Invalidate all user tokens'
-    ),
-    _react2.default.createElement(
-      _semanticUiReact.Modal.Content,
-      null,
-      _react2.default.createElement(
-        'p',
-        null,
-        'Are you sure you want to disallow refreshing all current tokens from ',
-        nickname,
-        '?'
-      ),
-      _react2.default.createElement(
-        'p',
-        null,
-        'You will do this normally if a token gets compromised.'
-      )
-    ),
-    _react2.default.createElement(
-      _semanticUiReact.Modal.Actions,
-      null,
-      _react2.default.createElement(
-        _semanticUiReact.Button,
-        { basic: true, inverted: true, color: 'red', onClick: function onClick() {
-            return signOutCancelled();
-          } },
-        _react2.default.createElement(_semanticUiReact.Icon, { name: 'remove' }),
-        'Cancel'
-      ),
-      _react2.default.createElement(
-        _semanticUiReact.Button,
-        {
-          basic: true,
-          inverted: true,
-          color: 'green',
-          onClick: function onClick() {
-            return signOutConfirmed();
-          }
-        },
-        _react2.default.createElement(_semanticUiReact.Icon, { name: 'checkmark' }),
-        'OK'
-      )
-    )
-  );
-});
-
-/***/ }),
-/* 506 */
-/***/ (function(module, exports, __webpack_require__) {
-
-"use strict";
-
-
-Object.defineProperty(exports, "__esModule", {
-  value: true
-});
-
-var _templateObject = _taggedTemplateLiteral(['admin.pageSize'], ['admin.pageSize']),
-    _templateObject2 = _taggedTemplateLiteral(['admin.pageSizeChanged'], ['admin.pageSizeChanged']),
-    _templateObject3 = _taggedTemplateLiteral(['admin.currentPage'], ['admin.currentPage']),
-    _templateObject4 = _taggedTemplateLiteral(['admin.pages'], ['admin.pages']),
-    _templateObject5 = _taggedTemplateLiteral(['admin.changePageClicked'], ['admin.changePageClicked']);
-
-var _react = __webpack_require__(0);
-
-var _react2 = _interopRequireDefault(_react);
-
-var _react3 = __webpack_require__(17);
-
-var _tags = __webpack_require__(6);
-
-var _semanticUiReact = __webpack_require__(16);
-
-function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
-
-function _taggedTemplateLiteral(strings, raw) { return Object.freeze(Object.defineProperties(strings, { raw: { value: Object.freeze(raw) } })); }
-
-exports.default = (0, _react3.connect)({
-  pageSize: (0, _tags.state)(_templateObject),
-  pageSizeChanged: (0, _tags.signal)(_templateObject2),
-  currentPage: (0, _tags.state)(_templateObject3),
-  pages: (0, _tags.state)(_templateObject4),
-  changePageClicked: (0, _tags.signal)(_templateObject5)
-}, function Admin(_ref) {
-  var pageSize = _ref.pageSize,
-      pageSizeChanged = _ref.pageSizeChanged,
-      currentPage = _ref.currentPage,
-      pages = _ref.pages,
-      changePageClicked = _ref.changePageClicked;
-
-  var paginationOptions = [{ text: '10', value: 10 }, { text: '20', value: 20 }, { text: '30', value: 30 }, { text: '50', value: 50 }, { text: '100', value: 100 }];
-
-  return _react2.default.createElement(
-    _semanticUiReact.Menu,
-    { floated: 'right', inverted: true, pagination: true },
-    _react2.default.createElement(
-      _semanticUiReact.Menu.Item,
-      {
-        as: 'a',
-        icon: true,
-        disabled: currentPage === 1,
-        onClick: function onClick() {
-          return changePageClicked({ nextPage: 'first' });
-        }
-      },
-      _react2.default.createElement(_semanticUiReact.Icon, { name: 'angle double left' })
-    ),
-    _react2.default.createElement(
-      _semanticUiReact.Menu.Item,
-      {
-        as: 'a',
-        icon: true,
-        disabled: currentPage === 1,
-        onClick: function onClick() {
-          return changePageClicked({ nextPage: 'previous' });
-        }
-      },
-      _react2.default.createElement(_semanticUiReact.Icon, { name: 'angle left' })
-    ),
-    _react2.default.createElement(
-      _semanticUiReact.Menu.Item,
-      null,
-      _react2.default.createElement(
-        'strong',
-        null,
-        currentPage
-      ),
-      '/',
-      pages
-    ),
-    _react2.default.createElement(
-      _semanticUiReact.Menu.Item,
-      {
-        as: 'a',
-        icon: true,
-        disabled: currentPage === pages,
-        onClick: function onClick() {
-          return changePageClicked({ nextPage: 'next' });
-        }
-      },
-      _react2.default.createElement(_semanticUiReact.Icon, { name: 'angle right' })
-    ),
-    _react2.default.createElement(
-      _semanticUiReact.Menu.Item,
-      {
-        as: 'a',
-        icon: true,
-        disabled: currentPage === pages,
-        onClick: function onClick() {
-          return changePageClicked({ nextPage: 'last' });
-        }
-      },
-      _react2.default.createElement(_semanticUiReact.Icon, { name: 'angle double right' })
-    ),
-    _react2.default.createElement(
-      _semanticUiReact.Menu.Item,
-      null,
-      'users/page:'
-    ),
-    _react2.default.createElement(_semanticUiReact.Dropdown, {
-      item: true,
-      selection: true,
-      upward: true,
-      floating: true,
-      defaultValue: pageSize,
-      options: paginationOptions,
-      onChange: function onChange(e, _ref2) {
-        var value = _ref2.value;
-        return pageSizeChanged({ value: value });
-      }
-    })
-  );
-});
-
-/***/ }),
-/* 507 */
-/***/ (function(module, exports, __webpack_require__) {
-
-"use strict";
-
-
-Object.defineProperty(exports, "__esModule", {
-  value: true
-});
-
-var _templateObject = _taggedTemplateLiteral(['admin.searchIsLoading'], ['admin.searchIsLoading']),
-    _templateObject2 = _taggedTemplateLiteral(['admin.searchSubmitted'], ['admin.searchSubmitted']);
-
-var _react = __webpack_require__(0);
-
-var _react2 = _interopRequireDefault(_react);
-
-var _react3 = __webpack_require__(17);
-
-var _tags = __webpack_require__(6);
-
-var _semanticUiReact = __webpack_require__(16);
-
-function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
-
-function _taggedTemplateLiteral(strings, raw) { return Object.freeze(Object.defineProperties(strings, { raw: { value: Object.freeze(raw) } })); }
-
-exports.default = (0, _react3.connect)({
-  isLoading: (0, _tags.state)(_templateObject),
-  searchSubmitted: (0, _tags.signal)(_templateObject2)
-}, function Search(_ref) {
-  var isLoading = _ref.isLoading,
-      searchSubmitted = _ref.searchSubmitted;
-
-  return _react2.default.createElement(_semanticUiReact.Input, {
-    inverted: true,
-    placeholder: 'Search users...',
-    loading: isLoading,
-    icon: 'users',
-    iconPosition: 'left',
-    onChange: function onChange(e, _ref2) {
-      var value = _ref2.value;
-      return searchSubmitted({ value: value });
-    }
-  });
-});
-
-/***/ }),
-/* 508 */
-/***/ (function(module, exports, __webpack_require__) {
-
-"use strict";
-
-
-Object.defineProperty(exports, "__esModule", {
-  value: true
-});
-
-var _templateObject = _taggedTemplateLiteral(['admin.users.', ''], ['admin.users.', '']),
-    _templateObject2 = _taggedTemplateLiteral(['uid'], ['uid']),
-    _templateObject3 = _taggedTemplateLiteral(['user.email'], ['user.email']),
-    _templateObject4 = _taggedTemplateLiteral(['admin.signOutButtonClicked'], ['admin.signOutButtonClicked']),
-    _templateObject5 = _taggedTemplateLiteral(['admin.removeUserButtonClicked'], ['admin.removeUserButtonClicked']),
-    _templateObject6 = _taggedTemplateLiteral(['admin.toggleAdminClicked'], ['admin.toggleAdminClicked']),
-    _templateObject7 = _taggedTemplateLiteral(['admin.users.', '.toggleAdminIsLoading'], ['admin.users.', '.toggleAdminIsLoading']);
-
-var _react = __webpack_require__(0);
-
-var _react2 = _interopRequireDefault(_react);
-
-var _react3 = __webpack_require__(17);
-
-var _tags = __webpack_require__(6);
-
-var _semanticUiReact = __webpack_require__(16);
-
-var _ConfirmSignOut = __webpack_require__(505);
-
-var _ConfirmSignOut2 = _interopRequireDefault(_ConfirmSignOut);
-
-var _ConfirmRemoveUser = __webpack_require__(504);
-
-var _ConfirmRemoveUser2 = _interopRequireDefault(_ConfirmRemoveUser);
-
-function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
-
-function _taggedTemplateLiteral(strings, raw) { return Object.freeze(Object.defineProperties(strings, { raw: { value: Object.freeze(raw) } })); }
-
-exports.default = (0, _react3.connect)({
-  user: (0, _tags.state)(_templateObject, (0, _tags.props)(_templateObject2)),
-  email: (0, _tags.state)(_templateObject3),
-  signOutButtonClicked: (0, _tags.signal)(_templateObject4),
-  removeUserButtonClicked: (0, _tags.signal)(_templateObject5),
-  toggleAdminClicked: (0, _tags.signal)(_templateObject6),
-  toggleAdminIsLoading: (0, _tags.state)(_templateObject7, (0, _tags.props)(_templateObject2))
-}, function UserRow(_ref) {
-  var uid = _ref.uid,
-      user = _ref.user,
-      email = _ref.email,
-      signOutButtonClicked = _ref.signOutButtonClicked,
-      removeUserButtonClicked = _ref.removeUserButtonClicked,
-      toggleAdminClicked = _ref.toggleAdminClicked,
-      toggleAdminIsLoading = _ref.toggleAdminIsLoading;
-
-  return _react2.default.createElement(
-    _semanticUiReact.Table.Row,
-    null,
-    _react2.default.createElement(
-      _semanticUiReact.Table.Cell,
-      { collapsing: true, textAlign: 'center' },
-      _react2.default.createElement(_semanticUiReact.Button, {
-        inverted: true,
-        icon: _react2.default.createElement(_semanticUiReact.Icon, { name: 'sign out', size: 'large' }),
-        color: 'yellow',
-        onClick: function onClick() {
-          return signOutButtonClicked({ uid: uid });
-        }
-      }),
-      _react2.default.createElement(_ConfirmSignOut2.default, null),
-      user.email !== 'admin@example.com' && user.email !== email && _react2.default.createElement(_semanticUiReact.Button, {
-        inverted: true,
-        icon: _react2.default.createElement(_semanticUiReact.Icon, { name: 'remove user', size: 'large' }),
-        color: 'red',
-        onClick: function onClick() {
-          return removeUserButtonClicked({ uid: uid });
-        }
-      }),
-      _react2.default.createElement(_ConfirmRemoveUser2.default, null)
-    ),
-    _react2.default.createElement(
-      _semanticUiReact.Table.Cell,
-      null,
-      user.nickname
-    ),
-    _react2.default.createElement(
-      _semanticUiReact.Table.Cell,
-      null,
-      user.email
-    ),
-    _react2.default.createElement(_semanticUiReact.Table.Cell, {
-      textAlign: 'center',
-      icon: user.emailConfirmed ? _react2.default.createElement(_semanticUiReact.Icon, { name: 'checkmark', color: 'green', size: 'large' }) : _react2.default.createElement(_semanticUiReact.Icon, { name: 'remove', color: 'red', size: 'large' })
-    }),
-    _react2.default.createElement(
-      _semanticUiReact.Table.Cell,
-      { textAlign: 'center' },
-      _react2.default.createElement(_semanticUiReact.Button, {
-        inverted: true,
-        basic: true,
-        color: 'blue',
-        loading: toggleAdminIsLoading,
-        disabled: user.email === 'admin@example.com' || user.email === email,
-        icon: user.isAdmin ? _react2.default.createElement(_semanticUiReact.Icon, { name: 'checkmark', color: 'green', size: 'large' }) : _react2.default.createElement(_semanticUiReact.Icon, { name: 'remove', color: 'red', size: 'large' }),
-        onClick: function onClick() {
-          return toggleAdminClicked({ uid: uid });
-        }
-      })
-    ),
-    _react2.default.createElement(
-      _semanticUiReact.Table.Cell,
-      null,
-      user.lastLogin
-    ),
-    _react2.default.createElement(
-      _semanticUiReact.Table.Cell,
-      null,
-      user.registered
-    ),
-    _react2.default.createElement(
-      _semanticUiReact.Table.Cell,
-      null,
-      user.registerIP
-    )
-  );
-});
-
-/***/ }),
-/* 509 */
-/***/ (function(module, exports, __webpack_require__) {
-
-"use strict";
-
-
-Object.defineProperty(exports, "__esModule", {
-  value: true
-});
-
-var _templateObject = _taggedTemplateLiteral(['admin.usersSortBy'], ['admin.usersSortBy']),
-    _templateObject2 = _taggedTemplateLiteral(['admin.usersSortDir'], ['admin.usersSortDir']),
-    _templateObject3 = _taggedTemplateLiteral(['admin.sortUsersClicked'], ['admin.sortUsersClicked']);
-
-var _react = __webpack_require__(0);
-
-var _react2 = _interopRequireDefault(_react);
-
-var _react3 = __webpack_require__(17);
-
-var _tags = __webpack_require__(6);
-
-var _semanticUiReact = __webpack_require__(16);
-
-var _sortedUsers = __webpack_require__(531);
-
-var _sortedUsers2 = _interopRequireDefault(_sortedUsers);
-
-var _Search = __webpack_require__(507);
-
-var _Search2 = _interopRequireDefault(_Search);
-
-var _UserRow = __webpack_require__(508);
-
-var _UserRow2 = _interopRequireDefault(_UserRow);
-
-var _Pagination = __webpack_require__(506);
-
-var _Pagination2 = _interopRequireDefault(_Pagination);
-
-function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
-
-function _taggedTemplateLiteral(strings, raw) { return Object.freeze(Object.defineProperties(strings, { raw: { value: Object.freeze(raw) } })); }
-
-exports.default = (0, _react3.connect)({
-  sortedUsers: _sortedUsers2.default,
-  usersSortBy: (0, _tags.state)(_templateObject),
-  usersSortDir: (0, _tags.state)(_templateObject2),
-  sortUsersClicked: (0, _tags.signal)(_templateObject3)
-}, function Admin(_ref) {
-  var sortedUsers = _ref.sortedUsers,
-      usersSortBy = _ref.usersSortBy,
-      usersSortDir = _ref.usersSortDir,
-      sortUsersClicked = _ref.sortUsersClicked;
-
-  return _react2.default.createElement(
-    _semanticUiReact.Grid,
-    { stackable: true, padded: 'vertically', centered: true },
-    _react2.default.createElement(
-      _semanticUiReact.Grid.Row,
-      null,
-      _react2.default.createElement(
-        _semanticUiReact.Grid.Column,
-        { style: { width: '100%', overflowX: 'auto' } },
-        _react2.default.createElement(
-          _semanticUiReact.Table,
-          { inverted: true, striped: true, definition: true, sortable: true, unstackable: true },
-          _react2.default.createElement(
-            _semanticUiReact.Table.Header,
-            { fullWidth: true },
-            _react2.default.createElement(
-              _semanticUiReact.Table.Row,
-              null,
-              _react2.default.createElement(
-                _semanticUiReact.Table.HeaderCell,
-                null,
-                _react2.default.createElement(_Search2.default, null)
-              ),
-              _react2.default.createElement(
-                _semanticUiReact.Table.HeaderCell,
-                {
-                  sorted: usersSortBy === 'nickname' ? usersSortDir : null,
-                  onClick: function onClick() {
-                    return sortUsersClicked({ sortBy: 'nickname' });
-                  }
-                },
-                'Nickname'
-              ),
-              _react2.default.createElement(
-                _semanticUiReact.Table.HeaderCell,
-                {
-                  sorted: usersSortBy === 'email' ? usersSortDir : null,
-                  onClick: function onClick() {
-                    return sortUsersClicked({ sortBy: 'email' });
-                  }
-                },
-                'E-mail address'
-              ),
-              _react2.default.createElement(
-                _semanticUiReact.Table.HeaderCell,
-                {
-                  sorted: usersSortBy === 'emailConfirmed' ? usersSortDir : null,
-                  onClick: function onClick() {
-                    return sortUsersClicked({ sortBy: 'emailConfirmed' });
-                  }
-                },
-                'Confirmed'
-              ),
-              _react2.default.createElement(
-                _semanticUiReact.Table.HeaderCell,
-                null,
-                'Admin'
-              ),
-              _react2.default.createElement(
-                _semanticUiReact.Table.HeaderCell,
-                {
-                  sorted: usersSortBy === 'lastLogin' ? usersSortDir : null,
-                  onClick: function onClick() {
-                    return sortUsersClicked({ sortBy: 'lastLogin' });
-                  }
-                },
-                'Last login'
-              ),
-              _react2.default.createElement(
-                _semanticUiReact.Table.HeaderCell,
-                {
-                  sorted: usersSortBy === 'registered' ? usersSortDir : null,
-                  onClick: function onClick() {
-                    return sortUsersClicked({ sortBy: 'registered' });
-                  }
-                },
-                'Registered'
-              ),
-              _react2.default.createElement(
-                _semanticUiReact.Table.HeaderCell,
-                {
-                  sorted: usersSortBy === 'registerIP' ? usersSortDir : null,
-                  onClick: function onClick() {
-                    return sortUsersClicked({ sortBy: 'registerIP' });
-                  }
-                },
-                'Register IP'
-              )
-            )
-          ),
-          _react2.default.createElement(
-            _semanticUiReact.Table.Body,
-            null,
-            sortedUsers.map(function (uid) {
-              return _react2.default.createElement(_UserRow2.default, { key: uid, uid: uid });
-            })
-          ),
-          _react2.default.createElement(
-            _semanticUiReact.Table.Footer,
-            { fullWidth: true },
-            _react2.default.createElement(
-              _semanticUiReact.Table.Row,
-              null,
-              _react2.default.createElement(
-                _semanticUiReact.Table.Cell,
-                { colSpan: '8' },
-                _react2.default.createElement(_Pagination2.default, null)
-              )
-            )
-          )
-        )
-      )
-    )
-  );
-});
-
-/***/ }),
-/* 510 */
-/***/ (function(module, exports, __webpack_require__) {
-
-"use strict";
-
-
-Object.defineProperty(exports, "__esModule", {
-  value: true
-});
-
-var _extends = Object.assign || function (target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i]; for (var key in source) { if (Object.prototype.hasOwnProperty.call(source, key)) { target[key] = source[key]; } } } return target; };
-
-var _templateObject = _taggedTemplateLiteral(['app.flash'], ['app.flash']),
-    _templateObject2 = _taggedTemplateLiteral(['app.flashType'], ['app.flashType']);
-
-var _react = __webpack_require__(0);
-
-var _react2 = _interopRequireDefault(_react);
-
-var _react3 = __webpack_require__(17);
-
-var _tags = __webpack_require__(6);
-
-var _semanticUiReact = __webpack_require__(16);
-
-function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
-
-function _defineProperty(obj, key, value) { if (key in obj) { Object.defineProperty(obj, key, { value: value, enumerable: true, configurable: true, writable: true }); } else { obj[key] = value; } return obj; }
-
-function _taggedTemplateLiteral(strings, raw) { return Object.freeze(Object.defineProperties(strings, { raw: { value: Object.freeze(raw) } })); }
-
-exports.default = (0, _react3.connect)({
-  flash: (0, _tags.state)(_templateObject),
-  flashType: (0, _tags.state)(_templateObject2)
-}, function Flash(_ref) {
-  var flash = _ref.flash,
-      flashType = _ref.flashType;
-
-  var flashTypeAttr = flashType ? _defineProperty({}, flashType, true) : {};
-  return _react2.default.createElement(
-    _semanticUiReact.Grid,
-    { stackable: true, padded: 'vertically', columns: 2, centered: true },
-    _react2.default.createElement(
-      _semanticUiReact.Grid.Column,
-      null,
-      _react2.default.createElement(_semanticUiReact.Message, _extends({}, flashTypeAttr, { header: flash, hidden: !flash }))
-    )
-  );
-});
-
-/***/ }),
-/* 511 */
-/***/ (function(module, exports, __webpack_require__) {
-
-"use strict";
-
-
-Object.defineProperty(exports, "__esModule", {
-  value: true
-});
-
-var _templateObject = _taggedTemplateLiteral(['app.headerText'], ['app.headerText']),
-    _templateObject2 = _taggedTemplateLiteral(['app.headerIcon'], ['app.headerIcon']);
-
-var _react = __webpack_require__(0);
-
-var _react2 = _interopRequireDefault(_react);
-
-var _react3 = __webpack_require__(17);
-
-var _tags = __webpack_require__(6);
-
-var _semanticUiReact = __webpack_require__(16);
-
-function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
-
-function _taggedTemplateLiteral(strings, raw) { return Object.freeze(Object.defineProperties(strings, { raw: { value: Object.freeze(raw) } })); }
-
-exports.default = (0, _react3.connect)({
-  headerText: (0, _tags.state)(_templateObject),
-  headerIcon: (0, _tags.state)(_templateObject2)
-}, function PageHeader(_ref) {
-  var headerText = _ref.headerText,
-      headerIcon = _ref.headerIcon;
-
-  return _react2.default.createElement(
-    _semanticUiReact.Grid,
-    { stackable: true, columns: 2, centered: true },
-    _react2.default.createElement(
-      _semanticUiReact.Grid.Row,
-      null,
-      _react2.default.createElement(
-        _semanticUiReact.Grid.Column,
-        null,
-        _react2.default.createElement(
-          _semanticUiReact.Header,
-          {
-            inverted: true,
-            as: 'h1',
-            textAlign: 'center',
-            color: 'blue',
-            icon: !!headerIcon
-          },
-          !!headerIcon && _react2.default.createElement(_semanticUiReact.Icon, { name: headerIcon }),
-          headerText
-        )
-      )
-    )
-  );
-});
-
-/***/ }),
-/* 512 */
-/***/ (function(module, exports, __webpack_require__) {
-
-"use strict";
-
-
-Object.defineProperty(exports, "__esModule", {
-  value: true
-});
-
-var _templateObject = _taggedTemplateLiteral(['app.currentPage'], ['app.currentPage']),
-    _templateObject2 = _taggedTemplateLiteral(['user'], ['user']),
-    _templateObject3 = _taggedTemplateLiteral(['user.logoutButtonClicked'], ['user.logoutButtonClicked']);
-
-var _react = __webpack_require__(0);
-
-var _react2 = _interopRequireDefault(_react);
-
-var _react3 = __webpack_require__(17);
-
-var _tags = __webpack_require__(6);
-
-var _semanticUiReact = __webpack_require__(16);
-
-function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
-
-function _taggedTemplateLiteral(strings, raw) { return Object.freeze(Object.defineProperties(strings, { raw: { value: Object.freeze(raw) } })); }
-
-exports.default = (0, _react3.connect)({
-  currentPage: (0, _tags.state)(_templateObject),
-  user: (0, _tags.state)(_templateObject2),
-  logoutButtonClicked: (0, _tags.signal)(_templateObject3)
-}, function Navbar(_ref) {
-  var currentPage = _ref.currentPage,
-      user = _ref.user,
-      logoutButtonClicked = _ref.logoutButtonClicked;
-
-  return _react2.default.createElement(
-    _semanticUiReact.Menu,
-    { attached: 'top', inverted: true, secondary: true, pointing: true, size: 'large' },
-    _react2.default.createElement(
-      _semanticUiReact.Menu.Item,
-      { name: 'home', href: '/', active: currentPage === null },
-      'Home'
-    ),
-    _react2.default.createElement(
-      _semanticUiReact.Menu.Item,
-      {
-        name: 'private',
-        href: '/private',
-        active: currentPage === 'private'
-      },
-      'Private'
-    ),
-    _react2.default.createElement(
-      _semanticUiReact.Menu.Menu,
-      {
-        position: 'right',
-        style: { display: user.authenticated ? 'none' : 'flex' }
-      },
-      _react2.default.createElement(
-        _semanticUiReact.Menu.Item,
-        { name: 'login', href: '/login' },
-        _react2.default.createElement(
-          _semanticUiReact.Button,
-          {
-            inverted: true,
-            compact: true,
-            color: 'yellow',
-            active: currentPage === 'login'
-          },
-          'Log in'
-        )
-      ),
-      _react2.default.createElement(
-        _semanticUiReact.Menu.Item,
-        { name: 'register', href: '/register' },
-        _react2.default.createElement(
-          _semanticUiReact.Button,
-          {
-            inverted: true,
-            compact: true,
-            color: 'blue',
-            active: currentPage === 'register'
-          },
-          'Sign Up'
-        )
-      )
-    ),
-    _react2.default.createElement(
-      _semanticUiReact.Menu.Menu,
-      {
-        position: 'right',
-        style: { display: user.authenticated ? 'flex' : 'none' }
-      },
-      _react2.default.createElement(
-        _semanticUiReact.Menu.Item,
-        {
-          name: 'settings',
-          href: '/settings',
-          style: {
-            display: user.email !== 'admin@example.com' ? 'flex' : 'none'
-          }
-        },
-        _react2.default.createElement(_semanticUiReact.Button, {
-          inverted: true,
-          compact: true,
-          color: 'blue',
-          icon: _react2.default.createElement(_semanticUiReact.Icon, { name: 'user', size: 'large' }),
-          active: currentPage === 'settings'
-        })
-      ),
-      _react2.default.createElement(
-        _semanticUiReact.Menu.Item,
-        {
-          name: 'admin',
-          href: '/admin',
-          style: { display: user.isAdmin ? 'flex' : 'none' }
-        },
-        _react2.default.createElement(_semanticUiReact.Button, {
-          inverted: true,
-          compact: true,
-          color: 'blue',
-          icon: _react2.default.createElement(_semanticUiReact.Icon, { name: 'users', size: 'large' }),
-          active: currentPage === 'admin'
-        })
-      ),
-      _react2.default.createElement(
-        _semanticUiReact.Menu.Item,
-        null,
-        _react2.default.createElement(_semanticUiReact.Button, {
-          inverted: true,
-          compact: true,
-          color: 'blue',
-          icon: _react2.default.createElement(_semanticUiReact.Icon, { name: 'sign out', size: 'large' }),
-          onClick: function onClick() {
-            return logoutButtonClicked();
-          }
-        })
-      )
-    )
-  );
-});
-
-/***/ }),
-/* 513 */
-/***/ (function(module, exports, __webpack_require__) {
-
-"use strict";
-
-
-Object.defineProperty(exports, "__esModule", {
-  value: true
-});
-exports.default = Home;
-
-var _react = __webpack_require__(0);
-
-var _react2 = _interopRequireDefault(_react);
-
-var _semanticUiReact = __webpack_require__(16);
-
-function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
-
-function Home() {
-  return _react2.default.createElement(
-    _semanticUiReact.Grid,
-    { stackable: true, padded: 'vertically', columns: 2, centered: true },
-    _react2.default.createElement(
-      _semanticUiReact.Grid.Row,
-      null,
-      _react2.default.createElement(
-        _semanticUiReact.Grid.Column,
-        null,
-        _react2.default.createElement(
-          _semanticUiReact.Segment,
-          { padded: true, size: 'big' },
-          _react2.default.createElement(
-            'p',
-            null,
-            'This is a a authentication boilerplate, which uses Morepath as a REST back-end and Cerebral as front-end.'
-          ),
-          _react2.default.createElement(
-            'p',
-            null,
-            'Please feel free to play around, register and sign in. For trying out the User Admin panel you have to sign in with Admin permissions.'
-          ),
-          _react2.default.createElement(
-            'p',
-            null,
-            'Just sign in with the email address ',
-            _react2.default.createElement(
-              'em',
-              null,
-              'admin@example.com'
-            ),
-            ' and the password',
-            ' ',
-            _react2.default.createElement(
-              'em',
-              null,
-              'admin0'
-            ),
-            '. In the Admin panel you can give Admin permissions also to other users.'
-          )
-        )
-      )
-    )
-  );
-}
-
-/***/ }),
-/* 514 */
-/***/ (function(module, exports, __webpack_require__) {
-
-"use strict";
-
-
-Object.defineProperty(exports, "__esModule", {
-  value: true
-});
-
-var _templateObject = _taggedTemplateLiteral(['user.loginForm'], ['user.loginForm']),
-    _templateObject2 = _taggedTemplateLiteral(['user.loginFormSubmitted'], ['user.loginFormSubmitted']);
-
-var _react = __webpack_require__(0);
-
-var _react2 = _interopRequireDefault(_react);
-
-var _react3 = __webpack_require__(17);
-
-var _tags = __webpack_require__(6);
-
-var _semanticUiReact = __webpack_require__(16);
-
-var _fields = __webpack_require__(54);
-
-function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
-
-function _taggedTemplateLiteral(strings, raw) { return Object.freeze(Object.defineProperties(strings, { raw: { value: Object.freeze(raw) } })); }
-
-exports.default = (0, _react3.connect)({
-  loginForm: (0, _tags.state)(_templateObject),
-  formSubmitted: (0, _tags.signal)(_templateObject2)
-}, function Login(_ref) {
-  var loginForm = _ref.loginForm,
-      formSubmitted = _ref.formSubmitted;
-
-  var handleSubmit = function handleSubmit(event) {
-    event.preventDefault();
-    formSubmitted();
-  };
-  return _react2.default.createElement(
-    _semanticUiReact.Grid,
-    { stackable: true, padded: 'vertically', columns: 2, centered: true },
-    _react2.default.createElement(
-      _semanticUiReact.Grid.Row,
-      null,
-      _react2.default.createElement(
-        _semanticUiReact.Grid.Column,
-        null,
-        _react2.default.createElement(
-          _semanticUiReact.Form,
-          { size: 'large' },
-          _react2.default.createElement(
-            _semanticUiReact.Segment,
-            null,
-            _react2.default.createElement(
-              _semanticUiReact.Dimmer,
-              { inverted: true, active: loginForm.isLoading },
-              _react2.default.createElement(_semanticUiReact.Loader, null)
-            ),
-            _react2.default.createElement(_fields.EmailField, { form: loginForm, path: 'user.loginForm.email' }),
-            _react2.default.createElement(_fields.PasswordField, {
-              form: loginForm,
-              path: 'user.loginForm.password'
-            }),
-            _react2.default.createElement(
-              _semanticUiReact.Button,
-              { fluid: true, size: 'large', color: 'blue', onClick: handleSubmit },
-              'Login'
-            )
-          )
-        ),
-        _react2.default.createElement(
-          _semanticUiReact.Message,
-          null,
-          'New to us?',
-          _react2.default.createElement(
-            'a',
-            { href: '/register' },
-            ' Sign Up'
-          )
-        ),
-        _react2.default.createElement(
-          _semanticUiReact.Message,
-          null,
-          'Forgot your password?',
-          _react2.default.createElement(
-            'a',
-            { href: '/reset' },
-            ' Reset Password'
-          )
-        )
-      )
-    )
-  );
-});
-
-/***/ }),
-/* 515 */
-/***/ (function(module, exports, __webpack_require__) {
-
-"use strict";
-
-
-Object.defineProperty(exports, "__esModule", {
-  value: true
-});
-
-var _templateObject = _taggedTemplateLiteral(['user.passwordForm'], ['user.passwordForm']),
-    _templateObject2 = _taggedTemplateLiteral(['user.passwordFormSubmitted'], ['user.passwordFormSubmitted']);
-
-var _react = __webpack_require__(0);
-
-var _react2 = _interopRequireDefault(_react);
-
-var _react3 = __webpack_require__(17);
-
-var _tags = __webpack_require__(6);
-
-var _semanticUiReact = __webpack_require__(16);
-
-var _fields = __webpack_require__(54);
-
-function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
-
-function _taggedTemplateLiteral(strings, raw) { return Object.freeze(Object.defineProperties(strings, { raw: { value: Object.freeze(raw) } })); }
-
-exports.default = (0, _react3.connect)({
-  passwordForm: (0, _tags.state)(_templateObject),
-  formSubmitted: (0, _tags.signal)(_templateObject2)
-}, function NewPassword(_ref) {
-  var passwordForm = _ref.passwordForm,
-      formSubmitted = _ref.formSubmitted;
-
-  var handleSubmit = function handleSubmit(event) {
-    event.preventDefault();
-    formSubmitted();
-  };
-  return _react2.default.createElement(
-    _semanticUiReact.Grid,
-    { stackable: true, padded: 'vertically', columns: 2, centered: true },
-    _react2.default.createElement(
-      _semanticUiReact.Grid.Row,
-      null,
-      _react2.default.createElement(
-        _semanticUiReact.Grid.Column,
-        null,
-        _react2.default.createElement(
-          _semanticUiReact.Form,
-          { size: 'large' },
-          _react2.default.createElement(
-            _semanticUiReact.Segment,
-            null,
-            _react2.default.createElement(
-              _semanticUiReact.Dimmer,
-              { inverted: true, active: passwordForm.isLoading },
-              _react2.default.createElement(_semanticUiReact.Loader, null)
-            ),
-            _react2.default.createElement(_fields.PasswordField, {
-              form: passwordForm,
-              path: 'user.passwordForm.password'
-            }),
-            _react2.default.createElement(_fields.ConfirmPasswordField, {
-              form: passwordForm,
-              path: 'user.passwordForm.confirmPassword'
-            }),
-            _react2.default.createElement(
-              _semanticUiReact.Button,
-              { fluid: true, size: 'large', color: 'blue', onClick: handleSubmit },
-              'Update'
-            )
-          )
-        )
-      )
-    )
-  );
-});
-
-/***/ }),
-/* 516 */
-/***/ (function(module, exports, __webpack_require__) {
-
-"use strict";
-
-
-Object.defineProperty(exports, "__esModule", {
-  value: true
-});
-exports.default = Private;
-
-var _react = __webpack_require__(0);
-
-var _react2 = _interopRequireDefault(_react);
-
-var _semanticUiReact = __webpack_require__(16);
-
-function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
-
-function Private() {
-  return _react2.default.createElement(
-    _semanticUiReact.Grid,
-    { stackable: true, padded: 'vertically', columns: 2, centered: true },
-    _react2.default.createElement(
-      _semanticUiReact.Grid.Row,
-      null,
-      _react2.default.createElement(
-        _semanticUiReact.Grid.Column,
-        null,
-        _react2.default.createElement(
-          _semanticUiReact.Segment,
-          { padded: true, textAlign: 'left', color: 'red', size: 'big' },
-          'This is the private area for which you have to log in to read it.'
-        )
-      )
-    )
-  );
-}
-
-/***/ }),
-/* 517 */
-/***/ (function(module, exports, __webpack_require__) {
-
-"use strict";
-
-
-Object.defineProperty(exports, "__esModule", {
-  value: true
-});
-
-var _templateObject = _taggedTemplateLiteral(['user.registerForm'], ['user.registerForm']),
-    _templateObject2 = _taggedTemplateLiteral(['user.registerFormSubmitted'], ['user.registerFormSubmitted']);
-
-var _react = __webpack_require__(0);
-
-var _react2 = _interopRequireDefault(_react);
-
-var _react3 = __webpack_require__(17);
-
-var _tags = __webpack_require__(6);
-
-var _semanticUiReact = __webpack_require__(16);
-
-var _fields = __webpack_require__(54);
-
-function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
-
-function _taggedTemplateLiteral(strings, raw) { return Object.freeze(Object.defineProperties(strings, { raw: { value: Object.freeze(raw) } })); }
-
-exports.default = (0, _react3.connect)({
-  registerForm: (0, _tags.state)(_templateObject),
-  formSubmitted: (0, _tags.signal)(_templateObject2)
-}, function Register(_ref) {
-  var registerForm = _ref.registerForm,
-      formSubmitted = _ref.formSubmitted;
-
-  var handleSubmit = function handleSubmit(event) {
-    event.preventDefault();
-    formSubmitted();
-  };
-  return _react2.default.createElement(
-    _semanticUiReact.Grid,
-    { stackable: true, padded: 'vertically', columns: 2, centered: true },
-    _react2.default.createElement(
-      _semanticUiReact.Grid.Row,
-      null,
-      _react2.default.createElement(
-        _semanticUiReact.Grid.Column,
-        null,
-        _react2.default.createElement(
-          _semanticUiReact.Form,
-          { size: 'large' },
-          _react2.default.createElement(
-            _semanticUiReact.Segment,
-            null,
-            _react2.default.createElement(
-              _semanticUiReact.Dimmer,
-              { inverted: true, active: registerForm.isLoading },
-              _react2.default.createElement(_semanticUiReact.Loader, null)
-            ),
-            _react2.default.createElement(_fields.NicknameField, {
-              form: registerForm,
-              path: 'user.registerForm.nickname'
-            }),
-            _react2.default.createElement(_fields.EmailField, {
-              form: registerForm,
-              path: 'user.registerForm.email'
-            }),
-            _react2.default.createElement(_fields.PasswordField, {
-              form: registerForm,
-              path: 'user.registerForm.password'
-            }),
-            _react2.default.createElement(_fields.ConfirmPasswordField, {
-              form: registerForm,
-              path: 'user.registerForm.confirmPassword'
-            }),
-            _react2.default.createElement(
-              _semanticUiReact.Button,
-              { fluid: true, size: 'large', color: 'blue', onClick: handleSubmit },
-              'Sign up'
-            )
-          )
-        )
-      )
-    )
-  );
-});
-
-/***/ }),
-/* 518 */
-/***/ (function(module, exports, __webpack_require__) {
-
-"use strict";
-
-
-Object.defineProperty(exports, "__esModule", {
-  value: true
-});
-
-var _templateObject = _taggedTemplateLiteral(['user.emailForm'], ['user.emailForm']),
-    _templateObject2 = _taggedTemplateLiteral(['user.emailFormSubmitted'], ['user.emailFormSubmitted']);
-
-var _react = __webpack_require__(0);
-
-var _react2 = _interopRequireDefault(_react);
-
-var _react3 = __webpack_require__(17);
-
-var _tags = __webpack_require__(6);
-
-var _semanticUiReact = __webpack_require__(16);
-
-var _fields = __webpack_require__(54);
-
-function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
-
-function _taggedTemplateLiteral(strings, raw) { return Object.freeze(Object.defineProperties(strings, { raw: { value: Object.freeze(raw) } })); }
-
-exports.default = (0, _react3.connect)({
-  emailForm: (0, _tags.state)(_templateObject),
-  formSubmitted: (0, _tags.signal)(_templateObject2)
-}, function ResetPassword(_ref) {
-  var emailForm = _ref.emailForm,
-      formSubmitted = _ref.formSubmitted;
-
-  var handleSubmit = function handleSubmit(event) {
-    event.preventDefault();
-    formSubmitted();
-  };
-  return _react2.default.createElement(
-    _semanticUiReact.Grid,
-    { stackable: true, padded: 'vertically', columns: 2, centered: true },
-    _react2.default.createElement(
-      _semanticUiReact.Grid.Row,
-      null,
-      _react2.default.createElement(
-        _semanticUiReact.Grid.Column,
-        null,
-        _react2.default.createElement(
-          _semanticUiReact.Form,
-          { size: 'large' },
-          _react2.default.createElement(
-            _semanticUiReact.Segment,
-            null,
-            _react2.default.createElement(
-              _semanticUiReact.Dimmer,
-              { inverted: true, active: emailForm.isLoading },
-              _react2.default.createElement(_semanticUiReact.Loader, null)
-            ),
-            _react2.default.createElement(_fields.EmailField, { form: emailForm, path: 'user.emailForm.email' }),
-            _react2.default.createElement(
-              _semanticUiReact.Button,
-              { fluid: true, size: 'large', color: 'blue', onClick: handleSubmit },
-              'Submit'
-            )
-          )
-        )
-      )
-    )
-  );
-});
-
-/***/ }),
-/* 519 */
-/***/ (function(module, exports, __webpack_require__) {
-
-"use strict";
-
-
-Object.defineProperty(exports, "__esModule", {
-  value: true
-});
-
-var _templateObject = _taggedTemplateLiteral(['settings.accountForm'], ['settings.accountForm']),
-    _templateObject2 = _taggedTemplateLiteral(['settings.signOutButtonClicked'], ['settings.signOutButtonClicked']),
-    _templateObject3 = _taggedTemplateLiteral(['settings.removeUserButtonClicked'], ['settings.removeUserButtonClicked']);
-
-var _react = __webpack_require__(0);
-
-var _react2 = _interopRequireDefault(_react);
-
-var _react3 = __webpack_require__(17);
-
-var _tags = __webpack_require__(6);
-
-var _semanticUiReact = __webpack_require__(16);
-
-var _fields = __webpack_require__(54);
-
-var _ConfirmSignOut = __webpack_require__(521);
-
-var _ConfirmSignOut2 = _interopRequireDefault(_ConfirmSignOut);
-
-var _ConfirmRemoveUser = __webpack_require__(520);
-
-var _ConfirmRemoveUser2 = _interopRequireDefault(_ConfirmRemoveUser);
-
-function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
-
-function _taggedTemplateLiteral(strings, raw) { return Object.freeze(Object.defineProperties(strings, { raw: { value: Object.freeze(raw) } })); }
-
-exports.default = (0, _react3.connect)({
-  accountForm: (0, _tags.state)(_templateObject),
-  signOutButtonClicked: (0, _tags.signal)(_templateObject2),
-  removeUserButtonClicked: (0, _tags.signal)(_templateObject3)
-}, function UpdateEmail(_ref) {
-  var accountForm = _ref.accountForm,
-      signOutButtonClicked = _ref.signOutButtonClicked,
-      removeUserButtonClicked = _ref.removeUserButtonClicked;
-
-  return _react2.default.createElement(
-    _semanticUiReact.Grid.Column,
-    null,
-    _react2.default.createElement(
-      _semanticUiReact.Header,
-      { inverted: true, as: 'h2', textAlign: 'center' },
-      'Manage your account'
-    ),
-    _react2.default.createElement(
-      _semanticUiReact.Form,
-      { size: 'large' },
-      _react2.default.createElement(
-        _semanticUiReact.Segment,
-        null,
-        _react2.default.createElement(
-          _semanticUiReact.Dimmer,
-          { inverted: true, active: accountForm.isLoading },
-          _react2.default.createElement(_semanticUiReact.Loader, null)
-        ),
-        _react2.default.createElement(
-          _semanticUiReact.Grid,
-          { container: true, padded: true, divided: 'vertically', textAlign: 'center' },
-          _react2.default.createElement(
-            _semanticUiReact.Grid.Row,
-            null,
-            _react2.default.createElement(
-              _semanticUiReact.Grid.Column,
-              null,
-              _react2.default.createElement(
-                _semanticUiReact.Message,
-                { info: true },
-                _react2.default.createElement(
-                  _semanticUiReact.Message.Header,
-                  null,
-                  'We need your password to verify your identity'
-                )
-              ),
-              _react2.default.createElement(_fields.PasswordField, {
-                form: accountForm,
-                path: 'settings.accountForm.password'
-              })
-            )
-          ),
-          _react2.default.createElement(
-            _semanticUiReact.Grid.Row,
-            null,
-            _react2.default.createElement(
-              _semanticUiReact.Grid.Column,
-              null,
-              _react2.default.createElement(
-                _semanticUiReact.Message,
-                { info: true },
-                _react2.default.createElement(
-                  _semanticUiReact.Message.Header,
-                  null,
-                  'Dissallow refreshing your current tokens'
-                ),
-                _react2.default.createElement(
-                  'p',
-                  null,
-                  'You can use this when a token or your password gets compromised. Remember also to ',
-                  _react2.default.createElement(
-                    'a',
-                    { href: '/settings/password' },
-                    'change your password'
-                  ),
-                  '.'
-                )
-              ),
-              _react2.default.createElement(_semanticUiReact.Button, {
-                color: 'yellow',
-                icon: _react2.default.createElement(_semanticUiReact.Icon, { name: 'sign out', size: 'large' }),
-                label: 'Sign-out from all devices',
-                onClick: function onClick() {
-                  return signOutButtonClicked();
-                }
-              }),
-              _react2.default.createElement(_ConfirmSignOut2.default, null)
-            )
-          ),
-          _react2.default.createElement(
-            _semanticUiReact.Grid.Row,
-            null,
-            _react2.default.createElement(
-              _semanticUiReact.Grid.Column,
-              null,
-              _react2.default.createElement(
-                _semanticUiReact.Message,
-                { negative: true, icon: true },
-                _react2.default.createElement(_semanticUiReact.Icon, { name: 'warning sign', color: 'orange' }),
-                _react2.default.createElement(
-                  _semanticUiReact.Message.Content,
-                  null,
-                  _react2.default.createElement(
-                    _semanticUiReact.Message.Header,
-                    null,
-                    'Don\'t do this!'
-                  ),
-                  _react2.default.createElement(
-                    'p',
-                    null,
-                    'Deleting your account cannot be revoked and all your data will be removed.'
-                  )
-                )
-              ),
-              _react2.default.createElement(_semanticUiReact.Button, {
-                color: 'red',
-                icon: _react2.default.createElement(_semanticUiReact.Icon, { name: 'remove user', size: 'large' }),
-                label: 'Delete your user account',
-                labelPosition: 'right',
-                onClick: function onClick() {
-                  return removeUserButtonClicked();
-                }
-              }),
-              _react2.default.createElement(_ConfirmRemoveUser2.default, null)
-            )
-          )
-        )
-      )
-    )
-  );
-});
-
-/***/ }),
-/* 520 */
-/***/ (function(module, exports, __webpack_require__) {
-
-"use strict";
-
-
-Object.defineProperty(exports, "__esModule", {
-  value: true
-});
-
-var _templateObject = _taggedTemplateLiteral(['settings.showConfirmRemoveUser'], ['settings.showConfirmRemoveUser']),
-    _templateObject2 = _taggedTemplateLiteral(['settings.removeUserCancelled'], ['settings.removeUserCancelled']),
-    _templateObject3 = _taggedTemplateLiteral(['settings.removeUserConfirmed'], ['settings.removeUserConfirmed']);
-
-var _react = __webpack_require__(0);
-
-var _react2 = _interopRequireDefault(_react);
-
-var _react3 = __webpack_require__(17);
-
-var _tags = __webpack_require__(6);
-
-var _semanticUiReact = __webpack_require__(16);
-
-function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
-
-function _taggedTemplateLiteral(strings, raw) { return Object.freeze(Object.defineProperties(strings, { raw: { value: Object.freeze(raw) } })); }
-
-exports.default = (0, _react3.connect)({
-  showConfirmRemoveUser: (0, _tags.state)(_templateObject),
-  removeUserCancelled: (0, _tags.signal)(_templateObject2),
-  removeUserConfirmed: (0, _tags.signal)(_templateObject3)
-}, function ConfirmRemoveUser(_ref) {
-  var showConfirmRemoveUser = _ref.showConfirmRemoveUser,
-      removeUserCancelled = _ref.removeUserCancelled,
-      removeUserConfirmed = _ref.removeUserConfirmed;
-
-  return _react2.default.createElement(
-    _semanticUiReact.Modal,
-    {
-      basic: true,
-      size: 'small',
-      dimmer: 'blurring',
-      open: showConfirmRemoveUser,
-      onClose: removeUserCancelled
-    },
-    _react2.default.createElement(
-      _semanticUiReact.Modal.Header,
-      null,
-      _react2.default.createElement(_semanticUiReact.Icon, { name: 'remove user' }),
-      'You\'re about deleting your User Account!'
-    ),
-    _react2.default.createElement(
-      _semanticUiReact.Modal.Content,
-      null,
-      _react2.default.createElement(
-        'p',
-        null,
-        'Are you sure you want to delete your account?'
-      ),
-      _react2.default.createElement(
-        'p',
-        null,
-        'This can\'t be undone and all your data will be removed.'
-      )
-    ),
-    _react2.default.createElement(
-      _semanticUiReact.Modal.Actions,
-      null,
-      _react2.default.createElement(
-        _semanticUiReact.Button,
-        {
-          basic: true,
-          inverted: true,
-          color: 'red',
-          onClick: function onClick() {
-            return removeUserCancelled();
-          }
-        },
-        _react2.default.createElement(_semanticUiReact.Icon, { name: 'remove' }),
-        'Cancel'
-      ),
-      _react2.default.createElement(
-        _semanticUiReact.Button,
-        {
-          basic: true,
-          inverted: true,
-          color: 'green',
-          onClick: function onClick() {
-            return removeUserConfirmed();
-          }
-        },
-        _react2.default.createElement(_semanticUiReact.Icon, { name: 'checkmark' }),
-        'OK'
-      )
-    )
-  );
-});
-
-/***/ }),
-/* 521 */
-/***/ (function(module, exports, __webpack_require__) {
-
-"use strict";
-
-
-Object.defineProperty(exports, "__esModule", {
-  value: true
-});
-
-var _templateObject = _taggedTemplateLiteral(['settings.showConfirmSignOut'], ['settings.showConfirmSignOut']),
-    _templateObject2 = _taggedTemplateLiteral(['settings.signOutCancelled'], ['settings.signOutCancelled']),
-    _templateObject3 = _taggedTemplateLiteral(['settings.signOutConfirmed'], ['settings.signOutConfirmed']);
-
-var _react = __webpack_require__(0);
-
-var _react2 = _interopRequireDefault(_react);
-
-var _react3 = __webpack_require__(17);
-
-var _tags = __webpack_require__(6);
-
-var _semanticUiReact = __webpack_require__(16);
-
-function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
-
-function _taggedTemplateLiteral(strings, raw) { return Object.freeze(Object.defineProperties(strings, { raw: { value: Object.freeze(raw) } })); }
-
-exports.default = (0, _react3.connect)({
-  showConfirmSignOut: (0, _tags.state)(_templateObject),
-  signOutCancelled: (0, _tags.signal)(_templateObject2),
-  signOutConfirmed: (0, _tags.signal)(_templateObject3)
-}, function ConfirmSignOut(_ref) {
-  var showConfirmSignOut = _ref.showConfirmSignOut,
-      signOutCancelled = _ref.signOutCancelled,
-      signOutConfirmed = _ref.signOutConfirmed;
-
-  return _react2.default.createElement(
-    _semanticUiReact.Modal,
-    {
-      basic: true,
-      size: 'small',
-      dimmer: 'blurring',
-      open: showConfirmSignOut,
-      onClose: signOutCancelled
-    },
-    _react2.default.createElement(
-      _semanticUiReact.Modal.Header,
-      null,
-      _react2.default.createElement(_semanticUiReact.Icon, { name: 'sign out' }),
-      'Invalidate all your tokens'
-    ),
-    _react2.default.createElement(
-      _semanticUiReact.Modal.Content,
-      null,
-      _react2.default.createElement(
-        'p',
-        null,
-        'Are you sure you want to disallow refreshing all your current tokens?'
-      ),
-      _react2.default.createElement(
-        'p',
-        null,
-        'You will do this normally if a token gets compromised.'
-      )
-    ),
-    _react2.default.createElement(
-      _semanticUiReact.Modal.Actions,
-      null,
-      _react2.default.createElement(
-        _semanticUiReact.Button,
-        { basic: true, inverted: true, color: 'red', onClick: function onClick() {
-            return signOutCancelled();
-          } },
-        _react2.default.createElement(_semanticUiReact.Icon, { name: 'remove' }),
-        'Cancel'
-      ),
-      _react2.default.createElement(
-        _semanticUiReact.Button,
-        {
-          basic: true,
-          inverted: true,
-          color: 'green',
-          onClick: function onClick() {
-            return signOutConfirmed();
-          }
-        },
-        _react2.default.createElement(_semanticUiReact.Icon, { name: 'checkmark' }),
-        'OK'
-      )
-    )
-  );
-});
-
-/***/ }),
-/* 522 */
-/***/ (function(module, exports, __webpack_require__) {
-
-"use strict";
-
-
-Object.defineProperty(exports, "__esModule", {
-  value: true
-});
-
-var _templateObject = _taggedTemplateLiteral(['settings.emailForm'], ['settings.emailForm']),
-    _templateObject2 = _taggedTemplateLiteral(['user.email'], ['user.email']),
-    _templateObject3 = _taggedTemplateLiteral(['settings.emailFormSubmitted'], ['settings.emailFormSubmitted']);
-
-var _react = __webpack_require__(0);
-
-var _react2 = _interopRequireDefault(_react);
-
-var _react3 = __webpack_require__(17);
-
-var _tags = __webpack_require__(6);
-
-var _semanticUiReact = __webpack_require__(16);
-
-var _fields = __webpack_require__(54);
-
-function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
-
-function _taggedTemplateLiteral(strings, raw) { return Object.freeze(Object.defineProperties(strings, { raw: { value: Object.freeze(raw) } })); }
-
-exports.default = (0, _react3.connect)({
-  emailForm: (0, _tags.state)(_templateObject),
-  currentEmail: (0, _tags.state)(_templateObject2),
-  formSubmitted: (0, _tags.signal)(_templateObject3)
-}, function UpdateEmail(_ref) {
-  var emailForm = _ref.emailForm,
-      currentEmail = _ref.currentEmail,
-      formSubmitted = _ref.formSubmitted;
-
-  var handleSubmit = function handleSubmit(event) {
-    event.preventDefault();
-    formSubmitted();
-  };
-  return _react2.default.createElement(
-    _semanticUiReact.Grid.Column,
-    null,
-    _react2.default.createElement(
-      _semanticUiReact.Header,
-      { inverted: true, as: 'h2', textAlign: 'center' },
-      'Update your email'
-    ),
-    _react2.default.createElement(
-      _semanticUiReact.Form,
-      { size: 'large' },
-      _react2.default.createElement(
-        _semanticUiReact.Segment,
-        null,
-        _react2.default.createElement(
-          _semanticUiReact.Dimmer,
-          { inverted: true, active: emailForm.isLoading },
-          _react2.default.createElement(_semanticUiReact.Loader, null)
-        ),
-        _react2.default.createElement(
-          _semanticUiReact.Message,
-          { info: true },
-          _react2.default.createElement(
-            _semanticUiReact.Message.Header,
-            null,
-            'Your email address will be updated immediately'
-          ),
-          _react2.default.createElement(
-            'p',
-            null,
-            'Remember to confirm the new email if you want to be able to reset your password.'
-          )
-        ),
-        _react2.default.createElement(
-          _semanticUiReact.List,
-          { relaxed: true },
-          _react2.default.createElement(
-            _semanticUiReact.List.Item,
-            null,
-            _react2.default.createElement(
-              _semanticUiReact.List.Header,
-              { as: 'h4' },
-              'Current email address'
-            ),
-            _react2.default.createElement(_semanticUiReact.List.Icon, { name: 'mail', color: 'blue' }),
-            _react2.default.createElement(
-              _semanticUiReact.List.Content,
-              null,
-              currentEmail
-            )
-          ),
-          _react2.default.createElement(
-            _semanticUiReact.List.Item,
-            null,
-            _react2.default.createElement(
-              _semanticUiReact.List.Header,
-              { as: 'h4' },
-              'We need your password to verify your identity'
-            ),
-            _react2.default.createElement(_fields.PasswordField, {
-              form: emailForm,
-              path: 'settings.emailForm.password'
-            })
-          ),
-          _react2.default.createElement(
-            _semanticUiReact.List.Item,
-            null,
-            _react2.default.createElement(
-              _semanticUiReact.List.Header,
-              { as: 'h4' },
-              'New email adress'
-            ),
-            _react2.default.createElement(_fields.EmailField, {
-              form: emailForm,
-              path: 'settings.emailForm.email'
-            })
-          )
-        ),
-        _react2.default.createElement(
-          _semanticUiReact.Button,
-          { fluid: true, size: 'large', color: 'blue', onClick: handleSubmit },
-          'Update email'
-        )
-      )
-    )
-  );
-});
-
-/***/ }),
-/* 523 */
-/***/ (function(module, exports, __webpack_require__) {
-
-"use strict";
-
-
-Object.defineProperty(exports, "__esModule", {
-  value: true
-});
-
-var _templateObject = _taggedTemplateLiteral(['settings.passwordForm'], ['settings.passwordForm']),
-    _templateObject2 = _taggedTemplateLiteral(['settings.passwordFormSubmitted'], ['settings.passwordFormSubmitted']);
-
-var _react = __webpack_require__(0);
-
-var _react2 = _interopRequireDefault(_react);
-
-var _react3 = __webpack_require__(17);
-
-var _tags = __webpack_require__(6);
-
-var _semanticUiReact = __webpack_require__(16);
-
-var _fields = __webpack_require__(54);
-
-function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
-
-function _taggedTemplateLiteral(strings, raw) { return Object.freeze(Object.defineProperties(strings, { raw: { value: Object.freeze(raw) } })); }
-
-exports.default = (0, _react3.connect)({
-  passwordForm: (0, _tags.state)(_templateObject),
-  formSubmitted: (0, _tags.signal)(_templateObject2)
-}, function ChangePassword(_ref) {
-  var passwordForm = _ref.passwordForm,
-      formSubmitted = _ref.formSubmitted;
-
-  var handleSubmit = function handleSubmit(event) {
-    event.preventDefault();
-    formSubmitted();
-  };
-  return _react2.default.createElement(
-    _semanticUiReact.Grid.Column,
-    null,
-    _react2.default.createElement(
-      _semanticUiReact.Header,
-      { inverted: true, as: 'h2', textAlign: 'center' },
-      'Change your password'
-    ),
-    _react2.default.createElement(
-      _semanticUiReact.Form,
-      { size: 'large' },
-      _react2.default.createElement(
-        _semanticUiReact.Segment,
-        null,
-        _react2.default.createElement(
-          _semanticUiReact.Dimmer,
-          { inverted: true, active: passwordForm.isLoading },
-          _react2.default.createElement(_semanticUiReact.Loader, null)
-        ),
-        _react2.default.createElement(
-          _semanticUiReact.List,
-          { relaxed: true },
-          _react2.default.createElement(
-            _semanticUiReact.List.Item,
-            null,
-            _react2.default.createElement(
-              _semanticUiReact.List.Header,
-              { as: 'h4' },
-              'Current password'
-            ),
-            _react2.default.createElement(_fields.CurrentPasswordField, {
-              form: passwordForm,
-              path: 'settings.passwordForm.currentPassword'
-            })
-          ),
-          _react2.default.createElement(
-            _semanticUiReact.List.Item,
-            null,
-            _react2.default.createElement(
-              _semanticUiReact.List.Header,
-              { as: 'h4' },
-              'New password'
-            ),
-            _react2.default.createElement(_fields.PasswordField, {
-              form: passwordForm,
-              path: 'settings.passwordForm.password'
-            })
-          ),
-          _react2.default.createElement(
-            _semanticUiReact.List.Item,
-            null,
-            _react2.default.createElement(
-              _semanticUiReact.List.Header,
-              { as: 'h4' },
-              'Confirm new password'
-            ),
-            _react2.default.createElement(_fields.ConfirmPasswordField, {
-              form: passwordForm,
-              path: 'settings.passwordForm.confirmPassword'
-            })
-          )
-        ),
-        _react2.default.createElement(
-          _semanticUiReact.Button,
-          { fluid: true, size: 'large', color: 'blue', onClick: handleSubmit },
-          'Change password'
-        )
-      )
-    )
-  );
-});
-
-/***/ }),
-/* 524 */
-/***/ (function(module, exports, __webpack_require__) {
-
-"use strict";
-
-
-Object.defineProperty(exports, "__esModule", {
-  value: true
-});
-
-var _templateObject = _taggedTemplateLiteral(['settings.profileForm'], ['settings.profileForm']),
-    _templateObject2 = _taggedTemplateLiteral(['settings.profileFormSubmitted'], ['settings.profileFormSubmitted']);
-
-var _react = __webpack_require__(0);
-
-var _react2 = _interopRequireDefault(_react);
-
-var _react3 = __webpack_require__(17);
-
-var _tags = __webpack_require__(6);
-
-var _semanticUiReact = __webpack_require__(16);
-
-var _fields = __webpack_require__(54);
-
-function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
-
-function _taggedTemplateLiteral(strings, raw) { return Object.freeze(Object.defineProperties(strings, { raw: { value: Object.freeze(raw) } })); }
-
-exports.default = (0, _react3.connect)({
-  profileForm: (0, _tags.state)(_templateObject),
-  formSubmitted: (0, _tags.signal)(_templateObject2)
-}, function EditProfile(_ref) {
-  var profileForm = _ref.profileForm,
-      formSubmitted = _ref.formSubmitted;
-
-  var handleSubmit = function handleSubmit(event) {
-    event.preventDefault();
-    formSubmitted();
-  };
-  return _react2.default.createElement(
-    _semanticUiReact.Grid.Column,
-    null,
-    _react2.default.createElement(
-      _semanticUiReact.Header,
-      { inverted: true, as: 'h2', textAlign: 'center' },
-      'Edit your profile'
-    ),
-    _react2.default.createElement(
-      _semanticUiReact.Form,
-      { size: 'large' },
-      _react2.default.createElement(
-        _semanticUiReact.Segment,
-        null,
-        _react2.default.createElement(
-          _semanticUiReact.Dimmer,
-          { inverted: true, active: profileForm.isLoading },
-          _react2.default.createElement(_semanticUiReact.Loader, null)
-        ),
-        _react2.default.createElement(
-          _semanticUiReact.List,
-          { relaxed: true },
-          _react2.default.createElement(
-            _semanticUiReact.List.Item,
-            null,
-            _react2.default.createElement(
-              _semanticUiReact.List.Header,
-              { as: 'h4' },
-              'Nickname'
-            ),
-            _react2.default.createElement(_fields.NicknameField, {
-              form: profileForm,
-              path: 'settings.profileForm.nickname'
-            })
-          )
-        ),
-        _react2.default.createElement(
-          _semanticUiReact.Button,
-          { fluid: true, size: 'large', color: 'blue', onClick: handleSubmit },
-          'Save profile'
-        )
-      )
-    )
-  );
-});
-
-/***/ }),
-/* 525 */
-/***/ (function(module, exports, __webpack_require__) {
-
-"use strict";
-
-
-Object.defineProperty(exports, "__esModule", {
-  value: true
-});
-
-var _templateObject = _taggedTemplateLiteral(['user.nickname'], ['user.nickname']),
-    _templateObject2 = _taggedTemplateLiteral(['settings.currentTab'], ['settings.currentTab']);
-
-var _react = __webpack_require__(0);
-
-var _react2 = _interopRequireDefault(_react);
-
-var _react3 = __webpack_require__(17);
-
-var _tags = __webpack_require__(6);
-
-var _semanticUiReact = __webpack_require__(16);
-
-var _Profile = __webpack_require__(524);
-
-var _Profile2 = _interopRequireDefault(_Profile);
-
-var _Email = __webpack_require__(522);
-
-var _Email2 = _interopRequireDefault(_Email);
-
-var _Password = __webpack_require__(523);
-
-var _Password2 = _interopRequireDefault(_Password);
-
-var _Account = __webpack_require__(519);
-
-var _Account2 = _interopRequireDefault(_Account);
-
-function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
-
-function _taggedTemplateLiteral(strings, raw) { return Object.freeze(Object.defineProperties(strings, { raw: { value: Object.freeze(raw) } })); }
-
-var tabs = {
-  profile: _Profile2.default,
-  email: _Email2.default,
-  password: _Password2.default,
-  account: _Account2.default
-};
-
-exports.default = (0, _react3.connect)({
-  nickname: (0, _tags.state)(_templateObject),
-  currentTab: (0, _tags.state)(_templateObject2)
-}, function Settings(_ref) {
-  var nickname = _ref.nickname,
-      currentTab = _ref.currentTab;
-
-  var Tab = tabs[currentTab];
-  return _react2.default.createElement(
-    _semanticUiReact.Grid,
-    { container: true, stackable: true, padded: 'vertically', centered: true },
-    _react2.default.createElement(
-      _semanticUiReact.Grid.Row,
-      { columns: 3, centered: true },
-      _react2.default.createElement(
-        _semanticUiReact.Grid.Column,
-        null,
-        _react2.default.createElement(
-          _semanticUiReact.Menu,
-          {
-            attached: 'top',
-            inverted: true,
-            secondary: true,
-            pointing: true,
-            compact: true,
-            size: 'large'
-          },
-          _react2.default.createElement(
-            _semanticUiReact.Menu.Item,
-            {
-              name: 'profile',
-              href: '/settings/profile',
-              active: currentTab === 'profile'
-            },
-            'Profile'
-          ),
-          _react2.default.createElement(
-            _semanticUiReact.Menu.Item,
-            {
-              name: 'email',
-              href: '/settings/email',
-              active: currentTab === 'email'
-            },
-            'E-mail'
-          ),
-          _react2.default.createElement(
-            _semanticUiReact.Menu.Item,
-            {
-              name: 'password',
-              href: '/settings/password',
-              active: currentTab === 'password'
-            },
-            'Password'
-          ),
-          _react2.default.createElement(
-            _semanticUiReact.Menu.Item,
-            {
-              name: 'account',
-              href: '/settings/account',
-              active: currentTab === 'account'
-            },
-            'Account'
-          )
-        )
-      )
-    ),
-    _react2.default.createElement(
-      _semanticUiReact.Grid.Row,
-      { columns: 2, centered: true },
-      _react2.default.createElement(Tab, null)
-    )
-  );
-});
-
-/***/ }),
-/* 526 */
-/***/ (function(module, exports, __webpack_require__) {
-
-"use strict";
-
-
-Object.defineProperty(exports, "__esModule", {
-  value: true
-});
-
-var _templateObject = _taggedTemplateLiteral(['form'], ['form']),
-    _templateObject2 = _taggedTemplateLiteral(['user.fieldChanged'], ['user.fieldChanged']);
-
-var _react = __webpack_require__(0);
-
-var _react2 = _interopRequireDefault(_react);
-
-var _react3 = __webpack_require__(17);
-
-var _tags = __webpack_require__(6);
-
-var _forms = __webpack_require__(77);
-
-var _semanticUiReact = __webpack_require__(16);
-
-var _utils = __webpack_require__(94);
-
-function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
-
-function _taggedTemplateLiteral(strings, raw) { return Object.freeze(Object.defineProperties(strings, { raw: { value: Object.freeze(raw) } })); }
-
-exports.default = (0, _react3.connect)({
-  form: (0, _forms.form)((0, _tags.props)(_templateObject)),
-  fieldChanged: (0, _tags.signal)(_templateObject2)
-}, function ConfirmPasswordField(_ref) {
-  var path = _ref.path,
-      form = _ref.form,
-      fieldChanged = _ref.fieldChanged;
-
-  return _react2.default.createElement(
-    _semanticUiReact.Form.Field,
-    { error: (0, _utils.hasError)(form, form.confirmPassword) },
-    _react2.default.createElement(_semanticUiReact.Input, {
-      type: 'password',
-      icon: 'lock',
-      iconPosition: 'left',
-      placeholder: 'confirm password',
-      value: form.confirmPassword.value,
-      onChange: function onChange(e, _ref2) {
-        var value = _ref2.value;
-        return fieldChanged({ value: value, field: path });
-      }
-    }),
-    _react2.default.createElement(
-      _semanticUiReact.Label,
-      {
-        pointing: true,
-        basic: true,
-        color: 'red',
-        style: {
-          display: (0, _utils.showError)(form, form.confirmPassword) ? 'inline-block' : 'none'
-        }
-      },
-      form.confirmPassword.errorMessage
-    )
-  );
-});
-
-/***/ }),
-/* 527 */
-/***/ (function(module, exports, __webpack_require__) {
-
-"use strict";
-
-
-Object.defineProperty(exports, "__esModule", {
-  value: true
-});
-
-var _templateObject = _taggedTemplateLiteral(['form'], ['form']),
-    _templateObject2 = _taggedTemplateLiteral(['user.fieldChanged'], ['user.fieldChanged']);
-
-var _react = __webpack_require__(0);
-
-var _react2 = _interopRequireDefault(_react);
-
-var _react3 = __webpack_require__(17);
-
-var _tags = __webpack_require__(6);
-
-var _forms = __webpack_require__(77);
-
-var _semanticUiReact = __webpack_require__(16);
-
-var _utils = __webpack_require__(94);
-
-function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
-
-function _taggedTemplateLiteral(strings, raw) { return Object.freeze(Object.defineProperties(strings, { raw: { value: Object.freeze(raw) } })); }
-
-exports.default = (0, _react3.connect)({
-  form: (0, _forms.form)((0, _tags.props)(_templateObject)),
-  fieldChanged: (0, _tags.signal)(_templateObject2)
-}, function CurrentPasswordField(_ref) {
-  var path = _ref.path,
-      form = _ref.form,
-      fieldChanged = _ref.fieldChanged;
-
-  return _react2.default.createElement(
-    _semanticUiReact.Form.Field,
-    { error: (0, _utils.hasError)(form, form.currentPassword) },
-    _react2.default.createElement(_semanticUiReact.Input, {
-      type: 'password',
-      icon: 'lock',
-      iconPosition: 'left',
-      placeholder: 'current password',
-      value: form.currentPassword.value,
-      onChange: function onChange(e, _ref2) {
-        var value = _ref2.value;
-        return fieldChanged({ value: value, field: path });
-      }
-    }),
-    _react2.default.createElement(
-      _semanticUiReact.Label,
-      {
-        pointing: true,
-        basic: true,
-        color: 'red',
-        style: {
-          display: (0, _utils.showError)(form, form.currentPassword) ? 'inline-block' : 'none'
-        }
-      },
-      form.currentPassword.errorMessage
-    )
-  );
-});
-
-/***/ }),
-/* 528 */
-/***/ (function(module, exports, __webpack_require__) {
-
-"use strict";
-
-
-Object.defineProperty(exports, "__esModule", {
-  value: true
-});
-
-var _templateObject = _taggedTemplateLiteral(['form'], ['form']),
-    _templateObject2 = _taggedTemplateLiteral(['user.fieldChanged'], ['user.fieldChanged']);
-
-var _react = __webpack_require__(0);
-
-var _react2 = _interopRequireDefault(_react);
-
-var _react3 = __webpack_require__(17);
-
-var _tags = __webpack_require__(6);
-
-var _forms = __webpack_require__(77);
-
-var _semanticUiReact = __webpack_require__(16);
-
-var _utils = __webpack_require__(94);
-
-function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
-
-function _taggedTemplateLiteral(strings, raw) { return Object.freeze(Object.defineProperties(strings, { raw: { value: Object.freeze(raw) } })); }
-
-exports.default = (0, _react3.connect)({
-  form: (0, _forms.form)((0, _tags.props)(_templateObject)),
-  fieldChanged: (0, _tags.signal)(_templateObject2)
-}, function EmailField(_ref) {
-  var path = _ref.path,
-      form = _ref.form,
-      fieldChanged = _ref.fieldChanged;
-
-  return _react2.default.createElement(
-    _semanticUiReact.Form.Field,
-    { error: (0, _utils.hasError)(form, form.email) },
-    _react2.default.createElement(_semanticUiReact.Input, {
-      icon: 'mail',
-      iconPosition: 'left',
-      placeholder: 'email address',
-      value: form.email.value,
-      onChange: function onChange(e, _ref2) {
-        var value = _ref2.value;
-        return fieldChanged({ value: value, field: path });
-      }
-    }),
-    _react2.default.createElement(
-      _semanticUiReact.Label,
-      {
-        pointing: true,
-        basic: true,
-        color: 'red',
-        style: {
-          display: (0, _utils.showError)(form, form.email) ? 'inline-block' : 'none'
-        }
-      },
-      form.email.errorMessage
-    )
-  );
-});
-
-/***/ }),
-/* 529 */
-/***/ (function(module, exports, __webpack_require__) {
-
-"use strict";
-
-
-Object.defineProperty(exports, "__esModule", {
-  value: true
-});
-
-var _templateObject = _taggedTemplateLiteral(['form'], ['form']),
-    _templateObject2 = _taggedTemplateLiteral(['user.fieldChanged'], ['user.fieldChanged']);
-
-var _react = __webpack_require__(0);
-
-var _react2 = _interopRequireDefault(_react);
-
-var _react3 = __webpack_require__(17);
-
-var _tags = __webpack_require__(6);
-
-var _forms = __webpack_require__(77);
-
-var _semanticUiReact = __webpack_require__(16);
-
-var _utils = __webpack_require__(94);
-
-function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
-
-function _taggedTemplateLiteral(strings, raw) { return Object.freeze(Object.defineProperties(strings, { raw: { value: Object.freeze(raw) } })); }
-
-exports.default = (0, _react3.connect)({
-  form: (0, _forms.form)((0, _tags.props)(_templateObject)),
-  fieldChanged: (0, _tags.signal)(_templateObject2)
-}, function NicknameField(_ref) {
-  var path = _ref.path,
-      form = _ref.form,
-      fieldChanged = _ref.fieldChanged;
-
-  return _react2.default.createElement(
-    _semanticUiReact.Form.Field,
-    { error: (0, _utils.hasError)(form, form.nickname) },
-    _react2.default.createElement(_semanticUiReact.Input, {
-      icon: 'user',
-      iconPosition: 'left',
-      placeholder: 'nickname',
-      value: form.nickname.value,
-      onChange: function onChange(e, _ref2) {
-        var value = _ref2.value;
-        return fieldChanged({ value: value, field: path });
-      }
-    }),
-    _react2.default.createElement(
-      _semanticUiReact.Label,
-      {
-        pointing: true,
-        basic: true,
-        color: 'red',
-        style: {
-          display: (0, _utils.showError)(form, form.nickname) ? 'inline-block' : 'none'
-        }
-      },
-      form.nickname.errorMessage
-    )
-  );
-});
-
-/***/ }),
-/* 530 */
-/***/ (function(module, exports, __webpack_require__) {
-
-"use strict";
-
-
-Object.defineProperty(exports, "__esModule", {
-  value: true
-});
-
-var _templateObject = _taggedTemplateLiteral(['form'], ['form']),
-    _templateObject2 = _taggedTemplateLiteral(['user.fieldChanged'], ['user.fieldChanged']);
-
-var _react = __webpack_require__(0);
-
-var _react2 = _interopRequireDefault(_react);
-
-var _react3 = __webpack_require__(17);
-
-var _tags = __webpack_require__(6);
-
-var _forms = __webpack_require__(77);
-
-var _semanticUiReact = __webpack_require__(16);
-
-var _utils = __webpack_require__(94);
-
-function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
-
-function _taggedTemplateLiteral(strings, raw) { return Object.freeze(Object.defineProperties(strings, { raw: { value: Object.freeze(raw) } })); }
-
-exports.default = (0, _react3.connect)({
-  form: (0, _forms.form)((0, _tags.props)(_templateObject)),
-  fieldChanged: (0, _tags.signal)(_templateObject2)
-}, function PasswordField(_ref) {
-  var path = _ref.path,
-      form = _ref.form,
-      fieldChanged = _ref.fieldChanged;
-
-  return _react2.default.createElement(
-    _semanticUiReact.Form.Field,
-    { error: (0, _utils.hasError)(form, form.password) },
-    _react2.default.createElement(_semanticUiReact.Input, {
-      type: 'password',
-      icon: 'lock',
-      iconPosition: 'left',
-      placeholder: 'password',
-      value: form.password.value,
-      onChange: function onChange(e, _ref2) {
-        var value = _ref2.value;
-        return fieldChanged({ value: value, field: path });
-      }
-    }),
-    _react2.default.createElement(
-      _semanticUiReact.Label,
-      {
-        pointing: true,
-        basic: true,
-        color: 'red',
-        style: {
-          display: (0, _utils.showError)(form, form.password) ? 'inline-block' : 'none'
-        }
-      },
-      form.password.errorMessage
-    )
-  );
-});
-
-/***/ }),
-/* 531 */
-/***/ (function(module, exports, __webpack_require__) {
-
-"use strict";
-
-
-Object.defineProperty(exports, "__esModule", {
-  value: true
-});
-
-var _templateObject = _taggedTemplateLiteral(['admin.users'], ['admin.users']);
-
-var _cerebral = __webpack_require__(9);
-
-var _tags = __webpack_require__(6);
-
-function _taggedTemplateLiteral(strings, raw) { return Object.freeze(Object.defineProperties(strings, { raw: { value: Object.freeze(raw) } })); }
-
-exports.default = (0, _cerebral.compute)((0, _tags.state)(_templateObject), function (users) {
-  return Object.keys(users).sort(function (uidA, uidB) {
-    return users[uidA]['orderKey'] - users[uidB]['orderKey'];
-  });
-});
-
-/***/ }),
-/* 532 */
-/***/ (function(module, exports, __webpack_require__) {
-
-"use strict";
-
-
-__webpack_require__(478);
-
-__webpack_require__(477);
-
-__webpack_require__(475);
-
-var _react = __webpack_require__(0);
-
-var _react2 = _interopRequireDefault(_react);
-
-var _reactDom = __webpack_require__(257);
-
-var _controller = __webpack_require__(474);
-
-var _controller2 = _interopRequireDefault(_controller);
-
-var _react3 = __webpack_require__(17);
-
-var _App = __webpack_require__(473);
-
-var _App2 = _interopRequireDefault(_App);
-
-var _reactTapEventPlugin = __webpack_require__(476);
-
-var _reactTapEventPlugin2 = _interopRequireDefault(_reactTapEventPlugin);
-
-function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
-
-(0, _reactTapEventPlugin2.default)();
-
-// support tap events
-
-
-(0, _reactDom.render)(_react2.default.createElement(
-  _react3.Container,
-  { controller: _controller2.default },
-  _react2.default.createElement(_App2.default, null)
-), document.querySelector('#app'));
-
-/***/ }),
-/* 533 */
-/***/ (function(module, exports, __webpack_require__) {
-
-"use strict";
-
-
-Object.defineProperty(exports, "__esModule", {
-  value: true
-});
-function getNextPage(_ref) {
-  var props = _ref.props,
-      state = _ref.state;
-
-  var nextPage = 1;
-  switch (props.nextPage) {
-    case 'previous':
-      nextPage = parseInt(state.get('admin.currentPage')) - 1;
-      break;
-    case 'next':
-      nextPage = parseInt(state.get('admin.currentPage')) + 1;
-      break;
-    case 'last':
-      nextPage = state.get('admin.pages');
-      break;
-    default:
-      if (typeof props.nextPage === 'number') {
-        nextPage = Math.floor(props.nextPage);
-      }
-  }
-  return { nextPage: nextPage };
-}
-
-exports.default = getNextPage;
-
-/***/ }),
-/* 534 */
-/***/ (function(module, exports, __webpack_require__) {
-
-"use strict";
-
-
-Object.defineProperty(exports, "__esModule", {
-  value: true
-});
-function mergeUsers(_ref) {
-  var props = _ref.props,
-      state = _ref.state,
-      uuid = _ref.uuid;
-
-  if (props.result.users && props.result.users.length !== 0) {
-    var orderKey = 1;
-    var _iteratorNormalCompletion = true;
-    var _didIteratorError = false;
-    var _iteratorError = undefined;
-
-    try {
-      var _loop = function _loop() {
-        var user = _step.value;
-
-        user['orderKey'] = orderKey;
-        var usersInState = state.get('admin.users');
-        var uidInState = Object.keys(usersInState).filter(function (uid) {
-          return usersInState[uid]['email'] === user['email'];
-        })[0];
-        if (uidInState) {
-          state.merge('admin.users.' + uidInState, user);
-        } else {
-          state.set('admin.users.' + uuid(), user);
-        }
-        orderKey++;
-      };
-
-      for (var _iterator = props.result.users[Symbol.iterator](), _step; !(_iteratorNormalCompletion = (_step = _iterator.next()).done); _iteratorNormalCompletion = true) {
-        _loop();
-      }
-    } catch (err) {
-      _didIteratorError = true;
-      _iteratorError = err;
-    } finally {
-      try {
-        if (!_iteratorNormalCompletion && _iterator.return) {
-          _iterator.return();
-        }
-      } finally {
-        if (_didIteratorError) {
-          throw _iteratorError;
-        }
-      }
-    }
-  } else {
-    return { noUsersFound: true };
-  }
-}
-
-exports.default = mergeUsers;
-
-/***/ }),
-/* 535 */
-/***/ (function(module, exports, __webpack_require__) {
-
-"use strict";
-
-
-Object.defineProperty(exports, "__esModule", {
-  value: true
-});
-
-var _sortUsersClicked = __webpack_require__(545);
-
-var _sortUsersClicked2 = _interopRequireDefault(_sortUsersClicked);
-
-var _signOutButtonClicked = __webpack_require__(542);
-
-var _signOutButtonClicked2 = _interopRequireDefault(_signOutButtonClicked);
-
-var _signOutConfirmed = __webpack_require__(544);
-
-var _signOutConfirmed2 = _interopRequireDefault(_signOutConfirmed);
-
-var _signOutCancelled = __webpack_require__(543);
-
-var _signOutCancelled2 = _interopRequireDefault(_signOutCancelled);
-
-var _removeUserButtonClicked = __webpack_require__(538);
-
-var _removeUserButtonClicked2 = _interopRequireDefault(_removeUserButtonClicked);
-
-var _removeUserConfirmed = __webpack_require__(540);
-
-var _removeUserConfirmed2 = _interopRequireDefault(_removeUserConfirmed);
-
-var _removeUserCancelled = __webpack_require__(539);
-
-var _removeUserCancelled2 = _interopRequireDefault(_removeUserCancelled);
-
-var _toggleAdminClicked = __webpack_require__(546);
-
-var _toggleAdminClicked2 = _interopRequireDefault(_toggleAdminClicked);
-
-var _searchSubmitted = __webpack_require__(541);
-
-var _searchSubmitted2 = _interopRequireDefault(_searchSubmitted);
-
-var _pageSizeChanged = __webpack_require__(537);
-
-var _pageSizeChanged2 = _interopRequireDefault(_pageSizeChanged);
-
-var _changePageClicked = __webpack_require__(536);
-
-var _changePageClicked2 = _interopRequireDefault(_changePageClicked);
-
-function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
-
-exports.default = function (module) {
-  return {
-    signals: {
-      sortUsersClicked: _sortUsersClicked2.default,
-      signOutButtonClicked: _signOutButtonClicked2.default,
-      signOutCancelled: _signOutCancelled2.default,
-      signOutConfirmed: _signOutConfirmed2.default,
-      removeUserButtonClicked: _removeUserButtonClicked2.default,
-      removeUserCancelled: _removeUserCancelled2.default,
-      removeUserConfirmed: _removeUserConfirmed2.default,
-      toggleAdminClicked: _toggleAdminClicked2.default,
-      searchSubmitted: _searchSubmitted2.default,
-      pageSizeChanged: _pageSizeChanged2.default,
-      changePageClicked: _changePageClicked2.default
-    },
-    state: {
-      users: {},
-      usersSortBy: 'nickname',
-      usersSortDir: 'ascending',
-      showConfirmSignOut: false,
-      showConfirmRemoveUser: false,
-      activeUid: null,
-      searchString: '',
-      searchIsLoading: false,
-      currentPage: 1,
-      pages: 1,
-      pageSize: 30
-    }
-  };
-};
-
-/***/ }),
-/* 536 */
-/***/ (function(module, exports, __webpack_require__) {
-
-"use strict";
-
-
-Object.defineProperty(exports, "__esModule", {
-  value: true
-});
-
-var _templateObject = _taggedTemplateLiteral(['nextPage'], ['nextPage']),
-    _templateObject2 = _taggedTemplateLiteral(['admin.pages'], ['admin.pages']),
-    _templateObject3 = _taggedTemplateLiteral(['admin.currentPage'], ['admin.currentPage']),
-    _templateObject4 = _taggedTemplateLiteral(['admin.users'], ['admin.users']);
-
-var _cerebral = __webpack_require__(9);
-
-var _tags = __webpack_require__(6);
-
-var _operators = __webpack_require__(10);
-
-var _getNextPage = __webpack_require__(533);
-
-var _getNextPage2 = _interopRequireDefault(_getNextPage);
-
-var _fetchUsers = __webpack_require__(95);
-
-var _fetchUsers2 = _interopRequireDefault(_fetchUsers);
-
-function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
-
-function _taggedTemplateLiteral(strings, raw) { return Object.freeze(Object.defineProperties(strings, { raw: { value: Object.freeze(raw) } })); }
-
-exports.default = (0, _cerebral.sequence)('Change page', [_getNextPage2.default, (0, _operators.when)((0, _tags.props)(_templateObject), (0, _tags.state)(_templateObject2), (0, _tags.state)(_templateObject3), function (nextPage, pages, currentPage) {
-  return nextPage > 0 && nextPage <= pages && nextPage !== currentPage;
-}), {
-  true: [(0, _operators.set)((0, _tags.state)(_templateObject3), (0, _tags.props)(_templateObject)), (0, _operators.set)((0, _tags.state)(_templateObject4), {}), _fetchUsers2.default],
-  false: []
-}]);
-
-/***/ }),
-/* 537 */
-/***/ (function(module, exports, __webpack_require__) {
-
-"use strict";
-
-
-Object.defineProperty(exports, "__esModule", {
-  value: true
-});
-
-var _templateObject = _taggedTemplateLiteral(['admin.pageSize'], ['admin.pageSize']),
-    _templateObject2 = _taggedTemplateLiteral(['value'], ['value']),
-    _templateObject3 = _taggedTemplateLiteral(['admin.currentPage'], ['admin.currentPage']),
-    _templateObject4 = _taggedTemplateLiteral(['admin.users'], ['admin.users']);
-
-var _cerebral = __webpack_require__(9);
-
-var _tags = __webpack_require__(6);
-
-var _operators = __webpack_require__(10);
-
-var _fetchUsers = __webpack_require__(95);
-
-var _fetchUsers2 = _interopRequireDefault(_fetchUsers);
-
-function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
-
-function _taggedTemplateLiteral(strings, raw) { return Object.freeze(Object.defineProperties(strings, { raw: { value: Object.freeze(raw) } })); }
-
-exports.default = (0, _cerebral.sequence)('Change page size', [(0, _operators.set)((0, _tags.state)(_templateObject), (0, _tags.props)(_templateObject2)), (0, _operators.set)((0, _tags.state)(_templateObject3), 1), (0, _operators.set)((0, _tags.state)(_templateObject4), {}), _fetchUsers2.default]);
-
-/***/ }),
-/* 538 */
-/***/ (function(module, exports, __webpack_require__) {
-
-"use strict";
-
-
-Object.defineProperty(exports, "__esModule", {
-  value: true
-});
-
-var _templateObject = _taggedTemplateLiteral(['admin.activeUid'], ['admin.activeUid']),
-    _templateObject2 = _taggedTemplateLiteral(['uid'], ['uid']),
-    _templateObject3 = _taggedTemplateLiteral(['admin.showConfirmRemoveUser'], ['admin.showConfirmRemoveUser']);
-
-var _cerebral = __webpack_require__(9);
-
-var _tags = __webpack_require__(6);
-
-var _operators = __webpack_require__(10);
-
-function _taggedTemplateLiteral(strings, raw) { return Object.freeze(Object.defineProperties(strings, { raw: { value: Object.freeze(raw) } })); }
-
-exports.default = (0, _cerebral.sequence)('Show confirm-remove-user modal', [(0, _operators.set)((0, _tags.state)(_templateObject), (0, _tags.props)(_templateObject2)), (0, _operators.set)((0, _tags.state)(_templateObject3), true)]);
-
-/***/ }),
-/* 539 */
-/***/ (function(module, exports, __webpack_require__) {
-
-"use strict";
-
-
-Object.defineProperty(exports, "__esModule", {
-  value: true
-});
-
-var _templateObject = _taggedTemplateLiteral(['admin.activeUid'], ['admin.activeUid']),
-    _templateObject2 = _taggedTemplateLiteral(['admin.showConfirmRemoveUser'], ['admin.showConfirmRemoveUser']);
-
-var _cerebral = __webpack_require__(9);
-
-var _tags = __webpack_require__(6);
-
-var _operators = __webpack_require__(10);
-
-function _taggedTemplateLiteral(strings, raw) { return Object.freeze(Object.defineProperties(strings, { raw: { value: Object.freeze(raw) } })); }
-
-exports.default = (0, _cerebral.sequence)('Close confirm-remove-user modal', [(0, _operators.set)((0, _tags.state)(_templateObject), null), (0, _operators.set)((0, _tags.state)(_templateObject2), false)]);
-
-/***/ }),
-/* 540 */
-/***/ (function(module, exports, __webpack_require__) {
-
-"use strict";
-
-
-Object.defineProperty(exports, "__esModule", {
-  value: true
-});
-
-var _templateObject = _taggedTemplateLiteral(['admin.showConfirmRemoveUser'], ['admin.showConfirmRemoveUser']),
-    _templateObject2 = _taggedTemplateLiteral(['nickname'], ['nickname']),
-    _templateObject3 = _taggedTemplateLiteral(['admin.users.', '.nickname'], ['admin.users.', '.nickname']),
-    _templateObject4 = _taggedTemplateLiteral(['admin.activeUid'], ['admin.activeUid']),
-    _templateObject5 = _taggedTemplateLiteral(['', ''], ['', '']),
-    _templateObject6 = _taggedTemplateLiteral(['admin.users.', '.@id'], ['admin.users.', '.@id']),
-    _templateObject7 = _taggedTemplateLiteral(['admin.users.', ''], ['admin.users.', '']),
-    _templateObject8 = _taggedTemplateLiteral(['', ' was successfully deleted'], ['', ' was successfully deleted']),
-    _templateObject9 = _taggedTemplateLiteral(['', ' could not be deleted'], ['', ' could not be deleted']);
-
-var _cerebral = __webpack_require__(9);
-
-var _tags = __webpack_require__(6);
-
-var _operators = __webpack_require__(10);
-
-var _operators2 = __webpack_require__(29);
-
-var _showFlash = __webpack_require__(26);
-
-var _showFlash2 = _interopRequireDefault(_showFlash);
-
-function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
-
-function _taggedTemplateLiteral(strings, raw) { return Object.freeze(Object.defineProperties(strings, { raw: { value: Object.freeze(raw) } })); }
-
-exports.default = (0, _cerebral.sequence)('Delete user', [(0, _operators.set)((0, _tags.state)(_templateObject), false), (0, _operators.set)((0, _tags.props)(_templateObject2), (0, _tags.state)(_templateObject3, (0, _tags.state)(_templateObject4))), (0, _operators2.httpDelete)((0, _tags.string)(_templateObject5, (0, _tags.state)(_templateObject6, (0, _tags.state)(_templateObject4)))), {
-  success: [(0, _operators.unset)((0, _tags.state)(_templateObject7, (0, _tags.state)(_templateObject4))), (0, _showFlash2.default)((0, _tags.string)(_templateObject8, (0, _tags.props)(_templateObject2)), 'success')],
-  error: (0, _showFlash2.default)((0, _tags.string)(_templateObject9, (0, _tags.props)(_templateObject2)), 'error')
-}, (0, _operators.set)((0, _tags.state)(_templateObject4), null)]);
-
-/***/ }),
-/* 541 */
-/***/ (function(module, exports, __webpack_require__) {
-
-"use strict";
-
-
-Object.defineProperty(exports, "__esModule", {
-  value: true
-});
-
-var _templateObject = _taggedTemplateLiteral(['admin.searchIsLoading'], ['admin.searchIsLoading']),
-    _templateObject2 = _taggedTemplateLiteral(['admin.searchString'], ['admin.searchString']),
-    _templateObject3 = _taggedTemplateLiteral(['value'], ['value']),
-    _templateObject4 = _taggedTemplateLiteral(['admin.users'], ['admin.users']),
-    _templateObject5 = _taggedTemplateLiteral(['noUsersFound'], ['noUsersFound']);
-
-var _cerebral = __webpack_require__(9);
-
-var _tags = __webpack_require__(6);
-
-var _operators = __webpack_require__(10);
-
-var _showFlash = __webpack_require__(26);
-
-var _showFlash2 = _interopRequireDefault(_showFlash);
-
-var _fetchUsers = __webpack_require__(95);
-
-var _fetchUsers2 = _interopRequireDefault(_fetchUsers);
-
-function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
-
-function _taggedTemplateLiteral(strings, raw) { return Object.freeze(Object.defineProperties(strings, { raw: { value: Object.freeze(raw) } })); }
-
-exports.default = (0, _cerebral.sequence)('Search for users', [(0, _operators.debounce)(500), {
-  continue: [(0, _operators.set)((0, _tags.state)(_templateObject), true), (0, _operators.set)((0, _tags.state)(_templateObject2), (0, _tags.props)(_templateObject3)), (0, _operators.set)((0, _tags.state)(_templateObject4), {}), _fetchUsers2.default, (0, _operators.set)((0, _tags.state)(_templateObject), false), (0, _operators.when)((0, _tags.props)(_templateObject5)), {
-    true: (0, _showFlash2.default)('Could not find any users matching.', 'info'),
-    false: []
-  }],
-  discard: []
-}]);
-
-/***/ }),
-/* 542 */
-/***/ (function(module, exports, __webpack_require__) {
-
-"use strict";
-
-
-Object.defineProperty(exports, "__esModule", {
-  value: true
-});
-
-var _templateObject = _taggedTemplateLiteral(['admin.activeUid'], ['admin.activeUid']),
-    _templateObject2 = _taggedTemplateLiteral(['uid'], ['uid']),
-    _templateObject3 = _taggedTemplateLiteral(['admin.showConfirmSignOut'], ['admin.showConfirmSignOut']);
-
-var _cerebral = __webpack_require__(9);
-
-var _tags = __webpack_require__(6);
-
-var _operators = __webpack_require__(10);
-
-function _taggedTemplateLiteral(strings, raw) { return Object.freeze(Object.defineProperties(strings, { raw: { value: Object.freeze(raw) } })); }
-
-exports.default = (0, _cerebral.sequence)('Sign user out', [(0, _operators.set)((0, _tags.state)(_templateObject), (0, _tags.props)(_templateObject2)), (0, _operators.set)((0, _tags.state)(_templateObject3), true)]);
-
-/***/ }),
-/* 543 */
-/***/ (function(module, exports, __webpack_require__) {
-
-"use strict";
-
-
-Object.defineProperty(exports, "__esModule", {
-  value: true
-});
-
-var _templateObject = _taggedTemplateLiteral(['admin.activeUid'], ['admin.activeUid']),
-    _templateObject2 = _taggedTemplateLiteral(['admin.showConfirmSignOut'], ['admin.showConfirmSignOut']);
-
-var _cerebral = __webpack_require__(9);
-
-var _tags = __webpack_require__(6);
-
-var _operators = __webpack_require__(10);
-
-function _taggedTemplateLiteral(strings, raw) { return Object.freeze(Object.defineProperties(strings, { raw: { value: Object.freeze(raw) } })); }
-
-exports.default = (0, _cerebral.sequence)('Close confirm-sign-out-user modal', [(0, _operators.set)((0, _tags.state)(_templateObject), null), (0, _operators.set)((0, _tags.state)(_templateObject2), false)]);
-
-/***/ }),
-/* 544 */
-/***/ (function(module, exports, __webpack_require__) {
-
-"use strict";
-
-
-Object.defineProperty(exports, "__esModule", {
-  value: true
-});
-
-var _templateObject = _taggedTemplateLiteral(['admin.showConfirmSignOut'], ['admin.showConfirmSignOut']),
-    _templateObject2 = _taggedTemplateLiteral(['nickname'], ['nickname']),
-    _templateObject3 = _taggedTemplateLiteral(['admin.users.', '.nickname'], ['admin.users.', '.nickname']),
-    _templateObject4 = _taggedTemplateLiteral(['admin.activeUid'], ['admin.activeUid']),
-    _templateObject5 = _taggedTemplateLiteral(['', '/signout'], ['', '/signout']),
-    _templateObject6 = _taggedTemplateLiteral(['admin.users.', '.@id'], ['admin.users.', '.@id']),
-    _templateObject7 = _taggedTemplateLiteral(['Current tokens from ', ' will not be refreshed'], ['Current tokens from ', ' will not be refreshed']),
-    _templateObject8 = _taggedTemplateLiteral(['Tokens from ', ' could not be invalidated'], ['Tokens from ', ' could not be invalidated']);
-
-var _cerebral = __webpack_require__(9);
-
-var _tags = __webpack_require__(6);
-
-var _operators = __webpack_require__(10);
-
-var _operators2 = __webpack_require__(29);
-
-var _showFlash = __webpack_require__(26);
-
-var _showFlash2 = _interopRequireDefault(_showFlash);
-
-function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
-
-function _taggedTemplateLiteral(strings, raw) { return Object.freeze(Object.defineProperties(strings, { raw: { value: Object.freeze(raw) } })); }
-
-exports.default = (0, _cerebral.sequence)('Sign out user', [(0, _operators.set)((0, _tags.state)(_templateObject), false), (0, _operators.set)((0, _tags.props)(_templateObject2), (0, _tags.state)(_templateObject3, (0, _tags.state)(_templateObject4))), (0, _operators2.httpGet)((0, _tags.string)(_templateObject5, (0, _tags.state)(_templateObject6, (0, _tags.state)(_templateObject4)))), {
-  success: [(0, _showFlash2.default)((0, _tags.string)(_templateObject7, (0, _tags.props)(_templateObject2)), 'success')],
-  error: (0, _showFlash2.default)((0, _tags.string)(_templateObject8, (0, _tags.props)(_templateObject2)), 'error')
-}, (0, _operators.set)((0, _tags.state)(_templateObject4), null)]);
-
-/***/ }),
-/* 545 */
-/***/ (function(module, exports, __webpack_require__) {
-
-"use strict";
-
-
-Object.defineProperty(exports, "__esModule", {
-  value: true
-});
-
-var _templateObject = _taggedTemplateLiteral(['admin.usersSortBy'], ['admin.usersSortBy']),
-    _templateObject2 = _taggedTemplateLiteral(['sortBy'], ['sortBy']),
-    _templateObject3 = _taggedTemplateLiteral(['admin.usersSortDir'], ['admin.usersSortDir']);
-
-var _cerebral = __webpack_require__(9);
-
-var _tags = __webpack_require__(6);
-
-var _operators = __webpack_require__(10);
-
-var _fetchUsers = __webpack_require__(95);
-
-var _fetchUsers2 = _interopRequireDefault(_fetchUsers);
-
-function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
-
-function _taggedTemplateLiteral(strings, raw) { return Object.freeze(Object.defineProperties(strings, { raw: { value: Object.freeze(raw) } })); }
-
-exports.default = (0, _cerebral.sequence)('Fetch sorted users', [(0, _operators.when)((0, _tags.state)(_templateObject), (0, _tags.props)(_templateObject2), function (currentSortBy, sortBy) {
-  return currentSortBy === sortBy;
-}), {
-  true: [(0, _operators.when)((0, _tags.state)(_templateObject3), function (currentSortDir) {
-    return currentSortDir === 'ascending';
-  }), {
-    true: (0, _operators.set)((0, _tags.state)(_templateObject3), 'descending'),
-    false: (0, _operators.set)((0, _tags.state)(_templateObject3), 'ascending')
-  }],
-  false: (0, _operators.set)((0, _tags.state)(_templateObject3), 'ascending')
-}, (0, _operators.set)((0, _tags.state)(_templateObject), (0, _tags.props)(_templateObject2)), _fetchUsers2.default]);
-
-/***/ }),
-/* 546 */
-/***/ (function(module, exports, __webpack_require__) {
-
-"use strict";
-
-
-Object.defineProperty(exports, "__esModule", {
-  value: true
-});
-
-var _templateObject = _taggedTemplateLiteral(['admin.users.', '.toggleAdminIsLoading'], ['admin.users.', '.toggleAdminIsLoading']),
-    _templateObject2 = _taggedTemplateLiteral(['uid'], ['uid']),
-    _templateObject3 = _taggedTemplateLiteral(['admin.users.', '.isAdmin'], ['admin.users.', '.isAdmin']),
-    _templateObject4 = _taggedTemplateLiteral(['isAdmin'], ['isAdmin']),
-    _templateObject5 = _taggedTemplateLiteral(['groups'], ['groups']),
-    _templateObject6 = _taggedTemplateLiteral(['', ''], ['', '']),
-    _templateObject7 = _taggedTemplateLiteral(['admin.users.', '.@id'], ['admin.users.', '.@id']),
-    _templateObject8 = _taggedTemplateLiteral(['Admin could not be toggled for ', ''], ['Admin could not be toggled for ', '']),
-    _templateObject9 = _taggedTemplateLiteral(['admin.users.', '.nickname'], ['admin.users.', '.nickname']);
-
-var _cerebral = __webpack_require__(9);
-
-var _tags = __webpack_require__(6);
-
-var _operators = __webpack_require__(10);
-
-var _operators2 = __webpack_require__(29);
-
-var _showValidationError = __webpack_require__(46);
-
-var _showValidationError2 = _interopRequireDefault(_showValidationError);
-
-function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
-
-function _taggedTemplateLiteral(strings, raw) { return Object.freeze(Object.defineProperties(strings, { raw: { value: Object.freeze(raw) } })); }
-
-exports.default = (0, _cerebral.sequence)('Toggle Admin permissions', [(0, _operators.set)((0, _tags.state)(_templateObject, (0, _tags.props)(_templateObject2)), true), (0, _operators.when)((0, _tags.state)(_templateObject3, (0, _tags.props)(_templateObject2))), {
-  true: [(0, _operators.set)((0, _tags.props)(_templateObject4), false), (0, _operators.set)((0, _tags.props)(_templateObject5), [])],
-  false: [(0, _operators.set)((0, _tags.props)(_templateObject4), true), (0, _operators.set)((0, _tags.props)(_templateObject5), ['Admin'])]
-}, (0, _operators2.httpPut)((0, _tags.string)(_templateObject6, (0, _tags.state)(_templateObject7, (0, _tags.props)(_templateObject2))), {
-  groups: (0, _tags.props)(_templateObject5)
-}), {
-  success: [(0, _operators.set)((0, _tags.state)(_templateObject3, (0, _tags.props)(_templateObject2)), (0, _tags.props)(_templateObject4))],
-  error: (0, _showValidationError2.default)((0, _tags.string)(_templateObject8, (0, _tags.state)(_templateObject9, (0, _tags.props)(_templateObject2))))
-}, (0, _operators.set)((0, _tags.state)(_templateObject, (0, _tags.props)(_templateObject2)), false)]);
-
-/***/ }),
-/* 547 */
-/***/ (function(module, exports, __webpack_require__) {
-
-"use strict";
-
-
-Object.defineProperty(exports, "__esModule", {
-  value: true
-});
-
-var _jwtDecode = __webpack_require__(290);
-
-var _jwtDecode2 = _interopRequireDefault(_jwtDecode);
-
-function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
-
-function initApp(_ref) {
-  var state = _ref.state,
-      storage = _ref.storage;
-
-  var jwtHeader = storage.get('jwtHeader');
-  if (jwtHeader) {
-    var claims = (0, _jwtDecode2.default)(jwtHeader);
-    if (!claims.exp || claims.exp * 1000 > Date.now()) {
-      state.set('user.authenticated', true);
-      state.set('user.api.@id', claims.uid);
-      state.set('user.email', claims.sub);
-      state.set('user.nickname', claims.nickname);
-      state.set('user.isAdmin', claims.isAdmin);
-      if (claims.exp) {
-        state.set('user.token.exp', claims.exp);
-        claims.refresh_until && state.set('user.token.refreshUntil', claims.refresh_until);
-      }
-    } else if (!claims.refresh_until || claims.refresh_until * 1000 > Date.now()) {
-      state.set('user.token.shouldRefresh', true);
-    } else {
-      storage.remove('jwtHeader');
-    }
-  }
-}
-
-exports.default = initApp;
-
-/***/ }),
-/* 548 */
-/***/ (function(module, exports, __webpack_require__) {
-
-"use strict";
-
-
-Object.defineProperty(exports, "__esModule", {
-  value: true
-});
-
-var _appMounted = __webpack_require__(549);
-
-var _appMounted2 = _interopRequireDefault(_appMounted);
-
-var _pageRouted = __webpack_require__(550);
-
-var _pageRouted2 = _interopRequireDefault(_pageRouted);
-
-var _settingsRouted = __webpack_require__(551);
-
-var _settingsRouted2 = _interopRequireDefault(_settingsRouted);
-
-function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
-
-exports.default = function (urlParams) {
-  return function (_ref) {
-    var controller = _ref.controller,
-        path = _ref.path;
-
-    controller.on('initialized', function () {
-      controller.getSignal('app.appMounted')({});
-    });
-    return {
-      signals: {
-        appMounted: _appMounted2.default,
-        pageRouted: _pageRouted2.default,
-        settingsRouted: _settingsRouted2.default
-      },
-      state: {
-        currentPage: null,
-        lastVisited: null,
-        headerText: '',
-        headerIcon: null,
-        flash: urlParams['flash'],
-        flashType: urlParams['flashType'],
-        initialFlash: urlParams['flash'] !== null
-      }
-    };
-  };
-};
-
-/***/ }),
-/* 549 */
-/***/ (function(module, exports, __webpack_require__) {
-
-"use strict";
-
-
-Object.defineProperty(exports, "__esModule", {
-  value: true
-});
-
-var _templateObject = _taggedTemplateLiteral(['user.token.shouldRefresh'], ['user.token.shouldRefresh']);
-
-var _cerebral = __webpack_require__(9);
-
-var _operators = __webpack_require__(10);
-
-var _tags = __webpack_require__(6);
-
-var _initApp = __webpack_require__(547);
-
-var _initApp2 = _interopRequireDefault(_initApp);
-
-var _refreshToken = __webpack_require__(566);
-
-var _refreshToken2 = _interopRequireDefault(_refreshToken);
-
-function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
-
-function _taggedTemplateLiteral(strings, raw) { return Object.freeze(Object.defineProperties(strings, { raw: { value: Object.freeze(raw) } })); }
-
-exports.default = (0, _cerebral.sequence)('Initiate App', [_initApp2.default, (0, _operators.when)((0, _tags.state)(_templateObject)), {
-  true: _refreshToken2.default,
-  false: []
-}]);
-
-/***/ }),
-/* 550 */
-/***/ (function(module, exports, __webpack_require__) {
-
-"use strict";
-
-
-Object.defineProperty(exports, "__esModule", {
-  value: true
-});
-
-var _templateObject = _taggedTemplateLiteral(['page'], ['page']);
-
-var _cerebral = __webpack_require__(9);
-
-var _tags = __webpack_require__(6);
-
-var _routeTo = __webpack_require__(264);
-
-var _routeTo2 = _interopRequireDefault(_routeTo);
-
-function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
-
-function _taggedTemplateLiteral(strings, raw) { return Object.freeze(Object.defineProperties(strings, { raw: { value: Object.freeze(raw) } })); }
-
-exports.default = (0, _cerebral.sequence)('Route to page', [(0, _routeTo2.default)((0, _tags.props)(_templateObject))]);
-
-/***/ }),
-/* 551 */
-/***/ (function(module, exports, __webpack_require__) {
-
-"use strict";
-
-
-Object.defineProperty(exports, "__esModule", {
-  value: true
-});
-
-var _templateObject = _taggedTemplateLiteral(['tab'], ['tab']);
-
-var _cerebral = __webpack_require__(9);
-
-var _tags = __webpack_require__(6);
-
-var _routeTo = __webpack_require__(264);
-
-var _routeTo2 = _interopRequireDefault(_routeTo);
-
-function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
-
-function _taggedTemplateLiteral(strings, raw) { return Object.freeze(Object.defineProperties(strings, { raw: { value: Object.freeze(raw) } })); }
-
-exports.default = (0, _cerebral.sequence)('Route to settings tab', [(0, _routeTo2.default)('settings', (0, _tags.props)(_templateObject))]);
-
-/***/ }),
-/* 552 */
-/***/ (function(module, exports, __webpack_require__) {
-
-"use strict";
-
-
-Object.defineProperty(exports, "__esModule", {
-  value: true
-});
-
-var _errors = __webpack_require__(162);
-
-function authenticate(_ref) {
-  var props = _ref.props,
-      state = _ref.state;
-
-  if (!state.get('user.authenticated')) {
-    throw new _errors.AuthenticationError('You must log in to view this page');
-  }
-}
-
-exports.default = authenticate;
-
-/***/ }),
-/* 553 */
-/***/ (function(module, exports, __webpack_require__) {
-
-"use strict";
-
-
-Object.defineProperty(exports, "__esModule", {
-  value: true
-});
-
-var _errors = __webpack_require__(162);
-
-function authenticate(_ref) {
-  var props = _ref.props,
-      state = _ref.state;
-
-  if (!state.get('user.authenticated') || !state.get('user.isAdmin')) {
-    throw new _errors.AuthenticationError('You need Admin permissions to view this page');
-  }
-}
-
-exports.default = authenticate;
-
-/***/ }),
-/* 554 */
-/***/ (function(module, exports, __webpack_require__) {
-
-"use strict";
-
-
-Object.defineProperty(exports, "__esModule", {
-  value: true
-});
-
-var _templateObject = _taggedTemplateLiteral(['error.message'], ['error.message']);
-
-var _cerebral = __webpack_require__(9);
-
-var _operators = __webpack_require__(10);
-
-var _tags = __webpack_require__(6);
-
-var _redirect = __webpack_require__(55);
-
-var _redirect2 = _interopRequireDefault(_redirect);
-
-var _showFlash = __webpack_require__(26);
-
-var _showFlash2 = _interopRequireDefault(_showFlash);
-
-function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
-
-function _taggedTemplateLiteral(strings, raw) { return Object.freeze(Object.defineProperties(strings, { raw: { value: Object.freeze(raw) } })); }
-
-exports.default = (0, _cerebral.sequence)('Redirect to login', [(0, _redirect2.default)('login'), (0, _operators.when)((0, _tags.props)(_templateObject)), {
-  true: (0, _showFlash2.default)((0, _tags.props)(_templateObject), 'info'),
-  false: []
-}]);
-
-/***/ }),
-/* 555 */
-/***/ (function(module, exports, __webpack_require__) {
-
-"use strict";
-
-
-Object.defineProperty(exports, "__esModule", {
-  value: true
-});
-
-var _templateObject = _taggedTemplateLiteral(['settings.profileForm.nickname.value'], ['settings.profileForm.nickname.value']),
-    _templateObject2 = _taggedTemplateLiteral(['user.nickname'], ['user.nickname']);
-
-var _cerebral = __webpack_require__(9);
-
-var _tags = __webpack_require__(6);
-
-var _operators = __webpack_require__(10);
-
-function _taggedTemplateLiteral(strings, raw) { return Object.freeze(Object.defineProperties(strings, { raw: { value: Object.freeze(raw) } })); }
-
-exports.default = (0, _cerebral.sequence)('Set values for settings form', [(0, _operators.set)((0, _tags.state)(_templateObject), (0, _tags.state)(_templateObject2))]);
-
-/***/ }),
-/* 556 */
-/***/ (function(module, exports, __webpack_require__) {
-
-"use strict";
-
-
-Object.defineProperty(exports, "__esModule", {
-  value: true
-});
-
-var _profileFormSubmitted = __webpack_require__(559);
-
-var _profileFormSubmitted2 = _interopRequireDefault(_profileFormSubmitted);
-
-var _emailFormSubmitted = __webpack_require__(557);
-
-var _emailFormSubmitted2 = _interopRequireDefault(_emailFormSubmitted);
-
-var _passwordFormSubmitted = __webpack_require__(558);
-
-var _passwordFormSubmitted2 = _interopRequireDefault(_passwordFormSubmitted);
-
-var _signOutButtonClicked = __webpack_require__(563);
-
-var _signOutButtonClicked2 = _interopRequireDefault(_signOutButtonClicked);
-
-var _signOutConfirmed = __webpack_require__(565);
-
-var _signOutConfirmed2 = _interopRequireDefault(_signOutConfirmed);
-
-var _signOutCancelled = __webpack_require__(564);
-
-var _signOutCancelled2 = _interopRequireDefault(_signOutCancelled);
-
-var _removeUserButtonClicked = __webpack_require__(560);
-
-var _removeUserButtonClicked2 = _interopRequireDefault(_removeUserButtonClicked);
-
-var _removeUserConfirmed = __webpack_require__(562);
-
-var _removeUserConfirmed2 = _interopRequireDefault(_removeUserConfirmed);
-
-var _removeUserCancelled = __webpack_require__(561);
-
-var _removeUserCancelled2 = _interopRequireDefault(_removeUserCancelled);
-
-function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
-
-exports.default = function (module) {
-  return {
-    signals: {
-      profileFormSubmitted: _profileFormSubmitted2.default,
-      emailFormSubmitted: _emailFormSubmitted2.default,
-      passwordFormSubmitted: _passwordFormSubmitted2.default,
-      signOutButtonClicked: _signOutButtonClicked2.default,
-      signOutCancelled: _signOutCancelled2.default,
-      signOutConfirmed: _signOutConfirmed2.default,
-      removeUserButtonClicked: _removeUserButtonClicked2.default,
-      removeUserCancelled: _removeUserCancelled2.default,
-      removeUserConfirmed: _removeUserConfirmed2.default
-    },
-
-    state: {
-      currentTab: 'profile',
-      profileForm: {
-        nickname: {
-          value: '',
-          validationRules: ['minLength:3'],
-          isRequired: true
-        },
-        showErrors: false,
-        isLoading: false
-      },
-      emailForm: {
-        password: {
-          value: '',
-          validationRules: ['minLength:5'],
-          isRequired: true
-        },
-        email: {
-          value: '',
-          validationRules: ['isEmail'],
-          isRequired: true
-        },
-        showErrors: false,
-        isLoading: false
-      },
-      passwordForm: {
-        currentPassword: {
-          value: '',
-          validationRules: ['minLength:5'],
-          isRequired: true
-        },
-        password: {
-          value: '',
-          validationRules: ['minLength:5'],
-          isRequired: true
-        },
-        confirmPassword: {
-          value: '',
-          validationRules: ['equalsField:password'],
-          isRequired: true
-        },
-        showErrors: false,
-        isLoading: false
-      },
-      showConfirmSignOut: false,
-      showConfirmRemoveUser: false,
-      accountForm: {
-        password: {
-          value: '',
-          validationRules: ['minLength:5'],
-          isRequired: true
-        },
-        showErrors: false,
-        isLoading: false
-      }
-    }
-  };
-};
-
-/***/ }),
-/* 557 */
-/***/ (function(module, exports, __webpack_require__) {
-
-"use strict";
-
-
-Object.defineProperty(exports, "__esModule", {
-  value: true
-});
-
-var _templateObject = _taggedTemplateLiteral(['settings.emailForm'], ['settings.emailForm']),
-    _templateObject2 = _taggedTemplateLiteral(['settings.emailForm.showErrors'], ['settings.emailForm.showErrors']),
-    _templateObject3 = _taggedTemplateLiteral(['user.email'], ['user.email']),
-    _templateObject4 = _taggedTemplateLiteral(['settings.emailForm.email.value'], ['settings.emailForm.email.value']),
-    _templateObject5 = _taggedTemplateLiteral(['settings.emailForm.isLoading'], ['settings.emailForm.isLoading']),
-    _templateObject6 = _taggedTemplateLiteral(['settings.emailForm.password.value'], ['settings.emailForm.password.value']),
-    _templateObject7 = _taggedTemplateLiteral(['', ''], ['', '']),
-    _templateObject8 = _taggedTemplateLiteral(['user.api.@id'], ['user.api.@id']);
-
-var _cerebral = __webpack_require__(9);
-
-var _tags = __webpack_require__(6);
-
-var _operators = __webpack_require__(10);
-
-var _operators2 = __webpack_require__(41);
-
-var _operators3 = __webpack_require__(29);
-
-var _showFlash = __webpack_require__(26);
-
-var _showFlash2 = _interopRequireDefault(_showFlash);
-
-var _showValidationError = __webpack_require__(46);
-
-var _showValidationError2 = _interopRequireDefault(_showValidationError);
-
-function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
-
-function _taggedTemplateLiteral(strings, raw) { return Object.freeze(Object.defineProperties(strings, { raw: { value: Object.freeze(raw) } })); }
-
-exports.default = (0, _cerebral.sequence)('Update your email address', [(0, _operators2.isValidForm)((0, _tags.state)(_templateObject)), {
-  true: [(0, _operators.set)((0, _tags.state)(_templateObject2), false), (0, _operators.when)((0, _tags.state)(_templateObject3), (0, _tags.state)(_templateObject4), function (currentEmail, email) {
-    return currentEmail !== email;
-  }), {
-    true: [(0, _operators.set)((0, _tags.state)(_templateObject5), true), (0, _operators3.httpPost)('/login', {
-      email: (0, _tags.state)(_templateObject3),
-      password: (0, _tags.state)(_templateObject6)
-    }), {
-      success: [(0, _operators.set)((0, _tags.state)(_templateObject6), ''), (0, _operators3.httpPut)((0, _tags.string)(_templateObject7, (0, _tags.state)(_templateObject8)), {
-        email: (0, _tags.state)(_templateObject4)
-      }), {
-        success: [(0, _operators.set)((0, _tags.state)(_templateObject3), (0, _tags.state)(_templateObject4)), (0, _operators.set)((0, _tags.state)(_templateObject5), false), (0, _showFlash2.default)('Please check your mailbox to confirm your new email address', 'success')],
-        error: [(0, _operators.set)((0, _tags.state)(_templateObject5), false), (0, _showValidationError2.default)('Could not update email!')]
-      }],
-      error: [(0, _operators.set)((0, _tags.state)(_templateObject6), ''), (0, _operators.set)((0, _tags.state)(_templateObject5), false), (0, _showFlash2.default)('Password is not correct - please try again', 'error')]
-    }],
-    false: (0, _showFlash2.default)('This email address is the same as your current email', 'warning')
-  }],
-  false: (0, _operators.set)((0, _tags.state)(_templateObject2), true)
-}]);
-
-/***/ }),
-/* 558 */
-/***/ (function(module, exports, __webpack_require__) {
-
-"use strict";
-
-
-Object.defineProperty(exports, "__esModule", {
-  value: true
-});
-
-var _templateObject = _taggedTemplateLiteral(['settings.passwordForm'], ['settings.passwordForm']),
-    _templateObject2 = _taggedTemplateLiteral(['settings.passwordForm.showErrors'], ['settings.passwordForm.showErrors']),
-    _templateObject3 = _taggedTemplateLiteral(['settings.passwordForm.confirmPassword.value'], ['settings.passwordForm.confirmPassword.value']),
-    _templateObject4 = _taggedTemplateLiteral(['settings.passwordForm.isLoading'], ['settings.passwordForm.isLoading']),
-    _templateObject5 = _taggedTemplateLiteral(['user.email'], ['user.email']),
-    _templateObject6 = _taggedTemplateLiteral(['settings.passwordForm.currentPassword.value'], ['settings.passwordForm.currentPassword.value']),
-    _templateObject7 = _taggedTemplateLiteral(['', ''], ['', '']),
-    _templateObject8 = _taggedTemplateLiteral(['user.api.@id'], ['user.api.@id']),
-    _templateObject9 = _taggedTemplateLiteral(['settings.passwordForm.password.value'], ['settings.passwordForm.password.value']);
-
-var _cerebral = __webpack_require__(9);
-
-var _tags = __webpack_require__(6);
-
-var _operators = __webpack_require__(10);
-
-var _operators2 = __webpack_require__(41);
-
-var _operators3 = __webpack_require__(29);
-
-var _showFlash = __webpack_require__(26);
-
-var _showFlash2 = _interopRequireDefault(_showFlash);
-
-var _showValidationError = __webpack_require__(46);
-
-var _showValidationError2 = _interopRequireDefault(_showValidationError);
-
-function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
-
-function _taggedTemplateLiteral(strings, raw) { return Object.freeze(Object.defineProperties(strings, { raw: { value: Object.freeze(raw) } })); }
-
-exports.default = (0, _cerebral.sequence)('Change your password', [(0, _operators2.isValidForm)((0, _tags.state)(_templateObject)), {
-  true: [(0, _operators.set)((0, _tags.state)(_templateObject2), false), (0, _operators.set)((0, _tags.state)(_templateObject3), ''), (0, _operators.set)((0, _tags.state)(_templateObject4), true), (0, _operators3.httpPost)('/login', {
-    email: (0, _tags.state)(_templateObject5),
-    password: (0, _tags.state)(_templateObject6)
-  }), {
-    success: [(0, _operators.set)((0, _tags.state)(_templateObject6), ''), (0, _operators3.httpPut)((0, _tags.string)(_templateObject7, (0, _tags.state)(_templateObject8)), {
-      password: (0, _tags.state)(_templateObject9)
-    }), {
-      success: [(0, _operators.set)((0, _tags.state)(_templateObject9), ''), (0, _operators.set)((0, _tags.state)(_templateObject4), false), (0, _showFlash2.default)('Your password has been changed', 'success')],
-      error: [(0, _operators.set)((0, _tags.state)(_templateObject9), ''), (0, _operators.set)((0, _tags.state)(_templateObject4), false), (0, _showValidationError2.default)('Could not change Password!')]
-    }],
-    error: [(0, _operators.set)((0, _tags.state)(_templateObject6), ''), (0, _operators.set)((0, _tags.state)(_templateObject9), ''), (0, _operators.set)((0, _tags.state)(_templateObject4), false), (0, _showFlash2.default)('Current password is not correct - please try again', 'error')]
-  }],
-  false: (0, _operators.set)((0, _tags.state)(_templateObject2), true)
-}]);
-
-/***/ }),
-/* 559 */
-/***/ (function(module, exports, __webpack_require__) {
-
-"use strict";
-
-
-Object.defineProperty(exports, "__esModule", {
-  value: true
-});
-
-var _templateObject = _taggedTemplateLiteral(['settings.profileForm'], ['settings.profileForm']),
-    _templateObject2 = _taggedTemplateLiteral(['settings.profileForm.showErrors'], ['settings.profileForm.showErrors']),
-    _templateObject3 = _taggedTemplateLiteral(['settings.profileForm.isLoading'], ['settings.profileForm.isLoading']),
-    _templateObject4 = _taggedTemplateLiteral(['', ''], ['', '']),
-    _templateObject5 = _taggedTemplateLiteral(['user.api.@id'], ['user.api.@id']),
-    _templateObject6 = _taggedTemplateLiteral(['settings.profileForm.nickname.value'], ['settings.profileForm.nickname.value']),
-    _templateObject7 = _taggedTemplateLiteral(['user.nickname'], ['user.nickname']);
-
-var _cerebral = __webpack_require__(9);
-
-var _tags = __webpack_require__(6);
-
-var _operators = __webpack_require__(10);
-
-var _operators2 = __webpack_require__(41);
-
-var _operators3 = __webpack_require__(29);
-
-var _showFlash = __webpack_require__(26);
-
-var _showFlash2 = _interopRequireDefault(_showFlash);
-
-var _showValidationError = __webpack_require__(46);
-
-var _showValidationError2 = _interopRequireDefault(_showValidationError);
-
-function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
-
-function _taggedTemplateLiteral(strings, raw) { return Object.freeze(Object.defineProperties(strings, { raw: { value: Object.freeze(raw) } })); }
-
-exports.default = (0, _cerebral.sequence)('Edit your user profile', [(0, _operators2.isValidForm)((0, _tags.state)(_templateObject)), {
-  true: [(0, _operators.set)((0, _tags.state)(_templateObject2), false), (0, _operators.set)((0, _tags.state)(_templateObject3), true), (0, _operators3.httpPut)((0, _tags.string)(_templateObject4, (0, _tags.state)(_templateObject5)), {
-    nickname: (0, _tags.state)(_templateObject6)
-  }), {
-    success: [(0, _operators.set)((0, _tags.state)(_templateObject7), (0, _tags.state)(_templateObject6)), (0, _operators.set)((0, _tags.state)(_templateObject3), false), (0, _showFlash2.default)('Your profile has be saved', 'success')],
-    error: [(0, _operators.set)((0, _tags.state)(_templateObject3), false), (0, _showValidationError2.default)('Could not save your profile!')]
-  }],
-  false: (0, _operators.set)((0, _tags.state)(_templateObject2), true)
-}]);
-
-/***/ }),
-/* 560 */
-/***/ (function(module, exports, __webpack_require__) {
-
-"use strict";
-
-
-Object.defineProperty(exports, "__esModule", {
-  value: true
-});
-
-var _templateObject = _taggedTemplateLiteral(['settings.showConfirmRemoveUser'], ['settings.showConfirmRemoveUser']);
-
-var _cerebral = __webpack_require__(9);
-
-var _tags = __webpack_require__(6);
-
-var _operators = __webpack_require__(10);
-
-function _taggedTemplateLiteral(strings, raw) { return Object.freeze(Object.defineProperties(strings, { raw: { value: Object.freeze(raw) } })); }
-
-exports.default = (0, _cerebral.sequence)('Show confirm-remove-yourself modal', [(0, _operators.set)((0, _tags.state)(_templateObject), true)]);
-
-/***/ }),
-/* 561 */
-/***/ (function(module, exports, __webpack_require__) {
-
-"use strict";
-
-
-Object.defineProperty(exports, "__esModule", {
-  value: true
-});
-
-var _templateObject = _taggedTemplateLiteral(['settings.showConfirmRemoveUser'], ['settings.showConfirmRemoveUser']);
-
-var _cerebral = __webpack_require__(9);
-
-var _tags = __webpack_require__(6);
-
-var _operators = __webpack_require__(10);
-
-function _taggedTemplateLiteral(strings, raw) { return Object.freeze(Object.defineProperties(strings, { raw: { value: Object.freeze(raw) } })); }
-
-exports.default = (0, _cerebral.sequence)('Close confirm-remove-yourself modal', [(0, _operators.set)((0, _tags.state)(_templateObject), false)]);
-
-/***/ }),
-/* 562 */
-/***/ (function(module, exports, __webpack_require__) {
-
-"use strict";
-
-
-Object.defineProperty(exports, "__esModule", {
-  value: true
-});
-
-var _templateObject = _taggedTemplateLiteral(['settings.showConfirmRemoveUser'], ['settings.showConfirmRemoveUser']),
-    _templateObject2 = _taggedTemplateLiteral(['settings.accountForm'], ['settings.accountForm']),
-    _templateObject3 = _taggedTemplateLiteral(['settings.accountForm.showErrors'], ['settings.accountForm.showErrors']),
-    _templateObject4 = _taggedTemplateLiteral(['settings.accountForm.isLoading'], ['settings.accountForm.isLoading']),
-    _templateObject5 = _taggedTemplateLiteral(['user.email'], ['user.email']),
-    _templateObject6 = _taggedTemplateLiteral(['settings.accountForm.password.value'], ['settings.accountForm.password.value']),
-    _templateObject7 = _taggedTemplateLiteral(['', ''], ['', '']),
-    _templateObject8 = _taggedTemplateLiteral(['user.api.@id'], ['user.api.@id']),
-    _templateObject9 = _taggedTemplateLiteral(['You were successfully deleted. Bye!'], ['You were successfully deleted. Bye!']),
-    _templateObject10 = _taggedTemplateLiteral(['You could not be deleted'], ['You could not be deleted']);
-
-var _cerebral = __webpack_require__(9);
-
-var _tags = __webpack_require__(6);
-
-var _operators = __webpack_require__(10);
-
-var _operators2 = __webpack_require__(29);
-
-var _operators3 = __webpack_require__(41);
-
-var _removeUser = __webpack_require__(265);
-
-var _removeUser2 = _interopRequireDefault(_removeUser);
-
-var _redirect = __webpack_require__(55);
-
-var _redirect2 = _interopRequireDefault(_redirect);
-
-var _showFlash = __webpack_require__(26);
-
-var _showFlash2 = _interopRequireDefault(_showFlash);
-
-function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
-
-function _taggedTemplateLiteral(strings, raw) { return Object.freeze(Object.defineProperties(strings, { raw: { value: Object.freeze(raw) } })); }
-
-exports.default = (0, _cerebral.sequence)('Delete yourself', [(0, _operators.set)((0, _tags.state)(_templateObject), false), (0, _operators3.isValidForm)((0, _tags.state)(_templateObject2)), {
-  true: [(0, _operators.set)((0, _tags.state)(_templateObject3), false), (0, _operators.set)((0, _tags.state)(_templateObject4), true), (0, _operators2.httpPost)('/login', {
-    email: (0, _tags.state)(_templateObject5),
-    password: (0, _tags.state)(_templateObject6)
-  }), {
-    success: [(0, _operators.set)((0, _tags.state)(_templateObject6), ''), (0, _operators2.httpDelete)((0, _tags.string)(_templateObject7, (0, _tags.state)(_templateObject8))), {
-      success: [_removeUser2.default, (0, _operators.set)((0, _tags.state)(_templateObject4), false), (0, _redirect2.default)('home'), (0, _showFlash2.default)((0, _tags.string)(_templateObject9), 'success')],
-      error: [(0, _operators.set)((0, _tags.state)(_templateObject4), false), (0, _showFlash2.default)((0, _tags.string)(_templateObject10), 'error')]
-    }],
-    error: [(0, _operators.set)((0, _tags.state)(_templateObject6), ''), (0, _operators.set)((0, _tags.state)(_templateObject4), false), (0, _showFlash2.default)('Password is not correct - please try again', 'error')]
-  }],
-  false: [(0, _operators.set)((0, _tags.state)(_templateObject3), true), (0, _showFlash2.default)('Please provide your password', 'error')]
-}]);
-
-/***/ }),
-/* 563 */
-/***/ (function(module, exports, __webpack_require__) {
-
-"use strict";
-
-
-Object.defineProperty(exports, "__esModule", {
-  value: true
-});
-
-var _templateObject = _taggedTemplateLiteral(['settings.showConfirmSignOut'], ['settings.showConfirmSignOut']);
-
-var _cerebral = __webpack_require__(9);
-
-var _tags = __webpack_require__(6);
-
-var _operators = __webpack_require__(10);
-
-function _taggedTemplateLiteral(strings, raw) { return Object.freeze(Object.defineProperties(strings, { raw: { value: Object.freeze(raw) } })); }
-
-exports.default = (0, _cerebral.sequence)('Show confirm-sign-out-yourself modal', [(0, _operators.set)((0, _tags.state)(_templateObject), true)]);
-
-/***/ }),
-/* 564 */
-/***/ (function(module, exports, __webpack_require__) {
-
-"use strict";
-
-
-Object.defineProperty(exports, "__esModule", {
-  value: true
-});
-
-var _templateObject = _taggedTemplateLiteral(['settings.showConfirmSignOut'], ['settings.showConfirmSignOut']);
-
-var _cerebral = __webpack_require__(9);
-
-var _tags = __webpack_require__(6);
-
-var _operators = __webpack_require__(10);
-
-function _taggedTemplateLiteral(strings, raw) { return Object.freeze(Object.defineProperties(strings, { raw: { value: Object.freeze(raw) } })); }
-
-exports.default = (0, _cerebral.sequence)('Close confirm-sign-out-yourself modal', [(0, _operators.set)((0, _tags.state)(_templateObject), false)]);
-
-/***/ }),
-/* 565 */
-/***/ (function(module, exports, __webpack_require__) {
-
-"use strict";
-
-
-Object.defineProperty(exports, "__esModule", {
-  value: true
-});
-
-var _templateObject = _taggedTemplateLiteral(['settings.showConfirmSignOut'], ['settings.showConfirmSignOut']),
-    _templateObject2 = _taggedTemplateLiteral(['settings.accountForm'], ['settings.accountForm']),
-    _templateObject3 = _taggedTemplateLiteral(['settings.accountForm.showErrors'], ['settings.accountForm.showErrors']),
-    _templateObject4 = _taggedTemplateLiteral(['settings.accountForm.isLoading'], ['settings.accountForm.isLoading']),
-    _templateObject5 = _taggedTemplateLiteral(['user.email'], ['user.email']),
-    _templateObject6 = _taggedTemplateLiteral(['settings.accountForm.password.value'], ['settings.accountForm.password.value']),
-    _templateObject7 = _taggedTemplateLiteral(['', '/signout'], ['', '/signout']),
-    _templateObject8 = _taggedTemplateLiteral(['user.api.@id'], ['user.api.@id']),
-    _templateObject9 = _taggedTemplateLiteral(['Your current tokens will not be refreshed'], ['Your current tokens will not be refreshed']),
-    _templateObject10 = _taggedTemplateLiteral(['Your tokens could not be invalidated'], ['Your tokens could not be invalidated']);
-
-var _cerebral = __webpack_require__(9);
-
-var _tags = __webpack_require__(6);
-
-var _operators = __webpack_require__(10);
-
-var _operators2 = __webpack_require__(29);
-
-var _operators3 = __webpack_require__(41);
-
-var _showFlash = __webpack_require__(26);
-
-var _showFlash2 = _interopRequireDefault(_showFlash);
-
-function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
-
-function _taggedTemplateLiteral(strings, raw) { return Object.freeze(Object.defineProperties(strings, { raw: { value: Object.freeze(raw) } })); }
-
-exports.default = (0, _cerebral.sequence)('Sign-out yourself', [(0, _operators.set)((0, _tags.state)(_templateObject), false), (0, _operators3.isValidForm)((0, _tags.state)(_templateObject2)), {
-  true: [(0, _operators.set)((0, _tags.state)(_templateObject3), false), (0, _operators.set)((0, _tags.state)(_templateObject4), true), (0, _operators2.httpPost)('/login', {
-    email: (0, _tags.state)(_templateObject5),
-    password: (0, _tags.state)(_templateObject6)
-  }), {
-    success: [(0, _operators.set)((0, _tags.state)(_templateObject6), ''), (0, _operators2.httpGet)((0, _tags.string)(_templateObject7, (0, _tags.state)(_templateObject8))), {
-      success: [(0, _operators.set)((0, _tags.state)(_templateObject4), false), (0, _showFlash2.default)((0, _tags.string)(_templateObject9), 'success')],
-      error: [(0, _operators.set)((0, _tags.state)(_templateObject4), false), (0, _showFlash2.default)((0, _tags.string)(_templateObject10), 'error')]
-    }],
-    error: [(0, _operators.set)((0, _tags.state)(_templateObject6), ''), (0, _operators.set)((0, _tags.state)(_templateObject4), false), (0, _showFlash2.default)('Password is not correct - please try again', 'error')]
-  }],
-  false: [(0, _operators.set)((0, _tags.state)(_templateObject3), true), (0, _showFlash2.default)('Please provide your password', 'error')]
-}]);
-
-/***/ }),
-/* 566 */
-/***/ (function(module, exports, __webpack_require__) {
-
-"use strict";
-
-
-Object.defineProperty(exports, "__esModule", {
-  value: true
-});
-
-var _templateObject = _taggedTemplateLiteral(['user.token.shouldRefresh'], ['user.token.shouldRefresh']);
-
-var _cerebral = __webpack_require__(9);
-
-var _tags = __webpack_require__(6);
-
-var _operators = __webpack_require__(10);
-
-var _operators2 = __webpack_require__(29);
-
-var _operators3 = __webpack_require__(502);
-
-var _initUser = __webpack_require__(163);
-
-var _initUser2 = _interopRequireDefault(_initUser);
-
-var _showValidationError = __webpack_require__(46);
-
-var _showValidationError2 = _interopRequireDefault(_showValidationError);
-
-function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
-
-function _taggedTemplateLiteral(strings, raw) { return Object.freeze(Object.defineProperties(strings, { raw: { value: Object.freeze(raw) } })); }
-
-exports.default = (0, _cerebral.sequence)('Refresh token', [(0, _operators2.httpGet)('/refresh'), {
-  success: _initUser2.default,
-  error: [(0, _operators3.removeStorage)('jwtHeader'), (0, _showValidationError2.default)('Could not refresh your token!')]
-}, (0, _operators.unset)((0, _tags.state)(_templateObject))]);
-
-/***/ }),
-/* 567 */
-/***/ (function(module, exports, __webpack_require__) {
-
-"use strict";
-
-
-Object.defineProperty(exports, "__esModule", {
-  value: true
-});
-
-var _fieldChanged = __webpack_require__(569);
-
-var _fieldChanged2 = _interopRequireDefault(_fieldChanged);
-
-var _loginFormSubmitted = __webpack_require__(570);
-
-var _loginFormSubmitted2 = _interopRequireDefault(_loginFormSubmitted);
-
-var _registerFormSubmitted = __webpack_require__(573);
-
-var _registerFormSubmitted2 = _interopRequireDefault(_registerFormSubmitted);
-
-var _emailFormSubmitted = __webpack_require__(568);
-
-var _emailFormSubmitted2 = _interopRequireDefault(_emailFormSubmitted);
-
-var _passwordFormSubmitted = __webpack_require__(572);
-
-var _passwordFormSubmitted2 = _interopRequireDefault(_passwordFormSubmitted);
-
-var _logoutButtonClicked = __webpack_require__(571);
-
-var _logoutButtonClicked2 = _interopRequireDefault(_logoutButtonClicked);
-
-function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
-
-exports.default = function (urlParams) {
-  return function (module) {
-    return {
-      signals: {
-        fieldChanged: _fieldChanged2.default,
-        loginFormSubmitted: _loginFormSubmitted2.default,
-        registerFormSubmitted: _registerFormSubmitted2.default,
-        emailFormSubmitted: _emailFormSubmitted2.default,
-        passwordFormSubmitted: _passwordFormSubmitted2.default,
-        logoutButtonClicked: _logoutButtonClicked2.default
-      },
-
-      state: {
-        email: '',
-        nickname: '',
-        isAdmin: false,
-        authenticated: false,
-        token: {},
-        api: {
-          '@id': urlParams['@id']
-        },
-        loginForm: {
-          email: {
-            value: '',
-            validationRules: ['isEmail'],
-            isRequired: true
-          },
-          password: {
-            value: '',
-            validationRules: ['minLength:5'],
-            isRequired: true
-          },
-          showErrors: false,
-          isLoading: false
-        },
-        registerForm: {
-          nickname: {
-            value: '',
-            validationRules: ['minLength:3'],
-            isRequired: true
-          },
-          email: {
-            value: '',
-            validationRules: ['isEmail'],
-            isRequired: true
-          },
-          password: {
-            value: '',
-            validationRules: ['minLength:5'],
-            isRequired: true
-          },
-          confirmPassword: {
-            value: '',
-            validationRules: ['equalsField:password'],
-            isRequired: true
-          },
-          showErrors: false,
-          isLoading: false
-        },
-        emailForm: {
-          email: {
-            value: '',
-            validationRules: ['isEmail'],
-            isRequired: true
-          },
-          showErrors: false,
-          isLoading: false
-        },
-        passwordForm: {
-          password: {
-            value: '',
-            validationRules: ['minLength:5'],
-            isRequired: true
-          },
-          confirmPassword: {
-            value: '',
-            validationRules: ['equalsField:password'],
-            isRequired: true
-          },
-          showErrors: false,
-          isLoading: false
-        }
-      }
-    };
-  };
-};
-
-/***/ }),
-/* 568 */
-/***/ (function(module, exports, __webpack_require__) {
-
-"use strict";
-
-
-Object.defineProperty(exports, "__esModule", {
-  value: true
-});
-
-var _templateObject = _taggedTemplateLiteral(['user.emailForm'], ['user.emailForm']),
-    _templateObject2 = _taggedTemplateLiteral(['user.emailForm.showErrors'], ['user.emailForm.showErrors']),
-    _templateObject3 = _taggedTemplateLiteral(['user.emailForm.isLoading'], ['user.emailForm.isLoading']),
-    _templateObject4 = _taggedTemplateLiteral(['user.emailForm.email.value'], ['user.emailForm.email.value']);
-
-var _cerebral = __webpack_require__(9);
-
-var _tags = __webpack_require__(6);
-
-var _operators = __webpack_require__(10);
-
-var _operators2 = __webpack_require__(41);
-
-var _operators3 = __webpack_require__(29);
-
-var _redirect = __webpack_require__(55);
-
-var _redirect2 = _interopRequireDefault(_redirect);
-
-var _showFlash = __webpack_require__(26);
-
-var _showFlash2 = _interopRequireDefault(_showFlash);
-
-var _showValidationError = __webpack_require__(46);
-
-var _showValidationError2 = _interopRequireDefault(_showValidationError);
-
-function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
-
-function _taggedTemplateLiteral(strings, raw) { return Object.freeze(Object.defineProperties(strings, { raw: { value: Object.freeze(raw) } })); }
-
-exports.default = (0, _cerebral.sequence)('Request password reset', [(0, _operators2.isValidForm)((0, _tags.state)(_templateObject)), {
-  true: [(0, _operators.set)((0, _tags.state)(_templateObject2), false), (0, _operators.set)((0, _tags.state)(_templateObject3), true), (0, _operators3.httpPost)('/reset', {
-    email: (0, _tags.state)(_templateObject4)
-  }), {
-    success: [(0, _operators.set)((0, _tags.state)(_templateObject4), ''), (0, _operators.set)((0, _tags.state)(_templateObject3), false), (0, _redirect2.default)('login'), (0, _showFlash2.default)('Please check your email for a password reset link', 'success')],
-    error: [(0, _operators.set)((0, _tags.state)(_templateObject3), false), (0, _showValidationError2.default)('Could not send password reset email!')]
-  }],
-  false: (0, _operators.set)((0, _tags.state)(_templateObject2), true)
-}]);
-
-/***/ }),
-/* 569 */
-/***/ (function(module, exports, __webpack_require__) {
-
-"use strict";
-
-
-Object.defineProperty(exports, "__esModule", {
-  value: true
-});
-
-var _templateObject = _taggedTemplateLiteral(['', ''], ['', '']),
-    _templateObject2 = _taggedTemplateLiteral(['field'], ['field']),
-    _templateObject3 = _taggedTemplateLiteral(['value'], ['value']);
-
-var _cerebral = __webpack_require__(9);
-
-var _tags = __webpack_require__(6);
-
-var _operators = __webpack_require__(41);
-
-function _taggedTemplateLiteral(strings, raw) { return Object.freeze(Object.defineProperties(strings, { raw: { value: Object.freeze(raw) } })); }
-
-exports.default = (0, _cerebral.sequence)('Change field', [(0, _operators.setField)((0, _tags.state)(_templateObject, (0, _tags.props)(_templateObject2)), (0, _tags.props)(_templateObject3))]);
-
-/***/ }),
-/* 570 */
-/***/ (function(module, exports, __webpack_require__) {
-
-"use strict";
-
-
-Object.defineProperty(exports, "__esModule", {
-  value: true
-});
-
-var _templateObject = _taggedTemplateLiteral(['user.loginForm'], ['user.loginForm']),
-    _templateObject2 = _taggedTemplateLiteral(['user.loginForm.showErrors'], ['user.loginForm.showErrors']),
-    _templateObject3 = _taggedTemplateLiteral(['user.loginForm.isLoading'], ['user.loginForm.isLoading']),
-    _templateObject4 = _taggedTemplateLiteral(['user.loginForm.email.value'], ['user.loginForm.email.value']),
-    _templateObject5 = _taggedTemplateLiteral(['user.loginForm.password.value'], ['user.loginForm.password.value']),
-    _templateObject6 = _taggedTemplateLiteral(['app.lastVisited'], ['app.lastVisited']);
-
-var _cerebral = __webpack_require__(9);
-
-var _tags = __webpack_require__(6);
-
-var _operators = __webpack_require__(10);
-
-var _operators2 = __webpack_require__(41);
-
-var _operators3 = __webpack_require__(29);
-
-var _redirect = __webpack_require__(55);
-
-var _redirect2 = _interopRequireDefault(_redirect);
-
-var _initUser = __webpack_require__(163);
-
-var _initUser2 = _interopRequireDefault(_initUser);
-
-var _showValidationError = __webpack_require__(46);
-
-var _showValidationError2 = _interopRequireDefault(_showValidationError);
-
-function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
-
-function _taggedTemplateLiteral(strings, raw) { return Object.freeze(Object.defineProperties(strings, { raw: { value: Object.freeze(raw) } })); }
-
-exports.default = (0, _cerebral.sequence)('Sign-in user', [(0, _operators2.isValidForm)((0, _tags.state)(_templateObject)), {
-  true: [(0, _operators.set)((0, _tags.state)(_templateObject2), false), (0, _operators.set)((0, _tags.state)(_templateObject3), true), (0, _operators3.httpPost)('/login', {
-    email: (0, _tags.state)(_templateObject4),
-    password: (0, _tags.state)(_templateObject5)
-  }), {
-    success: [(0, _operators.set)((0, _tags.state)(_templateObject4), ''), (0, _operators.set)((0, _tags.state)(_templateObject5), ''), _initUser2.default, (0, _operators.set)((0, _tags.state)(_templateObject3), false), (0, _operators.when)((0, _tags.state)(_templateObject6)), {
-      true: (0, _redirect2.default)((0, _tags.state)(_templateObject6)),
-      false: (0, _redirect2.default)('home')
-    }],
-    error: [(0, _operators.set)((0, _tags.state)(_templateObject5), ''), (0, _operators.set)((0, _tags.state)(_templateObject3), false), (0, _showValidationError2.default)('Could not log-in!')]
-  }],
-  false: (0, _operators.set)((0, _tags.state)(_templateObject2), true)
-}]);
-
-/***/ }),
-/* 571 */
-/***/ (function(module, exports, __webpack_require__) {
-
-"use strict";
-
-
-Object.defineProperty(exports, "__esModule", {
-  value: true
-});
-
-var _templateObject = _taggedTemplateLiteral(['user.loginForm.isLoading'], ['user.loginForm.isLoading']);
-
-var _cerebral = __webpack_require__(9);
-
-var _tags = __webpack_require__(6);
-
-var _operators = __webpack_require__(10);
-
-var _removeUser = __webpack_require__(265);
-
-var _removeUser2 = _interopRequireDefault(_removeUser);
-
-var _redirect = __webpack_require__(55);
-
-var _redirect2 = _interopRequireDefault(_redirect);
-
-var _showFlash = __webpack_require__(26);
-
-var _showFlash2 = _interopRequireDefault(_showFlash);
-
-function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
-
-function _taggedTemplateLiteral(strings, raw) { return Object.freeze(Object.defineProperties(strings, { raw: { value: Object.freeze(raw) } })); }
-
-exports.default = (0, _cerebral.sequence)('Log user out', [(0, _operators.set)((0, _tags.state)(_templateObject), false), _removeUser2.default, (0, _redirect2.default)('home'), (0, _showFlash2.default)('Good bye!', 'info')]);
-
-/***/ }),
-/* 572 */
-/***/ (function(module, exports, __webpack_require__) {
-
-"use strict";
-
-
-Object.defineProperty(exports, "__esModule", {
-  value: true
-});
-
-var _templateObject = _taggedTemplateLiteral(['user.passwordForm'], ['user.passwordForm']),
-    _templateObject2 = _taggedTemplateLiteral(['user.passwordForm.showErrors'], ['user.passwordForm.showErrors']),
-    _templateObject3 = _taggedTemplateLiteral(['user.passwordForm.confirmPassword.value'], ['user.passwordForm.confirmPassword.value']),
-    _templateObject4 = _taggedTemplateLiteral(['user.passwordForm.isLoading'], ['user.passwordForm.isLoading']),
-    _templateObject5 = _taggedTemplateLiteral(['', ''], ['', '']),
-    _templateObject6 = _taggedTemplateLiteral(['user.api.@id'], ['user.api.@id']),
-    _templateObject7 = _taggedTemplateLiteral(['user.passwordForm.password.value'], ['user.passwordForm.password.value']);
-
-var _cerebral = __webpack_require__(9);
-
-var _tags = __webpack_require__(6);
-
-var _operators = __webpack_require__(10);
-
-var _operators2 = __webpack_require__(41);
-
-var _operators3 = __webpack_require__(29);
-
-var _redirect = __webpack_require__(55);
-
-var _redirect2 = _interopRequireDefault(_redirect);
-
-var _showFlash = __webpack_require__(26);
-
-var _showFlash2 = _interopRequireDefault(_showFlash);
-
-var _showValidationError = __webpack_require__(46);
-
-var _showValidationError2 = _interopRequireDefault(_showValidationError);
-
-function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
-
-function _taggedTemplateLiteral(strings, raw) { return Object.freeze(Object.defineProperties(strings, { raw: { value: Object.freeze(raw) } })); }
-
-exports.default = (0, _cerebral.sequence)('Update password', [(0, _operators2.isValidForm)((0, _tags.state)(_templateObject)), {
-  true: [(0, _operators.set)((0, _tags.state)(_templateObject2), false), (0, _operators.set)((0, _tags.state)(_templateObject3), ''), (0, _operators.set)((0, _tags.state)(_templateObject4), true), (0, _operators3.httpPut)((0, _tags.string)(_templateObject5, (0, _tags.state)(_templateObject6)), {
-    password: (0, _tags.state)(_templateObject7)
-  }), {
-    success: [(0, _operators.set)((0, _tags.state)(_templateObject6), null), (0, _operators.set)((0, _tags.state)(_templateObject7), ''), (0, _operators.set)((0, _tags.state)(_templateObject4), false), (0, _redirect2.default)('home'), (0, _showFlash2.default)('Your password has been updated', 'success')],
-    error: [(0, _operators.set)((0, _tags.state)(_templateObject7), ''), (0, _operators.set)((0, _tags.state)(_templateObject4), false), (0, _showValidationError2.default)('Could not update Password!')]
-  }],
-  false: (0, _operators.set)((0, _tags.state)(_templateObject2), true)
-}]);
-
-/***/ }),
-/* 573 */
-/***/ (function(module, exports, __webpack_require__) {
-
-"use strict";
-
-
-Object.defineProperty(exports, "__esModule", {
-  value: true
-});
-
-var _templateObject = _taggedTemplateLiteral(['user.registerForm'], ['user.registerForm']),
-    _templateObject2 = _taggedTemplateLiteral(['user.registerForm.showErrors'], ['user.registerForm.showErrors']),
-    _templateObject3 = _taggedTemplateLiteral(['user.registerForm.confirmPassword.value'], ['user.registerForm.confirmPassword.value']),
-    _templateObject4 = _taggedTemplateLiteral(['user.registerForm.isLoading'], ['user.registerForm.isLoading']),
-    _templateObject5 = _taggedTemplateLiteral(['user.registerForm.nickname.value'], ['user.registerForm.nickname.value']),
-    _templateObject6 = _taggedTemplateLiteral(['user.registerForm.email.value'], ['user.registerForm.email.value']),
-    _templateObject7 = _taggedTemplateLiteral(['user.registerForm.password.value'], ['user.registerForm.password.value']),
-    _templateObject8 = _taggedTemplateLiteral(['app.lastVisited'], ['app.lastVisited']);
-
-var _cerebral = __webpack_require__(9);
-
-var _tags = __webpack_require__(6);
-
-var _operators = __webpack_require__(10);
-
-var _operators2 = __webpack_require__(41);
-
-var _operators3 = __webpack_require__(29);
-
-var _redirect = __webpack_require__(55);
-
-var _redirect2 = _interopRequireDefault(_redirect);
-
-var _showFlash = __webpack_require__(26);
-
-var _showFlash2 = _interopRequireDefault(_showFlash);
-
-var _showValidationError = __webpack_require__(46);
-
-var _showValidationError2 = _interopRequireDefault(_showValidationError);
-
-var _initUser = __webpack_require__(163);
-
-var _initUser2 = _interopRequireDefault(_initUser);
-
-function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
-
-function _taggedTemplateLiteral(strings, raw) { return Object.freeze(Object.defineProperties(strings, { raw: { value: Object.freeze(raw) } })); }
-
-exports.default = (0, _cerebral.sequence)('Register new user', [(0, _operators2.isValidForm)((0, _tags.state)(_templateObject)), {
-  true: [(0, _operators.set)((0, _tags.state)(_templateObject2), false), (0, _operators.set)((0, _tags.state)(_templateObject3), ''), (0, _operators.set)((0, _tags.state)(_templateObject4), true), (0, _operators3.httpPost)('/users', {
-    nickname: (0, _tags.state)(_templateObject5),
-    email: (0, _tags.state)(_templateObject6),
-    password: (0, _tags.state)(_templateObject7)
-  }), {
-    success: [(0, _operators3.httpPost)('/login', {
-      email: (0, _tags.state)(_templateObject6),
-      password: (0, _tags.state)(_templateObject7)
-    }), {
-      success: [_initUser2.default, (0, _operators.when)((0, _tags.state)(_templateObject8)), {
-        true: (0, _redirect2.default)((0, _tags.state)(_templateObject8)),
-        false: (0, _redirect2.default)('home')
-      }],
-      error: [(0, _redirect2.default)('home'), (0, _showValidationError2.default)('Could not log-in!')]
-    }, (0, _operators.set)((0, _tags.state)(_templateObject5), ''), (0, _operators.set)((0, _tags.state)(_templateObject6), ''), (0, _operators.set)((0, _tags.state)(_templateObject7), ''), (0, _operators.set)((0, _tags.state)(_templateObject4), false), (0, _showFlash2.default)('Welcome! Please check your mailbox to confirm your email address.', 'success')],
-    error: [(0, _operators.set)((0, _tags.state)(_templateObject7), ''), (0, _operators.set)((0, _tags.state)(_templateObject4), false), (0, _showValidationError2.default)('Could not register!')]
-  }],
-  false: (0, _operators.set)((0, _tags.state)(_templateObject2), true)
-}]);
-
-/***/ }),
-/* 574 */
-/***/ (function(module, exports, __webpack_require__) {
-
-"use strict";
-
-
-Object.defineProperty(exports, "__esModule", {
-  value: true
-});
-
-var _templateObject = _taggedTemplateLiteral(['tab'], ['tab']),
-    _templateObject2 = _taggedTemplateLiteral(['page'], ['page']);
-
-var _cerebralRouter = __webpack_require__(632);
-
-var _cerebralRouter2 = _interopRequireDefault(_cerebralRouter);
-
-var _tags = __webpack_require__(6);
-
-function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
-
-function _taggedTemplateLiteral(strings, raw) { return Object.freeze(Object.defineProperties(strings, { raw: { value: Object.freeze(raw) } })); }
-
-exports.default = (0, _cerebralRouter2.default)({
-  filterFalsy: true,
-  routes: [{
-    path: '/settings/:tab?',
-    map: { tab: (0, _tags.props)(_templateObject) },
-    signal: 'app.settingsRouted'
-  }, {
-    path: '/:page?',
-    map: { page: (0, _tags.props)(_templateObject2) },
-    signal: 'app.pageRouted'
-  }]
-});
-
-/***/ }),
-/* 575 */
-/***/ (function(module, exports, __webpack_require__) {
-
-module.exports = { "default": __webpack_require__(586), __esModule: true };
-
-/***/ }),
-/* 576 */
-/***/ (function(module, exports, __webpack_require__) {
-
-module.exports = { "default": __webpack_require__(587), __esModule: true };
-
-/***/ }),
-/* 577 */
-/***/ (function(module, exports, __webpack_require__) {
-
-module.exports = { "default": __webpack_require__(588), __esModule: true };
-
-/***/ }),
-/* 578 */
-/***/ (function(module, exports, __webpack_require__) {
-
-module.exports = { "default": __webpack_require__(589), __esModule: true };
-
-/***/ }),
-/* 579 */
-/***/ (function(module, exports, __webpack_require__) {
-
-module.exports = { "default": __webpack_require__(590), __esModule: true };
-
-/***/ }),
-/* 580 */
-/***/ (function(module, exports, __webpack_require__) {
-
-module.exports = { "default": __webpack_require__(591), __esModule: true };
-
-/***/ }),
-/* 581 */
-/***/ (function(module, exports, __webpack_require__) {
-
-module.exports = { "default": __webpack_require__(592), __esModule: true };
-
-/***/ }),
-/* 582 */
-/***/ (function(module, exports, __webpack_require__) {
-
-module.exports = { "default": __webpack_require__(593), __esModule: true };
-
-/***/ }),
-/* 583 */
-/***/ (function(module, exports, __webpack_require__) {
-
-module.exports = { "default": __webpack_require__(594), __esModule: true };
-
-/***/ }),
-/* 584 */
-/***/ (function(module, exports, __webpack_require__) {
-
-module.exports = { "default": __webpack_require__(595), __esModule: true };
-
-/***/ }),
-/* 585 */
-/***/ (function(module, exports, __webpack_require__) {
-
-module.exports = { "default": __webpack_require__(596), __esModule: true };
-
-/***/ }),
-/* 586 */
-/***/ (function(module, exports, __webpack_require__) {
-
-__webpack_require__(114);
-__webpack_require__(619);
-module.exports = __webpack_require__(30).Array.from;
-
-/***/ }),
-/* 587 */
-/***/ (function(module, exports, __webpack_require__) {
-
-__webpack_require__(180);
-__webpack_require__(114);
-module.exports = __webpack_require__(617);
-
-/***/ }),
-/* 588 */
-/***/ (function(module, exports, __webpack_require__) {
-
-__webpack_require__(180);
-__webpack_require__(114);
-module.exports = __webpack_require__(618);
-
-/***/ }),
-/* 589 */
-/***/ (function(module, exports, __webpack_require__) {
-
-__webpack_require__(621);
-module.exports = __webpack_require__(30).Object.assign;
-
-/***/ }),
-/* 590 */
-/***/ (function(module, exports, __webpack_require__) {
-
-__webpack_require__(622);
-var $Object = __webpack_require__(30).Object;
-module.exports = function create(P, D){
-  return $Object.create(P, D);
-};
-
-/***/ }),
-/* 591 */
-/***/ (function(module, exports, __webpack_require__) {
-
-__webpack_require__(623);
-var $Object = __webpack_require__(30).Object;
-module.exports = function defineProperty(it, key, desc){
-  return $Object.defineProperty(it, key, desc);
-};
-
-/***/ }),
-/* 592 */
-/***/ (function(module, exports, __webpack_require__) {
-
-__webpack_require__(624);
-var $Object = __webpack_require__(30).Object;
-module.exports = function getOwnPropertyDescriptor(it, key){
-  return $Object.getOwnPropertyDescriptor(it, key);
-};
-
-/***/ }),
-/* 593 */
-/***/ (function(module, exports, __webpack_require__) {
-
-__webpack_require__(625);
-module.exports = __webpack_require__(30).Object.getPrototypeOf;
-
-/***/ }),
-/* 594 */
-/***/ (function(module, exports, __webpack_require__) {
-
-__webpack_require__(626);
-module.exports = __webpack_require__(30).Object.setPrototypeOf;
-
-/***/ }),
-/* 595 */
-/***/ (function(module, exports, __webpack_require__) {
-
-__webpack_require__(628);
-__webpack_require__(627);
-__webpack_require__(629);
-__webpack_require__(630);
-module.exports = __webpack_require__(30).Symbol;
-
-/***/ }),
-/* 596 */
-/***/ (function(module, exports, __webpack_require__) {
-
-__webpack_require__(114);
-__webpack_require__(180);
-module.exports = __webpack_require__(179).f('iterator');
-
-/***/ }),
-/* 597 */
-/***/ (function(module, exports) {
-
-module.exports = function(it){
-  if(typeof it != 'function')throw TypeError(it + ' is not a function!');
-  return it;
-};
-
-/***/ }),
-/* 598 */
-/***/ (function(module, exports) {
-
-module.exports = function(){ /* empty */ };
-
-/***/ }),
-/* 599 */
-/***/ (function(module, exports, __webpack_require__) {
-
-// false -> Array#indexOf
-// true  -> Array#includes
-var toIObject = __webpack_require__(59)
-  , toLength  = __webpack_require__(278)
-  , toIndex   = __webpack_require__(616);
-module.exports = function(IS_INCLUDES){
-  return function($this, el, fromIndex){
-    var O      = toIObject($this)
-      , length = toLength(O.length)
-      , index  = toIndex(fromIndex, length)
-      , value;
-    // Array#includes uses SameValueZero equality algorithm
-    if(IS_INCLUDES && el != el)while(length > index){
-      value = O[index++];
-      if(value != value)return true;
-    // Array#toIndex ignores holes, Array#includes - not
-    } else for(;length > index; index++)if(IS_INCLUDES || index in O){
-      if(O[index] === el)return IS_INCLUDES || index || 0;
-    } return !IS_INCLUDES && -1;
-  };
-};
-
-/***/ }),
-/* 600 */
-/***/ (function(module, exports, __webpack_require__) {
-
-"use strict";
-
-var $defineProperty = __webpack_require__(58)
-  , createDesc      = __webpack_require__(98);
-
-module.exports = function(object, index, value){
-  if(index in object)$defineProperty.f(object, index, createDesc(0, value));
-  else object[index] = value;
-};
-
-/***/ }),
-/* 601 */
-/***/ (function(module, exports, __webpack_require__) {
-
-// all enumerable object keys, includes symbols
-var getKeys = __webpack_require__(97)
-  , gOPS    = __webpack_require__(172)
-  , pIE     = __webpack_require__(111);
-module.exports = function(it){
-  var result     = getKeys(it)
-    , getSymbols = gOPS.f;
-  if(getSymbols){
-    var symbols = getSymbols(it)
-      , isEnum  = pIE.f
-      , i       = 0
-      , key;
-    while(symbols.length > i)if(isEnum.call(it, key = symbols[i++]))result.push(key);
-  } return result;
-};
-
-/***/ }),
-/* 602 */
-/***/ (function(module, exports, __webpack_require__) {
-
-module.exports = __webpack_require__(57).document && document.documentElement;
-
-/***/ }),
-/* 603 */
-/***/ (function(module, exports, __webpack_require__) {
-
-// check on default Array iterator
-var Iterators  = __webpack_require__(81)
-  , ITERATOR   = __webpack_require__(37)('iterator')
-  , ArrayProto = Array.prototype;
-
-module.exports = function(it){
-  return it !== undefined && (Iterators.Array === it || ArrayProto[ITERATOR] === it);
-};
-
-/***/ }),
-/* 604 */
-/***/ (function(module, exports, __webpack_require__) {
-
-// 7.2.2 IsArray(argument)
-var cof = __webpack_require__(165);
-module.exports = Array.isArray || function isArray(arg){
-  return cof(arg) == 'Array';
-};
-
-/***/ }),
-/* 605 */
-/***/ (function(module, exports, __webpack_require__) {
-
-// call something on iterator step with safe closing on error
-var anObject = __webpack_require__(67);
-module.exports = function(iterator, fn, value, entries){
-  try {
-    return entries ? fn(anObject(value)[0], value[1]) : fn(value);
-  // 7.4.6 IteratorClose(iterator, completion)
-  } catch(e){
-    var ret = iterator['return'];
-    if(ret !== undefined)anObject(ret.call(iterator));
-    throw e;
-  }
-};
-
-/***/ }),
-/* 606 */
-/***/ (function(module, exports, __webpack_require__) {
-
-"use strict";
-
-var create         = __webpack_require__(170)
-  , descriptor     = __webpack_require__(98)
-  , setToStringTag = __webpack_require__(173)
-  , IteratorPrototype = {};
-
-// 25.1.2.1.1 %IteratorPrototype%[@@iterator]()
-__webpack_require__(80)(IteratorPrototype, __webpack_require__(37)('iterator'), function(){ return this; });
-
-module.exports = function(Constructor, NAME, next){
-  Constructor.prototype = create(IteratorPrototype, {next: descriptor(1, next)});
-  setToStringTag(Constructor, NAME + ' Iterator');
-};
-
-/***/ }),
-/* 607 */
-/***/ (function(module, exports, __webpack_require__) {
-
-var ITERATOR     = __webpack_require__(37)('iterator')
-  , SAFE_CLOSING = false;
-
-try {
-  var riter = [7][ITERATOR]();
-  riter['return'] = function(){ SAFE_CLOSING = true; };
-  Array.from(riter, function(){ throw 2; });
-} catch(e){ /* empty */ }
-
-module.exports = function(exec, skipClosing){
-  if(!skipClosing && !SAFE_CLOSING)return false;
-  var safe = false;
-  try {
-    var arr  = [7]
-      , iter = arr[ITERATOR]();
-    iter.next = function(){ return {done: safe = true}; };
-    arr[ITERATOR] = function(){ return iter; };
-    exec(arr);
-  } catch(e){ /* empty */ }
-  return safe;
-};
-
-/***/ }),
-/* 608 */
-/***/ (function(module, exports) {
-
-module.exports = function(done, value){
-  return {value: value, done: !!done};
-};
-
-/***/ }),
-/* 609 */
-/***/ (function(module, exports, __webpack_require__) {
-
-var getKeys   = __webpack_require__(97)
-  , toIObject = __webpack_require__(59);
-module.exports = function(object, el){
-  var O      = toIObject(object)
-    , keys   = getKeys(O)
-    , length = keys.length
-    , index  = 0
-    , key;
-  while(length > index)if(O[key = keys[index++]] === el)return key;
-};
-
-/***/ }),
-/* 610 */
-/***/ (function(module, exports, __webpack_require__) {
-
-var META     = __webpack_require__(113)('meta')
-  , isObject = __webpack_require__(96)
-  , has      = __webpack_require__(69)
-  , setDesc  = __webpack_require__(58).f
-  , id       = 0;
-var isExtensible = Object.isExtensible || function(){
-  return true;
-};
-var FREEZE = !__webpack_require__(79)(function(){
-  return isExtensible(Object.preventExtensions({}));
-});
-var setMeta = function(it){
-  setDesc(it, META, {value: {
-    i: 'O' + ++id, // object ID
-    w: {}          // weak collections IDs
-  }});
-};
-var fastKey = function(it, create){
-  // return primitive with prefix
-  if(!isObject(it))return typeof it == 'symbol' ? it : (typeof it == 'string' ? 'S' : 'P') + it;
-  if(!has(it, META)){
-    // can't set metadata to uncaught frozen object
-    if(!isExtensible(it))return 'F';
-    // not necessary to add metadata
-    if(!create)return 'E';
-    // add missing metadata
-    setMeta(it);
-  // return object ID
-  } return it[META].i;
-};
-var getWeak = function(it, create){
-  if(!has(it, META)){
-    // can't set metadata to uncaught frozen object
-    if(!isExtensible(it))return true;
-    // not necessary to add metadata
-    if(!create)return false;
-    // add missing metadata
-    setMeta(it);
-  // return hash weak collections IDs
-  } return it[META].w;
-};
-// add metadata on freeze-family methods calling
-var onFreeze = function(it){
-  if(FREEZE && meta.NEED && isExtensible(it) && !has(it, META))setMeta(it);
-  return it;
-};
-var meta = module.exports = {
-  KEY:      META,
-  NEED:     false,
-  fastKey:  fastKey,
-  getWeak:  getWeak,
-  onFreeze: onFreeze
-};
-
-/***/ }),
-/* 611 */
-/***/ (function(module, exports, __webpack_require__) {
-
-"use strict";
-
-// 19.1.2.1 Object.assign(target, source, ...)
-var getKeys  = __webpack_require__(97)
-  , gOPS     = __webpack_require__(172)
-  , pIE      = __webpack_require__(111)
-  , toObject = __webpack_require__(112)
-  , IObject  = __webpack_require__(271)
-  , $assign  = Object.assign;
-
-// should work with symbols and should have deterministic property order (V8 bug)
-module.exports = !$assign || __webpack_require__(79)(function(){
-  var A = {}
-    , B = {}
-    , S = Symbol()
-    , K = 'abcdefghijklmnopqrst';
-  A[S] = 7;
-  K.split('').forEach(function(k){ B[k] = k; });
-  return $assign({}, A)[S] != 7 || Object.keys($assign({}, B)).join('') != K;
-}) ? function assign(target, source){ // eslint-disable-line no-unused-vars
-  var T     = toObject(target)
-    , aLen  = arguments.length
-    , index = 1
-    , getSymbols = gOPS.f
-    , isEnum     = pIE.f;
-  while(aLen > index){
-    var S      = IObject(arguments[index++])
-      , keys   = getSymbols ? getKeys(S).concat(getSymbols(S)) : getKeys(S)
-      , length = keys.length
-      , j      = 0
-      , key;
-    while(length > j)if(isEnum.call(S, key = keys[j++]))T[key] = S[key];
-  } return T;
-} : $assign;
-
-/***/ }),
-/* 612 */
-/***/ (function(module, exports, __webpack_require__) {
-
-var dP       = __webpack_require__(58)
-  , anObject = __webpack_require__(67)
-  , getKeys  = __webpack_require__(97);
-
-module.exports = __webpack_require__(68) ? Object.defineProperties : function defineProperties(O, Properties){
-  anObject(O);
-  var keys   = getKeys(Properties)
-    , length = keys.length
-    , i = 0
-    , P;
-  while(length > i)dP.f(O, P = keys[i++], Properties[P]);
-  return O;
-};
-
-/***/ }),
-/* 613 */
-/***/ (function(module, exports, __webpack_require__) {
-
-// fallback for IE11 buggy Object.getOwnPropertyNames with iframe and window
-var toIObject = __webpack_require__(59)
-  , gOPN      = __webpack_require__(273).f
-  , toString  = {}.toString;
-
-var windowNames = typeof window == 'object' && window && Object.getOwnPropertyNames
-  ? Object.getOwnPropertyNames(window) : [];
-
-var getWindowNames = function(it){
-  try {
-    return gOPN(it);
-  } catch(e){
-    return windowNames.slice();
-  }
-};
-
-module.exports.f = function getOwnPropertyNames(it){
-  return windowNames && toString.call(it) == '[object Window]' ? getWindowNames(it) : gOPN(toIObject(it));
-};
-
-
-/***/ }),
-/* 614 */
-/***/ (function(module, exports, __webpack_require__) {
-
-// Works with __proto__ only. Old v8 can't work with null proto objects.
-/* eslint-disable no-proto */
-var isObject = __webpack_require__(96)
-  , anObject = __webpack_require__(67);
-var check = function(O, proto){
-  anObject(O);
-  if(!isObject(proto) && proto !== null)throw TypeError(proto + ": can't set as prototype!");
-};
-module.exports = {
-  set: Object.setPrototypeOf || ('__proto__' in {} ? // eslint-disable-line
-    function(test, buggy, set){
-      try {
-        set = __webpack_require__(166)(Function.call, __webpack_require__(171).f(Object.prototype, '__proto__').set, 2);
-        set(test, []);
-        buggy = !(test instanceof Array);
-      } catch(e){ buggy = true; }
-      return function setPrototypeOf(O, proto){
-        check(O, proto);
-        if(buggy)O.__proto__ = proto;
-        else set(O, proto);
-        return O;
-      };
-    }({}, false) : undefined),
-  check: check
-};
-
-/***/ }),
-/* 615 */
-/***/ (function(module, exports, __webpack_require__) {
-
-var toInteger = __webpack_require__(176)
-  , defined   = __webpack_require__(167);
-// true  -> String#at
-// false -> String#codePointAt
-module.exports = function(TO_STRING){
-  return function(that, pos){
-    var s = String(defined(that))
-      , i = toInteger(pos)
-      , l = s.length
-      , a, b;
-    if(i < 0 || i >= l)return TO_STRING ? '' : undefined;
-    a = s.charCodeAt(i);
-    return a < 0xd800 || a > 0xdbff || i + 1 === l || (b = s.charCodeAt(i + 1)) < 0xdc00 || b > 0xdfff
-      ? TO_STRING ? s.charAt(i) : a
-      : TO_STRING ? s.slice(i, i + 2) : (a - 0xd800 << 10) + (b - 0xdc00) + 0x10000;
-  };
-};
-
-/***/ }),
-/* 616 */
-/***/ (function(module, exports, __webpack_require__) {
-
-var toInteger = __webpack_require__(176)
-  , max       = Math.max
-  , min       = Math.min;
-module.exports = function(index, length){
-  index = toInteger(index);
-  return index < 0 ? max(index + length, 0) : min(index, length);
-};
-
-/***/ }),
-/* 617 */
-/***/ (function(module, exports, __webpack_require__) {
-
-var anObject = __webpack_require__(67)
-  , get      = __webpack_require__(279);
-module.exports = __webpack_require__(30).getIterator = function(it){
-  var iterFn = get(it);
-  if(typeof iterFn != 'function')throw TypeError(it + ' is not iterable!');
-  return anObject(iterFn.call(it));
-};
-
-/***/ }),
-/* 618 */
-/***/ (function(module, exports, __webpack_require__) {
-
-var classof   = __webpack_require__(268)
-  , ITERATOR  = __webpack_require__(37)('iterator')
-  , Iterators = __webpack_require__(81);
-module.exports = __webpack_require__(30).isIterable = function(it){
-  var O = Object(it);
-  return O[ITERATOR] !== undefined
-    || '@@iterator' in O
-    || Iterators.hasOwnProperty(classof(O));
-};
-
-/***/ }),
-/* 619 */
-/***/ (function(module, exports, __webpack_require__) {
-
-"use strict";
-
-var ctx            = __webpack_require__(166)
-  , $export        = __webpack_require__(56)
-  , toObject       = __webpack_require__(112)
-  , call           = __webpack_require__(605)
-  , isArrayIter    = __webpack_require__(603)
-  , toLength       = __webpack_require__(278)
-  , createProperty = __webpack_require__(600)
-  , getIterFn      = __webpack_require__(279);
-
-$export($export.S + $export.F * !__webpack_require__(607)(function(iter){ Array.from(iter); }), 'Array', {
-  // 22.1.2.1 Array.from(arrayLike, mapfn = undefined, thisArg = undefined)
-  from: function from(arrayLike/*, mapfn = undefined, thisArg = undefined*/){
-    var O       = toObject(arrayLike)
-      , C       = typeof this == 'function' ? this : Array
-      , aLen    = arguments.length
-      , mapfn   = aLen > 1 ? arguments[1] : undefined
-      , mapping = mapfn !== undefined
-      , index   = 0
-      , iterFn  = getIterFn(O)
-      , length, result, step, iterator;
-    if(mapping)mapfn = ctx(mapfn, aLen > 2 ? arguments[2] : undefined, 2);
-    // if object isn't iterable or it's array with default iterator - use simple case
-    if(iterFn != undefined && !(C == Array && isArrayIter(iterFn))){
-      for(iterator = iterFn.call(O), result = new C; !(step = iterator.next()).done; index++){
-        createProperty(result, index, mapping ? call(iterator, mapfn, [step.value, index], true) : step.value);
-      }
-    } else {
-      length = toLength(O.length);
-      for(result = new C(length); length > index; index++){
-        createProperty(result, index, mapping ? mapfn(O[index], index) : O[index]);
-      }
-    }
-    result.length = index;
-    return result;
-  }
-});
-
-
-/***/ }),
-/* 620 */
-/***/ (function(module, exports, __webpack_require__) {
-
-"use strict";
-
-var addToUnscopables = __webpack_require__(598)
-  , step             = __webpack_require__(608)
-  , Iterators        = __webpack_require__(81)
-  , toIObject        = __webpack_require__(59);
-
-// 22.1.3.4 Array.prototype.entries()
-// 22.1.3.13 Array.prototype.keys()
-// 22.1.3.29 Array.prototype.values()
-// 22.1.3.30 Array.prototype[@@iterator]()
-module.exports = __webpack_require__(272)(Array, 'Array', function(iterated, kind){
-  this._t = toIObject(iterated); // target
-  this._i = 0;                   // next index
-  this._k = kind;                // kind
-// 22.1.5.2.1 %ArrayIteratorPrototype%.next()
-}, function(){
-  var O     = this._t
-    , kind  = this._k
-    , index = this._i++;
-  if(!O || index >= O.length){
-    this._t = undefined;
-    return step(1);
-  }
-  if(kind == 'keys'  )return step(0, index);
-  if(kind == 'values')return step(0, O[index]);
-  return step(0, [index, O[index]]);
-}, 'values');
-
-// argumentsList[@@iterator] is %ArrayProto_values% (9.4.4.6, 9.4.4.7)
-Iterators.Arguments = Iterators.Array;
-
-addToUnscopables('keys');
-addToUnscopables('values');
-addToUnscopables('entries');
-
-/***/ }),
-/* 621 */
-/***/ (function(module, exports, __webpack_require__) {
-
-// 19.1.3.1 Object.assign(target, source)
-var $export = __webpack_require__(56);
-
-$export($export.S + $export.F, 'Object', {assign: __webpack_require__(611)});
-
-/***/ }),
-/* 622 */
-/***/ (function(module, exports, __webpack_require__) {
-
-var $export = __webpack_require__(56)
-// 19.1.2.2 / 15.2.3.5 Object.create(O [, Properties])
-$export($export.S, 'Object', {create: __webpack_require__(170)});
-
-/***/ }),
-/* 623 */
-/***/ (function(module, exports, __webpack_require__) {
-
-var $export = __webpack_require__(56);
-// 19.1.2.4 / 15.2.3.6 Object.defineProperty(O, P, Attributes)
-$export($export.S + $export.F * !__webpack_require__(68), 'Object', {defineProperty: __webpack_require__(58).f});
-
-/***/ }),
-/* 624 */
-/***/ (function(module, exports, __webpack_require__) {
-
-// 19.1.2.6 Object.getOwnPropertyDescriptor(O, P)
-var toIObject                 = __webpack_require__(59)
-  , $getOwnPropertyDescriptor = __webpack_require__(171).f;
-
-__webpack_require__(276)('getOwnPropertyDescriptor', function(){
-  return function getOwnPropertyDescriptor(it, key){
-    return $getOwnPropertyDescriptor(toIObject(it), key);
-  };
-});
-
-/***/ }),
-/* 625 */
-/***/ (function(module, exports, __webpack_require__) {
-
-// 19.1.2.9 Object.getPrototypeOf(O)
-var toObject        = __webpack_require__(112)
-  , $getPrototypeOf = __webpack_require__(274);
-
-__webpack_require__(276)('getPrototypeOf', function(){
-  return function getPrototypeOf(it){
-    return $getPrototypeOf(toObject(it));
-  };
-});
-
-/***/ }),
-/* 626 */
-/***/ (function(module, exports, __webpack_require__) {
-
-// 19.1.3.19 Object.setPrototypeOf(O, proto)
-var $export = __webpack_require__(56);
-$export($export.S, 'Object', {setPrototypeOf: __webpack_require__(614).set});
-
-/***/ }),
-/* 627 */
-/***/ (function(module, exports) {
-
-
-
-/***/ }),
-/* 628 */
-/***/ (function(module, exports, __webpack_require__) {
-
-"use strict";
-
-// ECMAScript 6 symbols shim
-var global         = __webpack_require__(57)
-  , has            = __webpack_require__(69)
-  , DESCRIPTORS    = __webpack_require__(68)
-  , $export        = __webpack_require__(56)
-  , redefine       = __webpack_require__(277)
-  , META           = __webpack_require__(610).KEY
-  , $fails         = __webpack_require__(79)
-  , shared         = __webpack_require__(175)
-  , setToStringTag = __webpack_require__(173)
-  , uid            = __webpack_require__(113)
-  , wks            = __webpack_require__(37)
-  , wksExt         = __webpack_require__(179)
-  , wksDefine      = __webpack_require__(178)
-  , keyOf          = __webpack_require__(609)
-  , enumKeys       = __webpack_require__(601)
-  , isArray        = __webpack_require__(604)
-  , anObject       = __webpack_require__(67)
-  , toIObject      = __webpack_require__(59)
-  , toPrimitive    = __webpack_require__(177)
-  , createDesc     = __webpack_require__(98)
-  , _create        = __webpack_require__(170)
-  , gOPNExt        = __webpack_require__(613)
-  , $GOPD          = __webpack_require__(171)
-  , $DP            = __webpack_require__(58)
-  , $keys          = __webpack_require__(97)
-  , gOPD           = $GOPD.f
-  , dP             = $DP.f
-  , gOPN           = gOPNExt.f
-  , $Symbol        = global.Symbol
-  , $JSON          = global.JSON
-  , _stringify     = $JSON && $JSON.stringify
-  , PROTOTYPE      = 'prototype'
-  , HIDDEN         = wks('_hidden')
-  , TO_PRIMITIVE   = wks('toPrimitive')
-  , isEnum         = {}.propertyIsEnumerable
-  , SymbolRegistry = shared('symbol-registry')
-  , AllSymbols     = shared('symbols')
-  , OPSymbols      = shared('op-symbols')
-  , ObjectProto    = Object[PROTOTYPE]
-  , USE_NATIVE     = typeof $Symbol == 'function'
-  , QObject        = global.QObject;
-// Don't use setters in Qt Script, https://github.com/zloirock/core-js/issues/173
-var setter = !QObject || !QObject[PROTOTYPE] || !QObject[PROTOTYPE].findChild;
-
-// fallback for old Android, https://code.google.com/p/v8/issues/detail?id=687
-var setSymbolDesc = DESCRIPTORS && $fails(function(){
-  return _create(dP({}, 'a', {
-    get: function(){ return dP(this, 'a', {value: 7}).a; }
-  })).a != 7;
-}) ? function(it, key, D){
-  var protoDesc = gOPD(ObjectProto, key);
-  if(protoDesc)delete ObjectProto[key];
-  dP(it, key, D);
-  if(protoDesc && it !== ObjectProto)dP(ObjectProto, key, protoDesc);
-} : dP;
-
-var wrap = function(tag){
-  var sym = AllSymbols[tag] = _create($Symbol[PROTOTYPE]);
-  sym._k = tag;
-  return sym;
-};
-
-var isSymbol = USE_NATIVE && typeof $Symbol.iterator == 'symbol' ? function(it){
-  return typeof it == 'symbol';
-} : function(it){
-  return it instanceof $Symbol;
-};
-
-var $defineProperty = function defineProperty(it, key, D){
-  if(it === ObjectProto)$defineProperty(OPSymbols, key, D);
-  anObject(it);
-  key = toPrimitive(key, true);
-  anObject(D);
-  if(has(AllSymbols, key)){
-    if(!D.enumerable){
-      if(!has(it, HIDDEN))dP(it, HIDDEN, createDesc(1, {}));
-      it[HIDDEN][key] = true;
-    } else {
-      if(has(it, HIDDEN) && it[HIDDEN][key])it[HIDDEN][key] = false;
-      D = _create(D, {enumerable: createDesc(0, false)});
-    } return setSymbolDesc(it, key, D);
-  } return dP(it, key, D);
-};
-var $defineProperties = function defineProperties(it, P){
-  anObject(it);
-  var keys = enumKeys(P = toIObject(P))
-    , i    = 0
-    , l = keys.length
-    , key;
-  while(l > i)$defineProperty(it, key = keys[i++], P[key]);
-  return it;
-};
-var $create = function create(it, P){
-  return P === undefined ? _create(it) : $defineProperties(_create(it), P);
-};
-var $propertyIsEnumerable = function propertyIsEnumerable(key){
-  var E = isEnum.call(this, key = toPrimitive(key, true));
-  if(this === ObjectProto && has(AllSymbols, key) && !has(OPSymbols, key))return false;
-  return E || !has(this, key) || !has(AllSymbols, key) || has(this, HIDDEN) && this[HIDDEN][key] ? E : true;
-};
-var $getOwnPropertyDescriptor = function getOwnPropertyDescriptor(it, key){
-  it  = toIObject(it);
-  key = toPrimitive(key, true);
-  if(it === ObjectProto && has(AllSymbols, key) && !has(OPSymbols, key))return;
-  var D = gOPD(it, key);
-  if(D && has(AllSymbols, key) && !(has(it, HIDDEN) && it[HIDDEN][key]))D.enumerable = true;
-  return D;
-};
-var $getOwnPropertyNames = function getOwnPropertyNames(it){
-  var names  = gOPN(toIObject(it))
-    , result = []
-    , i      = 0
-    , key;
-  while(names.length > i){
-    if(!has(AllSymbols, key = names[i++]) && key != HIDDEN && key != META)result.push(key);
-  } return result;
-};
-var $getOwnPropertySymbols = function getOwnPropertySymbols(it){
-  var IS_OP  = it === ObjectProto
-    , names  = gOPN(IS_OP ? OPSymbols : toIObject(it))
-    , result = []
-    , i      = 0
-    , key;
-  while(names.length > i){
-    if(has(AllSymbols, key = names[i++]) && (IS_OP ? has(ObjectProto, key) : true))result.push(AllSymbols[key]);
-  } return result;
-};
-
-// 19.4.1.1 Symbol([description])
-if(!USE_NATIVE){
-  $Symbol = function Symbol(){
-    if(this instanceof $Symbol)throw TypeError('Symbol is not a constructor!');
-    var tag = uid(arguments.length > 0 ? arguments[0] : undefined);
-    var $set = function(value){
-      if(this === ObjectProto)$set.call(OPSymbols, value);
-      if(has(this, HIDDEN) && has(this[HIDDEN], tag))this[HIDDEN][tag] = false;
-      setSymbolDesc(this, tag, createDesc(1, value));
-    };
-    if(DESCRIPTORS && setter)setSymbolDesc(ObjectProto, tag, {configurable: true, set: $set});
-    return wrap(tag);
-  };
-  redefine($Symbol[PROTOTYPE], 'toString', function toString(){
-    return this._k;
-  });
-
-  $GOPD.f = $getOwnPropertyDescriptor;
-  $DP.f   = $defineProperty;
-  __webpack_require__(273).f = gOPNExt.f = $getOwnPropertyNames;
-  __webpack_require__(111).f  = $propertyIsEnumerable;
-  __webpack_require__(172).f = $getOwnPropertySymbols;
-
-  if(DESCRIPTORS && !__webpack_require__(169)){
-    redefine(ObjectProto, 'propertyIsEnumerable', $propertyIsEnumerable, true);
-  }
-
-  wksExt.f = function(name){
-    return wrap(wks(name));
-  }
-}
-
-$export($export.G + $export.W + $export.F * !USE_NATIVE, {Symbol: $Symbol});
-
-for(var symbols = (
-  // 19.4.2.2, 19.4.2.3, 19.4.2.4, 19.4.2.6, 19.4.2.8, 19.4.2.9, 19.4.2.10, 19.4.2.11, 19.4.2.12, 19.4.2.13, 19.4.2.14
-  'hasInstance,isConcatSpreadable,iterator,match,replace,search,species,split,toPrimitive,toStringTag,unscopables'
-).split(','), i = 0; symbols.length > i; )wks(symbols[i++]);
-
-for(var symbols = $keys(wks.store), i = 0; symbols.length > i; )wksDefine(symbols[i++]);
-
-$export($export.S + $export.F * !USE_NATIVE, 'Symbol', {
-  // 19.4.2.1 Symbol.for(key)
-  'for': function(key){
-    return has(SymbolRegistry, key += '')
-      ? SymbolRegistry[key]
-      : SymbolRegistry[key] = $Symbol(key);
-  },
-  // 19.4.2.5 Symbol.keyFor(sym)
-  keyFor: function keyFor(key){
-    if(isSymbol(key))return keyOf(SymbolRegistry, key);
-    throw TypeError(key + ' is not a symbol!');
-  },
-  useSetter: function(){ setter = true; },
-  useSimple: function(){ setter = false; }
-});
-
-$export($export.S + $export.F * !USE_NATIVE, 'Object', {
-  // 19.1.2.2 Object.create(O [, Properties])
-  create: $create,
-  // 19.1.2.4 Object.defineProperty(O, P, Attributes)
-  defineProperty: $defineProperty,
-  // 19.1.2.3 Object.defineProperties(O, Properties)
-  defineProperties: $defineProperties,
-  // 19.1.2.6 Object.getOwnPropertyDescriptor(O, P)
-  getOwnPropertyDescriptor: $getOwnPropertyDescriptor,
-  // 19.1.2.7 Object.getOwnPropertyNames(O)
-  getOwnPropertyNames: $getOwnPropertyNames,
-  // 19.1.2.8 Object.getOwnPropertySymbols(O)
-  getOwnPropertySymbols: $getOwnPropertySymbols
-});
-
-// 24.3.2 JSON.stringify(value [, replacer [, space]])
-$JSON && $export($export.S + $export.F * (!USE_NATIVE || $fails(function(){
-  var S = $Symbol();
-  // MS Edge converts symbol values to JSON as {}
-  // WebKit converts symbol values to JSON as null
-  // V8 throws on boxed symbols
-  return _stringify([S]) != '[null]' || _stringify({a: S}) != '{}' || _stringify(Object(S)) != '{}';
-})), 'JSON', {
-  stringify: function stringify(it){
-    if(it === undefined || isSymbol(it))return; // IE8 returns string on undefined
-    var args = [it]
-      , i    = 1
-      , replacer, $replacer;
-    while(arguments.length > i)args.push(arguments[i++]);
-    replacer = args[1];
-    if(typeof replacer == 'function')$replacer = replacer;
-    if($replacer || !isArray(replacer))replacer = function(key, value){
-      if($replacer)value = $replacer.call(this, key, value);
-      if(!isSymbol(value))return value;
-    };
-    args[1] = replacer;
-    return _stringify.apply($JSON, args);
-  }
-});
-
-// 19.4.3.4 Symbol.prototype[@@toPrimitive](hint)
-$Symbol[PROTOTYPE][TO_PRIMITIVE] || __webpack_require__(80)($Symbol[PROTOTYPE], TO_PRIMITIVE, $Symbol[PROTOTYPE].valueOf);
-// 19.4.3.5 Symbol.prototype[@@toStringTag]
-setToStringTag($Symbol, 'Symbol');
-// 20.2.1.9 Math[@@toStringTag]
-setToStringTag(Math, 'Math', true);
-// 24.3.3 JSON[@@toStringTag]
-setToStringTag(global.JSON, 'JSON', true);
-
-/***/ }),
-/* 629 */
-/***/ (function(module, exports, __webpack_require__) {
-
-__webpack_require__(178)('asyncIterator');
-
-/***/ }),
-/* 630 */
-/***/ (function(module, exports, __webpack_require__) {
-
-__webpack_require__(178)('observable');
-
-/***/ }),
-/* 631 */
-/***/ (function(module, exports, __webpack_require__) {
-
-"use strict";
-
-
-Object.defineProperty(exports, "__esModule", {
-  value: true
-});
 
 exports.default = function () {
   var options = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : {};
@@ -37922,7 +32046,7 @@ exports.default = function () {
   };
 };
 
-var _router = __webpack_require__(633);
+var _router = __webpack_require__(499);
 
 var _router2 = _interopRequireDefault(_router);
 
@@ -37930,7 +32054,7 @@ function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { de
 
 var addressbar = void 0;
 try {
-  addressbar = __webpack_require__(503);
+  addressbar = __webpack_require__(507);
 } catch (e) {
   addressbar = {
     pathname: '/',
@@ -37943,7 +32067,7 @@ try {
 //# sourceMappingURL=base.js.map
 
 /***/ }),
-/* 632 */
+/* 498 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -37966,7 +32090,7 @@ var _urlMapper = __webpack_require__(1064);
 
 var _urlMapper2 = _interopRequireDefault(_urlMapper);
 
-var _base = __webpack_require__(631);
+var _base = __webpack_require__(497);
 
 var _base2 = _interopRequireDefault(_base);
 
@@ -37982,7 +32106,7 @@ function getSignalUrlFactory(config) {
 //# sourceMappingURL=index.js.map
 
 /***/ }),
-/* 633 */
+/* 499 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -37994,7 +32118,7 @@ Object.defineProperty(exports, "__esModule", {
 
 var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
 
-var _utils = __webpack_require__(634);
+var _utils = __webpack_require__(500);
 
 var _utils2 = __webpack_require__(24);
 
@@ -38285,7 +32409,7 @@ exports.default = Router;
 //# sourceMappingURL=router.js.map
 
 /***/ }),
-/* 634 */
+/* 500 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -38429,6 +32553,5936 @@ function computeShouldChange(tracker, changed) {
   return (0, _utils.dependencyMatch)(changed, tracker.stateTrackMap).length > 0;
 }
 //# sourceMappingURL=utils.js.map
+
+/***/ }),
+/* 501 */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+function StorageProvider() {
+  var options = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : {};
+
+  var cachedProvider = null;
+
+  options.json = 'json' in options ? options.json : true;
+  options.prefix = options.prefix ? options.prefix + '.' : '';
+
+  function createProvider(context) {
+    var target = options.target;
+
+    if (options.sync) {
+      context.controller.on('flush', function (changes) {
+        changes.forEach(function (change) {
+          Object.keys(options.sync).forEach(function (syncKey) {
+            if (change.path.join('.').indexOf(options.sync[syncKey]) === 0) {
+              var value = context.controller.getState(options.sync[syncKey]);
+
+              target.setItem(options.prefix + syncKey, options.json ? JSON.stringify(value) : value);
+            }
+          });
+        });
+      });
+    }
+
+    return {
+      get: function get(key) {
+        var value = target.getItem(options.prefix + key);
+
+        if (options.json && value) {
+          return JSON.parse(value);
+        }
+
+        return value;
+      },
+      set: function set(key, value) {
+        target.setItem(options.prefix + key, options.json ? JSON.stringify(value) : value);
+      },
+      remove: function remove(key) {
+        target.removeItem(options.prefix + key);
+      }
+    };
+  }
+
+  return function (context) {
+    context.storage = cachedProvider = cachedProvider || createProvider(context);
+
+    if (context.debugger) {
+      context.debugger.wrapProvider('storage');
+    }
+
+    return context;
+  };
+}
+
+exports.default = StorageProvider;
+//# sourceMappingURL=index.js.map
+
+/***/ }),
+/* 502 */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+function getStorageFactory(key) {
+  function getStorage(_ref) {
+    var storage = _ref.storage,
+        resolve = _ref.resolve;
+
+    return {
+      value: storage.get(resolve.value(key))
+    };
+  }
+
+  return getStorage;
+}
+
+exports.default = getStorageFactory;
+//# sourceMappingURL=getStorage.js.map
+
+/***/ }),
+/* 503 */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+
+var _setStorage = __webpack_require__(505);
+
+Object.defineProperty(exports, 'setStorage', {
+  enumerable: true,
+  get: function get() {
+    return _interopRequireDefault(_setStorage).default;
+  }
+});
+
+var _getStorage = __webpack_require__(502);
+
+Object.defineProperty(exports, 'getStorage', {
+  enumerable: true,
+  get: function get() {
+    return _interopRequireDefault(_getStorage).default;
+  }
+});
+
+var _removeStorage = __webpack_require__(504);
+
+Object.defineProperty(exports, 'removeStorage', {
+  enumerable: true,
+  get: function get() {
+    return _interopRequireDefault(_removeStorage).default;
+  }
+});
+
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+//# sourceMappingURL=index.js.map
+
+/***/ }),
+/* 504 */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+function removeStorageFactory(key) {
+  function removeStorage(_ref) {
+    var storage = _ref.storage,
+        resolve = _ref.resolve;
+
+    return {
+      value: storage.remove(resolve.value(key))
+    };
+  }
+
+  return removeStorage;
+}
+
+exports.default = removeStorageFactory;
+//# sourceMappingURL=removeStorage.js.map
+
+/***/ }),
+/* 505 */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+function setStorageFactory(key, value) {
+  function setStorage(_ref) {
+    var storage = _ref.storage,
+        resolve = _ref.resolve;
+
+    storage.set(resolve.value(key), resolve.value(value));
+  }
+
+  return setStorage;
+}
+
+exports.default = setStorageFactory;
+//# sourceMappingURL=setStorage.js.map
+
+/***/ }),
+/* 506 */
+/***/ (function(module, exports, __webpack_require__) {
+
+module.exports = __webpack_require__(503)
+
+
+/***/ }),
+/* 507 */
+/***/ (function(module, exports, __webpack_require__) {
+
+/* WEBPACK VAR INJECTION */(function(global) {/* global history */
+
+var URL = __webpack_require__(1066)
+var EventEmitter = __webpack_require__(283).EventEmitter
+var instance = null
+
+// Check if IE history polyfill is added
+var location = window.history.location || window.location
+
+module.exports = (function () {
+  if (instance) {
+    return instance
+  }
+
+  var eventEmitter = new EventEmitter()
+
+  eventEmitter.addEventListener = eventEmitter.addListener
+  eventEmitter.removeEventListener = eventEmitter.removeListener
+
+  var initialUrl = location.href
+  var uri = URL(initialUrl)
+  var origin = uri.protocol + '//' + uri.host
+  var isPreventingDefault = false
+  var doReplace = false
+  var prevUrl = ''
+  // var linkClicked = false
+  var isEmitting = false
+  var setSyncUrl = false
+
+  var emitChange = function (url, event) {
+    eventEmitter.emit('change', {
+      preventDefault: function () {
+        event && event.preventDefault()
+        isPreventingDefault = true
+      },
+      target: {
+        value: url ? origin + url : location.href
+      }
+    })
+  }
+
+  var onUrlChange = function (type) {
+    return function (event) {
+      if (location.href === prevUrl) {
+        return
+      }
+
+      // Fixes bug where trailing slash is converted to normal url
+      if (location.href[location.href.length - 1] === '/') {
+        doReplace = true
+      }
+
+      isEmitting = true
+      emitChange()
+      isEmitting = false
+
+      if (!setSyncUrl && isPreventingDefault) {
+        history.replaceState({}, '', (prevUrl || initialUrl).replace(origin, ''))
+      }
+
+      prevUrl = location.href
+      isPreventingDefault = false
+      setSyncUrl = false
+      doReplace = false
+    }
+  }
+
+  // this hack resolves issue with safari
+  // see issue from Page JS for reference https://github.com/visionmedia/page.js/issues/213
+  // see also https://github.com/visionmedia/page.js/pull/240
+  if (document.readyState !== 'complete') {
+    // load event has not fired
+    global.addEventListener('load', function () {
+      setTimeout(function () {
+        global.addEventListener('popstate', onUrlChange('pop'), false)
+      }, 0)
+    }, false)
+  } else {
+    // load event has fired
+    global.addEventListener('popstate', onUrlChange('pop'), false)
+  }
+
+  Object.defineProperty(eventEmitter, 'value', {
+    get: function () {
+      return location.href
+    },
+    set: function (value) {
+      if (typeof value !== 'string') {
+        doReplace = Boolean(value.replace)
+        value = value.value
+      }
+
+      // If emitting a change we flag that we are setting
+      // a url based on the event being emitted
+      if (isEmitting) {
+        setSyncUrl = true
+      }
+
+      // Ensure full url
+      if (value.indexOf(origin) === -1) {
+        value = origin + value
+      }
+
+      // If it is same url, forget about it
+      if (value === location.href) {
+        return
+      }
+
+      // We might need to replace the url if we are fixing
+      // for example trailing slash issue
+      if (doReplace) {
+        history.replaceState({}, '', value.replace(origin, ''))
+        doReplace = false
+      } else {
+        history.pushState({}, '', value.replace(origin, ''))
+      }
+
+      prevUrl = location.href
+      isPreventingDefault = false
+    }
+  })
+
+  // expose URLUtils like API https://developer.mozilla.org/en-US/docs/Web/API/URLUtils
+  // thanks https://github.com/cofounders/urlutils for reference
+  Object.defineProperty(eventEmitter, 'origin', {
+    get: function () {
+      var uri = URL(location.href)
+      return uri.protocol + '//' + uri.host
+    }
+  })
+
+  Object.defineProperty(eventEmitter, 'protocol', {
+    get: function () {
+      return URL(location.href).protocol
+    }
+  })
+
+  Object.defineProperty(eventEmitter, 'port', {
+    get: function () {
+      return URL(location.href).port
+    }
+  })
+
+  Object.defineProperty(eventEmitter, 'hostname', {
+    get: function () {
+      return URL(location.href).hostname
+    }
+  })
+
+  Object.defineProperty(eventEmitter, 'pathname', {
+    get: function () {
+      return URL(location.href).pathname
+    }
+  })
+
+  Object.defineProperty(eventEmitter, 'hash', {
+    get: function () {
+      return URL(location.href).hash
+    }
+  })
+
+  /*
+    This code is from the Page JS source code. Amazing work on handling all
+    kinds of scenarios with hyperlinks, thanks!
+  */
+
+  var isSameOrigin = function (href) {
+    return (href && (href.indexOf(origin) === 0))
+  }
+
+  var getClickedHref = function (event) {
+    // check which button
+    if ((event.which === null ? event.button : event.which) !== 1) { return false }
+
+    // check for modifiers
+    if (event.metaKey || event.ctrlKey || event.shiftKey) { return false }
+    if (event.defaultPrevented) { return false }
+
+    // ensure link
+    var element = event.target
+    while (element && element.nodeName !== 'A') { element = element.parentNode }
+    if (!element || element.nodeName !== 'A') { return false }
+
+    // Ignore if tag has
+    // 1. "download" attribute
+    // 2. rel="external" attribute
+    if (element.hasAttribute('download') || element.getAttribute('rel') === 'external') { return false }
+
+    // Check for mailto: in the href
+    var href = element.getAttribute('href')
+    if (href && href.indexOf('mailto:') > -1) { return false }
+
+    // check target
+    if (element.target) { return false }
+
+    // x-origin
+    if (!isSameOrigin(element.href)) { return false }
+
+    return href
+  }
+
+  global.addEventListener(document.ontouchstart ? 'touchstart' : 'click', function (event) {
+    var href = getClickedHref(event)
+    if (href) {
+      // linkClicked = true
+      isEmitting = true
+      emitChange(href, event)
+      isEmitting = false
+      if (isPreventingDefault) {
+        // linkClicked = false
+      }
+      prevUrl = href
+      isPreventingDefault = false
+    }
+  })
+
+  instance = eventEmitter
+
+  return eventEmitter
+}())
+
+/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(161)))
+
+/***/ }),
+/* 508 */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+
+var _templateObject = _taggedTemplateLiteral(['admin.users.', '.nickname'], ['admin.users.', '.nickname']),
+    _templateObject2 = _taggedTemplateLiteral(['admin.activeUid'], ['admin.activeUid']),
+    _templateObject3 = _taggedTemplateLiteral(['admin.showConfirmRemoveUser'], ['admin.showConfirmRemoveUser']),
+    _templateObject4 = _taggedTemplateLiteral(['admin.removeUserCancelled'], ['admin.removeUserCancelled']),
+    _templateObject5 = _taggedTemplateLiteral(['admin.removeUserConfirmed'], ['admin.removeUserConfirmed']);
+
+var _react = __webpack_require__(0);
+
+var _react2 = _interopRequireDefault(_react);
+
+var _react3 = __webpack_require__(17);
+
+var _tags = __webpack_require__(6);
+
+var _semanticUiReact = __webpack_require__(16);
+
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+function _taggedTemplateLiteral(strings, raw) { return Object.freeze(Object.defineProperties(strings, { raw: { value: Object.freeze(raw) } })); }
+
+exports.default = (0, _react3.connect)({
+  nickname: (0, _tags.state)(_templateObject, (0, _tags.state)(_templateObject2)),
+  showConfirmRemoveUser: (0, _tags.state)(_templateObject3),
+  removeUserCancelled: (0, _tags.signal)(_templateObject4),
+  removeUserConfirmed: (0, _tags.signal)(_templateObject5)
+}, function ConfirmRemoveUser(_ref) {
+  var nickname = _ref.nickname,
+      showConfirmRemoveUser = _ref.showConfirmRemoveUser,
+      removeUserCancelled = _ref.removeUserCancelled,
+      removeUserConfirmed = _ref.removeUserConfirmed;
+
+  return _react2.default.createElement(
+    _semanticUiReact.Modal,
+    {
+      basic: true,
+      size: 'small',
+      dimmer: 'blurring',
+      open: showConfirmRemoveUser,
+      onClose: removeUserCancelled
+    },
+    _react2.default.createElement(
+      _semanticUiReact.Modal.Header,
+      null,
+      _react2.default.createElement(_semanticUiReact.Icon, { name: 'remove user' }),
+      'Delete User Account'
+    ),
+    _react2.default.createElement(
+      _semanticUiReact.Modal.Content,
+      null,
+      _react2.default.createElement(
+        'p',
+        null,
+        'Are you sure you want to delete ',
+        nickname,
+        '?'
+      )
+    ),
+    _react2.default.createElement(
+      _semanticUiReact.Modal.Actions,
+      null,
+      _react2.default.createElement(
+        _semanticUiReact.Button,
+        {
+          basic: true,
+          inverted: true,
+          color: 'red',
+          onClick: function onClick() {
+            return removeUserCancelled();
+          }
+        },
+        _react2.default.createElement(_semanticUiReact.Icon, { name: 'remove' }),
+        'Cancel'
+      ),
+      _react2.default.createElement(
+        _semanticUiReact.Button,
+        {
+          basic: true,
+          inverted: true,
+          color: 'green',
+          onClick: function onClick() {
+            return removeUserConfirmed();
+          }
+        },
+        _react2.default.createElement(_semanticUiReact.Icon, { name: 'checkmark' }),
+        'OK'
+      )
+    )
+  );
+});
+
+/***/ }),
+/* 509 */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+
+var _templateObject = _taggedTemplateLiteral(['admin.users.', '.nickname'], ['admin.users.', '.nickname']),
+    _templateObject2 = _taggedTemplateLiteral(['admin.activeUid'], ['admin.activeUid']),
+    _templateObject3 = _taggedTemplateLiteral(['admin.showConfirmSignOut'], ['admin.showConfirmSignOut']),
+    _templateObject4 = _taggedTemplateLiteral(['admin.signOutCancelled'], ['admin.signOutCancelled']),
+    _templateObject5 = _taggedTemplateLiteral(['admin.signOutConfirmed'], ['admin.signOutConfirmed']);
+
+var _react = __webpack_require__(0);
+
+var _react2 = _interopRequireDefault(_react);
+
+var _react3 = __webpack_require__(17);
+
+var _tags = __webpack_require__(6);
+
+var _semanticUiReact = __webpack_require__(16);
+
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+function _taggedTemplateLiteral(strings, raw) { return Object.freeze(Object.defineProperties(strings, { raw: { value: Object.freeze(raw) } })); }
+
+exports.default = (0, _react3.connect)({
+  nickname: (0, _tags.state)(_templateObject, (0, _tags.state)(_templateObject2)),
+  showConfirmSignOut: (0, _tags.state)(_templateObject3),
+  signOutCancelled: (0, _tags.signal)(_templateObject4),
+  signOutConfirmed: (0, _tags.signal)(_templateObject5)
+}, function ConfirmSignOut(_ref) {
+  var nickname = _ref.nickname,
+      showConfirmSignOut = _ref.showConfirmSignOut,
+      signOutCancelled = _ref.signOutCancelled,
+      signOutConfirmed = _ref.signOutConfirmed;
+
+  return _react2.default.createElement(
+    _semanticUiReact.Modal,
+    {
+      basic: true,
+      size: 'small',
+      dimmer: 'blurring',
+      open: showConfirmSignOut,
+      onClose: signOutCancelled
+    },
+    _react2.default.createElement(
+      _semanticUiReact.Modal.Header,
+      null,
+      _react2.default.createElement(_semanticUiReact.Icon, { name: 'sign out' }),
+      'Invalidate all user tokens'
+    ),
+    _react2.default.createElement(
+      _semanticUiReact.Modal.Content,
+      null,
+      _react2.default.createElement(
+        'p',
+        null,
+        'Are you sure you want to disallow refreshing all current tokens from ',
+        nickname,
+        '?'
+      ),
+      _react2.default.createElement(
+        'p',
+        null,
+        'You will do this normally if a token gets compromised.'
+      )
+    ),
+    _react2.default.createElement(
+      _semanticUiReact.Modal.Actions,
+      null,
+      _react2.default.createElement(
+        _semanticUiReact.Button,
+        { basic: true, inverted: true, color: 'red', onClick: function onClick() {
+            return signOutCancelled();
+          } },
+        _react2.default.createElement(_semanticUiReact.Icon, { name: 'remove' }),
+        'Cancel'
+      ),
+      _react2.default.createElement(
+        _semanticUiReact.Button,
+        {
+          basic: true,
+          inverted: true,
+          color: 'green',
+          onClick: function onClick() {
+            return signOutConfirmed();
+          }
+        },
+        _react2.default.createElement(_semanticUiReact.Icon, { name: 'checkmark' }),
+        'OK'
+      )
+    )
+  );
+});
+
+/***/ }),
+/* 510 */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+
+var _templateObject = _taggedTemplateLiteral(['admin.pageSize'], ['admin.pageSize']),
+    _templateObject2 = _taggedTemplateLiteral(['admin.pageSizeChanged'], ['admin.pageSizeChanged']),
+    _templateObject3 = _taggedTemplateLiteral(['admin.currentPage'], ['admin.currentPage']),
+    _templateObject4 = _taggedTemplateLiteral(['admin.pages'], ['admin.pages']),
+    _templateObject5 = _taggedTemplateLiteral(['admin.changePageClicked'], ['admin.changePageClicked']);
+
+var _react = __webpack_require__(0);
+
+var _react2 = _interopRequireDefault(_react);
+
+var _react3 = __webpack_require__(17);
+
+var _tags = __webpack_require__(6);
+
+var _semanticUiReact = __webpack_require__(16);
+
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+function _taggedTemplateLiteral(strings, raw) { return Object.freeze(Object.defineProperties(strings, { raw: { value: Object.freeze(raw) } })); }
+
+exports.default = (0, _react3.connect)({
+  pageSize: (0, _tags.state)(_templateObject),
+  pageSizeChanged: (0, _tags.signal)(_templateObject2),
+  currentPage: (0, _tags.state)(_templateObject3),
+  pages: (0, _tags.state)(_templateObject4),
+  changePageClicked: (0, _tags.signal)(_templateObject5)
+}, function Admin(_ref) {
+  var pageSize = _ref.pageSize,
+      pageSizeChanged = _ref.pageSizeChanged,
+      currentPage = _ref.currentPage,
+      pages = _ref.pages,
+      changePageClicked = _ref.changePageClicked;
+
+  var paginationOptions = [{ text: '10', value: 10 }, { text: '20', value: 20 }, { text: '30', value: 30 }, { text: '50', value: 50 }, { text: '100', value: 100 }];
+
+  return _react2.default.createElement(
+    _semanticUiReact.Menu,
+    { floated: 'right', inverted: true, pagination: true },
+    _react2.default.createElement(
+      _semanticUiReact.Menu.Item,
+      {
+        as: 'a',
+        icon: true,
+        disabled: currentPage === 1,
+        onClick: function onClick() {
+          return changePageClicked({ nextPage: 'first' });
+        }
+      },
+      _react2.default.createElement(_semanticUiReact.Icon, { name: 'angle double left' })
+    ),
+    _react2.default.createElement(
+      _semanticUiReact.Menu.Item,
+      {
+        as: 'a',
+        icon: true,
+        disabled: currentPage === 1,
+        onClick: function onClick() {
+          return changePageClicked({ nextPage: 'previous' });
+        }
+      },
+      _react2.default.createElement(_semanticUiReact.Icon, { name: 'angle left' })
+    ),
+    _react2.default.createElement(
+      _semanticUiReact.Menu.Item,
+      null,
+      _react2.default.createElement(
+        'strong',
+        null,
+        currentPage
+      ),
+      '/',
+      pages
+    ),
+    _react2.default.createElement(
+      _semanticUiReact.Menu.Item,
+      {
+        as: 'a',
+        icon: true,
+        disabled: currentPage === pages,
+        onClick: function onClick() {
+          return changePageClicked({ nextPage: 'next' });
+        }
+      },
+      _react2.default.createElement(_semanticUiReact.Icon, { name: 'angle right' })
+    ),
+    _react2.default.createElement(
+      _semanticUiReact.Menu.Item,
+      {
+        as: 'a',
+        icon: true,
+        disabled: currentPage === pages,
+        onClick: function onClick() {
+          return changePageClicked({ nextPage: 'last' });
+        }
+      },
+      _react2.default.createElement(_semanticUiReact.Icon, { name: 'angle double right' })
+    ),
+    _react2.default.createElement(
+      _semanticUiReact.Menu.Item,
+      null,
+      'users/page:'
+    ),
+    _react2.default.createElement(_semanticUiReact.Dropdown, {
+      item: true,
+      selection: true,
+      upward: true,
+      floating: true,
+      defaultValue: pageSize,
+      options: paginationOptions,
+      onChange: function onChange(e, _ref2) {
+        var value = _ref2.value;
+        return pageSizeChanged({ value: value });
+      }
+    })
+  );
+});
+
+/***/ }),
+/* 511 */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+
+var _templateObject = _taggedTemplateLiteral(['admin.searchIsLoading'], ['admin.searchIsLoading']),
+    _templateObject2 = _taggedTemplateLiteral(['admin.searchSubmitted'], ['admin.searchSubmitted']);
+
+var _react = __webpack_require__(0);
+
+var _react2 = _interopRequireDefault(_react);
+
+var _react3 = __webpack_require__(17);
+
+var _tags = __webpack_require__(6);
+
+var _semanticUiReact = __webpack_require__(16);
+
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+function _taggedTemplateLiteral(strings, raw) { return Object.freeze(Object.defineProperties(strings, { raw: { value: Object.freeze(raw) } })); }
+
+exports.default = (0, _react3.connect)({
+  isLoading: (0, _tags.state)(_templateObject),
+  searchSubmitted: (0, _tags.signal)(_templateObject2)
+}, function Search(_ref) {
+  var isLoading = _ref.isLoading,
+      searchSubmitted = _ref.searchSubmitted;
+
+  return _react2.default.createElement(_semanticUiReact.Input, {
+    inverted: true,
+    placeholder: 'Search users...',
+    loading: isLoading,
+    icon: 'users',
+    iconPosition: 'left',
+    onChange: function onChange(e, _ref2) {
+      var value = _ref2.value;
+      return searchSubmitted({ value: value });
+    }
+  });
+});
+
+/***/ }),
+/* 512 */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+
+var _templateObject = _taggedTemplateLiteral(['admin.users.', ''], ['admin.users.', '']),
+    _templateObject2 = _taggedTemplateLiteral(['uid'], ['uid']),
+    _templateObject3 = _taggedTemplateLiteral(['user.email'], ['user.email']),
+    _templateObject4 = _taggedTemplateLiteral(['admin.signOutButtonClicked'], ['admin.signOutButtonClicked']),
+    _templateObject5 = _taggedTemplateLiteral(['admin.removeUserButtonClicked'], ['admin.removeUserButtonClicked']),
+    _templateObject6 = _taggedTemplateLiteral(['admin.toggleAdminClicked'], ['admin.toggleAdminClicked']),
+    _templateObject7 = _taggedTemplateLiteral(['admin.users.', '.toggleAdminIsLoading'], ['admin.users.', '.toggleAdminIsLoading']);
+
+var _react = __webpack_require__(0);
+
+var _react2 = _interopRequireDefault(_react);
+
+var _react3 = __webpack_require__(17);
+
+var _tags = __webpack_require__(6);
+
+var _semanticUiReact = __webpack_require__(16);
+
+var _ConfirmSignOut = __webpack_require__(509);
+
+var _ConfirmSignOut2 = _interopRequireDefault(_ConfirmSignOut);
+
+var _ConfirmRemoveUser = __webpack_require__(508);
+
+var _ConfirmRemoveUser2 = _interopRequireDefault(_ConfirmRemoveUser);
+
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+function _taggedTemplateLiteral(strings, raw) { return Object.freeze(Object.defineProperties(strings, { raw: { value: Object.freeze(raw) } })); }
+
+exports.default = (0, _react3.connect)({
+  user: (0, _tags.state)(_templateObject, (0, _tags.props)(_templateObject2)),
+  email: (0, _tags.state)(_templateObject3),
+  signOutButtonClicked: (0, _tags.signal)(_templateObject4),
+  removeUserButtonClicked: (0, _tags.signal)(_templateObject5),
+  toggleAdminClicked: (0, _tags.signal)(_templateObject6),
+  toggleAdminIsLoading: (0, _tags.state)(_templateObject7, (0, _tags.props)(_templateObject2))
+}, function UserRow(_ref) {
+  var uid = _ref.uid,
+      user = _ref.user,
+      email = _ref.email,
+      signOutButtonClicked = _ref.signOutButtonClicked,
+      removeUserButtonClicked = _ref.removeUserButtonClicked,
+      toggleAdminClicked = _ref.toggleAdminClicked,
+      toggleAdminIsLoading = _ref.toggleAdminIsLoading;
+
+  return _react2.default.createElement(
+    _semanticUiReact.Table.Row,
+    null,
+    _react2.default.createElement(
+      _semanticUiReact.Table.Cell,
+      { collapsing: true, textAlign: 'center' },
+      _react2.default.createElement(_semanticUiReact.Button, {
+        inverted: true,
+        icon: _react2.default.createElement(_semanticUiReact.Icon, { name: 'sign out', size: 'large' }),
+        color: 'yellow',
+        onClick: function onClick() {
+          return signOutButtonClicked({ uid: uid });
+        }
+      }),
+      _react2.default.createElement(_ConfirmSignOut2.default, null),
+      user.email !== 'admin@example.com' && user.email !== email && _react2.default.createElement(_semanticUiReact.Button, {
+        inverted: true,
+        icon: _react2.default.createElement(_semanticUiReact.Icon, { name: 'remove user', size: 'large' }),
+        color: 'red',
+        onClick: function onClick() {
+          return removeUserButtonClicked({ uid: uid });
+        }
+      }),
+      _react2.default.createElement(_ConfirmRemoveUser2.default, null)
+    ),
+    _react2.default.createElement(
+      _semanticUiReact.Table.Cell,
+      null,
+      user.nickname
+    ),
+    _react2.default.createElement(
+      _semanticUiReact.Table.Cell,
+      null,
+      user.email
+    ),
+    _react2.default.createElement(_semanticUiReact.Table.Cell, {
+      textAlign: 'center',
+      icon: user.emailConfirmed ? _react2.default.createElement(_semanticUiReact.Icon, { name: 'checkmark', color: 'green', size: 'large' }) : _react2.default.createElement(_semanticUiReact.Icon, { name: 'remove', color: 'red', size: 'large' })
+    }),
+    _react2.default.createElement(
+      _semanticUiReact.Table.Cell,
+      { textAlign: 'center' },
+      _react2.default.createElement(_semanticUiReact.Button, {
+        inverted: true,
+        basic: true,
+        color: 'blue',
+        loading: toggleAdminIsLoading,
+        disabled: user.email === 'admin@example.com' || user.email === email,
+        icon: user.isAdmin ? _react2.default.createElement(_semanticUiReact.Icon, { name: 'checkmark', color: 'green', size: 'large' }) : _react2.default.createElement(_semanticUiReact.Icon, { name: 'remove', color: 'red', size: 'large' }),
+        onClick: function onClick() {
+          return toggleAdminClicked({ uid: uid });
+        }
+      })
+    ),
+    _react2.default.createElement(
+      _semanticUiReact.Table.Cell,
+      null,
+      user.lastLogin
+    ),
+    _react2.default.createElement(
+      _semanticUiReact.Table.Cell,
+      null,
+      user.registered
+    ),
+    _react2.default.createElement(
+      _semanticUiReact.Table.Cell,
+      null,
+      user.registerIP
+    )
+  );
+});
+
+/***/ }),
+/* 513 */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+
+var _templateObject = _taggedTemplateLiteral(['admin.usersSortBy'], ['admin.usersSortBy']),
+    _templateObject2 = _taggedTemplateLiteral(['admin.usersSortDir'], ['admin.usersSortDir']),
+    _templateObject3 = _taggedTemplateLiteral(['admin.sortUsersClicked'], ['admin.sortUsersClicked']);
+
+var _react = __webpack_require__(0);
+
+var _react2 = _interopRequireDefault(_react);
+
+var _react3 = __webpack_require__(17);
+
+var _tags = __webpack_require__(6);
+
+var _semanticUiReact = __webpack_require__(16);
+
+var _sortedUsers = __webpack_require__(535);
+
+var _sortedUsers2 = _interopRequireDefault(_sortedUsers);
+
+var _Search = __webpack_require__(511);
+
+var _Search2 = _interopRequireDefault(_Search);
+
+var _UserRow = __webpack_require__(512);
+
+var _UserRow2 = _interopRequireDefault(_UserRow);
+
+var _Pagination = __webpack_require__(510);
+
+var _Pagination2 = _interopRequireDefault(_Pagination);
+
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+function _taggedTemplateLiteral(strings, raw) { return Object.freeze(Object.defineProperties(strings, { raw: { value: Object.freeze(raw) } })); }
+
+exports.default = (0, _react3.connect)({
+  sortedUsers: _sortedUsers2.default,
+  usersSortBy: (0, _tags.state)(_templateObject),
+  usersSortDir: (0, _tags.state)(_templateObject2),
+  sortUsersClicked: (0, _tags.signal)(_templateObject3)
+}, function Admin(_ref) {
+  var sortedUsers = _ref.sortedUsers,
+      usersSortBy = _ref.usersSortBy,
+      usersSortDir = _ref.usersSortDir,
+      sortUsersClicked = _ref.sortUsersClicked;
+
+  return _react2.default.createElement(
+    _semanticUiReact.Grid,
+    { stackable: true, padded: 'vertically', centered: true },
+    _react2.default.createElement(
+      _semanticUiReact.Grid.Row,
+      null,
+      _react2.default.createElement(
+        _semanticUiReact.Grid.Column,
+        { style: { width: '100%', overflowX: 'auto' } },
+        _react2.default.createElement(
+          _semanticUiReact.Table,
+          { inverted: true, striped: true, definition: true, sortable: true, unstackable: true },
+          _react2.default.createElement(
+            _semanticUiReact.Table.Header,
+            { fullWidth: true },
+            _react2.default.createElement(
+              _semanticUiReact.Table.Row,
+              null,
+              _react2.default.createElement(
+                _semanticUiReact.Table.HeaderCell,
+                null,
+                _react2.default.createElement(_Search2.default, null)
+              ),
+              _react2.default.createElement(
+                _semanticUiReact.Table.HeaderCell,
+                {
+                  sorted: usersSortBy === 'nickname' ? usersSortDir : null,
+                  onClick: function onClick() {
+                    return sortUsersClicked({ sortBy: 'nickname' });
+                  }
+                },
+                'Nickname'
+              ),
+              _react2.default.createElement(
+                _semanticUiReact.Table.HeaderCell,
+                {
+                  sorted: usersSortBy === 'email' ? usersSortDir : null,
+                  onClick: function onClick() {
+                    return sortUsersClicked({ sortBy: 'email' });
+                  }
+                },
+                'E-mail address'
+              ),
+              _react2.default.createElement(
+                _semanticUiReact.Table.HeaderCell,
+                {
+                  sorted: usersSortBy === 'emailConfirmed' ? usersSortDir : null,
+                  onClick: function onClick() {
+                    return sortUsersClicked({ sortBy: 'emailConfirmed' });
+                  }
+                },
+                'Confirmed'
+              ),
+              _react2.default.createElement(
+                _semanticUiReact.Table.HeaderCell,
+                null,
+                'Admin'
+              ),
+              _react2.default.createElement(
+                _semanticUiReact.Table.HeaderCell,
+                {
+                  sorted: usersSortBy === 'lastLogin' ? usersSortDir : null,
+                  onClick: function onClick() {
+                    return sortUsersClicked({ sortBy: 'lastLogin' });
+                  }
+                },
+                'Last login'
+              ),
+              _react2.default.createElement(
+                _semanticUiReact.Table.HeaderCell,
+                {
+                  sorted: usersSortBy === 'registered' ? usersSortDir : null,
+                  onClick: function onClick() {
+                    return sortUsersClicked({ sortBy: 'registered' });
+                  }
+                },
+                'Registered'
+              ),
+              _react2.default.createElement(
+                _semanticUiReact.Table.HeaderCell,
+                {
+                  sorted: usersSortBy === 'registerIP' ? usersSortDir : null,
+                  onClick: function onClick() {
+                    return sortUsersClicked({ sortBy: 'registerIP' });
+                  }
+                },
+                'Register IP'
+              )
+            )
+          ),
+          _react2.default.createElement(
+            _semanticUiReact.Table.Body,
+            null,
+            sortedUsers.map(function (uid) {
+              return _react2.default.createElement(_UserRow2.default, { key: uid, uid: uid });
+            })
+          ),
+          _react2.default.createElement(
+            _semanticUiReact.Table.Footer,
+            { fullWidth: true },
+            _react2.default.createElement(
+              _semanticUiReact.Table.Row,
+              null,
+              _react2.default.createElement(
+                _semanticUiReact.Table.Cell,
+                { colSpan: '8' },
+                _react2.default.createElement(_Pagination2.default, null)
+              )
+            )
+          )
+        )
+      )
+    )
+  );
+});
+
+/***/ }),
+/* 514 */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+
+var _extends = Object.assign || function (target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i]; for (var key in source) { if (Object.prototype.hasOwnProperty.call(source, key)) { target[key] = source[key]; } } } return target; };
+
+var _templateObject = _taggedTemplateLiteral(['app.flash'], ['app.flash']),
+    _templateObject2 = _taggedTemplateLiteral(['app.flashType'], ['app.flashType']);
+
+var _react = __webpack_require__(0);
+
+var _react2 = _interopRequireDefault(_react);
+
+var _react3 = __webpack_require__(17);
+
+var _tags = __webpack_require__(6);
+
+var _semanticUiReact = __webpack_require__(16);
+
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+function _defineProperty(obj, key, value) { if (key in obj) { Object.defineProperty(obj, key, { value: value, enumerable: true, configurable: true, writable: true }); } else { obj[key] = value; } return obj; }
+
+function _taggedTemplateLiteral(strings, raw) { return Object.freeze(Object.defineProperties(strings, { raw: { value: Object.freeze(raw) } })); }
+
+exports.default = (0, _react3.connect)({
+  flash: (0, _tags.state)(_templateObject),
+  flashType: (0, _tags.state)(_templateObject2)
+}, function Flash(_ref) {
+  var flash = _ref.flash,
+      flashType = _ref.flashType;
+
+  var flashTypeAttr = flashType ? _defineProperty({}, flashType, true) : {};
+  return _react2.default.createElement(
+    _semanticUiReact.Grid,
+    { stackable: true, padded: 'vertically', columns: 2, centered: true },
+    _react2.default.createElement(
+      _semanticUiReact.Grid.Column,
+      null,
+      _react2.default.createElement(_semanticUiReact.Message, _extends({}, flashTypeAttr, { header: flash, hidden: !flash }))
+    )
+  );
+});
+
+/***/ }),
+/* 515 */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+
+var _templateObject = _taggedTemplateLiteral(['app.headerText'], ['app.headerText']),
+    _templateObject2 = _taggedTemplateLiteral(['app.headerIcon'], ['app.headerIcon']);
+
+var _react = __webpack_require__(0);
+
+var _react2 = _interopRequireDefault(_react);
+
+var _react3 = __webpack_require__(17);
+
+var _tags = __webpack_require__(6);
+
+var _semanticUiReact = __webpack_require__(16);
+
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+function _taggedTemplateLiteral(strings, raw) { return Object.freeze(Object.defineProperties(strings, { raw: { value: Object.freeze(raw) } })); }
+
+exports.default = (0, _react3.connect)({
+  headerText: (0, _tags.state)(_templateObject),
+  headerIcon: (0, _tags.state)(_templateObject2)
+}, function PageHeader(_ref) {
+  var headerText = _ref.headerText,
+      headerIcon = _ref.headerIcon;
+
+  return _react2.default.createElement(
+    _semanticUiReact.Grid,
+    { stackable: true, columns: 2, centered: true },
+    _react2.default.createElement(
+      _semanticUiReact.Grid.Row,
+      null,
+      _react2.default.createElement(
+        _semanticUiReact.Grid.Column,
+        null,
+        _react2.default.createElement(
+          _semanticUiReact.Header,
+          {
+            inverted: true,
+            as: 'h1',
+            textAlign: 'center',
+            color: 'blue',
+            icon: !!headerIcon
+          },
+          !!headerIcon && _react2.default.createElement(_semanticUiReact.Icon, { name: headerIcon }),
+          headerText
+        )
+      )
+    )
+  );
+});
+
+/***/ }),
+/* 516 */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+
+var _templateObject = _taggedTemplateLiteral(['app.currentPage'], ['app.currentPage']),
+    _templateObject2 = _taggedTemplateLiteral(['user'], ['user']),
+    _templateObject3 = _taggedTemplateLiteral(['user.logoutButtonClicked'], ['user.logoutButtonClicked']);
+
+var _react = __webpack_require__(0);
+
+var _react2 = _interopRequireDefault(_react);
+
+var _react3 = __webpack_require__(17);
+
+var _tags = __webpack_require__(6);
+
+var _semanticUiReact = __webpack_require__(16);
+
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+function _taggedTemplateLiteral(strings, raw) { return Object.freeze(Object.defineProperties(strings, { raw: { value: Object.freeze(raw) } })); }
+
+exports.default = (0, _react3.connect)({
+  currentPage: (0, _tags.state)(_templateObject),
+  user: (0, _tags.state)(_templateObject2),
+  logoutButtonClicked: (0, _tags.signal)(_templateObject3)
+}, function Navbar(_ref) {
+  var currentPage = _ref.currentPage,
+      user = _ref.user,
+      logoutButtonClicked = _ref.logoutButtonClicked;
+
+  return _react2.default.createElement(
+    _semanticUiReact.Menu,
+    { attached: 'top', inverted: true, secondary: true, pointing: true, size: 'large' },
+    _react2.default.createElement(
+      _semanticUiReact.Menu.Item,
+      { name: 'home', href: '/', active: currentPage === null },
+      'Home'
+    ),
+    _react2.default.createElement(
+      _semanticUiReact.Menu.Item,
+      {
+        name: 'private',
+        href: '/private',
+        active: currentPage === 'private'
+      },
+      'Private'
+    ),
+    _react2.default.createElement(
+      _semanticUiReact.Menu.Menu,
+      {
+        position: 'right',
+        style: { display: user.authenticated ? 'none' : 'flex' }
+      },
+      _react2.default.createElement(
+        _semanticUiReact.Menu.Item,
+        { name: 'login', href: '/login' },
+        _react2.default.createElement(
+          _semanticUiReact.Button,
+          {
+            inverted: true,
+            compact: true,
+            color: 'yellow',
+            active: currentPage === 'login'
+          },
+          'Log in'
+        )
+      ),
+      _react2.default.createElement(
+        _semanticUiReact.Menu.Item,
+        { name: 'register', href: '/register' },
+        _react2.default.createElement(
+          _semanticUiReact.Button,
+          {
+            inverted: true,
+            compact: true,
+            color: 'blue',
+            active: currentPage === 'register'
+          },
+          'Sign Up'
+        )
+      )
+    ),
+    _react2.default.createElement(
+      _semanticUiReact.Menu.Menu,
+      {
+        position: 'right',
+        style: { display: user.authenticated ? 'flex' : 'none' }
+      },
+      _react2.default.createElement(
+        _semanticUiReact.Menu.Item,
+        {
+          name: 'settings',
+          href: '/settings',
+          style: {
+            display: user.email !== 'admin@example.com' ? 'flex' : 'none'
+          }
+        },
+        _react2.default.createElement(_semanticUiReact.Button, {
+          inverted: true,
+          compact: true,
+          color: 'blue',
+          icon: _react2.default.createElement(_semanticUiReact.Icon, { name: 'user', size: 'large' }),
+          active: currentPage === 'settings'
+        })
+      ),
+      _react2.default.createElement(
+        _semanticUiReact.Menu.Item,
+        {
+          name: 'admin',
+          href: '/admin',
+          style: { display: user.isAdmin ? 'flex' : 'none' }
+        },
+        _react2.default.createElement(_semanticUiReact.Button, {
+          inverted: true,
+          compact: true,
+          color: 'blue',
+          icon: _react2.default.createElement(_semanticUiReact.Icon, { name: 'users', size: 'large' }),
+          active: currentPage === 'admin'
+        })
+      ),
+      _react2.default.createElement(
+        _semanticUiReact.Menu.Item,
+        null,
+        _react2.default.createElement(_semanticUiReact.Button, {
+          inverted: true,
+          compact: true,
+          color: 'blue',
+          icon: _react2.default.createElement(_semanticUiReact.Icon, { name: 'sign out', size: 'large' }),
+          onClick: function onClick() {
+            return logoutButtonClicked();
+          }
+        })
+      )
+    )
+  );
+});
+
+/***/ }),
+/* 517 */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+exports.default = Home;
+
+var _react = __webpack_require__(0);
+
+var _react2 = _interopRequireDefault(_react);
+
+var _semanticUiReact = __webpack_require__(16);
+
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+function Home() {
+  return _react2.default.createElement(
+    _semanticUiReact.Grid,
+    { stackable: true, padded: 'vertically', columns: 2, centered: true },
+    _react2.default.createElement(
+      _semanticUiReact.Grid.Row,
+      null,
+      _react2.default.createElement(
+        _semanticUiReact.Grid.Column,
+        null,
+        _react2.default.createElement(
+          _semanticUiReact.Segment,
+          { padded: true, size: 'big' },
+          _react2.default.createElement(
+            'p',
+            null,
+            'This is a a authentication boilerplate, which uses Morepath as a REST back-end and Cerebral as front-end.'
+          ),
+          _react2.default.createElement(
+            'p',
+            null,
+            'Please feel free to play around, register and sign in. For trying out the User Admin panel you have to sign in with Admin permissions.'
+          ),
+          _react2.default.createElement(
+            'p',
+            null,
+            'Just sign in with the email address ',
+            _react2.default.createElement(
+              'em',
+              null,
+              'admin@example.com'
+            ),
+            ' and the password',
+            ' ',
+            _react2.default.createElement(
+              'em',
+              null,
+              'admin0'
+            ),
+            '. In the Admin panel you can give Admin permissions also to other users.'
+          )
+        )
+      )
+    )
+  );
+}
+
+/***/ }),
+/* 518 */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+
+var _templateObject = _taggedTemplateLiteral(['user.loginForm.isLoading'], ['user.loginForm.isLoading']),
+    _templateObject2 = _taggedTemplateLiteral(['user.loginForm.showErrors'], ['user.loginForm.showErrors']),
+    _templateObject3 = _taggedTemplateLiteral(['user.loginFormSubmitted'], ['user.loginFormSubmitted']);
+
+var _react = __webpack_require__(0);
+
+var _react2 = _interopRequireDefault(_react);
+
+var _react3 = __webpack_require__(17);
+
+var _tags = __webpack_require__(6);
+
+var _semanticUiReact = __webpack_require__(16);
+
+var _fields = __webpack_require__(54);
+
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+function _taggedTemplateLiteral(strings, raw) { return Object.freeze(Object.defineProperties(strings, { raw: { value: Object.freeze(raw) } })); }
+
+exports.default = (0, _react3.connect)({
+  isLoading: (0, _tags.state)(_templateObject),
+  showErrors: (0, _tags.state)(_templateObject2),
+  formSubmitted: (0, _tags.signal)(_templateObject3)
+}, function Login(_ref) {
+  var isLoading = _ref.isLoading,
+      showErrors = _ref.showErrors,
+      formSubmitted = _ref.formSubmitted;
+
+  var handleSubmit = function handleSubmit(event) {
+    event.preventDefault();
+    formSubmitted();
+  };
+  return _react2.default.createElement(
+    _semanticUiReact.Grid,
+    { stackable: true, padded: 'vertically', columns: 2, centered: true },
+    _react2.default.createElement(
+      _semanticUiReact.Grid.Row,
+      null,
+      _react2.default.createElement(
+        _semanticUiReact.Grid.Column,
+        null,
+        _react2.default.createElement(
+          _semanticUiReact.Form,
+          { size: 'large' },
+          _react2.default.createElement(
+            _semanticUiReact.Segment,
+            null,
+            _react2.default.createElement(
+              _semanticUiReact.Dimmer,
+              { inverted: true, active: isLoading },
+              _react2.default.createElement(_semanticUiReact.Loader, null)
+            ),
+            _react2.default.createElement(_fields.EmailField, {
+              path: 'user.loginForm.email',
+              showErrors: showErrors
+            }),
+            _react2.default.createElement(_fields.PasswordField, {
+              path: 'user.loginForm.password',
+              showErrors: showErrors
+            }),
+            _react2.default.createElement(
+              _semanticUiReact.Button,
+              { fluid: true, size: 'large', color: 'blue', onClick: handleSubmit },
+              'Login'
+            )
+          )
+        ),
+        _react2.default.createElement(
+          _semanticUiReact.Message,
+          null,
+          'New to us?',
+          _react2.default.createElement(
+            'a',
+            { href: '/register' },
+            ' Sign Up'
+          )
+        ),
+        _react2.default.createElement(
+          _semanticUiReact.Message,
+          null,
+          'Forgot your password?',
+          _react2.default.createElement(
+            'a',
+            { href: '/reset' },
+            ' Reset Password'
+          )
+        )
+      )
+    )
+  );
+});
+
+/***/ }),
+/* 519 */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+
+var _templateObject = _taggedTemplateLiteral(['user.passwordForm.isLoading'], ['user.passwordForm.isLoading']),
+    _templateObject2 = _taggedTemplateLiteral(['user.passwordForm.showErrors'], ['user.passwordForm.showErrors']),
+    _templateObject3 = _taggedTemplateLiteral(['user.passwordFormSubmitted'], ['user.passwordFormSubmitted']);
+
+var _react = __webpack_require__(0);
+
+var _react2 = _interopRequireDefault(_react);
+
+var _react3 = __webpack_require__(17);
+
+var _tags = __webpack_require__(6);
+
+var _semanticUiReact = __webpack_require__(16);
+
+var _fields = __webpack_require__(54);
+
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+function _taggedTemplateLiteral(strings, raw) { return Object.freeze(Object.defineProperties(strings, { raw: { value: Object.freeze(raw) } })); }
+
+exports.default = (0, _react3.connect)({
+  isLoading: (0, _tags.state)(_templateObject),
+  showErrors: (0, _tags.state)(_templateObject2),
+  formSubmitted: (0, _tags.signal)(_templateObject3)
+}, function NewPassword(_ref) {
+  var isLoading = _ref.isLoading,
+      showErrors = _ref.showErrors,
+      formSubmitted = _ref.formSubmitted;
+
+  var handleSubmit = function handleSubmit(event) {
+    event.preventDefault();
+    formSubmitted();
+  };
+  return _react2.default.createElement(
+    _semanticUiReact.Grid,
+    { stackable: true, padded: 'vertically', columns: 2, centered: true },
+    _react2.default.createElement(
+      _semanticUiReact.Grid.Row,
+      null,
+      _react2.default.createElement(
+        _semanticUiReact.Grid.Column,
+        null,
+        _react2.default.createElement(
+          _semanticUiReact.Form,
+          { size: 'large' },
+          _react2.default.createElement(
+            _semanticUiReact.Segment,
+            null,
+            _react2.default.createElement(
+              _semanticUiReact.Dimmer,
+              { inverted: true, active: isLoading },
+              _react2.default.createElement(_semanticUiReact.Loader, null)
+            ),
+            _react2.default.createElement(_fields.PasswordField, {
+              path: 'user.passwordForm.password',
+              showErrors: showErrors
+            }),
+            _react2.default.createElement(_fields.ConfirmPasswordField, {
+              path: 'user.passwordForm.confirmPassword',
+              showErrors: true
+            }),
+            _react2.default.createElement(
+              _semanticUiReact.Button,
+              { fluid: true, size: 'large', color: 'blue', onClick: handleSubmit },
+              'Update'
+            )
+          )
+        )
+      )
+    )
+  );
+});
+
+/***/ }),
+/* 520 */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+exports.default = Private;
+
+var _react = __webpack_require__(0);
+
+var _react2 = _interopRequireDefault(_react);
+
+var _semanticUiReact = __webpack_require__(16);
+
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+function Private() {
+  return _react2.default.createElement(
+    _semanticUiReact.Grid,
+    { stackable: true, padded: 'vertically', columns: 2, centered: true },
+    _react2.default.createElement(
+      _semanticUiReact.Grid.Row,
+      null,
+      _react2.default.createElement(
+        _semanticUiReact.Grid.Column,
+        null,
+        _react2.default.createElement(
+          _semanticUiReact.Segment,
+          { padded: true, textAlign: 'left', color: 'red', size: 'big' },
+          'This is the private area for which you have to log in to read it.'
+        )
+      )
+    )
+  );
+}
+
+/***/ }),
+/* 521 */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+
+var _templateObject = _taggedTemplateLiteral(['user.registerForm.isLoading'], ['user.registerForm.isLoading']),
+    _templateObject2 = _taggedTemplateLiteral(['user.registerForm.showErrors'], ['user.registerForm.showErrors']),
+    _templateObject3 = _taggedTemplateLiteral(['user.registerFormSubmitted'], ['user.registerFormSubmitted']);
+
+var _react = __webpack_require__(0);
+
+var _react2 = _interopRequireDefault(_react);
+
+var _react3 = __webpack_require__(17);
+
+var _tags = __webpack_require__(6);
+
+var _semanticUiReact = __webpack_require__(16);
+
+var _fields = __webpack_require__(54);
+
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+function _taggedTemplateLiteral(strings, raw) { return Object.freeze(Object.defineProperties(strings, { raw: { value: Object.freeze(raw) } })); }
+
+exports.default = (0, _react3.connect)({
+  isLoading: (0, _tags.state)(_templateObject),
+  showErrors: (0, _tags.state)(_templateObject2),
+  formSubmitted: (0, _tags.signal)(_templateObject3)
+}, function Register(_ref) {
+  var isLoading = _ref.isLoading,
+      showErrors = _ref.showErrors,
+      formSubmitted = _ref.formSubmitted;
+
+  var handleSubmit = function handleSubmit(event) {
+    event.preventDefault();
+    formSubmitted();
+  };
+  return _react2.default.createElement(
+    _semanticUiReact.Grid,
+    { stackable: true, padded: 'vertically', columns: 2, centered: true },
+    _react2.default.createElement(
+      _semanticUiReact.Grid.Row,
+      null,
+      _react2.default.createElement(
+        _semanticUiReact.Grid.Column,
+        null,
+        _react2.default.createElement(
+          _semanticUiReact.Form,
+          { size: 'large' },
+          _react2.default.createElement(
+            _semanticUiReact.Segment,
+            null,
+            _react2.default.createElement(
+              _semanticUiReact.Dimmer,
+              { inverted: true, active: isLoading },
+              _react2.default.createElement(_semanticUiReact.Loader, null)
+            ),
+            _react2.default.createElement(_fields.NicknameField, {
+              path: 'user.registerForm.nickname',
+              showErrors: showErrors
+            }),
+            _react2.default.createElement(_fields.EmailField, {
+              path: 'user.registerForm.email',
+              showErrors: showErrors
+            }),
+            _react2.default.createElement(_fields.PasswordField, {
+              path: 'user.registerForm.password',
+              showErrors: showErrors
+            }),
+            _react2.default.createElement(_fields.ConfirmPasswordField, {
+              path: 'user.registerForm.confirmPassword',
+              showErrors: showErrors
+            }),
+            _react2.default.createElement(
+              _semanticUiReact.Button,
+              { fluid: true, size: 'large', color: 'blue', onClick: handleSubmit },
+              'Sign up'
+            )
+          )
+        )
+      )
+    )
+  );
+});
+
+/***/ }),
+/* 522 */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+
+var _templateObject = _taggedTemplateLiteral(['user.emailForm.isLoading'], ['user.emailForm.isLoading']),
+    _templateObject2 = _taggedTemplateLiteral(['user.emailForm.showErrors'], ['user.emailForm.showErrors']),
+    _templateObject3 = _taggedTemplateLiteral(['user.emailFormSubmitted'], ['user.emailFormSubmitted']);
+
+var _react = __webpack_require__(0);
+
+var _react2 = _interopRequireDefault(_react);
+
+var _react3 = __webpack_require__(17);
+
+var _tags = __webpack_require__(6);
+
+var _semanticUiReact = __webpack_require__(16);
+
+var _fields = __webpack_require__(54);
+
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+function _taggedTemplateLiteral(strings, raw) { return Object.freeze(Object.defineProperties(strings, { raw: { value: Object.freeze(raw) } })); }
+
+exports.default = (0, _react3.connect)({
+  isLoading: (0, _tags.state)(_templateObject),
+  showErrors: (0, _tags.state)(_templateObject2),
+  formSubmitted: (0, _tags.signal)(_templateObject3)
+}, function ResetPassword(_ref) {
+  var isLoading = _ref.isLoading,
+      showErrors = _ref.showErrors,
+      formSubmitted = _ref.formSubmitted;
+
+  var handleSubmit = function handleSubmit(event) {
+    event.preventDefault();
+    formSubmitted();
+  };
+  return _react2.default.createElement(
+    _semanticUiReact.Grid,
+    { stackable: true, padded: 'vertically', columns: 2, centered: true },
+    _react2.default.createElement(
+      _semanticUiReact.Grid.Row,
+      null,
+      _react2.default.createElement(
+        _semanticUiReact.Grid.Column,
+        null,
+        _react2.default.createElement(
+          _semanticUiReact.Form,
+          { size: 'large' },
+          _react2.default.createElement(
+            _semanticUiReact.Segment,
+            null,
+            _react2.default.createElement(
+              _semanticUiReact.Dimmer,
+              { inverted: true, active: isLoading },
+              _react2.default.createElement(_semanticUiReact.Loader, null)
+            ),
+            _react2.default.createElement(_fields.EmailField, {
+              path: 'user.emailForm.email',
+              showErrors: showErrors
+            }),
+            _react2.default.createElement(
+              _semanticUiReact.Button,
+              { fluid: true, size: 'large', color: 'blue', onClick: handleSubmit },
+              'Submit'
+            )
+          )
+        )
+      )
+    )
+  );
+});
+
+/***/ }),
+/* 523 */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+
+var _templateObject = _taggedTemplateLiteral(['settings.accountForm.isLoading'], ['settings.accountForm.isLoading']),
+    _templateObject2 = _taggedTemplateLiteral(['settings.accountForm.showErrors'], ['settings.accountForm.showErrors']),
+    _templateObject3 = _taggedTemplateLiteral(['settings.signOutButtonClicked'], ['settings.signOutButtonClicked']),
+    _templateObject4 = _taggedTemplateLiteral(['settings.removeUserButtonClicked'], ['settings.removeUserButtonClicked']);
+
+var _react = __webpack_require__(0);
+
+var _react2 = _interopRequireDefault(_react);
+
+var _react3 = __webpack_require__(17);
+
+var _tags = __webpack_require__(6);
+
+var _semanticUiReact = __webpack_require__(16);
+
+var _fields = __webpack_require__(54);
+
+var _ConfirmSignOut = __webpack_require__(525);
+
+var _ConfirmSignOut2 = _interopRequireDefault(_ConfirmSignOut);
+
+var _ConfirmRemoveUser = __webpack_require__(524);
+
+var _ConfirmRemoveUser2 = _interopRequireDefault(_ConfirmRemoveUser);
+
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+function _taggedTemplateLiteral(strings, raw) { return Object.freeze(Object.defineProperties(strings, { raw: { value: Object.freeze(raw) } })); }
+
+exports.default = (0, _react3.connect)({
+  isLoading: (0, _tags.state)(_templateObject),
+  showErrors: (0, _tags.state)(_templateObject2),
+  signOutButtonClicked: (0, _tags.signal)(_templateObject3),
+  removeUserButtonClicked: (0, _tags.signal)(_templateObject4)
+}, function UpdateEmail(_ref) {
+  var isLoading = _ref.isLoading,
+      showErrors = _ref.showErrors,
+      signOutButtonClicked = _ref.signOutButtonClicked,
+      removeUserButtonClicked = _ref.removeUserButtonClicked;
+
+  return _react2.default.createElement(
+    _semanticUiReact.Grid.Column,
+    null,
+    _react2.default.createElement(
+      _semanticUiReact.Header,
+      { inverted: true, as: 'h2', textAlign: 'center' },
+      'Manage your account'
+    ),
+    _react2.default.createElement(
+      _semanticUiReact.Form,
+      { size: 'large' },
+      _react2.default.createElement(
+        _semanticUiReact.Segment,
+        null,
+        _react2.default.createElement(
+          _semanticUiReact.Dimmer,
+          { inverted: true, active: isLoading },
+          _react2.default.createElement(_semanticUiReact.Loader, null)
+        ),
+        _react2.default.createElement(
+          _semanticUiReact.Grid,
+          { container: true, padded: true, divided: 'vertically', textAlign: 'center' },
+          _react2.default.createElement(
+            _semanticUiReact.Grid.Row,
+            null,
+            _react2.default.createElement(
+              _semanticUiReact.Grid.Column,
+              null,
+              _react2.default.createElement(
+                _semanticUiReact.Message,
+                { info: true },
+                _react2.default.createElement(
+                  _semanticUiReact.Message.Header,
+                  null,
+                  'We need your password to verify your identity'
+                )
+              ),
+              _react2.default.createElement(_fields.PasswordField, {
+                path: 'settings.accountForm.password',
+                showErrors: showErrors
+              })
+            )
+          ),
+          _react2.default.createElement(
+            _semanticUiReact.Grid.Row,
+            null,
+            _react2.default.createElement(
+              _semanticUiReact.Grid.Column,
+              null,
+              _react2.default.createElement(
+                _semanticUiReact.Message,
+                { info: true },
+                _react2.default.createElement(
+                  _semanticUiReact.Message.Header,
+                  null,
+                  'Dissallow refreshing your current tokens'
+                ),
+                _react2.default.createElement(
+                  'p',
+                  null,
+                  'You can use this when a token or your password gets compromised. Remember also to ',
+                  _react2.default.createElement(
+                    'a',
+                    { href: '/settings/password' },
+                    'change your password'
+                  ),
+                  '.'
+                )
+              ),
+              _react2.default.createElement(_semanticUiReact.Button, {
+                color: 'yellow',
+                icon: _react2.default.createElement(_semanticUiReact.Icon, { name: 'sign out', size: 'large' }),
+                label: 'Sign-out from all devices',
+                onClick: function onClick() {
+                  return signOutButtonClicked();
+                }
+              }),
+              _react2.default.createElement(_ConfirmSignOut2.default, null)
+            )
+          ),
+          _react2.default.createElement(
+            _semanticUiReact.Grid.Row,
+            null,
+            _react2.default.createElement(
+              _semanticUiReact.Grid.Column,
+              null,
+              _react2.default.createElement(
+                _semanticUiReact.Message,
+                { negative: true, icon: true },
+                _react2.default.createElement(_semanticUiReact.Icon, { name: 'warning sign', color: 'orange' }),
+                _react2.default.createElement(
+                  _semanticUiReact.Message.Content,
+                  null,
+                  _react2.default.createElement(
+                    _semanticUiReact.Message.Header,
+                    null,
+                    'Don\'t do this!'
+                  ),
+                  _react2.default.createElement(
+                    'p',
+                    null,
+                    'Deleting your account cannot be revoked and all your data will be removed.'
+                  )
+                )
+              ),
+              _react2.default.createElement(_semanticUiReact.Button, {
+                color: 'red',
+                icon: _react2.default.createElement(_semanticUiReact.Icon, { name: 'remove user', size: 'large' }),
+                label: 'Delete your user account',
+                labelPosition: 'right',
+                onClick: function onClick() {
+                  return removeUserButtonClicked();
+                }
+              }),
+              _react2.default.createElement(_ConfirmRemoveUser2.default, null)
+            )
+          )
+        )
+      )
+    )
+  );
+});
+
+/***/ }),
+/* 524 */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+
+var _templateObject = _taggedTemplateLiteral(['settings.showConfirmRemoveUser'], ['settings.showConfirmRemoveUser']),
+    _templateObject2 = _taggedTemplateLiteral(['settings.removeUserCancelled'], ['settings.removeUserCancelled']),
+    _templateObject3 = _taggedTemplateLiteral(['settings.removeUserConfirmed'], ['settings.removeUserConfirmed']);
+
+var _react = __webpack_require__(0);
+
+var _react2 = _interopRequireDefault(_react);
+
+var _react3 = __webpack_require__(17);
+
+var _tags = __webpack_require__(6);
+
+var _semanticUiReact = __webpack_require__(16);
+
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+function _taggedTemplateLiteral(strings, raw) { return Object.freeze(Object.defineProperties(strings, { raw: { value: Object.freeze(raw) } })); }
+
+exports.default = (0, _react3.connect)({
+  showConfirmRemoveUser: (0, _tags.state)(_templateObject),
+  removeUserCancelled: (0, _tags.signal)(_templateObject2),
+  removeUserConfirmed: (0, _tags.signal)(_templateObject3)
+}, function ConfirmRemoveUser(_ref) {
+  var showConfirmRemoveUser = _ref.showConfirmRemoveUser,
+      removeUserCancelled = _ref.removeUserCancelled,
+      removeUserConfirmed = _ref.removeUserConfirmed;
+
+  return _react2.default.createElement(
+    _semanticUiReact.Modal,
+    {
+      basic: true,
+      size: 'small',
+      dimmer: 'blurring',
+      open: showConfirmRemoveUser,
+      onClose: removeUserCancelled
+    },
+    _react2.default.createElement(
+      _semanticUiReact.Modal.Header,
+      null,
+      _react2.default.createElement(_semanticUiReact.Icon, { name: 'remove user' }),
+      'You\'re about deleting your User Account!'
+    ),
+    _react2.default.createElement(
+      _semanticUiReact.Modal.Content,
+      null,
+      _react2.default.createElement(
+        'p',
+        null,
+        'Are you sure you want to delete your account?'
+      ),
+      _react2.default.createElement(
+        'p',
+        null,
+        'This can\'t be undone and all your data will be removed.'
+      )
+    ),
+    _react2.default.createElement(
+      _semanticUiReact.Modal.Actions,
+      null,
+      _react2.default.createElement(
+        _semanticUiReact.Button,
+        {
+          basic: true,
+          inverted: true,
+          color: 'red',
+          onClick: function onClick() {
+            return removeUserCancelled();
+          }
+        },
+        _react2.default.createElement(_semanticUiReact.Icon, { name: 'remove' }),
+        'Cancel'
+      ),
+      _react2.default.createElement(
+        _semanticUiReact.Button,
+        {
+          basic: true,
+          inverted: true,
+          color: 'green',
+          onClick: function onClick() {
+            return removeUserConfirmed();
+          }
+        },
+        _react2.default.createElement(_semanticUiReact.Icon, { name: 'checkmark' }),
+        'OK'
+      )
+    )
+  );
+});
+
+/***/ }),
+/* 525 */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+
+var _templateObject = _taggedTemplateLiteral(['settings.showConfirmSignOut'], ['settings.showConfirmSignOut']),
+    _templateObject2 = _taggedTemplateLiteral(['settings.signOutCancelled'], ['settings.signOutCancelled']),
+    _templateObject3 = _taggedTemplateLiteral(['settings.signOutConfirmed'], ['settings.signOutConfirmed']);
+
+var _react = __webpack_require__(0);
+
+var _react2 = _interopRequireDefault(_react);
+
+var _react3 = __webpack_require__(17);
+
+var _tags = __webpack_require__(6);
+
+var _semanticUiReact = __webpack_require__(16);
+
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+function _taggedTemplateLiteral(strings, raw) { return Object.freeze(Object.defineProperties(strings, { raw: { value: Object.freeze(raw) } })); }
+
+exports.default = (0, _react3.connect)({
+  showConfirmSignOut: (0, _tags.state)(_templateObject),
+  signOutCancelled: (0, _tags.signal)(_templateObject2),
+  signOutConfirmed: (0, _tags.signal)(_templateObject3)
+}, function ConfirmSignOut(_ref) {
+  var showConfirmSignOut = _ref.showConfirmSignOut,
+      signOutCancelled = _ref.signOutCancelled,
+      signOutConfirmed = _ref.signOutConfirmed;
+
+  return _react2.default.createElement(
+    _semanticUiReact.Modal,
+    {
+      basic: true,
+      size: 'small',
+      dimmer: 'blurring',
+      open: showConfirmSignOut,
+      onClose: signOutCancelled
+    },
+    _react2.default.createElement(
+      _semanticUiReact.Modal.Header,
+      null,
+      _react2.default.createElement(_semanticUiReact.Icon, { name: 'sign out' }),
+      'Invalidate all your tokens'
+    ),
+    _react2.default.createElement(
+      _semanticUiReact.Modal.Content,
+      null,
+      _react2.default.createElement(
+        'p',
+        null,
+        'Are you sure you want to disallow refreshing all your current tokens?'
+      ),
+      _react2.default.createElement(
+        'p',
+        null,
+        'You will do this normally if a token gets compromised.'
+      )
+    ),
+    _react2.default.createElement(
+      _semanticUiReact.Modal.Actions,
+      null,
+      _react2.default.createElement(
+        _semanticUiReact.Button,
+        { basic: true, inverted: true, color: 'red', onClick: function onClick() {
+            return signOutCancelled();
+          } },
+        _react2.default.createElement(_semanticUiReact.Icon, { name: 'remove' }),
+        'Cancel'
+      ),
+      _react2.default.createElement(
+        _semanticUiReact.Button,
+        {
+          basic: true,
+          inverted: true,
+          color: 'green',
+          onClick: function onClick() {
+            return signOutConfirmed();
+          }
+        },
+        _react2.default.createElement(_semanticUiReact.Icon, { name: 'checkmark' }),
+        'OK'
+      )
+    )
+  );
+});
+
+/***/ }),
+/* 526 */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+
+var _templateObject = _taggedTemplateLiteral(['settings.emailForm.isLoading'], ['settings.emailForm.isLoading']),
+    _templateObject2 = _taggedTemplateLiteral(['settings.emailForm.showErrors'], ['settings.emailForm.showErrors']),
+    _templateObject3 = _taggedTemplateLiteral(['user.email'], ['user.email']),
+    _templateObject4 = _taggedTemplateLiteral(['settings.emailFormSubmitted'], ['settings.emailFormSubmitted']);
+
+var _react = __webpack_require__(0);
+
+var _react2 = _interopRequireDefault(_react);
+
+var _react3 = __webpack_require__(17);
+
+var _tags = __webpack_require__(6);
+
+var _semanticUiReact = __webpack_require__(16);
+
+var _fields = __webpack_require__(54);
+
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+function _taggedTemplateLiteral(strings, raw) { return Object.freeze(Object.defineProperties(strings, { raw: { value: Object.freeze(raw) } })); }
+
+exports.default = (0, _react3.connect)({
+  isLoading: (0, _tags.state)(_templateObject),
+  showErrors: (0, _tags.state)(_templateObject2),
+  currentEmail: (0, _tags.state)(_templateObject3),
+  formSubmitted: (0, _tags.signal)(_templateObject4)
+}, function UpdateEmail(_ref) {
+  var isLoading = _ref.isLoading,
+      showErrors = _ref.showErrors,
+      currentEmail = _ref.currentEmail,
+      formSubmitted = _ref.formSubmitted;
+
+  var handleSubmit = function handleSubmit(event) {
+    event.preventDefault();
+    formSubmitted();
+  };
+  return _react2.default.createElement(
+    _semanticUiReact.Grid.Column,
+    null,
+    _react2.default.createElement(
+      _semanticUiReact.Header,
+      { inverted: true, as: 'h2', textAlign: 'center' },
+      'Update your email'
+    ),
+    _react2.default.createElement(
+      _semanticUiReact.Form,
+      { size: 'large' },
+      _react2.default.createElement(
+        _semanticUiReact.Segment,
+        null,
+        _react2.default.createElement(
+          _semanticUiReact.Dimmer,
+          { inverted: true, active: isLoading },
+          _react2.default.createElement(_semanticUiReact.Loader, null)
+        ),
+        _react2.default.createElement(
+          _semanticUiReact.Message,
+          { info: true },
+          _react2.default.createElement(
+            _semanticUiReact.Message.Header,
+            null,
+            'Your email address will be updated immediately'
+          ),
+          _react2.default.createElement(
+            'p',
+            null,
+            'Remember to confirm the new email if you want to be able to reset your password.'
+          )
+        ),
+        _react2.default.createElement(
+          _semanticUiReact.List,
+          { relaxed: true },
+          _react2.default.createElement(
+            _semanticUiReact.List.Item,
+            null,
+            _react2.default.createElement(
+              _semanticUiReact.List.Header,
+              { as: 'h4' },
+              'Current email address'
+            ),
+            _react2.default.createElement(_semanticUiReact.List.Icon, { name: 'mail', color: 'blue' }),
+            _react2.default.createElement(
+              _semanticUiReact.List.Content,
+              null,
+              currentEmail
+            )
+          ),
+          _react2.default.createElement(
+            _semanticUiReact.List.Item,
+            null,
+            _react2.default.createElement(
+              _semanticUiReact.List.Header,
+              { as: 'h4' },
+              'We need your password to verify your identity'
+            ),
+            _react2.default.createElement(_fields.PasswordField, {
+              path: 'settings.emailForm.password',
+              showErrors: showErrors
+            })
+          ),
+          _react2.default.createElement(
+            _semanticUiReact.List.Item,
+            null,
+            _react2.default.createElement(
+              _semanticUiReact.List.Header,
+              { as: 'h4' },
+              'New email adress'
+            ),
+            _react2.default.createElement(_fields.EmailField, {
+              path: 'settings.emailForm.email',
+              showErrors: showErrors
+            })
+          )
+        ),
+        _react2.default.createElement(
+          _semanticUiReact.Button,
+          { fluid: true, size: 'large', color: 'blue', onClick: handleSubmit },
+          'Update email'
+        )
+      )
+    )
+  );
+});
+
+/***/ }),
+/* 527 */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+
+var _templateObject = _taggedTemplateLiteral(['settings.passwordForm.isLoading'], ['settings.passwordForm.isLoading']),
+    _templateObject2 = _taggedTemplateLiteral(['settings.passwordForm.showErrors'], ['settings.passwordForm.showErrors']),
+    _templateObject3 = _taggedTemplateLiteral(['settings.passwordFormSubmitted'], ['settings.passwordFormSubmitted']);
+
+var _react = __webpack_require__(0);
+
+var _react2 = _interopRequireDefault(_react);
+
+var _react3 = __webpack_require__(17);
+
+var _tags = __webpack_require__(6);
+
+var _semanticUiReact = __webpack_require__(16);
+
+var _fields = __webpack_require__(54);
+
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+function _taggedTemplateLiteral(strings, raw) { return Object.freeze(Object.defineProperties(strings, { raw: { value: Object.freeze(raw) } })); }
+
+exports.default = (0, _react3.connect)({
+  isLoading: (0, _tags.state)(_templateObject),
+  showErrors: (0, _tags.state)(_templateObject2),
+  formSubmitted: (0, _tags.signal)(_templateObject3)
+}, function ChangePassword(_ref) {
+  var isLoading = _ref.isLoading,
+      showErrors = _ref.showErrors,
+      currentEmail = _ref.currentEmail,
+      formSubmitted = _ref.formSubmitted;
+
+  var handleSubmit = function handleSubmit(event) {
+    event.preventDefault();
+    formSubmitted();
+  };
+  return _react2.default.createElement(
+    _semanticUiReact.Grid.Column,
+    null,
+    _react2.default.createElement(
+      _semanticUiReact.Header,
+      { inverted: true, as: 'h2', textAlign: 'center' },
+      'Change your password'
+    ),
+    _react2.default.createElement(
+      _semanticUiReact.Form,
+      { size: 'large' },
+      _react2.default.createElement(
+        _semanticUiReact.Segment,
+        null,
+        _react2.default.createElement(
+          _semanticUiReact.Dimmer,
+          { inverted: true, active: isLoading },
+          _react2.default.createElement(_semanticUiReact.Loader, null)
+        ),
+        _react2.default.createElement(
+          _semanticUiReact.List,
+          { relaxed: true },
+          _react2.default.createElement(
+            _semanticUiReact.List.Item,
+            null,
+            _react2.default.createElement(
+              _semanticUiReact.List.Header,
+              { as: 'h4' },
+              'Current password'
+            ),
+            _react2.default.createElement(_fields.CurrentPasswordField, {
+              path: 'settings.passwordForm.currentPassword',
+              showErrors: showErrors
+            })
+          ),
+          _react2.default.createElement(
+            _semanticUiReact.List.Item,
+            null,
+            _react2.default.createElement(
+              _semanticUiReact.List.Header,
+              { as: 'h4' },
+              'New password'
+            ),
+            _react2.default.createElement(_fields.PasswordField, {
+              path: 'settings.passwordForm.password',
+              showErrors: showErrors
+            })
+          ),
+          _react2.default.createElement(
+            _semanticUiReact.List.Item,
+            null,
+            _react2.default.createElement(
+              _semanticUiReact.List.Header,
+              { as: 'h4' },
+              'Confirm new password'
+            ),
+            _react2.default.createElement(_fields.ConfirmPasswordField, {
+              path: 'settings.passwordForm.confirmPassword',
+              showErrors: showErrors
+            })
+          )
+        ),
+        _react2.default.createElement(
+          _semanticUiReact.Button,
+          { fluid: true, size: 'large', color: 'blue', onClick: handleSubmit },
+          'Change password'
+        )
+      )
+    )
+  );
+});
+
+/***/ }),
+/* 528 */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+
+var _templateObject = _taggedTemplateLiteral(['settings.profileForm.isLoading'], ['settings.profileForm.isLoading']),
+    _templateObject2 = _taggedTemplateLiteral(['settings.profileForm.showErrors'], ['settings.profileForm.showErrors']),
+    _templateObject3 = _taggedTemplateLiteral(['settings.profileFormSubmitted'], ['settings.profileFormSubmitted']);
+
+var _react = __webpack_require__(0);
+
+var _react2 = _interopRequireDefault(_react);
+
+var _react3 = __webpack_require__(17);
+
+var _tags = __webpack_require__(6);
+
+var _semanticUiReact = __webpack_require__(16);
+
+var _fields = __webpack_require__(54);
+
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+function _taggedTemplateLiteral(strings, raw) { return Object.freeze(Object.defineProperties(strings, { raw: { value: Object.freeze(raw) } })); }
+
+exports.default = (0, _react3.connect)({
+  isLoading: (0, _tags.state)(_templateObject),
+  showErrors: (0, _tags.state)(_templateObject2),
+  formSubmitted: (0, _tags.signal)(_templateObject3)
+}, function EditProfile(_ref) {
+  var isLoading = _ref.isLoading,
+      showErrors = _ref.showErrors,
+      formSubmitted = _ref.formSubmitted;
+
+  var handleSubmit = function handleSubmit(event) {
+    event.preventDefault();
+    formSubmitted();
+  };
+  return _react2.default.createElement(
+    _semanticUiReact.Grid.Column,
+    null,
+    _react2.default.createElement(
+      _semanticUiReact.Header,
+      { inverted: true, as: 'h2', textAlign: 'center' },
+      'Edit your profile'
+    ),
+    _react2.default.createElement(
+      _semanticUiReact.Form,
+      { size: 'large' },
+      _react2.default.createElement(
+        _semanticUiReact.Segment,
+        null,
+        _react2.default.createElement(
+          _semanticUiReact.Dimmer,
+          { inverted: true, active: isLoading },
+          _react2.default.createElement(_semanticUiReact.Loader, null)
+        ),
+        _react2.default.createElement(
+          _semanticUiReact.List,
+          { relaxed: true },
+          _react2.default.createElement(
+            _semanticUiReact.List.Item,
+            null,
+            _react2.default.createElement(
+              _semanticUiReact.List.Header,
+              { as: 'h4' },
+              'Nickname'
+            ),
+            _react2.default.createElement(_fields.NicknameField, {
+              path: 'settings.profileForm.nickname',
+              showErrors: showErrors
+            })
+          )
+        ),
+        _react2.default.createElement(
+          _semanticUiReact.Button,
+          { fluid: true, size: 'large', color: 'blue', onClick: handleSubmit },
+          'Save profile'
+        )
+      )
+    )
+  );
+});
+
+/***/ }),
+/* 529 */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+
+var _templateObject = _taggedTemplateLiteral(['user.nickname'], ['user.nickname']),
+    _templateObject2 = _taggedTemplateLiteral(['settings.currentTab'], ['settings.currentTab']);
+
+var _react = __webpack_require__(0);
+
+var _react2 = _interopRequireDefault(_react);
+
+var _react3 = __webpack_require__(17);
+
+var _tags = __webpack_require__(6);
+
+var _semanticUiReact = __webpack_require__(16);
+
+var _Profile = __webpack_require__(528);
+
+var _Profile2 = _interopRequireDefault(_Profile);
+
+var _Email = __webpack_require__(526);
+
+var _Email2 = _interopRequireDefault(_Email);
+
+var _Password = __webpack_require__(527);
+
+var _Password2 = _interopRequireDefault(_Password);
+
+var _Account = __webpack_require__(523);
+
+var _Account2 = _interopRequireDefault(_Account);
+
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+function _taggedTemplateLiteral(strings, raw) { return Object.freeze(Object.defineProperties(strings, { raw: { value: Object.freeze(raw) } })); }
+
+var tabs = {
+  profile: _Profile2.default,
+  email: _Email2.default,
+  password: _Password2.default,
+  account: _Account2.default
+};
+
+exports.default = (0, _react3.connect)({
+  nickname: (0, _tags.state)(_templateObject),
+  currentTab: (0, _tags.state)(_templateObject2)
+}, function Settings(_ref) {
+  var nickname = _ref.nickname,
+      currentTab = _ref.currentTab;
+
+  var Tab = tabs[currentTab];
+  return _react2.default.createElement(
+    _semanticUiReact.Grid,
+    { container: true, stackable: true, padded: 'vertically', centered: true },
+    _react2.default.createElement(
+      _semanticUiReact.Grid.Row,
+      { columns: 3, centered: true },
+      _react2.default.createElement(
+        _semanticUiReact.Grid.Column,
+        null,
+        _react2.default.createElement(
+          _semanticUiReact.Menu,
+          {
+            attached: 'top',
+            inverted: true,
+            secondary: true,
+            pointing: true,
+            compact: true,
+            size: 'large'
+          },
+          _react2.default.createElement(
+            _semanticUiReact.Menu.Item,
+            {
+              name: 'profile',
+              href: '/settings/profile',
+              active: currentTab === 'profile'
+            },
+            'Profile'
+          ),
+          _react2.default.createElement(
+            _semanticUiReact.Menu.Item,
+            {
+              name: 'email',
+              href: '/settings/email',
+              active: currentTab === 'email'
+            },
+            'E-mail'
+          ),
+          _react2.default.createElement(
+            _semanticUiReact.Menu.Item,
+            {
+              name: 'password',
+              href: '/settings/password',
+              active: currentTab === 'password'
+            },
+            'Password'
+          ),
+          _react2.default.createElement(
+            _semanticUiReact.Menu.Item,
+            {
+              name: 'account',
+              href: '/settings/account',
+              active: currentTab === 'account'
+            },
+            'Account'
+          )
+        )
+      )
+    ),
+    _react2.default.createElement(
+      _semanticUiReact.Grid.Row,
+      { columns: 2, centered: true },
+      _react2.default.createElement(Tab, null)
+    )
+  );
+});
+
+/***/ }),
+/* 530 */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+
+var _templateObject = _taggedTemplateLiteral(['', ''], ['', '']),
+    _templateObject2 = _taggedTemplateLiteral(['path'], ['path']),
+    _templateObject3 = _taggedTemplateLiteral(['user.fieldChanged'], ['user.fieldChanged']);
+
+var _react = __webpack_require__(0);
+
+var _react2 = _interopRequireDefault(_react);
+
+var _react3 = __webpack_require__(17);
+
+var _tags = __webpack_require__(6);
+
+var _forms = __webpack_require__(77);
+
+var _semanticUiReact = __webpack_require__(16);
+
+var _utils = __webpack_require__(94);
+
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+function _taggedTemplateLiteral(strings, raw) { return Object.freeze(Object.defineProperties(strings, { raw: { value: Object.freeze(raw) } })); }
+
+exports.default = (0, _react3.connect)({
+  field: (0, _forms.field)((0, _tags.state)(_templateObject, (0, _tags.props)(_templateObject2))),
+  fieldChanged: (0, _tags.signal)(_templateObject3)
+}, function ConfirmPasswordField(_ref) {
+  var path = _ref.path,
+      showErrors = _ref.showErrors,
+      field = _ref.field,
+      fieldChanged = _ref.fieldChanged;
+
+  return _react2.default.createElement(
+    _semanticUiReact.Form.Field,
+    { error: (0, _utils.hasError)(field, showErrors) },
+    _react2.default.createElement(_semanticUiReact.Input, {
+      type: 'password',
+      icon: 'lock',
+      iconPosition: 'left',
+      placeholder: 'confirm password',
+      value: field.value,
+      onChange: function onChange(e, _ref2) {
+        var value = _ref2.value;
+        return fieldChanged({ path: path, value: value });
+      }
+    }),
+    _react2.default.createElement(
+      _semanticUiReact.Label,
+      {
+        pointing: true,
+        basic: true,
+        color: 'red',
+        style: {
+          display: (0, _utils.showError)(field, showErrors) ? 'inline-block' : 'none'
+        }
+      },
+      field.errorMessage
+    )
+  );
+});
+
+/***/ }),
+/* 531 */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+
+var _templateObject = _taggedTemplateLiteral(['', ''], ['', '']),
+    _templateObject2 = _taggedTemplateLiteral(['path'], ['path']),
+    _templateObject3 = _taggedTemplateLiteral(['user.fieldChanged'], ['user.fieldChanged']);
+
+var _react = __webpack_require__(0);
+
+var _react2 = _interopRequireDefault(_react);
+
+var _react3 = __webpack_require__(17);
+
+var _tags = __webpack_require__(6);
+
+var _forms = __webpack_require__(77);
+
+var _semanticUiReact = __webpack_require__(16);
+
+var _utils = __webpack_require__(94);
+
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+function _taggedTemplateLiteral(strings, raw) { return Object.freeze(Object.defineProperties(strings, { raw: { value: Object.freeze(raw) } })); }
+
+exports.default = (0, _react3.connect)({
+  field: (0, _forms.field)((0, _tags.state)(_templateObject, (0, _tags.props)(_templateObject2))),
+  fieldChanged: (0, _tags.signal)(_templateObject3)
+}, function CurrentPasswordField(_ref) {
+  var path = _ref.path,
+      showErrors = _ref.showErrors,
+      field = _ref.field,
+      fieldChanged = _ref.fieldChanged;
+
+  return _react2.default.createElement(
+    _semanticUiReact.Form.Field,
+    { error: (0, _utils.hasError)(field, showErrors) },
+    _react2.default.createElement(_semanticUiReact.Input, {
+      type: 'password',
+      icon: 'lock',
+      iconPosition: 'left',
+      placeholder: 'current password',
+      value: field.value,
+      onChange: function onChange(e, _ref2) {
+        var value = _ref2.value;
+        return fieldChanged({ path: path, value: value });
+      }
+    }),
+    _react2.default.createElement(
+      _semanticUiReact.Label,
+      {
+        pointing: true,
+        basic: true,
+        color: 'red',
+        style: {
+          display: (0, _utils.showError)(field, showErrors) ? 'inline-block' : 'none'
+        }
+      },
+      field.errorMessage
+    )
+  );
+});
+
+/***/ }),
+/* 532 */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+
+var _templateObject = _taggedTemplateLiteral(['', ''], ['', '']),
+    _templateObject2 = _taggedTemplateLiteral(['path'], ['path']),
+    _templateObject3 = _taggedTemplateLiteral(['user.fieldChanged'], ['user.fieldChanged']);
+
+var _react = __webpack_require__(0);
+
+var _react2 = _interopRequireDefault(_react);
+
+var _react3 = __webpack_require__(17);
+
+var _tags = __webpack_require__(6);
+
+var _forms = __webpack_require__(77);
+
+var _semanticUiReact = __webpack_require__(16);
+
+var _utils = __webpack_require__(94);
+
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+function _taggedTemplateLiteral(strings, raw) { return Object.freeze(Object.defineProperties(strings, { raw: { value: Object.freeze(raw) } })); }
+
+exports.default = (0, _react3.connect)({
+  field: (0, _forms.field)((0, _tags.state)(_templateObject, (0, _tags.props)(_templateObject2))),
+  fieldChanged: (0, _tags.signal)(_templateObject3)
+}, function EmailField(_ref) {
+  var path = _ref.path,
+      showErrors = _ref.showErrors,
+      field = _ref.field,
+      fieldChanged = _ref.fieldChanged;
+
+  return _react2.default.createElement(
+    _semanticUiReact.Form.Field,
+    { error: (0, _utils.hasError)(field, showErrors) },
+    _react2.default.createElement(_semanticUiReact.Input, {
+      icon: 'mail',
+      iconPosition: 'left',
+      placeholder: 'email address',
+      value: field.value,
+      onChange: function onChange(e, _ref2) {
+        var value = _ref2.value;
+        return fieldChanged({ path: path, value: value });
+      }
+    }),
+    _react2.default.createElement(
+      _semanticUiReact.Label,
+      {
+        pointing: true,
+        basic: true,
+        color: 'red',
+        style: {
+          display: (0, _utils.showError)(field, showErrors) ? 'inline-block' : 'none'
+        }
+      },
+      field.errorMessage
+    )
+  );
+});
+
+/***/ }),
+/* 533 */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+
+var _templateObject = _taggedTemplateLiteral(['', ''], ['', '']),
+    _templateObject2 = _taggedTemplateLiteral(['path'], ['path']),
+    _templateObject3 = _taggedTemplateLiteral(['user.fieldChanged'], ['user.fieldChanged']);
+
+var _react = __webpack_require__(0);
+
+var _react2 = _interopRequireDefault(_react);
+
+var _react3 = __webpack_require__(17);
+
+var _tags = __webpack_require__(6);
+
+var _forms = __webpack_require__(77);
+
+var _semanticUiReact = __webpack_require__(16);
+
+var _utils = __webpack_require__(94);
+
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+function _taggedTemplateLiteral(strings, raw) { return Object.freeze(Object.defineProperties(strings, { raw: { value: Object.freeze(raw) } })); }
+
+exports.default = (0, _react3.connect)({
+  field: (0, _forms.field)((0, _tags.state)(_templateObject, (0, _tags.props)(_templateObject2))),
+  fieldChanged: (0, _tags.signal)(_templateObject3)
+}, function NicknameField(_ref) {
+  var path = _ref.path,
+      showErrors = _ref.showErrors,
+      field = _ref.field,
+      fieldChanged = _ref.fieldChanged;
+
+  return _react2.default.createElement(
+    _semanticUiReact.Form.Field,
+    { error: (0, _utils.hasError)(field, showErrors) },
+    _react2.default.createElement(_semanticUiReact.Input, {
+      icon: 'user',
+      iconPosition: 'left',
+      placeholder: 'nickname',
+      value: field.value,
+      onChange: function onChange(e, _ref2) {
+        var value = _ref2.value;
+        return fieldChanged({ path: path, value: value });
+      }
+    }),
+    _react2.default.createElement(
+      _semanticUiReact.Label,
+      {
+        pointing: true,
+        basic: true,
+        color: 'red',
+        style: {
+          display: (0, _utils.showError)(field, showErrors) ? 'inline-block' : 'none'
+        }
+      },
+      field.errorMessage
+    )
+  );
+});
+
+/***/ }),
+/* 534 */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+
+var _templateObject = _taggedTemplateLiteral(['', ''], ['', '']),
+    _templateObject2 = _taggedTemplateLiteral(['path'], ['path']),
+    _templateObject3 = _taggedTemplateLiteral(['user.fieldChanged'], ['user.fieldChanged']);
+
+var _react = __webpack_require__(0);
+
+var _react2 = _interopRequireDefault(_react);
+
+var _react3 = __webpack_require__(17);
+
+var _tags = __webpack_require__(6);
+
+var _forms = __webpack_require__(77);
+
+var _semanticUiReact = __webpack_require__(16);
+
+var _utils = __webpack_require__(94);
+
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+function _taggedTemplateLiteral(strings, raw) { return Object.freeze(Object.defineProperties(strings, { raw: { value: Object.freeze(raw) } })); }
+
+exports.default = (0, _react3.connect)({
+  field: (0, _forms.field)((0, _tags.state)(_templateObject, (0, _tags.props)(_templateObject2))),
+  fieldChanged: (0, _tags.signal)(_templateObject3)
+}, function PasswordField(_ref) {
+  var path = _ref.path,
+      showErrors = _ref.showErrors,
+      field = _ref.field,
+      fieldChanged = _ref.fieldChanged;
+
+  return _react2.default.createElement(
+    _semanticUiReact.Form.Field,
+    { error: (0, _utils.hasError)(field, showErrors) },
+    _react2.default.createElement(_semanticUiReact.Input, {
+      type: 'password',
+      icon: 'lock',
+      iconPosition: 'left',
+      placeholder: 'password',
+      value: field.value,
+      onChange: function onChange(e, _ref2) {
+        var value = _ref2.value;
+        return fieldChanged({ path: path, value: value });
+      }
+    }),
+    _react2.default.createElement(
+      _semanticUiReact.Label,
+      {
+        pointing: true,
+        basic: true,
+        color: 'red',
+        style: {
+          display: (0, _utils.showError)(field, showErrors) ? 'inline-block' : 'none'
+        }
+      },
+      field.errorMessage
+    )
+  );
+});
+
+/***/ }),
+/* 535 */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+
+var _templateObject = _taggedTemplateLiteral(['admin.users'], ['admin.users']);
+
+var _cerebral = __webpack_require__(9);
+
+var _tags = __webpack_require__(6);
+
+function _taggedTemplateLiteral(strings, raw) { return Object.freeze(Object.defineProperties(strings, { raw: { value: Object.freeze(raw) } })); }
+
+exports.default = (0, _cerebral.compute)((0, _tags.state)(_templateObject), function (users) {
+  return Object.keys(users).sort(function (uidA, uidB) {
+    return users[uidA]['orderKey'] - users[uidB]['orderKey'];
+  });
+});
+
+/***/ }),
+/* 536 */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
+__webpack_require__(478);
+
+__webpack_require__(477);
+
+__webpack_require__(475);
+
+var _react = __webpack_require__(0);
+
+var _react2 = _interopRequireDefault(_react);
+
+var _reactDom = __webpack_require__(257);
+
+var _controller = __webpack_require__(474);
+
+var _controller2 = _interopRequireDefault(_controller);
+
+var _react3 = __webpack_require__(17);
+
+var _App = __webpack_require__(473);
+
+var _App2 = _interopRequireDefault(_App);
+
+var _reactTapEventPlugin = __webpack_require__(476);
+
+var _reactTapEventPlugin2 = _interopRequireDefault(_reactTapEventPlugin);
+
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+(0, _reactTapEventPlugin2.default)();
+
+// support tap events
+
+
+(0, _reactDom.render)(_react2.default.createElement(
+  _react3.Container,
+  { controller: _controller2.default },
+  _react2.default.createElement(_App2.default, null)
+), document.querySelector('#app'));
+
+/***/ }),
+/* 537 */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+function getNextPage(_ref) {
+  var props = _ref.props,
+      state = _ref.state;
+
+  var nextPage = 1;
+  switch (props.nextPage) {
+    case 'previous':
+      nextPage = parseInt(state.get('admin.currentPage')) - 1;
+      break;
+    case 'next':
+      nextPage = parseInt(state.get('admin.currentPage')) + 1;
+      break;
+    case 'last':
+      nextPage = state.get('admin.pages');
+      break;
+    default:
+      if (typeof props.nextPage === 'number') {
+        nextPage = Math.floor(props.nextPage);
+      }
+  }
+  return { nextPage: nextPage };
+}
+
+exports.default = getNextPage;
+
+/***/ }),
+/* 538 */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+function mergeUsers(_ref) {
+  var props = _ref.props,
+      state = _ref.state,
+      uuid = _ref.uuid;
+
+  if (props.result.users && props.result.users.length !== 0) {
+    var orderKey = 1;
+    var _iteratorNormalCompletion = true;
+    var _didIteratorError = false;
+    var _iteratorError = undefined;
+
+    try {
+      var _loop = function _loop() {
+        var user = _step.value;
+
+        user['orderKey'] = orderKey;
+        var usersInState = state.get('admin.users');
+        var uidInState = Object.keys(usersInState).filter(function (uid) {
+          return usersInState[uid]['email'] === user['email'];
+        })[0];
+        if (uidInState) {
+          state.merge('admin.users.' + uidInState, user);
+        } else {
+          state.set('admin.users.' + uuid(), user);
+        }
+        orderKey++;
+      };
+
+      for (var _iterator = props.result.users[Symbol.iterator](), _step; !(_iteratorNormalCompletion = (_step = _iterator.next()).done); _iteratorNormalCompletion = true) {
+        _loop();
+      }
+    } catch (err) {
+      _didIteratorError = true;
+      _iteratorError = err;
+    } finally {
+      try {
+        if (!_iteratorNormalCompletion && _iterator.return) {
+          _iterator.return();
+        }
+      } finally {
+        if (_didIteratorError) {
+          throw _iteratorError;
+        }
+      }
+    }
+  } else {
+    return { noUsersFound: true };
+  }
+}
+
+exports.default = mergeUsers;
+
+/***/ }),
+/* 539 */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+
+var _sortUsersClicked = __webpack_require__(549);
+
+var _sortUsersClicked2 = _interopRequireDefault(_sortUsersClicked);
+
+var _signOutButtonClicked = __webpack_require__(546);
+
+var _signOutButtonClicked2 = _interopRequireDefault(_signOutButtonClicked);
+
+var _signOutConfirmed = __webpack_require__(548);
+
+var _signOutConfirmed2 = _interopRequireDefault(_signOutConfirmed);
+
+var _signOutCancelled = __webpack_require__(547);
+
+var _signOutCancelled2 = _interopRequireDefault(_signOutCancelled);
+
+var _removeUserButtonClicked = __webpack_require__(542);
+
+var _removeUserButtonClicked2 = _interopRequireDefault(_removeUserButtonClicked);
+
+var _removeUserConfirmed = __webpack_require__(544);
+
+var _removeUserConfirmed2 = _interopRequireDefault(_removeUserConfirmed);
+
+var _removeUserCancelled = __webpack_require__(543);
+
+var _removeUserCancelled2 = _interopRequireDefault(_removeUserCancelled);
+
+var _toggleAdminClicked = __webpack_require__(550);
+
+var _toggleAdminClicked2 = _interopRequireDefault(_toggleAdminClicked);
+
+var _searchSubmitted = __webpack_require__(545);
+
+var _searchSubmitted2 = _interopRequireDefault(_searchSubmitted);
+
+var _pageSizeChanged = __webpack_require__(541);
+
+var _pageSizeChanged2 = _interopRequireDefault(_pageSizeChanged);
+
+var _changePageClicked = __webpack_require__(540);
+
+var _changePageClicked2 = _interopRequireDefault(_changePageClicked);
+
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+exports.default = function (module) {
+  return {
+    signals: {
+      sortUsersClicked: _sortUsersClicked2.default,
+      signOutButtonClicked: _signOutButtonClicked2.default,
+      signOutCancelled: _signOutCancelled2.default,
+      signOutConfirmed: _signOutConfirmed2.default,
+      removeUserButtonClicked: _removeUserButtonClicked2.default,
+      removeUserCancelled: _removeUserCancelled2.default,
+      removeUserConfirmed: _removeUserConfirmed2.default,
+      toggleAdminClicked: _toggleAdminClicked2.default,
+      searchSubmitted: _searchSubmitted2.default,
+      pageSizeChanged: _pageSizeChanged2.default,
+      changePageClicked: _changePageClicked2.default
+    },
+    state: {
+      users: {},
+      usersSortBy: 'nickname',
+      usersSortDir: 'ascending',
+      showConfirmSignOut: false,
+      showConfirmRemoveUser: false,
+      activeUid: null,
+      searchString: '',
+      searchIsLoading: false,
+      currentPage: 1,
+      pages: 1,
+      pageSize: 30
+    }
+  };
+};
+
+/***/ }),
+/* 540 */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+
+var _templateObject = _taggedTemplateLiteral(['nextPage'], ['nextPage']),
+    _templateObject2 = _taggedTemplateLiteral(['admin.pages'], ['admin.pages']),
+    _templateObject3 = _taggedTemplateLiteral(['admin.currentPage'], ['admin.currentPage']),
+    _templateObject4 = _taggedTemplateLiteral(['admin.users'], ['admin.users']);
+
+var _cerebral = __webpack_require__(9);
+
+var _tags = __webpack_require__(6);
+
+var _operators = __webpack_require__(10);
+
+var _getNextPage = __webpack_require__(537);
+
+var _getNextPage2 = _interopRequireDefault(_getNextPage);
+
+var _fetchUsers = __webpack_require__(95);
+
+var _fetchUsers2 = _interopRequireDefault(_fetchUsers);
+
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+function _taggedTemplateLiteral(strings, raw) { return Object.freeze(Object.defineProperties(strings, { raw: { value: Object.freeze(raw) } })); }
+
+exports.default = (0, _cerebral.sequence)('Change page', [_getNextPage2.default, (0, _operators.when)((0, _tags.props)(_templateObject), (0, _tags.state)(_templateObject2), (0, _tags.state)(_templateObject3), function (nextPage, pages, currentPage) {
+  return nextPage > 0 && nextPage <= pages && nextPage !== currentPage;
+}), {
+  true: [(0, _operators.set)((0, _tags.state)(_templateObject3), (0, _tags.props)(_templateObject)), (0, _operators.set)((0, _tags.state)(_templateObject4), {}), _fetchUsers2.default],
+  false: []
+}]);
+
+/***/ }),
+/* 541 */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+
+var _templateObject = _taggedTemplateLiteral(['admin.pageSize'], ['admin.pageSize']),
+    _templateObject2 = _taggedTemplateLiteral(['value'], ['value']),
+    _templateObject3 = _taggedTemplateLiteral(['admin.currentPage'], ['admin.currentPage']),
+    _templateObject4 = _taggedTemplateLiteral(['admin.users'], ['admin.users']);
+
+var _cerebral = __webpack_require__(9);
+
+var _tags = __webpack_require__(6);
+
+var _operators = __webpack_require__(10);
+
+var _fetchUsers = __webpack_require__(95);
+
+var _fetchUsers2 = _interopRequireDefault(_fetchUsers);
+
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+function _taggedTemplateLiteral(strings, raw) { return Object.freeze(Object.defineProperties(strings, { raw: { value: Object.freeze(raw) } })); }
+
+exports.default = (0, _cerebral.sequence)('Change page size', [(0, _operators.set)((0, _tags.state)(_templateObject), (0, _tags.props)(_templateObject2)), (0, _operators.set)((0, _tags.state)(_templateObject3), 1), (0, _operators.set)((0, _tags.state)(_templateObject4), {}), _fetchUsers2.default]);
+
+/***/ }),
+/* 542 */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+
+var _templateObject = _taggedTemplateLiteral(['admin.activeUid'], ['admin.activeUid']),
+    _templateObject2 = _taggedTemplateLiteral(['uid'], ['uid']),
+    _templateObject3 = _taggedTemplateLiteral(['admin.showConfirmRemoveUser'], ['admin.showConfirmRemoveUser']);
+
+var _cerebral = __webpack_require__(9);
+
+var _tags = __webpack_require__(6);
+
+var _operators = __webpack_require__(10);
+
+function _taggedTemplateLiteral(strings, raw) { return Object.freeze(Object.defineProperties(strings, { raw: { value: Object.freeze(raw) } })); }
+
+exports.default = (0, _cerebral.sequence)('Show confirm-remove-user modal', [(0, _operators.set)((0, _tags.state)(_templateObject), (0, _tags.props)(_templateObject2)), (0, _operators.set)((0, _tags.state)(_templateObject3), true)]);
+
+/***/ }),
+/* 543 */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+
+var _templateObject = _taggedTemplateLiteral(['admin.activeUid'], ['admin.activeUid']),
+    _templateObject2 = _taggedTemplateLiteral(['admin.showConfirmRemoveUser'], ['admin.showConfirmRemoveUser']);
+
+var _cerebral = __webpack_require__(9);
+
+var _tags = __webpack_require__(6);
+
+var _operators = __webpack_require__(10);
+
+function _taggedTemplateLiteral(strings, raw) { return Object.freeze(Object.defineProperties(strings, { raw: { value: Object.freeze(raw) } })); }
+
+exports.default = (0, _cerebral.sequence)('Close confirm-remove-user modal', [(0, _operators.set)((0, _tags.state)(_templateObject), null), (0, _operators.set)((0, _tags.state)(_templateObject2), false)]);
+
+/***/ }),
+/* 544 */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+
+var _templateObject = _taggedTemplateLiteral(['admin.showConfirmRemoveUser'], ['admin.showConfirmRemoveUser']),
+    _templateObject2 = _taggedTemplateLiteral(['nickname'], ['nickname']),
+    _templateObject3 = _taggedTemplateLiteral(['admin.users.', '.nickname'], ['admin.users.', '.nickname']),
+    _templateObject4 = _taggedTemplateLiteral(['admin.activeUid'], ['admin.activeUid']),
+    _templateObject5 = _taggedTemplateLiteral(['', ''], ['', '']),
+    _templateObject6 = _taggedTemplateLiteral(['admin.users.', '.@id'], ['admin.users.', '.@id']),
+    _templateObject7 = _taggedTemplateLiteral(['admin.users.', ''], ['admin.users.', '']),
+    _templateObject8 = _taggedTemplateLiteral(['', ' was successfully deleted'], ['', ' was successfully deleted']),
+    _templateObject9 = _taggedTemplateLiteral(['', ' could not be deleted'], ['', ' could not be deleted']);
+
+var _cerebral = __webpack_require__(9);
+
+var _tags = __webpack_require__(6);
+
+var _operators = __webpack_require__(10);
+
+var _operators2 = __webpack_require__(29);
+
+var _showFlash = __webpack_require__(26);
+
+var _showFlash2 = _interopRequireDefault(_showFlash);
+
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+function _taggedTemplateLiteral(strings, raw) { return Object.freeze(Object.defineProperties(strings, { raw: { value: Object.freeze(raw) } })); }
+
+exports.default = (0, _cerebral.sequence)('Delete user', [(0, _operators.set)((0, _tags.state)(_templateObject), false), (0, _operators.set)((0, _tags.props)(_templateObject2), (0, _tags.state)(_templateObject3, (0, _tags.state)(_templateObject4))), (0, _operators2.httpDelete)((0, _tags.string)(_templateObject5, (0, _tags.state)(_templateObject6, (0, _tags.state)(_templateObject4)))), {
+  success: [(0, _operators.unset)((0, _tags.state)(_templateObject7, (0, _tags.state)(_templateObject4))), (0, _showFlash2.default)((0, _tags.string)(_templateObject8, (0, _tags.props)(_templateObject2)), 'success')],
+  error: (0, _showFlash2.default)((0, _tags.string)(_templateObject9, (0, _tags.props)(_templateObject2)), 'error')
+}, (0, _operators.set)((0, _tags.state)(_templateObject4), null)]);
+
+/***/ }),
+/* 545 */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+
+var _templateObject = _taggedTemplateLiteral(['admin.searchIsLoading'], ['admin.searchIsLoading']),
+    _templateObject2 = _taggedTemplateLiteral(['admin.searchString'], ['admin.searchString']),
+    _templateObject3 = _taggedTemplateLiteral(['value'], ['value']),
+    _templateObject4 = _taggedTemplateLiteral(['admin.users'], ['admin.users']),
+    _templateObject5 = _taggedTemplateLiteral(['noUsersFound'], ['noUsersFound']);
+
+var _cerebral = __webpack_require__(9);
+
+var _tags = __webpack_require__(6);
+
+var _operators = __webpack_require__(10);
+
+var _showFlash = __webpack_require__(26);
+
+var _showFlash2 = _interopRequireDefault(_showFlash);
+
+var _fetchUsers = __webpack_require__(95);
+
+var _fetchUsers2 = _interopRequireDefault(_fetchUsers);
+
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+function _taggedTemplateLiteral(strings, raw) { return Object.freeze(Object.defineProperties(strings, { raw: { value: Object.freeze(raw) } })); }
+
+exports.default = (0, _cerebral.sequence)('Search for users', [(0, _operators.debounce)(500), {
+  continue: [(0, _operators.set)((0, _tags.state)(_templateObject), true), (0, _operators.set)((0, _tags.state)(_templateObject2), (0, _tags.props)(_templateObject3)), (0, _operators.set)((0, _tags.state)(_templateObject4), {}), _fetchUsers2.default, (0, _operators.set)((0, _tags.state)(_templateObject), false), (0, _operators.when)((0, _tags.props)(_templateObject5)), {
+    true: (0, _showFlash2.default)('Could not find any users matching.', 'info'),
+    false: []
+  }],
+  discard: []
+}]);
+
+/***/ }),
+/* 546 */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+
+var _templateObject = _taggedTemplateLiteral(['admin.activeUid'], ['admin.activeUid']),
+    _templateObject2 = _taggedTemplateLiteral(['uid'], ['uid']),
+    _templateObject3 = _taggedTemplateLiteral(['admin.showConfirmSignOut'], ['admin.showConfirmSignOut']);
+
+var _cerebral = __webpack_require__(9);
+
+var _tags = __webpack_require__(6);
+
+var _operators = __webpack_require__(10);
+
+function _taggedTemplateLiteral(strings, raw) { return Object.freeze(Object.defineProperties(strings, { raw: { value: Object.freeze(raw) } })); }
+
+exports.default = (0, _cerebral.sequence)('Sign user out', [(0, _operators.set)((0, _tags.state)(_templateObject), (0, _tags.props)(_templateObject2)), (0, _operators.set)((0, _tags.state)(_templateObject3), true)]);
+
+/***/ }),
+/* 547 */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+
+var _templateObject = _taggedTemplateLiteral(['admin.activeUid'], ['admin.activeUid']),
+    _templateObject2 = _taggedTemplateLiteral(['admin.showConfirmSignOut'], ['admin.showConfirmSignOut']);
+
+var _cerebral = __webpack_require__(9);
+
+var _tags = __webpack_require__(6);
+
+var _operators = __webpack_require__(10);
+
+function _taggedTemplateLiteral(strings, raw) { return Object.freeze(Object.defineProperties(strings, { raw: { value: Object.freeze(raw) } })); }
+
+exports.default = (0, _cerebral.sequence)('Close confirm-sign-out-user modal', [(0, _operators.set)((0, _tags.state)(_templateObject), null), (0, _operators.set)((0, _tags.state)(_templateObject2), false)]);
+
+/***/ }),
+/* 548 */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+
+var _templateObject = _taggedTemplateLiteral(['admin.showConfirmSignOut'], ['admin.showConfirmSignOut']),
+    _templateObject2 = _taggedTemplateLiteral(['nickname'], ['nickname']),
+    _templateObject3 = _taggedTemplateLiteral(['admin.users.', '.nickname'], ['admin.users.', '.nickname']),
+    _templateObject4 = _taggedTemplateLiteral(['admin.activeUid'], ['admin.activeUid']),
+    _templateObject5 = _taggedTemplateLiteral(['', '/signout'], ['', '/signout']),
+    _templateObject6 = _taggedTemplateLiteral(['admin.users.', '.@id'], ['admin.users.', '.@id']),
+    _templateObject7 = _taggedTemplateLiteral(['Current tokens from ', ' will not be refreshed'], ['Current tokens from ', ' will not be refreshed']),
+    _templateObject8 = _taggedTemplateLiteral(['Tokens from ', ' could not be invalidated'], ['Tokens from ', ' could not be invalidated']);
+
+var _cerebral = __webpack_require__(9);
+
+var _tags = __webpack_require__(6);
+
+var _operators = __webpack_require__(10);
+
+var _operators2 = __webpack_require__(29);
+
+var _showFlash = __webpack_require__(26);
+
+var _showFlash2 = _interopRequireDefault(_showFlash);
+
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+function _taggedTemplateLiteral(strings, raw) { return Object.freeze(Object.defineProperties(strings, { raw: { value: Object.freeze(raw) } })); }
+
+exports.default = (0, _cerebral.sequence)('Sign out user', [(0, _operators.set)((0, _tags.state)(_templateObject), false), (0, _operators.set)((0, _tags.props)(_templateObject2), (0, _tags.state)(_templateObject3, (0, _tags.state)(_templateObject4))), (0, _operators2.httpGet)((0, _tags.string)(_templateObject5, (0, _tags.state)(_templateObject6, (0, _tags.state)(_templateObject4)))), {
+  success: [(0, _showFlash2.default)((0, _tags.string)(_templateObject7, (0, _tags.props)(_templateObject2)), 'success')],
+  error: (0, _showFlash2.default)((0, _tags.string)(_templateObject8, (0, _tags.props)(_templateObject2)), 'error')
+}, (0, _operators.set)((0, _tags.state)(_templateObject4), null)]);
+
+/***/ }),
+/* 549 */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+
+var _templateObject = _taggedTemplateLiteral(['admin.usersSortBy'], ['admin.usersSortBy']),
+    _templateObject2 = _taggedTemplateLiteral(['sortBy'], ['sortBy']),
+    _templateObject3 = _taggedTemplateLiteral(['admin.usersSortDir'], ['admin.usersSortDir']);
+
+var _cerebral = __webpack_require__(9);
+
+var _tags = __webpack_require__(6);
+
+var _operators = __webpack_require__(10);
+
+var _fetchUsers = __webpack_require__(95);
+
+var _fetchUsers2 = _interopRequireDefault(_fetchUsers);
+
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+function _taggedTemplateLiteral(strings, raw) { return Object.freeze(Object.defineProperties(strings, { raw: { value: Object.freeze(raw) } })); }
+
+exports.default = (0, _cerebral.sequence)('Fetch sorted users', [(0, _operators.when)((0, _tags.state)(_templateObject), (0, _tags.props)(_templateObject2), function (currentSortBy, sortBy) {
+  return currentSortBy === sortBy;
+}), {
+  true: [(0, _operators.when)((0, _tags.state)(_templateObject3), function (currentSortDir) {
+    return currentSortDir === 'ascending';
+  }), {
+    true: (0, _operators.set)((0, _tags.state)(_templateObject3), 'descending'),
+    false: (0, _operators.set)((0, _tags.state)(_templateObject3), 'ascending')
+  }],
+  false: (0, _operators.set)((0, _tags.state)(_templateObject3), 'ascending')
+}, (0, _operators.set)((0, _tags.state)(_templateObject), (0, _tags.props)(_templateObject2)), _fetchUsers2.default]);
+
+/***/ }),
+/* 550 */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+
+var _templateObject = _taggedTemplateLiteral(['admin.users.', '.toggleAdminIsLoading'], ['admin.users.', '.toggleAdminIsLoading']),
+    _templateObject2 = _taggedTemplateLiteral(['uid'], ['uid']),
+    _templateObject3 = _taggedTemplateLiteral(['admin.users.', '.isAdmin'], ['admin.users.', '.isAdmin']),
+    _templateObject4 = _taggedTemplateLiteral(['isAdmin'], ['isAdmin']),
+    _templateObject5 = _taggedTemplateLiteral(['groups'], ['groups']),
+    _templateObject6 = _taggedTemplateLiteral(['', ''], ['', '']),
+    _templateObject7 = _taggedTemplateLiteral(['admin.users.', '.@id'], ['admin.users.', '.@id']),
+    _templateObject8 = _taggedTemplateLiteral(['Admin could not be toggled for ', ''], ['Admin could not be toggled for ', '']),
+    _templateObject9 = _taggedTemplateLiteral(['admin.users.', '.nickname'], ['admin.users.', '.nickname']);
+
+var _cerebral = __webpack_require__(9);
+
+var _tags = __webpack_require__(6);
+
+var _operators = __webpack_require__(10);
+
+var _operators2 = __webpack_require__(29);
+
+var _showValidationError = __webpack_require__(46);
+
+var _showValidationError2 = _interopRequireDefault(_showValidationError);
+
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+function _taggedTemplateLiteral(strings, raw) { return Object.freeze(Object.defineProperties(strings, { raw: { value: Object.freeze(raw) } })); }
+
+exports.default = (0, _cerebral.sequence)('Toggle Admin permissions', [(0, _operators.set)((0, _tags.state)(_templateObject, (0, _tags.props)(_templateObject2)), true), (0, _operators.when)((0, _tags.state)(_templateObject3, (0, _tags.props)(_templateObject2))), {
+  true: [(0, _operators.set)((0, _tags.props)(_templateObject4), false), (0, _operators.set)((0, _tags.props)(_templateObject5), [])],
+  false: [(0, _operators.set)((0, _tags.props)(_templateObject4), true), (0, _operators.set)((0, _tags.props)(_templateObject5), ['Admin'])]
+}, (0, _operators2.httpPut)((0, _tags.string)(_templateObject6, (0, _tags.state)(_templateObject7, (0, _tags.props)(_templateObject2))), {
+  groups: (0, _tags.props)(_templateObject5)
+}), {
+  success: [(0, _operators.set)((0, _tags.state)(_templateObject3, (0, _tags.props)(_templateObject2)), (0, _tags.props)(_templateObject4))],
+  error: (0, _showValidationError2.default)((0, _tags.string)(_templateObject8, (0, _tags.state)(_templateObject9, (0, _tags.props)(_templateObject2))))
+}, (0, _operators.set)((0, _tags.state)(_templateObject, (0, _tags.props)(_templateObject2)), false)]);
+
+/***/ }),
+/* 551 */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+
+var _jwtDecode = __webpack_require__(290);
+
+var _jwtDecode2 = _interopRequireDefault(_jwtDecode);
+
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+function initApp(_ref) {
+  var state = _ref.state,
+      storage = _ref.storage;
+
+  var jwtHeader = storage.get('jwtHeader');
+  if (jwtHeader) {
+    var claims = (0, _jwtDecode2.default)(jwtHeader);
+    if (!claims.exp || claims.exp * 1000 > Date.now()) {
+      state.set('user.authenticated', true);
+      state.set('user.api.@id', claims.uid);
+      state.set('user.email', claims.sub);
+      state.set('user.nickname', claims.nickname);
+      state.set('user.isAdmin', claims.isAdmin);
+      if (claims.exp) {
+        state.set('user.token.exp', claims.exp);
+        claims.refresh_until && state.set('user.token.refreshUntil', claims.refresh_until);
+      }
+    } else if (!claims.refresh_until || claims.refresh_until * 1000 > Date.now()) {
+      state.set('user.token.shouldRefresh', true);
+    } else {
+      storage.remove('jwtHeader');
+    }
+  }
+}
+
+exports.default = initApp;
+
+/***/ }),
+/* 552 */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+
+var _appMounted = __webpack_require__(553);
+
+var _appMounted2 = _interopRequireDefault(_appMounted);
+
+var _pageRouted = __webpack_require__(554);
+
+var _pageRouted2 = _interopRequireDefault(_pageRouted);
+
+var _settingsRouted = __webpack_require__(555);
+
+var _settingsRouted2 = _interopRequireDefault(_settingsRouted);
+
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+exports.default = function (urlParams) {
+  return function (_ref) {
+    var controller = _ref.controller,
+        path = _ref.path;
+
+    controller.on('initialized', function () {
+      controller.getSignal('app.appMounted')({});
+    });
+    return {
+      signals: {
+        appMounted: _appMounted2.default,
+        pageRouted: _pageRouted2.default,
+        settingsRouted: _settingsRouted2.default
+      },
+      state: {
+        currentPage: null,
+        lastVisited: null,
+        headerText: '',
+        headerIcon: null,
+        flash: urlParams['flash'],
+        flashType: urlParams['flashType'],
+        initialFlash: urlParams['flash'] !== null
+      }
+    };
+  };
+};
+
+/***/ }),
+/* 553 */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+
+var _templateObject = _taggedTemplateLiteral(['user.token.shouldRefresh'], ['user.token.shouldRefresh']);
+
+var _cerebral = __webpack_require__(9);
+
+var _operators = __webpack_require__(10);
+
+var _tags = __webpack_require__(6);
+
+var _initApp = __webpack_require__(551);
+
+var _initApp2 = _interopRequireDefault(_initApp);
+
+var _refreshToken = __webpack_require__(570);
+
+var _refreshToken2 = _interopRequireDefault(_refreshToken);
+
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+function _taggedTemplateLiteral(strings, raw) { return Object.freeze(Object.defineProperties(strings, { raw: { value: Object.freeze(raw) } })); }
+
+exports.default = (0, _cerebral.sequence)('Initiate App', [_initApp2.default, (0, _operators.when)((0, _tags.state)(_templateObject)), {
+  true: _refreshToken2.default,
+  false: []
+}]);
+
+/***/ }),
+/* 554 */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+
+var _templateObject = _taggedTemplateLiteral(['page'], ['page']);
+
+var _cerebral = __webpack_require__(9);
+
+var _tags = __webpack_require__(6);
+
+var _routeTo = __webpack_require__(264);
+
+var _routeTo2 = _interopRequireDefault(_routeTo);
+
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+function _taggedTemplateLiteral(strings, raw) { return Object.freeze(Object.defineProperties(strings, { raw: { value: Object.freeze(raw) } })); }
+
+exports.default = (0, _cerebral.sequence)('Route to page', [(0, _routeTo2.default)((0, _tags.props)(_templateObject))]);
+
+/***/ }),
+/* 555 */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+
+var _templateObject = _taggedTemplateLiteral(['tab'], ['tab']);
+
+var _cerebral = __webpack_require__(9);
+
+var _tags = __webpack_require__(6);
+
+var _routeTo = __webpack_require__(264);
+
+var _routeTo2 = _interopRequireDefault(_routeTo);
+
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+function _taggedTemplateLiteral(strings, raw) { return Object.freeze(Object.defineProperties(strings, { raw: { value: Object.freeze(raw) } })); }
+
+exports.default = (0, _cerebral.sequence)('Route to settings tab', [(0, _routeTo2.default)('settings', (0, _tags.props)(_templateObject))]);
+
+/***/ }),
+/* 556 */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+
+var _errors = __webpack_require__(162);
+
+function authenticate(_ref) {
+  var props = _ref.props,
+      state = _ref.state;
+
+  if (!state.get('user.authenticated')) {
+    throw new _errors.AuthenticationError('You must log in to view this page');
+  }
+}
+
+exports.default = authenticate;
+
+/***/ }),
+/* 557 */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+
+var _errors = __webpack_require__(162);
+
+function authenticate(_ref) {
+  var props = _ref.props,
+      state = _ref.state;
+
+  if (!state.get('user.authenticated') || !state.get('user.isAdmin')) {
+    throw new _errors.AuthenticationError('You need Admin permissions to view this page');
+  }
+}
+
+exports.default = authenticate;
+
+/***/ }),
+/* 558 */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+
+var _templateObject = _taggedTemplateLiteral(['error.message'], ['error.message']);
+
+var _cerebral = __webpack_require__(9);
+
+var _operators = __webpack_require__(10);
+
+var _tags = __webpack_require__(6);
+
+var _redirect = __webpack_require__(55);
+
+var _redirect2 = _interopRequireDefault(_redirect);
+
+var _showFlash = __webpack_require__(26);
+
+var _showFlash2 = _interopRequireDefault(_showFlash);
+
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+function _taggedTemplateLiteral(strings, raw) { return Object.freeze(Object.defineProperties(strings, { raw: { value: Object.freeze(raw) } })); }
+
+exports.default = (0, _cerebral.sequence)('Redirect to login', [(0, _redirect2.default)('login'), (0, _operators.when)((0, _tags.props)(_templateObject)), {
+  true: (0, _showFlash2.default)((0, _tags.props)(_templateObject), 'info'),
+  false: []
+}]);
+
+/***/ }),
+/* 559 */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+
+var _templateObject = _taggedTemplateLiteral(['settings.profileForm.nickname.value'], ['settings.profileForm.nickname.value']),
+    _templateObject2 = _taggedTemplateLiteral(['user.nickname'], ['user.nickname']);
+
+var _cerebral = __webpack_require__(9);
+
+var _tags = __webpack_require__(6);
+
+var _operators = __webpack_require__(10);
+
+function _taggedTemplateLiteral(strings, raw) { return Object.freeze(Object.defineProperties(strings, { raw: { value: Object.freeze(raw) } })); }
+
+exports.default = (0, _cerebral.sequence)('Set values for settings form', [(0, _operators.set)((0, _tags.state)(_templateObject), (0, _tags.state)(_templateObject2))]);
+
+/***/ }),
+/* 560 */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+
+var _profileFormSubmitted = __webpack_require__(563);
+
+var _profileFormSubmitted2 = _interopRequireDefault(_profileFormSubmitted);
+
+var _emailFormSubmitted = __webpack_require__(561);
+
+var _emailFormSubmitted2 = _interopRequireDefault(_emailFormSubmitted);
+
+var _passwordFormSubmitted = __webpack_require__(562);
+
+var _passwordFormSubmitted2 = _interopRequireDefault(_passwordFormSubmitted);
+
+var _signOutButtonClicked = __webpack_require__(567);
+
+var _signOutButtonClicked2 = _interopRequireDefault(_signOutButtonClicked);
+
+var _signOutConfirmed = __webpack_require__(569);
+
+var _signOutConfirmed2 = _interopRequireDefault(_signOutConfirmed);
+
+var _signOutCancelled = __webpack_require__(568);
+
+var _signOutCancelled2 = _interopRequireDefault(_signOutCancelled);
+
+var _removeUserButtonClicked = __webpack_require__(564);
+
+var _removeUserButtonClicked2 = _interopRequireDefault(_removeUserButtonClicked);
+
+var _removeUserConfirmed = __webpack_require__(566);
+
+var _removeUserConfirmed2 = _interopRequireDefault(_removeUserConfirmed);
+
+var _removeUserCancelled = __webpack_require__(565);
+
+var _removeUserCancelled2 = _interopRequireDefault(_removeUserCancelled);
+
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+exports.default = function (module) {
+  return {
+    signals: {
+      profileFormSubmitted: _profileFormSubmitted2.default,
+      emailFormSubmitted: _emailFormSubmitted2.default,
+      passwordFormSubmitted: _passwordFormSubmitted2.default,
+      signOutButtonClicked: _signOutButtonClicked2.default,
+      signOutCancelled: _signOutCancelled2.default,
+      signOutConfirmed: _signOutConfirmed2.default,
+      removeUserButtonClicked: _removeUserButtonClicked2.default,
+      removeUserCancelled: _removeUserCancelled2.default,
+      removeUserConfirmed: _removeUserConfirmed2.default
+    },
+
+    state: {
+      currentTab: 'profile',
+      profileForm: {
+        nickname: {
+          value: '',
+          validationRules: ['minLength:3'],
+          isRequired: true
+        },
+        showErrors: false,
+        isLoading: false
+      },
+      emailForm: {
+        password: {
+          value: '',
+          validationRules: ['minLength:5'],
+          isRequired: true
+        },
+        email: {
+          value: '',
+          validationRules: ['isEmail'],
+          isRequired: true
+        },
+        showErrors: false,
+        isLoading: false
+      },
+      passwordForm: {
+        currentPassword: {
+          value: '',
+          validationRules: ['minLength:5'],
+          isRequired: true
+        },
+        password: {
+          value: '',
+          validationRules: ['minLength:5'],
+          isRequired: true
+        },
+        confirmPassword: {
+          value: '',
+          validationRules: ['equalsField:settings.passwordForm.password'],
+          isRequired: true
+        },
+        showErrors: false,
+        isLoading: false
+      },
+      showConfirmSignOut: false,
+      showConfirmRemoveUser: false,
+      accountForm: {
+        password: {
+          value: '',
+          validationRules: ['minLength:5'],
+          isRequired: true
+        },
+        showErrors: false,
+        isLoading: false
+      }
+    }
+  };
+};
+
+/***/ }),
+/* 561 */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+
+var _templateObject = _taggedTemplateLiteral(['settings.emailForm'], ['settings.emailForm']),
+    _templateObject2 = _taggedTemplateLiteral(['settings.emailForm.showErrors'], ['settings.emailForm.showErrors']),
+    _templateObject3 = _taggedTemplateLiteral(['user.email'], ['user.email']),
+    _templateObject4 = _taggedTemplateLiteral(['settings.emailForm.email.value'], ['settings.emailForm.email.value']),
+    _templateObject5 = _taggedTemplateLiteral(['settings.emailForm.isLoading'], ['settings.emailForm.isLoading']),
+    _templateObject6 = _taggedTemplateLiteral(['settings.emailForm.password.value'], ['settings.emailForm.password.value']),
+    _templateObject7 = _taggedTemplateLiteral(['', ''], ['', '']),
+    _templateObject8 = _taggedTemplateLiteral(['user.api.@id'], ['user.api.@id']);
+
+var _cerebral = __webpack_require__(9);
+
+var _tags = __webpack_require__(6);
+
+var _operators = __webpack_require__(10);
+
+var _operators2 = __webpack_require__(41);
+
+var _operators3 = __webpack_require__(29);
+
+var _showFlash = __webpack_require__(26);
+
+var _showFlash2 = _interopRequireDefault(_showFlash);
+
+var _showValidationError = __webpack_require__(46);
+
+var _showValidationError2 = _interopRequireDefault(_showValidationError);
+
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+function _taggedTemplateLiteral(strings, raw) { return Object.freeze(Object.defineProperties(strings, { raw: { value: Object.freeze(raw) } })); }
+
+exports.default = (0, _cerebral.sequence)('Update your email address', [(0, _operators2.isValidForm)((0, _tags.state)(_templateObject)), {
+  true: [(0, _operators.set)((0, _tags.state)(_templateObject2), false), (0, _operators.when)((0, _tags.state)(_templateObject3), (0, _tags.state)(_templateObject4), function (currentEmail, email) {
+    return currentEmail !== email;
+  }), {
+    true: [(0, _operators.set)((0, _tags.state)(_templateObject5), true), (0, _operators3.httpPost)('/login', {
+      email: (0, _tags.state)(_templateObject3),
+      password: (0, _tags.state)(_templateObject6)
+    }), {
+      success: [(0, _operators.set)((0, _tags.state)(_templateObject6), ''), (0, _operators3.httpPut)((0, _tags.string)(_templateObject7, (0, _tags.state)(_templateObject8)), {
+        email: (0, _tags.state)(_templateObject4)
+      }), {
+        success: [(0, _operators.set)((0, _tags.state)(_templateObject3), (0, _tags.state)(_templateObject4)), (0, _operators.set)((0, _tags.state)(_templateObject5), false), (0, _showFlash2.default)('Please check your mailbox to confirm your new email address', 'success')],
+        error: [(0, _operators.set)((0, _tags.state)(_templateObject5), false), (0, _showValidationError2.default)('Could not update email!')]
+      }],
+      error: [(0, _operators.set)((0, _tags.state)(_templateObject6), ''), (0, _operators.set)((0, _tags.state)(_templateObject5), false), (0, _showFlash2.default)('Password is not correct - please try again', 'error')]
+    }],
+    false: (0, _showFlash2.default)('This email address is the same as your current email', 'warning')
+  }],
+  false: (0, _operators.set)((0, _tags.state)(_templateObject2), true)
+}]);
+
+/***/ }),
+/* 562 */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+
+var _templateObject = _taggedTemplateLiteral(['settings.passwordForm'], ['settings.passwordForm']),
+    _templateObject2 = _taggedTemplateLiteral(['settings.passwordForm.showErrors'], ['settings.passwordForm.showErrors']),
+    _templateObject3 = _taggedTemplateLiteral(['settings.passwordForm.confirmPassword.value'], ['settings.passwordForm.confirmPassword.value']),
+    _templateObject4 = _taggedTemplateLiteral(['settings.passwordForm.isLoading'], ['settings.passwordForm.isLoading']),
+    _templateObject5 = _taggedTemplateLiteral(['user.email'], ['user.email']),
+    _templateObject6 = _taggedTemplateLiteral(['settings.passwordForm.currentPassword.value'], ['settings.passwordForm.currentPassword.value']),
+    _templateObject7 = _taggedTemplateLiteral(['', ''], ['', '']),
+    _templateObject8 = _taggedTemplateLiteral(['user.api.@id'], ['user.api.@id']),
+    _templateObject9 = _taggedTemplateLiteral(['settings.passwordForm.password.value'], ['settings.passwordForm.password.value']);
+
+var _cerebral = __webpack_require__(9);
+
+var _tags = __webpack_require__(6);
+
+var _operators = __webpack_require__(10);
+
+var _operators2 = __webpack_require__(41);
+
+var _operators3 = __webpack_require__(29);
+
+var _showFlash = __webpack_require__(26);
+
+var _showFlash2 = _interopRequireDefault(_showFlash);
+
+var _showValidationError = __webpack_require__(46);
+
+var _showValidationError2 = _interopRequireDefault(_showValidationError);
+
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+function _taggedTemplateLiteral(strings, raw) { return Object.freeze(Object.defineProperties(strings, { raw: { value: Object.freeze(raw) } })); }
+
+exports.default = (0, _cerebral.sequence)('Change your password', [(0, _operators2.isValidForm)((0, _tags.state)(_templateObject)), {
+  true: [(0, _operators.set)((0, _tags.state)(_templateObject2), false), (0, _operators.set)((0, _tags.state)(_templateObject3), ''), (0, _operators.set)((0, _tags.state)(_templateObject4), true), (0, _operators3.httpPost)('/login', {
+    email: (0, _tags.state)(_templateObject5),
+    password: (0, _tags.state)(_templateObject6)
+  }), {
+    success: [(0, _operators.set)((0, _tags.state)(_templateObject6), ''), (0, _operators3.httpPut)((0, _tags.string)(_templateObject7, (0, _tags.state)(_templateObject8)), {
+      password: (0, _tags.state)(_templateObject9)
+    }), {
+      success: [(0, _operators.set)((0, _tags.state)(_templateObject9), ''), (0, _operators.set)((0, _tags.state)(_templateObject4), false), (0, _showFlash2.default)('Your password has been changed', 'success')],
+      error: [(0, _operators.set)((0, _tags.state)(_templateObject9), ''), (0, _operators.set)((0, _tags.state)(_templateObject4), false), (0, _showValidationError2.default)('Could not change Password!')]
+    }],
+    error: [(0, _operators.set)((0, _tags.state)(_templateObject6), ''), (0, _operators.set)((0, _tags.state)(_templateObject9), ''), (0, _operators.set)((0, _tags.state)(_templateObject4), false), (0, _showFlash2.default)('Current password is not correct - please try again', 'error')]
+  }],
+  false: (0, _operators.set)((0, _tags.state)(_templateObject2), true)
+}]);
+
+/***/ }),
+/* 563 */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+
+var _templateObject = _taggedTemplateLiteral(['settings.profileForm'], ['settings.profileForm']),
+    _templateObject2 = _taggedTemplateLiteral(['settings.profileForm.showErrors'], ['settings.profileForm.showErrors']),
+    _templateObject3 = _taggedTemplateLiteral(['settings.profileForm.isLoading'], ['settings.profileForm.isLoading']),
+    _templateObject4 = _taggedTemplateLiteral(['', ''], ['', '']),
+    _templateObject5 = _taggedTemplateLiteral(['user.api.@id'], ['user.api.@id']),
+    _templateObject6 = _taggedTemplateLiteral(['settings.profileForm.nickname.value'], ['settings.profileForm.nickname.value']),
+    _templateObject7 = _taggedTemplateLiteral(['user.nickname'], ['user.nickname']);
+
+var _cerebral = __webpack_require__(9);
+
+var _tags = __webpack_require__(6);
+
+var _operators = __webpack_require__(10);
+
+var _operators2 = __webpack_require__(41);
+
+var _operators3 = __webpack_require__(29);
+
+var _showFlash = __webpack_require__(26);
+
+var _showFlash2 = _interopRequireDefault(_showFlash);
+
+var _showValidationError = __webpack_require__(46);
+
+var _showValidationError2 = _interopRequireDefault(_showValidationError);
+
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+function _taggedTemplateLiteral(strings, raw) { return Object.freeze(Object.defineProperties(strings, { raw: { value: Object.freeze(raw) } })); }
+
+exports.default = (0, _cerebral.sequence)('Edit your user profile', [(0, _operators2.isValidForm)((0, _tags.state)(_templateObject)), {
+  true: [(0, _operators.set)((0, _tags.state)(_templateObject2), false), (0, _operators.set)((0, _tags.state)(_templateObject3), true), (0, _operators3.httpPut)((0, _tags.string)(_templateObject4, (0, _tags.state)(_templateObject5)), {
+    nickname: (0, _tags.state)(_templateObject6)
+  }), {
+    success: [(0, _operators.set)((0, _tags.state)(_templateObject7), (0, _tags.state)(_templateObject6)), (0, _operators.set)((0, _tags.state)(_templateObject3), false), (0, _showFlash2.default)('Your profile has be saved', 'success')],
+    error: [(0, _operators.set)((0, _tags.state)(_templateObject3), false), (0, _showValidationError2.default)('Could not save your profile!')]
+  }],
+  false: (0, _operators.set)((0, _tags.state)(_templateObject2), true)
+}]);
+
+/***/ }),
+/* 564 */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+
+var _templateObject = _taggedTemplateLiteral(['settings.showConfirmRemoveUser'], ['settings.showConfirmRemoveUser']);
+
+var _cerebral = __webpack_require__(9);
+
+var _tags = __webpack_require__(6);
+
+var _operators = __webpack_require__(10);
+
+function _taggedTemplateLiteral(strings, raw) { return Object.freeze(Object.defineProperties(strings, { raw: { value: Object.freeze(raw) } })); }
+
+exports.default = (0, _cerebral.sequence)('Show confirm-remove-yourself modal', [(0, _operators.set)((0, _tags.state)(_templateObject), true)]);
+
+/***/ }),
+/* 565 */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+
+var _templateObject = _taggedTemplateLiteral(['settings.showConfirmRemoveUser'], ['settings.showConfirmRemoveUser']);
+
+var _cerebral = __webpack_require__(9);
+
+var _tags = __webpack_require__(6);
+
+var _operators = __webpack_require__(10);
+
+function _taggedTemplateLiteral(strings, raw) { return Object.freeze(Object.defineProperties(strings, { raw: { value: Object.freeze(raw) } })); }
+
+exports.default = (0, _cerebral.sequence)('Close confirm-remove-yourself modal', [(0, _operators.set)((0, _tags.state)(_templateObject), false)]);
+
+/***/ }),
+/* 566 */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+
+var _templateObject = _taggedTemplateLiteral(['settings.showConfirmRemoveUser'], ['settings.showConfirmRemoveUser']),
+    _templateObject2 = _taggedTemplateLiteral(['settings.accountForm'], ['settings.accountForm']),
+    _templateObject3 = _taggedTemplateLiteral(['settings.accountForm.showErrors'], ['settings.accountForm.showErrors']),
+    _templateObject4 = _taggedTemplateLiteral(['settings.accountForm.isLoading'], ['settings.accountForm.isLoading']),
+    _templateObject5 = _taggedTemplateLiteral(['user.email'], ['user.email']),
+    _templateObject6 = _taggedTemplateLiteral(['settings.accountForm.password.value'], ['settings.accountForm.password.value']),
+    _templateObject7 = _taggedTemplateLiteral(['', ''], ['', '']),
+    _templateObject8 = _taggedTemplateLiteral(['user.api.@id'], ['user.api.@id']),
+    _templateObject9 = _taggedTemplateLiteral(['You were successfully deleted. Bye!'], ['You were successfully deleted. Bye!']),
+    _templateObject10 = _taggedTemplateLiteral(['You could not be deleted'], ['You could not be deleted']);
+
+var _cerebral = __webpack_require__(9);
+
+var _tags = __webpack_require__(6);
+
+var _operators = __webpack_require__(10);
+
+var _operators2 = __webpack_require__(29);
+
+var _operators3 = __webpack_require__(41);
+
+var _removeUser = __webpack_require__(265);
+
+var _removeUser2 = _interopRequireDefault(_removeUser);
+
+var _redirect = __webpack_require__(55);
+
+var _redirect2 = _interopRequireDefault(_redirect);
+
+var _showFlash = __webpack_require__(26);
+
+var _showFlash2 = _interopRequireDefault(_showFlash);
+
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+function _taggedTemplateLiteral(strings, raw) { return Object.freeze(Object.defineProperties(strings, { raw: { value: Object.freeze(raw) } })); }
+
+exports.default = (0, _cerebral.sequence)('Delete yourself', [(0, _operators.set)((0, _tags.state)(_templateObject), false), (0, _operators3.isValidForm)((0, _tags.state)(_templateObject2)), {
+  true: [(0, _operators.set)((0, _tags.state)(_templateObject3), false), (0, _operators.set)((0, _tags.state)(_templateObject4), true), (0, _operators2.httpPost)('/login', {
+    email: (0, _tags.state)(_templateObject5),
+    password: (0, _tags.state)(_templateObject6)
+  }), {
+    success: [(0, _operators.set)((0, _tags.state)(_templateObject6), ''), (0, _operators2.httpDelete)((0, _tags.string)(_templateObject7, (0, _tags.state)(_templateObject8))), {
+      success: [_removeUser2.default, (0, _operators.set)((0, _tags.state)(_templateObject4), false), (0, _redirect2.default)('home'), (0, _showFlash2.default)((0, _tags.string)(_templateObject9), 'success')],
+      error: [(0, _operators.set)((0, _tags.state)(_templateObject4), false), (0, _showFlash2.default)((0, _tags.string)(_templateObject10), 'error')]
+    }],
+    error: [(0, _operators.set)((0, _tags.state)(_templateObject6), ''), (0, _operators.set)((0, _tags.state)(_templateObject4), false), (0, _showFlash2.default)('Password is not correct - please try again', 'error')]
+  }],
+  false: [(0, _operators.set)((0, _tags.state)(_templateObject3), true), (0, _showFlash2.default)('Please provide your password', 'error')]
+}]);
+
+/***/ }),
+/* 567 */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+
+var _templateObject = _taggedTemplateLiteral(['settings.showConfirmSignOut'], ['settings.showConfirmSignOut']);
+
+var _cerebral = __webpack_require__(9);
+
+var _tags = __webpack_require__(6);
+
+var _operators = __webpack_require__(10);
+
+function _taggedTemplateLiteral(strings, raw) { return Object.freeze(Object.defineProperties(strings, { raw: { value: Object.freeze(raw) } })); }
+
+exports.default = (0, _cerebral.sequence)('Show confirm-sign-out-yourself modal', [(0, _operators.set)((0, _tags.state)(_templateObject), true)]);
+
+/***/ }),
+/* 568 */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+
+var _templateObject = _taggedTemplateLiteral(['settings.showConfirmSignOut'], ['settings.showConfirmSignOut']);
+
+var _cerebral = __webpack_require__(9);
+
+var _tags = __webpack_require__(6);
+
+var _operators = __webpack_require__(10);
+
+function _taggedTemplateLiteral(strings, raw) { return Object.freeze(Object.defineProperties(strings, { raw: { value: Object.freeze(raw) } })); }
+
+exports.default = (0, _cerebral.sequence)('Close confirm-sign-out-yourself modal', [(0, _operators.set)((0, _tags.state)(_templateObject), false)]);
+
+/***/ }),
+/* 569 */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+
+var _templateObject = _taggedTemplateLiteral(['settings.showConfirmSignOut'], ['settings.showConfirmSignOut']),
+    _templateObject2 = _taggedTemplateLiteral(['settings.accountForm'], ['settings.accountForm']),
+    _templateObject3 = _taggedTemplateLiteral(['settings.accountForm.showErrors'], ['settings.accountForm.showErrors']),
+    _templateObject4 = _taggedTemplateLiteral(['settings.accountForm.isLoading'], ['settings.accountForm.isLoading']),
+    _templateObject5 = _taggedTemplateLiteral(['user.email'], ['user.email']),
+    _templateObject6 = _taggedTemplateLiteral(['settings.accountForm.password.value'], ['settings.accountForm.password.value']),
+    _templateObject7 = _taggedTemplateLiteral(['', '/signout'], ['', '/signout']),
+    _templateObject8 = _taggedTemplateLiteral(['user.api.@id'], ['user.api.@id']),
+    _templateObject9 = _taggedTemplateLiteral(['Your current tokens will not be refreshed'], ['Your current tokens will not be refreshed']),
+    _templateObject10 = _taggedTemplateLiteral(['Your tokens could not be invalidated'], ['Your tokens could not be invalidated']);
+
+var _cerebral = __webpack_require__(9);
+
+var _tags = __webpack_require__(6);
+
+var _operators = __webpack_require__(10);
+
+var _operators2 = __webpack_require__(29);
+
+var _operators3 = __webpack_require__(41);
+
+var _showFlash = __webpack_require__(26);
+
+var _showFlash2 = _interopRequireDefault(_showFlash);
+
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+function _taggedTemplateLiteral(strings, raw) { return Object.freeze(Object.defineProperties(strings, { raw: { value: Object.freeze(raw) } })); }
+
+exports.default = (0, _cerebral.sequence)('Sign-out yourself', [(0, _operators.set)((0, _tags.state)(_templateObject), false), (0, _operators3.isValidForm)((0, _tags.state)(_templateObject2)), {
+  true: [(0, _operators.set)((0, _tags.state)(_templateObject3), false), (0, _operators.set)((0, _tags.state)(_templateObject4), true), (0, _operators2.httpPost)('/login', {
+    email: (0, _tags.state)(_templateObject5),
+    password: (0, _tags.state)(_templateObject6)
+  }), {
+    success: [(0, _operators.set)((0, _tags.state)(_templateObject6), ''), (0, _operators2.httpGet)((0, _tags.string)(_templateObject7, (0, _tags.state)(_templateObject8))), {
+      success: [(0, _operators.set)((0, _tags.state)(_templateObject4), false), (0, _showFlash2.default)((0, _tags.string)(_templateObject9), 'success')],
+      error: [(0, _operators.set)((0, _tags.state)(_templateObject4), false), (0, _showFlash2.default)((0, _tags.string)(_templateObject10), 'error')]
+    }],
+    error: [(0, _operators.set)((0, _tags.state)(_templateObject6), ''), (0, _operators.set)((0, _tags.state)(_templateObject4), false), (0, _showFlash2.default)('Password is not correct - please try again', 'error')]
+  }],
+  false: [(0, _operators.set)((0, _tags.state)(_templateObject3), true), (0, _showFlash2.default)('Please provide your password', 'error')]
+}]);
+
+/***/ }),
+/* 570 */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+
+var _templateObject = _taggedTemplateLiteral(['user.token.shouldRefresh'], ['user.token.shouldRefresh']);
+
+var _cerebral = __webpack_require__(9);
+
+var _tags = __webpack_require__(6);
+
+var _operators = __webpack_require__(10);
+
+var _operators2 = __webpack_require__(29);
+
+var _operators3 = __webpack_require__(506);
+
+var _initUser = __webpack_require__(163);
+
+var _initUser2 = _interopRequireDefault(_initUser);
+
+var _showValidationError = __webpack_require__(46);
+
+var _showValidationError2 = _interopRequireDefault(_showValidationError);
+
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+function _taggedTemplateLiteral(strings, raw) { return Object.freeze(Object.defineProperties(strings, { raw: { value: Object.freeze(raw) } })); }
+
+exports.default = (0, _cerebral.sequence)('Refresh token', [(0, _operators2.httpGet)('/refresh'), {
+  success: _initUser2.default,
+  error: [(0, _operators3.removeStorage)('jwtHeader'), (0, _showValidationError2.default)('Could not refresh your token!')]
+}, (0, _operators.unset)((0, _tags.state)(_templateObject))]);
+
+/***/ }),
+/* 571 */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+
+var _fieldChanged = __webpack_require__(573);
+
+var _fieldChanged2 = _interopRequireDefault(_fieldChanged);
+
+var _loginFormSubmitted = __webpack_require__(574);
+
+var _loginFormSubmitted2 = _interopRequireDefault(_loginFormSubmitted);
+
+var _registerFormSubmitted = __webpack_require__(577);
+
+var _registerFormSubmitted2 = _interopRequireDefault(_registerFormSubmitted);
+
+var _emailFormSubmitted = __webpack_require__(572);
+
+var _emailFormSubmitted2 = _interopRequireDefault(_emailFormSubmitted);
+
+var _passwordFormSubmitted = __webpack_require__(576);
+
+var _passwordFormSubmitted2 = _interopRequireDefault(_passwordFormSubmitted);
+
+var _logoutButtonClicked = __webpack_require__(575);
+
+var _logoutButtonClicked2 = _interopRequireDefault(_logoutButtonClicked);
+
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+exports.default = function (urlParams) {
+  return function (module) {
+    return {
+      signals: {
+        fieldChanged: _fieldChanged2.default,
+        loginFormSubmitted: _loginFormSubmitted2.default,
+        registerFormSubmitted: _registerFormSubmitted2.default,
+        emailFormSubmitted: _emailFormSubmitted2.default,
+        passwordFormSubmitted: _passwordFormSubmitted2.default,
+        logoutButtonClicked: _logoutButtonClicked2.default
+      },
+
+      state: {
+        email: '',
+        nickname: '',
+        isAdmin: false,
+        authenticated: false,
+        token: {},
+        api: {
+          '@id': urlParams['@id']
+        },
+        loginForm: {
+          email: {
+            value: '',
+            validationRules: ['isEmail'],
+            isRequired: true
+          },
+          password: {
+            value: '',
+            validationRules: ['minLength:5'],
+            isRequired: true
+          },
+          showErrors: false,
+          isLoading: false
+        },
+        registerForm: {
+          nickname: {
+            value: '',
+            validationRules: ['minLength:3'],
+            isRequired: true
+          },
+          email: {
+            value: '',
+            validationRules: ['isEmail'],
+            isRequired: true
+          },
+          password: {
+            value: '',
+            validationRules: ['minLength:5'],
+            isRequired: true
+          },
+          confirmPassword: {
+            value: '',
+            validationRules: ['equalsField:user.registerForm.password'],
+            isRequired: true
+          },
+          showErrors: false,
+          isLoading: false
+        },
+        emailForm: {
+          email: {
+            value: '',
+            validationRules: ['isEmail'],
+            isRequired: true
+          },
+          showErrors: false,
+          isLoading: false
+        },
+        passwordForm: {
+          password: {
+            value: '',
+            validationRules: ['minLength:5'],
+            isRequired: true
+          },
+          confirmPassword: {
+            value: '',
+            validationRules: ['equalsField:user.passwordForm.password'],
+            isRequired: true
+          },
+          showErrors: false,
+          isLoading: false
+        }
+      }
+    };
+  };
+};
+
+/***/ }),
+/* 572 */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+
+var _templateObject = _taggedTemplateLiteral(['user.emailForm'], ['user.emailForm']),
+    _templateObject2 = _taggedTemplateLiteral(['user.emailForm.showErrors'], ['user.emailForm.showErrors']),
+    _templateObject3 = _taggedTemplateLiteral(['user.emailForm.isLoading'], ['user.emailForm.isLoading']),
+    _templateObject4 = _taggedTemplateLiteral(['user.emailForm.email.value'], ['user.emailForm.email.value']);
+
+var _cerebral = __webpack_require__(9);
+
+var _tags = __webpack_require__(6);
+
+var _operators = __webpack_require__(10);
+
+var _operators2 = __webpack_require__(41);
+
+var _operators3 = __webpack_require__(29);
+
+var _redirect = __webpack_require__(55);
+
+var _redirect2 = _interopRequireDefault(_redirect);
+
+var _showFlash = __webpack_require__(26);
+
+var _showFlash2 = _interopRequireDefault(_showFlash);
+
+var _showValidationError = __webpack_require__(46);
+
+var _showValidationError2 = _interopRequireDefault(_showValidationError);
+
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+function _taggedTemplateLiteral(strings, raw) { return Object.freeze(Object.defineProperties(strings, { raw: { value: Object.freeze(raw) } })); }
+
+exports.default = (0, _cerebral.sequence)('Request password reset', [(0, _operators2.isValidForm)((0, _tags.state)(_templateObject)), {
+  true: [(0, _operators.set)((0, _tags.state)(_templateObject2), false), (0, _operators.set)((0, _tags.state)(_templateObject3), true), (0, _operators3.httpPost)('/reset', {
+    email: (0, _tags.state)(_templateObject4)
+  }), {
+    success: [(0, _operators.set)((0, _tags.state)(_templateObject4), ''), (0, _operators.set)((0, _tags.state)(_templateObject3), false), (0, _redirect2.default)('login'), (0, _showFlash2.default)('Please check your email for a password reset link', 'success')],
+    error: [(0, _operators.set)((0, _tags.state)(_templateObject3), false), (0, _showValidationError2.default)('Could not send password reset email!')]
+  }],
+  false: (0, _operators.set)((0, _tags.state)(_templateObject2), true)
+}]);
+
+/***/ }),
+/* 573 */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+
+var _templateObject = _taggedTemplateLiteral(['', ''], ['', '']),
+    _templateObject2 = _taggedTemplateLiteral(['path'], ['path']),
+    _templateObject3 = _taggedTemplateLiteral(['value'], ['value']);
+
+var _cerebral = __webpack_require__(9);
+
+var _tags = __webpack_require__(6);
+
+var _operators = __webpack_require__(41);
+
+function _taggedTemplateLiteral(strings, raw) { return Object.freeze(Object.defineProperties(strings, { raw: { value: Object.freeze(raw) } })); }
+
+exports.default = (0, _cerebral.sequence)('Change field', [(0, _operators.setField)((0, _tags.state)(_templateObject, (0, _tags.props)(_templateObject2)), (0, _tags.props)(_templateObject3))]);
+
+/***/ }),
+/* 574 */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+
+var _templateObject = _taggedTemplateLiteral(['user.loginForm'], ['user.loginForm']),
+    _templateObject2 = _taggedTemplateLiteral(['user.loginForm.showErrors'], ['user.loginForm.showErrors']),
+    _templateObject3 = _taggedTemplateLiteral(['user.loginForm.isLoading'], ['user.loginForm.isLoading']),
+    _templateObject4 = _taggedTemplateLiteral(['user.loginForm.email.value'], ['user.loginForm.email.value']),
+    _templateObject5 = _taggedTemplateLiteral(['user.loginForm.password.value'], ['user.loginForm.password.value']),
+    _templateObject6 = _taggedTemplateLiteral(['app.lastVisited'], ['app.lastVisited']);
+
+var _cerebral = __webpack_require__(9);
+
+var _tags = __webpack_require__(6);
+
+var _operators = __webpack_require__(10);
+
+var _operators2 = __webpack_require__(41);
+
+var _operators3 = __webpack_require__(29);
+
+var _redirect = __webpack_require__(55);
+
+var _redirect2 = _interopRequireDefault(_redirect);
+
+var _initUser = __webpack_require__(163);
+
+var _initUser2 = _interopRequireDefault(_initUser);
+
+var _showValidationError = __webpack_require__(46);
+
+var _showValidationError2 = _interopRequireDefault(_showValidationError);
+
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+function _taggedTemplateLiteral(strings, raw) { return Object.freeze(Object.defineProperties(strings, { raw: { value: Object.freeze(raw) } })); }
+
+exports.default = (0, _cerebral.sequence)('Sign-in user', [(0, _operators2.isValidForm)((0, _tags.state)(_templateObject)), {
+  true: [(0, _operators.set)((0, _tags.state)(_templateObject2), false), (0, _operators.set)((0, _tags.state)(_templateObject3), true), (0, _operators3.httpPost)('/login', {
+    email: (0, _tags.state)(_templateObject4),
+    password: (0, _tags.state)(_templateObject5)
+  }), {
+    success: [(0, _operators.set)((0, _tags.state)(_templateObject4), ''), (0, _operators.set)((0, _tags.state)(_templateObject5), ''), _initUser2.default, (0, _operators.set)((0, _tags.state)(_templateObject3), false), (0, _operators.when)((0, _tags.state)(_templateObject6)), {
+      true: (0, _redirect2.default)((0, _tags.state)(_templateObject6)),
+      false: (0, _redirect2.default)('home')
+    }],
+    error: [(0, _operators.set)((0, _tags.state)(_templateObject5), ''), (0, _operators.set)((0, _tags.state)(_templateObject3), false), (0, _showValidationError2.default)('Could not log-in!')]
+  }],
+  false: (0, _operators.set)((0, _tags.state)(_templateObject2), true)
+}]);
+
+/***/ }),
+/* 575 */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+
+var _templateObject = _taggedTemplateLiteral(['user.loginForm.isLoading'], ['user.loginForm.isLoading']);
+
+var _cerebral = __webpack_require__(9);
+
+var _tags = __webpack_require__(6);
+
+var _operators = __webpack_require__(10);
+
+var _removeUser = __webpack_require__(265);
+
+var _removeUser2 = _interopRequireDefault(_removeUser);
+
+var _redirect = __webpack_require__(55);
+
+var _redirect2 = _interopRequireDefault(_redirect);
+
+var _showFlash = __webpack_require__(26);
+
+var _showFlash2 = _interopRequireDefault(_showFlash);
+
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+function _taggedTemplateLiteral(strings, raw) { return Object.freeze(Object.defineProperties(strings, { raw: { value: Object.freeze(raw) } })); }
+
+exports.default = (0, _cerebral.sequence)('Log user out', [(0, _operators.set)((0, _tags.state)(_templateObject), false), _removeUser2.default, (0, _redirect2.default)('home'), (0, _showFlash2.default)('Good bye!', 'info')]);
+
+/***/ }),
+/* 576 */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+
+var _templateObject = _taggedTemplateLiteral(['user.passwordForm'], ['user.passwordForm']),
+    _templateObject2 = _taggedTemplateLiteral(['user.passwordForm.showErrors'], ['user.passwordForm.showErrors']),
+    _templateObject3 = _taggedTemplateLiteral(['user.passwordForm.confirmPassword.value'], ['user.passwordForm.confirmPassword.value']),
+    _templateObject4 = _taggedTemplateLiteral(['user.passwordForm.isLoading'], ['user.passwordForm.isLoading']),
+    _templateObject5 = _taggedTemplateLiteral(['', ''], ['', '']),
+    _templateObject6 = _taggedTemplateLiteral(['user.api.@id'], ['user.api.@id']),
+    _templateObject7 = _taggedTemplateLiteral(['user.passwordForm.password.value'], ['user.passwordForm.password.value']);
+
+var _cerebral = __webpack_require__(9);
+
+var _tags = __webpack_require__(6);
+
+var _operators = __webpack_require__(10);
+
+var _operators2 = __webpack_require__(41);
+
+var _operators3 = __webpack_require__(29);
+
+var _redirect = __webpack_require__(55);
+
+var _redirect2 = _interopRequireDefault(_redirect);
+
+var _showFlash = __webpack_require__(26);
+
+var _showFlash2 = _interopRequireDefault(_showFlash);
+
+var _showValidationError = __webpack_require__(46);
+
+var _showValidationError2 = _interopRequireDefault(_showValidationError);
+
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+function _taggedTemplateLiteral(strings, raw) { return Object.freeze(Object.defineProperties(strings, { raw: { value: Object.freeze(raw) } })); }
+
+exports.default = (0, _cerebral.sequence)('Update password', [(0, _operators2.isValidForm)((0, _tags.state)(_templateObject)), {
+  true: [(0, _operators.set)((0, _tags.state)(_templateObject2), false), (0, _operators.set)((0, _tags.state)(_templateObject3), ''), (0, _operators.set)((0, _tags.state)(_templateObject4), true), (0, _operators3.httpPut)((0, _tags.string)(_templateObject5, (0, _tags.state)(_templateObject6)), {
+    password: (0, _tags.state)(_templateObject7)
+  }), {
+    success: [(0, _operators.set)((0, _tags.state)(_templateObject6), null), (0, _operators.set)((0, _tags.state)(_templateObject7), ''), (0, _operators.set)((0, _tags.state)(_templateObject4), false), (0, _redirect2.default)('home'), (0, _showFlash2.default)('Your password has been updated', 'success')],
+    error: [(0, _operators.set)((0, _tags.state)(_templateObject7), ''), (0, _operators.set)((0, _tags.state)(_templateObject4), false), (0, _showValidationError2.default)('Could not update Password!')]
+  }],
+  false: (0, _operators.set)((0, _tags.state)(_templateObject2), true)
+}]);
+
+/***/ }),
+/* 577 */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+
+var _templateObject = _taggedTemplateLiteral(['user.registerForm'], ['user.registerForm']),
+    _templateObject2 = _taggedTemplateLiteral(['user.registerForm.showErrors'], ['user.registerForm.showErrors']),
+    _templateObject3 = _taggedTemplateLiteral(['user.registerForm.confirmPassword.value'], ['user.registerForm.confirmPassword.value']),
+    _templateObject4 = _taggedTemplateLiteral(['user.registerForm.isLoading'], ['user.registerForm.isLoading']),
+    _templateObject5 = _taggedTemplateLiteral(['user.registerForm.nickname.value'], ['user.registerForm.nickname.value']),
+    _templateObject6 = _taggedTemplateLiteral(['user.registerForm.email.value'], ['user.registerForm.email.value']),
+    _templateObject7 = _taggedTemplateLiteral(['user.registerForm.password.value'], ['user.registerForm.password.value']),
+    _templateObject8 = _taggedTemplateLiteral(['app.lastVisited'], ['app.lastVisited']);
+
+var _cerebral = __webpack_require__(9);
+
+var _tags = __webpack_require__(6);
+
+var _operators = __webpack_require__(10);
+
+var _operators2 = __webpack_require__(41);
+
+var _operators3 = __webpack_require__(29);
+
+var _redirect = __webpack_require__(55);
+
+var _redirect2 = _interopRequireDefault(_redirect);
+
+var _showFlash = __webpack_require__(26);
+
+var _showFlash2 = _interopRequireDefault(_showFlash);
+
+var _showValidationError = __webpack_require__(46);
+
+var _showValidationError2 = _interopRequireDefault(_showValidationError);
+
+var _initUser = __webpack_require__(163);
+
+var _initUser2 = _interopRequireDefault(_initUser);
+
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+function _taggedTemplateLiteral(strings, raw) { return Object.freeze(Object.defineProperties(strings, { raw: { value: Object.freeze(raw) } })); }
+
+exports.default = (0, _cerebral.sequence)('Register new user', [(0, _operators2.isValidForm)((0, _tags.state)(_templateObject)), {
+  true: [(0, _operators.set)((0, _tags.state)(_templateObject2), false), (0, _operators.set)((0, _tags.state)(_templateObject3), ''), (0, _operators.set)((0, _tags.state)(_templateObject4), true), (0, _operators3.httpPost)('/users', {
+    nickname: (0, _tags.state)(_templateObject5),
+    email: (0, _tags.state)(_templateObject6),
+    password: (0, _tags.state)(_templateObject7)
+  }), {
+    success: [(0, _operators3.httpPost)('/login', {
+      email: (0, _tags.state)(_templateObject6),
+      password: (0, _tags.state)(_templateObject7)
+    }), {
+      success: [_initUser2.default, (0, _operators.when)((0, _tags.state)(_templateObject8)), {
+        true: (0, _redirect2.default)((0, _tags.state)(_templateObject8)),
+        false: (0, _redirect2.default)('home')
+      }],
+      error: [(0, _redirect2.default)('home'), (0, _showValidationError2.default)('Could not log-in!')]
+    }, (0, _operators.set)((0, _tags.state)(_templateObject5), ''), (0, _operators.set)((0, _tags.state)(_templateObject6), ''), (0, _operators.set)((0, _tags.state)(_templateObject7), ''), (0, _operators.set)((0, _tags.state)(_templateObject4), false), (0, _showFlash2.default)('Welcome! Please check your mailbox to confirm your email address.', 'success')],
+    error: [(0, _operators.set)((0, _tags.state)(_templateObject7), ''), (0, _operators.set)((0, _tags.state)(_templateObject4), false), (0, _showValidationError2.default)('Could not register!')]
+  }],
+  false: (0, _operators.set)((0, _tags.state)(_templateObject2), true)
+}]);
+
+/***/ }),
+/* 578 */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+
+var _templateObject = _taggedTemplateLiteral(['tab'], ['tab']),
+    _templateObject2 = _taggedTemplateLiteral(['page'], ['page']);
+
+var _router = __webpack_require__(498);
+
+var _router2 = _interopRequireDefault(_router);
+
+var _tags = __webpack_require__(6);
+
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+function _taggedTemplateLiteral(strings, raw) { return Object.freeze(Object.defineProperties(strings, { raw: { value: Object.freeze(raw) } })); }
+
+exports.default = (0, _router2.default)({
+  filterFalsy: true,
+  routes: [{
+    path: '/settings/:tab?',
+    map: { tab: (0, _tags.props)(_templateObject) },
+    signal: 'app.settingsRouted'
+  }, {
+    path: '/:page?',
+    map: { page: (0, _tags.props)(_templateObject2) },
+    signal: 'app.pageRouted'
+  }]
+});
+
+/***/ }),
+/* 579 */
+/***/ (function(module, exports, __webpack_require__) {
+
+module.exports = { "default": __webpack_require__(590), __esModule: true };
+
+/***/ }),
+/* 580 */
+/***/ (function(module, exports, __webpack_require__) {
+
+module.exports = { "default": __webpack_require__(591), __esModule: true };
+
+/***/ }),
+/* 581 */
+/***/ (function(module, exports, __webpack_require__) {
+
+module.exports = { "default": __webpack_require__(592), __esModule: true };
+
+/***/ }),
+/* 582 */
+/***/ (function(module, exports, __webpack_require__) {
+
+module.exports = { "default": __webpack_require__(593), __esModule: true };
+
+/***/ }),
+/* 583 */
+/***/ (function(module, exports, __webpack_require__) {
+
+module.exports = { "default": __webpack_require__(594), __esModule: true };
+
+/***/ }),
+/* 584 */
+/***/ (function(module, exports, __webpack_require__) {
+
+module.exports = { "default": __webpack_require__(595), __esModule: true };
+
+/***/ }),
+/* 585 */
+/***/ (function(module, exports, __webpack_require__) {
+
+module.exports = { "default": __webpack_require__(596), __esModule: true };
+
+/***/ }),
+/* 586 */
+/***/ (function(module, exports, __webpack_require__) {
+
+module.exports = { "default": __webpack_require__(597), __esModule: true };
+
+/***/ }),
+/* 587 */
+/***/ (function(module, exports, __webpack_require__) {
+
+module.exports = { "default": __webpack_require__(598), __esModule: true };
+
+/***/ }),
+/* 588 */
+/***/ (function(module, exports, __webpack_require__) {
+
+module.exports = { "default": __webpack_require__(599), __esModule: true };
+
+/***/ }),
+/* 589 */
+/***/ (function(module, exports, __webpack_require__) {
+
+module.exports = { "default": __webpack_require__(600), __esModule: true };
+
+/***/ }),
+/* 590 */
+/***/ (function(module, exports, __webpack_require__) {
+
+__webpack_require__(114);
+__webpack_require__(623);
+module.exports = __webpack_require__(30).Array.from;
+
+/***/ }),
+/* 591 */
+/***/ (function(module, exports, __webpack_require__) {
+
+__webpack_require__(180);
+__webpack_require__(114);
+module.exports = __webpack_require__(621);
+
+/***/ }),
+/* 592 */
+/***/ (function(module, exports, __webpack_require__) {
+
+__webpack_require__(180);
+__webpack_require__(114);
+module.exports = __webpack_require__(622);
+
+/***/ }),
+/* 593 */
+/***/ (function(module, exports, __webpack_require__) {
+
+__webpack_require__(625);
+module.exports = __webpack_require__(30).Object.assign;
+
+/***/ }),
+/* 594 */
+/***/ (function(module, exports, __webpack_require__) {
+
+__webpack_require__(626);
+var $Object = __webpack_require__(30).Object;
+module.exports = function create(P, D){
+  return $Object.create(P, D);
+};
+
+/***/ }),
+/* 595 */
+/***/ (function(module, exports, __webpack_require__) {
+
+__webpack_require__(627);
+var $Object = __webpack_require__(30).Object;
+module.exports = function defineProperty(it, key, desc){
+  return $Object.defineProperty(it, key, desc);
+};
+
+/***/ }),
+/* 596 */
+/***/ (function(module, exports, __webpack_require__) {
+
+__webpack_require__(628);
+var $Object = __webpack_require__(30).Object;
+module.exports = function getOwnPropertyDescriptor(it, key){
+  return $Object.getOwnPropertyDescriptor(it, key);
+};
+
+/***/ }),
+/* 597 */
+/***/ (function(module, exports, __webpack_require__) {
+
+__webpack_require__(629);
+module.exports = __webpack_require__(30).Object.getPrototypeOf;
+
+/***/ }),
+/* 598 */
+/***/ (function(module, exports, __webpack_require__) {
+
+__webpack_require__(630);
+module.exports = __webpack_require__(30).Object.setPrototypeOf;
+
+/***/ }),
+/* 599 */
+/***/ (function(module, exports, __webpack_require__) {
+
+__webpack_require__(632);
+__webpack_require__(631);
+__webpack_require__(633);
+__webpack_require__(634);
+module.exports = __webpack_require__(30).Symbol;
+
+/***/ }),
+/* 600 */
+/***/ (function(module, exports, __webpack_require__) {
+
+__webpack_require__(114);
+__webpack_require__(180);
+module.exports = __webpack_require__(179).f('iterator');
+
+/***/ }),
+/* 601 */
+/***/ (function(module, exports) {
+
+module.exports = function(it){
+  if(typeof it != 'function')throw TypeError(it + ' is not a function!');
+  return it;
+};
+
+/***/ }),
+/* 602 */
+/***/ (function(module, exports) {
+
+module.exports = function(){ /* empty */ };
+
+/***/ }),
+/* 603 */
+/***/ (function(module, exports, __webpack_require__) {
+
+// false -> Array#indexOf
+// true  -> Array#includes
+var toIObject = __webpack_require__(59)
+  , toLength  = __webpack_require__(278)
+  , toIndex   = __webpack_require__(620);
+module.exports = function(IS_INCLUDES){
+  return function($this, el, fromIndex){
+    var O      = toIObject($this)
+      , length = toLength(O.length)
+      , index  = toIndex(fromIndex, length)
+      , value;
+    // Array#includes uses SameValueZero equality algorithm
+    if(IS_INCLUDES && el != el)while(length > index){
+      value = O[index++];
+      if(value != value)return true;
+    // Array#toIndex ignores holes, Array#includes - not
+    } else for(;length > index; index++)if(IS_INCLUDES || index in O){
+      if(O[index] === el)return IS_INCLUDES || index || 0;
+    } return !IS_INCLUDES && -1;
+  };
+};
+
+/***/ }),
+/* 604 */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+var $defineProperty = __webpack_require__(58)
+  , createDesc      = __webpack_require__(98);
+
+module.exports = function(object, index, value){
+  if(index in object)$defineProperty.f(object, index, createDesc(0, value));
+  else object[index] = value;
+};
+
+/***/ }),
+/* 605 */
+/***/ (function(module, exports, __webpack_require__) {
+
+// all enumerable object keys, includes symbols
+var getKeys = __webpack_require__(97)
+  , gOPS    = __webpack_require__(172)
+  , pIE     = __webpack_require__(111);
+module.exports = function(it){
+  var result     = getKeys(it)
+    , getSymbols = gOPS.f;
+  if(getSymbols){
+    var symbols = getSymbols(it)
+      , isEnum  = pIE.f
+      , i       = 0
+      , key;
+    while(symbols.length > i)if(isEnum.call(it, key = symbols[i++]))result.push(key);
+  } return result;
+};
+
+/***/ }),
+/* 606 */
+/***/ (function(module, exports, __webpack_require__) {
+
+module.exports = __webpack_require__(57).document && document.documentElement;
+
+/***/ }),
+/* 607 */
+/***/ (function(module, exports, __webpack_require__) {
+
+// check on default Array iterator
+var Iterators  = __webpack_require__(81)
+  , ITERATOR   = __webpack_require__(37)('iterator')
+  , ArrayProto = Array.prototype;
+
+module.exports = function(it){
+  return it !== undefined && (Iterators.Array === it || ArrayProto[ITERATOR] === it);
+};
+
+/***/ }),
+/* 608 */
+/***/ (function(module, exports, __webpack_require__) {
+
+// 7.2.2 IsArray(argument)
+var cof = __webpack_require__(165);
+module.exports = Array.isArray || function isArray(arg){
+  return cof(arg) == 'Array';
+};
+
+/***/ }),
+/* 609 */
+/***/ (function(module, exports, __webpack_require__) {
+
+// call something on iterator step with safe closing on error
+var anObject = __webpack_require__(67);
+module.exports = function(iterator, fn, value, entries){
+  try {
+    return entries ? fn(anObject(value)[0], value[1]) : fn(value);
+  // 7.4.6 IteratorClose(iterator, completion)
+  } catch(e){
+    var ret = iterator['return'];
+    if(ret !== undefined)anObject(ret.call(iterator));
+    throw e;
+  }
+};
+
+/***/ }),
+/* 610 */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+var create         = __webpack_require__(170)
+  , descriptor     = __webpack_require__(98)
+  , setToStringTag = __webpack_require__(173)
+  , IteratorPrototype = {};
+
+// 25.1.2.1.1 %IteratorPrototype%[@@iterator]()
+__webpack_require__(80)(IteratorPrototype, __webpack_require__(37)('iterator'), function(){ return this; });
+
+module.exports = function(Constructor, NAME, next){
+  Constructor.prototype = create(IteratorPrototype, {next: descriptor(1, next)});
+  setToStringTag(Constructor, NAME + ' Iterator');
+};
+
+/***/ }),
+/* 611 */
+/***/ (function(module, exports, __webpack_require__) {
+
+var ITERATOR     = __webpack_require__(37)('iterator')
+  , SAFE_CLOSING = false;
+
+try {
+  var riter = [7][ITERATOR]();
+  riter['return'] = function(){ SAFE_CLOSING = true; };
+  Array.from(riter, function(){ throw 2; });
+} catch(e){ /* empty */ }
+
+module.exports = function(exec, skipClosing){
+  if(!skipClosing && !SAFE_CLOSING)return false;
+  var safe = false;
+  try {
+    var arr  = [7]
+      , iter = arr[ITERATOR]();
+    iter.next = function(){ return {done: safe = true}; };
+    arr[ITERATOR] = function(){ return iter; };
+    exec(arr);
+  } catch(e){ /* empty */ }
+  return safe;
+};
+
+/***/ }),
+/* 612 */
+/***/ (function(module, exports) {
+
+module.exports = function(done, value){
+  return {value: value, done: !!done};
+};
+
+/***/ }),
+/* 613 */
+/***/ (function(module, exports, __webpack_require__) {
+
+var getKeys   = __webpack_require__(97)
+  , toIObject = __webpack_require__(59);
+module.exports = function(object, el){
+  var O      = toIObject(object)
+    , keys   = getKeys(O)
+    , length = keys.length
+    , index  = 0
+    , key;
+  while(length > index)if(O[key = keys[index++]] === el)return key;
+};
+
+/***/ }),
+/* 614 */
+/***/ (function(module, exports, __webpack_require__) {
+
+var META     = __webpack_require__(113)('meta')
+  , isObject = __webpack_require__(96)
+  , has      = __webpack_require__(69)
+  , setDesc  = __webpack_require__(58).f
+  , id       = 0;
+var isExtensible = Object.isExtensible || function(){
+  return true;
+};
+var FREEZE = !__webpack_require__(79)(function(){
+  return isExtensible(Object.preventExtensions({}));
+});
+var setMeta = function(it){
+  setDesc(it, META, {value: {
+    i: 'O' + ++id, // object ID
+    w: {}          // weak collections IDs
+  }});
+};
+var fastKey = function(it, create){
+  // return primitive with prefix
+  if(!isObject(it))return typeof it == 'symbol' ? it : (typeof it == 'string' ? 'S' : 'P') + it;
+  if(!has(it, META)){
+    // can't set metadata to uncaught frozen object
+    if(!isExtensible(it))return 'F';
+    // not necessary to add metadata
+    if(!create)return 'E';
+    // add missing metadata
+    setMeta(it);
+  // return object ID
+  } return it[META].i;
+};
+var getWeak = function(it, create){
+  if(!has(it, META)){
+    // can't set metadata to uncaught frozen object
+    if(!isExtensible(it))return true;
+    // not necessary to add metadata
+    if(!create)return false;
+    // add missing metadata
+    setMeta(it);
+  // return hash weak collections IDs
+  } return it[META].w;
+};
+// add metadata on freeze-family methods calling
+var onFreeze = function(it){
+  if(FREEZE && meta.NEED && isExtensible(it) && !has(it, META))setMeta(it);
+  return it;
+};
+var meta = module.exports = {
+  KEY:      META,
+  NEED:     false,
+  fastKey:  fastKey,
+  getWeak:  getWeak,
+  onFreeze: onFreeze
+};
+
+/***/ }),
+/* 615 */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+// 19.1.2.1 Object.assign(target, source, ...)
+var getKeys  = __webpack_require__(97)
+  , gOPS     = __webpack_require__(172)
+  , pIE      = __webpack_require__(111)
+  , toObject = __webpack_require__(112)
+  , IObject  = __webpack_require__(271)
+  , $assign  = Object.assign;
+
+// should work with symbols and should have deterministic property order (V8 bug)
+module.exports = !$assign || __webpack_require__(79)(function(){
+  var A = {}
+    , B = {}
+    , S = Symbol()
+    , K = 'abcdefghijklmnopqrst';
+  A[S] = 7;
+  K.split('').forEach(function(k){ B[k] = k; });
+  return $assign({}, A)[S] != 7 || Object.keys($assign({}, B)).join('') != K;
+}) ? function assign(target, source){ // eslint-disable-line no-unused-vars
+  var T     = toObject(target)
+    , aLen  = arguments.length
+    , index = 1
+    , getSymbols = gOPS.f
+    , isEnum     = pIE.f;
+  while(aLen > index){
+    var S      = IObject(arguments[index++])
+      , keys   = getSymbols ? getKeys(S).concat(getSymbols(S)) : getKeys(S)
+      , length = keys.length
+      , j      = 0
+      , key;
+    while(length > j)if(isEnum.call(S, key = keys[j++]))T[key] = S[key];
+  } return T;
+} : $assign;
+
+/***/ }),
+/* 616 */
+/***/ (function(module, exports, __webpack_require__) {
+
+var dP       = __webpack_require__(58)
+  , anObject = __webpack_require__(67)
+  , getKeys  = __webpack_require__(97);
+
+module.exports = __webpack_require__(68) ? Object.defineProperties : function defineProperties(O, Properties){
+  anObject(O);
+  var keys   = getKeys(Properties)
+    , length = keys.length
+    , i = 0
+    , P;
+  while(length > i)dP.f(O, P = keys[i++], Properties[P]);
+  return O;
+};
+
+/***/ }),
+/* 617 */
+/***/ (function(module, exports, __webpack_require__) {
+
+// fallback for IE11 buggy Object.getOwnPropertyNames with iframe and window
+var toIObject = __webpack_require__(59)
+  , gOPN      = __webpack_require__(273).f
+  , toString  = {}.toString;
+
+var windowNames = typeof window == 'object' && window && Object.getOwnPropertyNames
+  ? Object.getOwnPropertyNames(window) : [];
+
+var getWindowNames = function(it){
+  try {
+    return gOPN(it);
+  } catch(e){
+    return windowNames.slice();
+  }
+};
+
+module.exports.f = function getOwnPropertyNames(it){
+  return windowNames && toString.call(it) == '[object Window]' ? getWindowNames(it) : gOPN(toIObject(it));
+};
+
+
+/***/ }),
+/* 618 */
+/***/ (function(module, exports, __webpack_require__) {
+
+// Works with __proto__ only. Old v8 can't work with null proto objects.
+/* eslint-disable no-proto */
+var isObject = __webpack_require__(96)
+  , anObject = __webpack_require__(67);
+var check = function(O, proto){
+  anObject(O);
+  if(!isObject(proto) && proto !== null)throw TypeError(proto + ": can't set as prototype!");
+};
+module.exports = {
+  set: Object.setPrototypeOf || ('__proto__' in {} ? // eslint-disable-line
+    function(test, buggy, set){
+      try {
+        set = __webpack_require__(166)(Function.call, __webpack_require__(171).f(Object.prototype, '__proto__').set, 2);
+        set(test, []);
+        buggy = !(test instanceof Array);
+      } catch(e){ buggy = true; }
+      return function setPrototypeOf(O, proto){
+        check(O, proto);
+        if(buggy)O.__proto__ = proto;
+        else set(O, proto);
+        return O;
+      };
+    }({}, false) : undefined),
+  check: check
+};
+
+/***/ }),
+/* 619 */
+/***/ (function(module, exports, __webpack_require__) {
+
+var toInteger = __webpack_require__(176)
+  , defined   = __webpack_require__(167);
+// true  -> String#at
+// false -> String#codePointAt
+module.exports = function(TO_STRING){
+  return function(that, pos){
+    var s = String(defined(that))
+      , i = toInteger(pos)
+      , l = s.length
+      , a, b;
+    if(i < 0 || i >= l)return TO_STRING ? '' : undefined;
+    a = s.charCodeAt(i);
+    return a < 0xd800 || a > 0xdbff || i + 1 === l || (b = s.charCodeAt(i + 1)) < 0xdc00 || b > 0xdfff
+      ? TO_STRING ? s.charAt(i) : a
+      : TO_STRING ? s.slice(i, i + 2) : (a - 0xd800 << 10) + (b - 0xdc00) + 0x10000;
+  };
+};
+
+/***/ }),
+/* 620 */
+/***/ (function(module, exports, __webpack_require__) {
+
+var toInteger = __webpack_require__(176)
+  , max       = Math.max
+  , min       = Math.min;
+module.exports = function(index, length){
+  index = toInteger(index);
+  return index < 0 ? max(index + length, 0) : min(index, length);
+};
+
+/***/ }),
+/* 621 */
+/***/ (function(module, exports, __webpack_require__) {
+
+var anObject = __webpack_require__(67)
+  , get      = __webpack_require__(279);
+module.exports = __webpack_require__(30).getIterator = function(it){
+  var iterFn = get(it);
+  if(typeof iterFn != 'function')throw TypeError(it + ' is not iterable!');
+  return anObject(iterFn.call(it));
+};
+
+/***/ }),
+/* 622 */
+/***/ (function(module, exports, __webpack_require__) {
+
+var classof   = __webpack_require__(268)
+  , ITERATOR  = __webpack_require__(37)('iterator')
+  , Iterators = __webpack_require__(81);
+module.exports = __webpack_require__(30).isIterable = function(it){
+  var O = Object(it);
+  return O[ITERATOR] !== undefined
+    || '@@iterator' in O
+    || Iterators.hasOwnProperty(classof(O));
+};
+
+/***/ }),
+/* 623 */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+var ctx            = __webpack_require__(166)
+  , $export        = __webpack_require__(56)
+  , toObject       = __webpack_require__(112)
+  , call           = __webpack_require__(609)
+  , isArrayIter    = __webpack_require__(607)
+  , toLength       = __webpack_require__(278)
+  , createProperty = __webpack_require__(604)
+  , getIterFn      = __webpack_require__(279);
+
+$export($export.S + $export.F * !__webpack_require__(611)(function(iter){ Array.from(iter); }), 'Array', {
+  // 22.1.2.1 Array.from(arrayLike, mapfn = undefined, thisArg = undefined)
+  from: function from(arrayLike/*, mapfn = undefined, thisArg = undefined*/){
+    var O       = toObject(arrayLike)
+      , C       = typeof this == 'function' ? this : Array
+      , aLen    = arguments.length
+      , mapfn   = aLen > 1 ? arguments[1] : undefined
+      , mapping = mapfn !== undefined
+      , index   = 0
+      , iterFn  = getIterFn(O)
+      , length, result, step, iterator;
+    if(mapping)mapfn = ctx(mapfn, aLen > 2 ? arguments[2] : undefined, 2);
+    // if object isn't iterable or it's array with default iterator - use simple case
+    if(iterFn != undefined && !(C == Array && isArrayIter(iterFn))){
+      for(iterator = iterFn.call(O), result = new C; !(step = iterator.next()).done; index++){
+        createProperty(result, index, mapping ? call(iterator, mapfn, [step.value, index], true) : step.value);
+      }
+    } else {
+      length = toLength(O.length);
+      for(result = new C(length); length > index; index++){
+        createProperty(result, index, mapping ? mapfn(O[index], index) : O[index]);
+      }
+    }
+    result.length = index;
+    return result;
+  }
+});
+
+
+/***/ }),
+/* 624 */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+var addToUnscopables = __webpack_require__(602)
+  , step             = __webpack_require__(612)
+  , Iterators        = __webpack_require__(81)
+  , toIObject        = __webpack_require__(59);
+
+// 22.1.3.4 Array.prototype.entries()
+// 22.1.3.13 Array.prototype.keys()
+// 22.1.3.29 Array.prototype.values()
+// 22.1.3.30 Array.prototype[@@iterator]()
+module.exports = __webpack_require__(272)(Array, 'Array', function(iterated, kind){
+  this._t = toIObject(iterated); // target
+  this._i = 0;                   // next index
+  this._k = kind;                // kind
+// 22.1.5.2.1 %ArrayIteratorPrototype%.next()
+}, function(){
+  var O     = this._t
+    , kind  = this._k
+    , index = this._i++;
+  if(!O || index >= O.length){
+    this._t = undefined;
+    return step(1);
+  }
+  if(kind == 'keys'  )return step(0, index);
+  if(kind == 'values')return step(0, O[index]);
+  return step(0, [index, O[index]]);
+}, 'values');
+
+// argumentsList[@@iterator] is %ArrayProto_values% (9.4.4.6, 9.4.4.7)
+Iterators.Arguments = Iterators.Array;
+
+addToUnscopables('keys');
+addToUnscopables('values');
+addToUnscopables('entries');
+
+/***/ }),
+/* 625 */
+/***/ (function(module, exports, __webpack_require__) {
+
+// 19.1.3.1 Object.assign(target, source)
+var $export = __webpack_require__(56);
+
+$export($export.S + $export.F, 'Object', {assign: __webpack_require__(615)});
+
+/***/ }),
+/* 626 */
+/***/ (function(module, exports, __webpack_require__) {
+
+var $export = __webpack_require__(56)
+// 19.1.2.2 / 15.2.3.5 Object.create(O [, Properties])
+$export($export.S, 'Object', {create: __webpack_require__(170)});
+
+/***/ }),
+/* 627 */
+/***/ (function(module, exports, __webpack_require__) {
+
+var $export = __webpack_require__(56);
+// 19.1.2.4 / 15.2.3.6 Object.defineProperty(O, P, Attributes)
+$export($export.S + $export.F * !__webpack_require__(68), 'Object', {defineProperty: __webpack_require__(58).f});
+
+/***/ }),
+/* 628 */
+/***/ (function(module, exports, __webpack_require__) {
+
+// 19.1.2.6 Object.getOwnPropertyDescriptor(O, P)
+var toIObject                 = __webpack_require__(59)
+  , $getOwnPropertyDescriptor = __webpack_require__(171).f;
+
+__webpack_require__(276)('getOwnPropertyDescriptor', function(){
+  return function getOwnPropertyDescriptor(it, key){
+    return $getOwnPropertyDescriptor(toIObject(it), key);
+  };
+});
+
+/***/ }),
+/* 629 */
+/***/ (function(module, exports, __webpack_require__) {
+
+// 19.1.2.9 Object.getPrototypeOf(O)
+var toObject        = __webpack_require__(112)
+  , $getPrototypeOf = __webpack_require__(274);
+
+__webpack_require__(276)('getPrototypeOf', function(){
+  return function getPrototypeOf(it){
+    return $getPrototypeOf(toObject(it));
+  };
+});
+
+/***/ }),
+/* 630 */
+/***/ (function(module, exports, __webpack_require__) {
+
+// 19.1.3.19 Object.setPrototypeOf(O, proto)
+var $export = __webpack_require__(56);
+$export($export.S, 'Object', {setPrototypeOf: __webpack_require__(618).set});
+
+/***/ }),
+/* 631 */
+/***/ (function(module, exports) {
+
+
+
+/***/ }),
+/* 632 */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+// ECMAScript 6 symbols shim
+var global         = __webpack_require__(57)
+  , has            = __webpack_require__(69)
+  , DESCRIPTORS    = __webpack_require__(68)
+  , $export        = __webpack_require__(56)
+  , redefine       = __webpack_require__(277)
+  , META           = __webpack_require__(614).KEY
+  , $fails         = __webpack_require__(79)
+  , shared         = __webpack_require__(175)
+  , setToStringTag = __webpack_require__(173)
+  , uid            = __webpack_require__(113)
+  , wks            = __webpack_require__(37)
+  , wksExt         = __webpack_require__(179)
+  , wksDefine      = __webpack_require__(178)
+  , keyOf          = __webpack_require__(613)
+  , enumKeys       = __webpack_require__(605)
+  , isArray        = __webpack_require__(608)
+  , anObject       = __webpack_require__(67)
+  , toIObject      = __webpack_require__(59)
+  , toPrimitive    = __webpack_require__(177)
+  , createDesc     = __webpack_require__(98)
+  , _create        = __webpack_require__(170)
+  , gOPNExt        = __webpack_require__(617)
+  , $GOPD          = __webpack_require__(171)
+  , $DP            = __webpack_require__(58)
+  , $keys          = __webpack_require__(97)
+  , gOPD           = $GOPD.f
+  , dP             = $DP.f
+  , gOPN           = gOPNExt.f
+  , $Symbol        = global.Symbol
+  , $JSON          = global.JSON
+  , _stringify     = $JSON && $JSON.stringify
+  , PROTOTYPE      = 'prototype'
+  , HIDDEN         = wks('_hidden')
+  , TO_PRIMITIVE   = wks('toPrimitive')
+  , isEnum         = {}.propertyIsEnumerable
+  , SymbolRegistry = shared('symbol-registry')
+  , AllSymbols     = shared('symbols')
+  , OPSymbols      = shared('op-symbols')
+  , ObjectProto    = Object[PROTOTYPE]
+  , USE_NATIVE     = typeof $Symbol == 'function'
+  , QObject        = global.QObject;
+// Don't use setters in Qt Script, https://github.com/zloirock/core-js/issues/173
+var setter = !QObject || !QObject[PROTOTYPE] || !QObject[PROTOTYPE].findChild;
+
+// fallback for old Android, https://code.google.com/p/v8/issues/detail?id=687
+var setSymbolDesc = DESCRIPTORS && $fails(function(){
+  return _create(dP({}, 'a', {
+    get: function(){ return dP(this, 'a', {value: 7}).a; }
+  })).a != 7;
+}) ? function(it, key, D){
+  var protoDesc = gOPD(ObjectProto, key);
+  if(protoDesc)delete ObjectProto[key];
+  dP(it, key, D);
+  if(protoDesc && it !== ObjectProto)dP(ObjectProto, key, protoDesc);
+} : dP;
+
+var wrap = function(tag){
+  var sym = AllSymbols[tag] = _create($Symbol[PROTOTYPE]);
+  sym._k = tag;
+  return sym;
+};
+
+var isSymbol = USE_NATIVE && typeof $Symbol.iterator == 'symbol' ? function(it){
+  return typeof it == 'symbol';
+} : function(it){
+  return it instanceof $Symbol;
+};
+
+var $defineProperty = function defineProperty(it, key, D){
+  if(it === ObjectProto)$defineProperty(OPSymbols, key, D);
+  anObject(it);
+  key = toPrimitive(key, true);
+  anObject(D);
+  if(has(AllSymbols, key)){
+    if(!D.enumerable){
+      if(!has(it, HIDDEN))dP(it, HIDDEN, createDesc(1, {}));
+      it[HIDDEN][key] = true;
+    } else {
+      if(has(it, HIDDEN) && it[HIDDEN][key])it[HIDDEN][key] = false;
+      D = _create(D, {enumerable: createDesc(0, false)});
+    } return setSymbolDesc(it, key, D);
+  } return dP(it, key, D);
+};
+var $defineProperties = function defineProperties(it, P){
+  anObject(it);
+  var keys = enumKeys(P = toIObject(P))
+    , i    = 0
+    , l = keys.length
+    , key;
+  while(l > i)$defineProperty(it, key = keys[i++], P[key]);
+  return it;
+};
+var $create = function create(it, P){
+  return P === undefined ? _create(it) : $defineProperties(_create(it), P);
+};
+var $propertyIsEnumerable = function propertyIsEnumerable(key){
+  var E = isEnum.call(this, key = toPrimitive(key, true));
+  if(this === ObjectProto && has(AllSymbols, key) && !has(OPSymbols, key))return false;
+  return E || !has(this, key) || !has(AllSymbols, key) || has(this, HIDDEN) && this[HIDDEN][key] ? E : true;
+};
+var $getOwnPropertyDescriptor = function getOwnPropertyDescriptor(it, key){
+  it  = toIObject(it);
+  key = toPrimitive(key, true);
+  if(it === ObjectProto && has(AllSymbols, key) && !has(OPSymbols, key))return;
+  var D = gOPD(it, key);
+  if(D && has(AllSymbols, key) && !(has(it, HIDDEN) && it[HIDDEN][key]))D.enumerable = true;
+  return D;
+};
+var $getOwnPropertyNames = function getOwnPropertyNames(it){
+  var names  = gOPN(toIObject(it))
+    , result = []
+    , i      = 0
+    , key;
+  while(names.length > i){
+    if(!has(AllSymbols, key = names[i++]) && key != HIDDEN && key != META)result.push(key);
+  } return result;
+};
+var $getOwnPropertySymbols = function getOwnPropertySymbols(it){
+  var IS_OP  = it === ObjectProto
+    , names  = gOPN(IS_OP ? OPSymbols : toIObject(it))
+    , result = []
+    , i      = 0
+    , key;
+  while(names.length > i){
+    if(has(AllSymbols, key = names[i++]) && (IS_OP ? has(ObjectProto, key) : true))result.push(AllSymbols[key]);
+  } return result;
+};
+
+// 19.4.1.1 Symbol([description])
+if(!USE_NATIVE){
+  $Symbol = function Symbol(){
+    if(this instanceof $Symbol)throw TypeError('Symbol is not a constructor!');
+    var tag = uid(arguments.length > 0 ? arguments[0] : undefined);
+    var $set = function(value){
+      if(this === ObjectProto)$set.call(OPSymbols, value);
+      if(has(this, HIDDEN) && has(this[HIDDEN], tag))this[HIDDEN][tag] = false;
+      setSymbolDesc(this, tag, createDesc(1, value));
+    };
+    if(DESCRIPTORS && setter)setSymbolDesc(ObjectProto, tag, {configurable: true, set: $set});
+    return wrap(tag);
+  };
+  redefine($Symbol[PROTOTYPE], 'toString', function toString(){
+    return this._k;
+  });
+
+  $GOPD.f = $getOwnPropertyDescriptor;
+  $DP.f   = $defineProperty;
+  __webpack_require__(273).f = gOPNExt.f = $getOwnPropertyNames;
+  __webpack_require__(111).f  = $propertyIsEnumerable;
+  __webpack_require__(172).f = $getOwnPropertySymbols;
+
+  if(DESCRIPTORS && !__webpack_require__(169)){
+    redefine(ObjectProto, 'propertyIsEnumerable', $propertyIsEnumerable, true);
+  }
+
+  wksExt.f = function(name){
+    return wrap(wks(name));
+  }
+}
+
+$export($export.G + $export.W + $export.F * !USE_NATIVE, {Symbol: $Symbol});
+
+for(var symbols = (
+  // 19.4.2.2, 19.4.2.3, 19.4.2.4, 19.4.2.6, 19.4.2.8, 19.4.2.9, 19.4.2.10, 19.4.2.11, 19.4.2.12, 19.4.2.13, 19.4.2.14
+  'hasInstance,isConcatSpreadable,iterator,match,replace,search,species,split,toPrimitive,toStringTag,unscopables'
+).split(','), i = 0; symbols.length > i; )wks(symbols[i++]);
+
+for(var symbols = $keys(wks.store), i = 0; symbols.length > i; )wksDefine(symbols[i++]);
+
+$export($export.S + $export.F * !USE_NATIVE, 'Symbol', {
+  // 19.4.2.1 Symbol.for(key)
+  'for': function(key){
+    return has(SymbolRegistry, key += '')
+      ? SymbolRegistry[key]
+      : SymbolRegistry[key] = $Symbol(key);
+  },
+  // 19.4.2.5 Symbol.keyFor(sym)
+  keyFor: function keyFor(key){
+    if(isSymbol(key))return keyOf(SymbolRegistry, key);
+    throw TypeError(key + ' is not a symbol!');
+  },
+  useSetter: function(){ setter = true; },
+  useSimple: function(){ setter = false; }
+});
+
+$export($export.S + $export.F * !USE_NATIVE, 'Object', {
+  // 19.1.2.2 Object.create(O [, Properties])
+  create: $create,
+  // 19.1.2.4 Object.defineProperty(O, P, Attributes)
+  defineProperty: $defineProperty,
+  // 19.1.2.3 Object.defineProperties(O, Properties)
+  defineProperties: $defineProperties,
+  // 19.1.2.6 Object.getOwnPropertyDescriptor(O, P)
+  getOwnPropertyDescriptor: $getOwnPropertyDescriptor,
+  // 19.1.2.7 Object.getOwnPropertyNames(O)
+  getOwnPropertyNames: $getOwnPropertyNames,
+  // 19.1.2.8 Object.getOwnPropertySymbols(O)
+  getOwnPropertySymbols: $getOwnPropertySymbols
+});
+
+// 24.3.2 JSON.stringify(value [, replacer [, space]])
+$JSON && $export($export.S + $export.F * (!USE_NATIVE || $fails(function(){
+  var S = $Symbol();
+  // MS Edge converts symbol values to JSON as {}
+  // WebKit converts symbol values to JSON as null
+  // V8 throws on boxed symbols
+  return _stringify([S]) != '[null]' || _stringify({a: S}) != '{}' || _stringify(Object(S)) != '{}';
+})), 'JSON', {
+  stringify: function stringify(it){
+    if(it === undefined || isSymbol(it))return; // IE8 returns string on undefined
+    var args = [it]
+      , i    = 1
+      , replacer, $replacer;
+    while(arguments.length > i)args.push(arguments[i++]);
+    replacer = args[1];
+    if(typeof replacer == 'function')$replacer = replacer;
+    if($replacer || !isArray(replacer))replacer = function(key, value){
+      if($replacer)value = $replacer.call(this, key, value);
+      if(!isSymbol(value))return value;
+    };
+    args[1] = replacer;
+    return _stringify.apply($JSON, args);
+  }
+});
+
+// 19.4.3.4 Symbol.prototype[@@toPrimitive](hint)
+$Symbol[PROTOTYPE][TO_PRIMITIVE] || __webpack_require__(80)($Symbol[PROTOTYPE], TO_PRIMITIVE, $Symbol[PROTOTYPE].valueOf);
+// 19.4.3.5 Symbol.prototype[@@toStringTag]
+setToStringTag($Symbol, 'Symbol');
+// 20.2.1.9 Math[@@toStringTag]
+setToStringTag(Math, 'Math', true);
+// 24.3.3 JSON[@@toStringTag]
+setToStringTag(global.JSON, 'JSON', true);
+
+/***/ }),
+/* 633 */
+/***/ (function(module, exports, __webpack_require__) {
+
+__webpack_require__(178)('asyncIterator');
+
+/***/ }),
+/* 634 */
+/***/ (function(module, exports, __webpack_require__) {
+
+__webpack_require__(178)('observable');
 
 /***/ }),
 /* 635 */
