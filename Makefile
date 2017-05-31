@@ -10,6 +10,7 @@ env/bin/python:
 
 deploylive: env/bin/python
 	env/bin/pip install -Ue '.[production]'
+	rm -rf node_modules
 	npm install
 	npm run build:production
 
