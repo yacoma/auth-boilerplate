@@ -57,7 +57,7 @@ export default urlParams => module => {
         },
         confirmPassword: {
           value: '',
-          validationRules: ['equalsField:password'],
+          validationRules: ['equalsField:user.registerForm.password'],
           isRequired: true,
         },
         showErrors: false,
@@ -80,7 +80,7 @@ export default urlParams => module => {
         },
         confirmPassword: {
           value: '',
-          validationRules: ['equalsField:password'],
+          validationRules: ['equalsField:user.passwordForm.password'],
           isRequired: true,
         },
         showErrors: false,

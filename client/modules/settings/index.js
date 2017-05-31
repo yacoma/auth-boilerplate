@@ -60,7 +60,7 @@ export default module => {
         },
         confirmPassword: {
           value: '',
-          validationRules: ['equalsField:password'],
+          validationRules: ['equalsField:settings.passwordForm.password'],
           isRequired: true,
         },
         showErrors: false,
