@@ -20,7 +20,7 @@ export default connect(
     currentTab: state`settings.currentTab`,
   },
   function Settings({ nickname, currentTab }) {
-    const Tab = tabs[currentTab]
+    const Tab = tabs[currentTab || 'profile']
     return (
       <Grid container stackable padded="vertically" centered>
         <Grid.Row columns={3} centered>

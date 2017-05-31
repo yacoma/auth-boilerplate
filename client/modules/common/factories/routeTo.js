@@ -46,11 +46,7 @@ function routeTo(page, tab) {
               string`${state`user.nickname`}'s settings`
             ),
             set(state`app.headerIcon`, 'user'),
-            when(tab),
-            {
-              true: set(state`settings.currentTab`, tab),
-              false: [],
-            },
+            tab ? set(state`settings.currentTab`, tab) : [],
             prepareSettingsForm,
           ],
           false: [
