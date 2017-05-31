@@ -11,10 +11,11 @@ import {
 
 export default connect(
   {
-    registerForm: state`user.registerForm`,
+    isLoading: state`user.registerForm.isLoading`,
+    showErrors: state`user.registerForm.showErrors`,
     formSubmitted: signal`user.registerFormSubmitted`,
   },
-  function Register({ registerForm, formSubmitted }) {
+  function Register({ isLoading, showErrors, formSubmitted }) {
     const handleSubmit = event => {
       event.preventDefault()
       formSubmitted()
@@ -25,24 +26,24 @@ export default connect(
           <Grid.Column>
             <Form size="large">
               <Segment>
-                <Dimmer inverted active={registerForm.isLoading}>
+                <Dimmer inverted active={isLoading}>
                   <Loader />
                 </Dimmer>
                 <NicknameField
-                  form={registerForm}
                   path={'user.registerForm.nickname'}
+                  showErrors={showErrors}
                 />
                 <EmailField
-                  form={registerForm}
                   path={'user.registerForm.email'}
+                  showErrors={showErrors}
                 />
                 <PasswordField
-                  form={registerForm}
                   path={'user.registerForm.password'}
+                  showErrors={showErrors}
                 />
                 <ConfirmPasswordField
-                  form={registerForm}
                   path={'user.registerForm.confirmPassword'}
+                  showErrors={showErrors}
                 />
                 <Button fluid size="large" color="blue" onClick={handleSubmit}>
                   Sign up

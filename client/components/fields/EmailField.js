@@ -1,34 +1,34 @@
 import React from 'react'
 import { connect } from 'cerebral/react'
-import { props, signal } from 'cerebral/tags'
-import { form } from '@cerebral/forms'
+import { state, props, signal } from 'cerebral/tags'
+import { field } from '@cerebral/forms'
 import { Form, Input, Label } from 'semantic-ui-react'
 import { hasError, showError } from './utils'
 
 export default connect(
   {
-    form: form(props`form`),
+    field: field(state`${props`path`}`),
     fieldChanged: signal`user.fieldChanged`,
   },
-  function EmailField({ path, form, fieldChanged }) {
+  function EmailField({ path, showErrors, field, fieldChanged }) {
     return (
-      <Form.Field error={hasError(form, form.email)}>
+      <Form.Field error={hasError(field, showErrors)}>
         <Input
           icon="mail"
           iconPosition="left"
           placeholder="email address"
-          value={form.email.value}
-          onChange={(e, { value }) => fieldChanged({ value, field: path })}
+          value={field.value}
+          onChange={(e, { value }) => fieldChanged({ path, value })}
         />
         <Label
           pointing
           basic
           color="red"
           style={{
-            display: showError(form, form.email) ? 'inline-block' : 'none',
+            display: showError(field, showErrors) ? 'inline-block' : 'none',
           }}
         >
-          {form.email.errorMessage}
+          {field.errorMessage}
         </Label>
       </Form.Field>
     )

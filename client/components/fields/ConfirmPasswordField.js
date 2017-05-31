@@ -1,37 +1,35 @@
 import React from 'react'
 import { connect } from 'cerebral/react'
-import { props, signal } from 'cerebral/tags'
-import { form } from '@cerebral/forms'
+import { state, props, signal } from 'cerebral/tags'
+import { field } from '@cerebral/forms'
 import { Form, Input, Label } from 'semantic-ui-react'
 import { hasError, showError } from './utils'
 
 export default connect(
   {
-    form: form(props`form`),
+    field: field(state`${props`path`}`),
     fieldChanged: signal`user.fieldChanged`,
   },
-  function ConfirmPasswordField({ path, form, fieldChanged }) {
+  function ConfirmPasswordField({ path, showErrors, field, fieldChanged }) {
     return (
-      <Form.Field error={hasError(form, form.confirmPassword)}>
+      <Form.Field error={hasError(field, showErrors)}>
         <Input
           type="password"
           icon="lock"
           iconPosition="left"
           placeholder="confirm password"
-          value={form.confirmPassword.value}
-          onChange={(e, { value }) => fieldChanged({ value, field: path })}
+          value={field.value}
+          onChange={(e, { value }) => fieldChanged({ path, value })}
         />
         <Label
           pointing
           basic
           color="red"
           style={{
-            display: showError(form, form.confirmPassword)
-              ? 'inline-block'
-              : 'none',
+            display: showError(field, showErrors) ? 'inline-block' : 'none',
           }}
         >
-          {form.confirmPassword.errorMessage}
+          {field.errorMessage}
         </Label>
       </Form.Field>
     )

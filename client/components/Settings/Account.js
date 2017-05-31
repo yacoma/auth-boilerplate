@@ -18,12 +18,14 @@ import ConfirmRemoveUser from './ConfirmRemoveUser'
 
 export default connect(
   {
-    accountForm: state`settings.accountForm`,
+    isLoading: state`settings.accountForm.isLoading`,
+    showErrors: state`settings.accountForm.showErrors`,
     signOutButtonClicked: signal`settings.signOutButtonClicked`,
     removeUserButtonClicked: signal`settings.removeUserButtonClicked`,
   },
   function UpdateEmail({
-    accountForm,
+    isLoading,
+    showErrors,
     signOutButtonClicked,
     removeUserButtonClicked,
   }) {
@@ -34,7 +36,7 @@ export default connect(
         </Header>
         <Form size="large">
           <Segment>
-            <Dimmer inverted active={accountForm.isLoading}>
+            <Dimmer inverted active={isLoading}>
               <Loader />
             </Dimmer>
             <Grid container padded divided="vertically" textAlign="center">
@@ -46,8 +48,8 @@ export default connect(
                     </Message.Header>
                   </Message>
                   <PasswordField
-                    form={accountForm}
                     path={'settings.accountForm.password'}
+                    showErrors={showErrors}
                   />
                 </Grid.Column>
               </Grid.Row>

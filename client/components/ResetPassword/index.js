@@ -6,10 +6,11 @@ import { EmailField } from '../fields'
 
 export default connect(
   {
-    emailForm: state`user.emailForm`,
+    isLoading: state`user.emailForm.isLoading`,
+    showErrors: state`user.emailForm.showErrors`,
     formSubmitted: signal`user.emailFormSubmitted`,
   },
-  function ResetPassword({ emailForm, formSubmitted }) {
+  function ResetPassword({ isLoading, showErrors, formSubmitted }) {
     const handleSubmit = event => {
       event.preventDefault()
       formSubmitted()
@@ -20,10 +21,13 @@ export default connect(
           <Grid.Column>
             <Form size="large">
               <Segment>
-                <Dimmer inverted active={emailForm.isLoading}>
+                <Dimmer inverted active={isLoading}>
                   <Loader />
                 </Dimmer>
-                <EmailField form={emailForm} path={'user.emailForm.email'} />
+                <EmailField
+                  path={'user.emailForm.email'}
+                  showErrors={showErrors}
+                />
                 <Button fluid size="large" color="blue" onClick={handleSubmit}>
                   Submit
                 </Button>

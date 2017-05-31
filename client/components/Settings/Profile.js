@@ -15,10 +15,11 @@ import { NicknameField } from '../fields'
 
 export default connect(
   {
-    profileForm: state`settings.profileForm`,
+    isLoading: state`settings.profileForm.isLoading`,
+    showErrors: state`settings.profileForm.showErrors`,
     formSubmitted: signal`settings.profileFormSubmitted`,
   },
-  function EditProfile({ profileForm, formSubmitted }) {
+  function EditProfile({ isLoading, showErrors, formSubmitted }) {
     const handleSubmit = event => {
       event.preventDefault()
       formSubmitted()
@@ -30,7 +31,7 @@ export default connect(
         </Header>
         <Form size="large">
           <Segment>
-            <Dimmer inverted active={profileForm.isLoading}>
+            <Dimmer inverted active={isLoading}>
               <Loader />
             </Dimmer>
             <List relaxed>
@@ -39,8 +40,8 @@ export default connect(
                   Nickname
                 </List.Header>
                 <NicknameField
-                  form={profileForm}
                   path={'settings.profileForm.nickname'}
+                  showErrors={showErrors}
                 />
               </List.Item>
             </List>

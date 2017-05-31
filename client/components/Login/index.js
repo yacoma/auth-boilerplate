@@ -14,10 +14,11 @@ import { EmailField, PasswordField } from '../fields'
 
 export default connect(
   {
-    loginForm: state`user.loginForm`,
+    isLoading: state`user.loginForm.isLoading`,
+    showErrors: state`user.loginForm.showErrors`,
     formSubmitted: signal`user.loginFormSubmitted`,
   },
-  function Login({ loginForm, formSubmitted }) {
+  function Login({ isLoading, showErrors, formSubmitted }) {
     const handleSubmit = event => {
       event.preventDefault()
       formSubmitted()
@@ -28,13 +29,16 @@ export default connect(
           <Grid.Column>
             <Form size="large">
               <Segment>
-                <Dimmer inverted active={loginForm.isLoading}>
+                <Dimmer inverted active={isLoading}>
                   <Loader />
                 </Dimmer>
-                <EmailField form={loginForm} path={'user.loginForm.email'} />
+                <EmailField
+                  path={'user.loginForm.email'}
+                  showErrors={showErrors}
+                />
                 <PasswordField
-                  form={loginForm}
                   path={'user.loginForm.password'}
+                  showErrors={showErrors}
                 />
                 <Button fluid size="large" color="blue" onClick={handleSubmit}>
                   Login

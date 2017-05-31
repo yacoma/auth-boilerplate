@@ -6,10 +6,11 @@ import { PasswordField, ConfirmPasswordField } from '../fields'
 
 export default connect(
   {
-    passwordForm: state`user.passwordForm`,
+    isLoading: state`user.passwordForm.isLoading`,
+    showErrors: state`user.passwordForm.showErrors`,
     formSubmitted: signal`user.passwordFormSubmitted`,
   },
-  function NewPassword({ passwordForm, formSubmitted }) {
+  function NewPassword({ isLoading, showErrors, formSubmitted }) {
     const handleSubmit = event => {
       event.preventDefault()
       formSubmitted()
@@ -20,16 +21,16 @@ export default connect(
           <Grid.Column>
             <Form size="large">
               <Segment>
-                <Dimmer inverted active={passwordForm.isLoading}>
+                <Dimmer inverted active={isLoading}>
                   <Loader />
                 </Dimmer>
                 <PasswordField
-                  form={passwordForm}
                   path={'user.passwordForm.password'}
+                  showErrors={showErrors}
                 />
                 <ConfirmPasswordField
-                  form={passwordForm}
                   path={'user.passwordForm.confirmPassword'}
+                  showErrors
                 />
                 <Button fluid size="large" color="blue" onClick={handleSubmit}>
                   Update

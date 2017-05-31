@@ -1,7 +1,4 @@
-export const hasError = (form, field) => form.showErrors && !field.isValid
+export const hasError = (field, showErrors) => showErrors && !field.isValid
 
-export const showError = (form, field) =>
-  form.showErrors &&
-  !field.isValid &&
-  field.hasValue &&
-  field.errorMessage !== null
+export const showError = (field, showErrors) =>
+  showErrors && !field.isValid && field.hasValue && field.errorMessage !== null

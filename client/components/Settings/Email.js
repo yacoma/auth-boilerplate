@@ -16,11 +16,12 @@ import { PasswordField, EmailField } from '../fields'
 
 export default connect(
   {
-    emailForm: state`settings.emailForm`,
+    isLoading: state`settings.emailForm.isLoading`,
+    showErrors: state`settings.emailForm.showErrors`,
     currentEmail: state`user.email`,
     formSubmitted: signal`settings.emailFormSubmitted`,
   },
-  function UpdateEmail({ emailForm, currentEmail, formSubmitted }) {
+  function UpdateEmail({ isLoading, showErrors, currentEmail, formSubmitted }) {
     const handleSubmit = event => {
       event.preventDefault()
       formSubmitted()
@@ -32,7 +33,7 @@ export default connect(
         </Header>
         <Form size="large">
           <Segment>
-            <Dimmer inverted active={emailForm.isLoading}>
+            <Dimmer inverted active={isLoading}>
               <Loader />
             </Dimmer>
             <Message info>
@@ -59,8 +60,8 @@ export default connect(
                   We need your password to verify your identity
                 </List.Header>
                 <PasswordField
-                  form={emailForm}
                   path={'settings.emailForm.password'}
+                  showErrors={showErrors}
                 />
               </List.Item>
               <List.Item>
@@ -68,8 +69,8 @@ export default connect(
                   New email adress
                 </List.Header>
                 <EmailField
-                  form={emailForm}
                   path={'settings.emailForm.email'}
+                  showErrors={showErrors}
                 />
               </List.Item>
             </List>

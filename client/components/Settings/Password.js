@@ -19,10 +19,16 @@ import {
 
 export default connect(
   {
-    passwordForm: state`settings.passwordForm`,
+    isLoading: state`settings.passwordForm.isLoading`,
+    showErrors: state`settings.passwordForm.showErrors`,
     formSubmitted: signal`settings.passwordFormSubmitted`,
   },
-  function ChangePassword({ passwordForm, formSubmitted }) {
+  function ChangePassword({
+    isLoading,
+    showErrors,
+    currentEmail,
+    formSubmitted,
+  }) {
     const handleSubmit = event => {
       event.preventDefault()
       formSubmitted()
@@ -34,7 +40,7 @@ export default connect(
         </Header>
         <Form size="large">
           <Segment>
-            <Dimmer inverted active={passwordForm.isLoading}>
+            <Dimmer inverted active={isLoading}>
               <Loader />
             </Dimmer>
             <List relaxed>
@@ -43,8 +49,8 @@ export default connect(
                   Current password
                 </List.Header>
                 <CurrentPasswordField
-                  form={passwordForm}
                   path={'settings.passwordForm.currentPassword'}
+                  showErrors={showErrors}
                 />
               </List.Item>
               <List.Item>
@@ -52,8 +58,8 @@ export default connect(
                   New password
                 </List.Header>
                 <PasswordField
-                  form={passwordForm}
                   path={'settings.passwordForm.password'}
+                  showErrors={showErrors}
                 />
               </List.Item>
               <List.Item>
@@ -61,8 +67,8 @@ export default connect(
                   Confirm new password
                 </List.Header>
                 <ConfirmPasswordField
-                  form={passwordForm}
                   path={'settings.passwordForm.confirmPassword'}
+                  showErrors={showErrors}
                 />
               </List.Item>
             </List>
