@@ -21,6 +21,8 @@ export default sequence('Sign-in user', [
         success: [
           set(state`user.loginForm.email.value`, ''),
           set(state`user.loginForm.password.value`, ''),
+          set(state`app.flash`, null),
+          set(state`app.flashType`, null),
           initUser,
           set(state`user.loginForm.isLoading`, false),
           when(state`app.lastVisited`),

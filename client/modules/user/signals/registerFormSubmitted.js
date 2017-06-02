@@ -28,6 +28,8 @@ export default sequence('Register new user', [
           }),
           {
             success: [
+              set(state`app.flash`, null),
+              set(state`app.flashType`, null),
               initUser,
               when(state`app.lastVisited`),
               {
