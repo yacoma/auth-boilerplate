@@ -36,7 +36,7 @@ export default connect(
               <Menu.Item
                 name="profile"
                 href="/settings/profile"
-                active={currentTab === 'profile'}
+                active={currentTab === 'profile' || currentTab === null}
               >
                 Profile
               </Menu.Item>
