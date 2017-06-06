@@ -3,7 +3,7 @@
 install: env/bin/python
 
 env/bin/python:
-	virtualenv  -p python3.5 --no-site-packages env
+	virtualenv -p python3.5 --clear env
 	env/bin/pip install --upgrade pip setuptools
 
 .PHONY:	deploylive
