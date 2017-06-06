@@ -13,7 +13,8 @@ export default function Home() {
             </p>
             <p>
               Please feel free to play around, register and sign in. For trying
-              out the User Admin panel you have to sign in with Admin permissions.
+              out the User Admin panel you have to sign in with Admin
+              permissions.
             </p>
             <p>
               Just sign in with the email address <em>admin@example.com</em> and

@@ -62,7 +62,9 @@ export default connect(
                     <p>
                       You can use this when a token or your password gets
                       compromised.
-                      Remember also to <a href="/settings/password">
+                      Remember also to
+                      {' '}
+                      <a href="/settings/password">
                         change your password
                       </a>.
                     </p>
