@@ -12,7 +12,9 @@ pages:
     - Indroduction: 'index.md'
     - RESTful Server:
         - Quick Start: 'server/quick-start.md'
+        - Settings: 'server/settings.md'
         - REST-API: 'server/api.md'
+        - Services: 'server/services.md'
         - Softwarestack: 'server/softwarestack.md'
     - Cerebral Client:
         - Quick Start: 'client/quick-start.md'

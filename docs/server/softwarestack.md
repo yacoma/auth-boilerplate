@@ -5,7 +5,7 @@ Overview
 - Web framework: [Morepath](http://morepath.readthedocs.io)
 - Authentication: [JSON Web Token (JWT)](http://tools.ietf.org/html/draft-ietf-oauth-json-web-token)
 - Object-Relational Mapper: [PonyORM](https://ponyorm.com)
-- Validation/Normalization: [Cerberus](https://python-cerberus.org)
+- Validation/Normalization: [Cerberus](http://python-cerberus.org)
 - Signal emitter: [Pymitter](https://github.com/riga/pymitter)
 - Token creation: [It's dangerous](https://pythonhosted.org/itsdangerous)
 - SMTP client: [yagmail](https://github.com/kootenpv/yagmail)
@@ -54,7 +54,7 @@ PonyORM
 Easy to use and powerful database query syntax which integrates greatfully with
 Python.
 
-With [more.pony](https://github.com/morepath/more.pony) we have a great
+With [more.pony](https://github.com/morepath/more.pony) we have an awesome
 Morepath integration which binds the database session to the request so you can
 interact with the database in your App directly without using db_session.
 
@@ -85,26 +85,32 @@ It integrates with the lightweight
 [more.emit](https://github.com/morepath/more.emit) wrapper extension.
 
 
-Services
-========
+Yagmail
+=======
 
-MailerService
--------------
+The [Yagmail SMTP client](https://github.com/kootenpv/yagmail) is used by the
+[MailerService](services.md#MailerService) for sending emails.
+It's quite simple and lightweight but has some cool features like storing
+passwords in the keyring and has also a great Gmail integration. The newest
+version supports also oauth2 authentication. It's quite usable though it's not
+yet really mature.
 
-The MailerService integrates the simple
-[Yagmail SMTP client](https://github.com/kootenpv/yagmail) for sending emails.
-For signing links which are sent to the user the TokenService is used.
 
-TokenService
-------------
+It's dangerous
+==============
 
-The TokenService uses [itsdangerous]((https://pythonhosted.org/itsdangerous))
-URLSafeTimedSerializer to sign links which are time limited.
+[Itsdangerous](https://pythonhosted.org/itsdangerous) is used by the
+[TokenService](services.md#TokenService).
+It uses URLSafeTimedSerializer to sign links which are sent by email to the
+user and which should expire after a certain time.
 
-EmailValidationService
-----------------------
 
-EmailValidationService uses
-[email_validator](https://github.com/JoshData/python-email-validator)
-to normalize and verify email addresses.
-During verification it checks also if the email domain is available.
+email_validator
+===============
+
+[email_validator](https://github.com/JoshData/python-email-validator) is a
+robust email address syntax and deliverability validation library.
+
+[EmailValidationService](services.md#EmailValidationService) uses it to
+normalize and verify email addresses. During verification it checks also
+if the email domain is a resolvable domain name.
