@@ -15,7 +15,7 @@ class MailerService(object):
         )
         self.token_service = token_service
 
-    def send(self, email, subject, message):
+    def _send(self, email, subject, message):
         return self.smtp.send(email, subject, message)
 
     def send_confirmation_email(self, user, request):
@@ -33,7 +33,7 @@ class MailerService(object):
 
             html = email_template.format(confirm_url=confirm_url)
 
-            self.send(user.email, 'Confirm Your Email Address', html)
+            self._send(user.email, 'Confirm Your Email Address', html)
 
     def send_reset_email(self, user, request):
             token = self.token_service.create(
@@ -50,7 +50,7 @@ class MailerService(object):
 
             html = email_template.format(reset_url=reset_url)
 
-            self.send(user.email, 'Password Reset Requested', html)
+            self._send(user.email, 'Password Reset Requested', html)
 
 
 @App.method(App.service, name='mailer')
