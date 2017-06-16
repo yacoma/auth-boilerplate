@@ -22,3 +22,37 @@ you can use:
 ```console
 $ npm start
 ```
+
+
+Testing
+-------
+
+To run the tests use:
+
+```console
+$ npm test
+```
+
+For checking coverage:
+
+```console
+$ npm run coverage
+```
+
+After you can create a coverage report in html format:
+
+```console
+$ npm run coverage:report
+```
+
+For checking linting errors:
+
+```console
+$ npm run lint
+```
+
+You can automatically fix them with:
+
+```console
+$ npm run format
+```
