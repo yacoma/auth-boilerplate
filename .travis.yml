@@ -10,7 +10,7 @@ before_install:
 install:
 - pip install tox
 script:
-- tox -e $TOXENV
+- travis_wait tox -e $TOXENV
 addons:
   ssh_known_hosts: yacoma.it
 after_success:
