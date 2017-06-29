@@ -30,12 +30,10 @@ export default connect(
         </Modal.Header>
         <Modal.Content>
           <p>
-            Are you sure you want to disallow refreshing
-            all current tokens from {nickname}?
+            Are you sure you want to disallow refreshing all current tokens from{' '}
+            {nickname}?
           </p>
-          <p>
-            You will do this normally if a token gets compromised.
-          </p>
+          <p>You will do this normally if a token gets compromised.</p>
         </Modal.Content>
         <Modal.Actions>
           <Button basic inverted color="red" onClick={() => signOutCancelled()}>

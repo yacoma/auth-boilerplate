@@ -63,9 +63,7 @@ export default connect(
         >
           <Icon name="angle double right" />
         </Menu.Item>
-        <Menu.Item>
-          users/page:
-        </Menu.Item>
+        <Menu.Item>users/page:</Menu.Item>
         <Dropdown
           item
           selection

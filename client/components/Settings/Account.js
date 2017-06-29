@@ -61,12 +61,8 @@ export default connect(
                     </Message.Header>
                     <p>
                       You can use this when a token or your password gets
-                      compromised.
-                      Remember also to
-                      {' '}
-                      <a href="/settings/password">
-                        change your password
-                      </a>.
+                      compromised. Remember also to{' '}
+                      <a href="/settings/password">change your password</a>.
                     </p>
                   </Message>
                   <Button
@@ -83,12 +79,10 @@ export default connect(
                   <Message negative icon>
                     <Icon name="warning sign" color="orange" />
                     <Message.Content>
-                      <Message.Header>
-                        Don't do this!
-                      </Message.Header>
+                      <Message.Header>Don't do this!</Message.Header>
                       <p>
-                        Deleting your account cannot be revoked
-                        and all your data will be removed.
+                        Deleting your account cannot be revoked and all your
+                        data will be removed.
                       </p>
                     </Message.Content>
                   </Message>

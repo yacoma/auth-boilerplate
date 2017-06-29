@@ -43,8 +43,12 @@ export default connect(
             />}
           <ConfirmRemoveUser />
         </Table.Cell>
-        <Table.Cell>{user.nickname}</Table.Cell>
-        <Table.Cell>{user.email}</Table.Cell>
+        <Table.Cell>
+          {user.nickname}
+        </Table.Cell>
+        <Table.Cell>
+          {user.email}
+        </Table.Cell>
         <Table.Cell
           textAlign="center"
           icon={
@@ -70,9 +74,15 @@ export default connect(
             onClick={() => toggleAdminClicked({ uid })}
           />
         </Table.Cell>
-        <Table.Cell>{user.lastLogin}</Table.Cell>
-        <Table.Cell>{user.registered}</Table.Cell>
-        <Table.Cell>{user.registerIP}</Table.Cell>
+        <Table.Cell>
+          {user.lastLogin}
+        </Table.Cell>
+        <Table.Cell>
+          {user.registered}
+        </Table.Cell>
+        <Table.Cell>
+          {user.registerIP}
+        </Table.Cell>
       </Table.Row>
     )
   }

@@ -8,8 +8,8 @@ export default function Home() {
         <Grid.Column>
           <Segment padded size="big">
             <p>
-              This is a a authentication boilerplate, which uses Morepath
-              as a REST back-end and Cerebral as front-end.
+              This is a a authentication boilerplate, which uses Morepath as a
+              REST back-end and Cerebral as front-end.
             </p>
             <p>
               Please feel free to play around, register and sign in. For trying
@@ -18,11 +18,9 @@ export default function Home() {
             </p>
             <p>
               Just sign in with the email address <em>admin@example.com</em> and
-              the password
-              {' '}
-              <em>admin0</em>
-              . In the Admin panel you can give Admin
-              permissions also to other users.
+              the password <em>admin0</em>
+              . In the Admin panel you can give Admin permissions also to other
+              users.
             </p>
           </Segment>
         </Grid.Column>

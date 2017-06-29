@@ -46,9 +46,7 @@ export default connect(
                   >
                     Confirmed
                   </Table.HeaderCell>
-                  <Table.HeaderCell>
-                    Admin
-                  </Table.HeaderCell>
+                  <Table.HeaderCell>Admin</Table.HeaderCell>
                   <Table.HeaderCell
                     sorted={usersSortBy === 'lastLogin' ? usersSortDir : null}
                     onClick={() => sortUsersClicked({ sortBy: 'lastLogin' })}
