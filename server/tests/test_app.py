@@ -20,7 +20,7 @@ def test_settings():
     app = App()
 
     assert app.settings.smtp.username == 'test@example.com'
-    assert app.settings.smtp.port == '1125'
+    assert app.settings.smtp.port == '3377'
     assert app.settings.database.args == [':memory:']
 
 

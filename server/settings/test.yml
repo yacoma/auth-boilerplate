@@ -14,7 +14,7 @@ database:
 smtp:
   username: test@example.com
   host: localhost
-  port: '1125'
+  port: '3377'
   starttls: false
   smtp_skip_login: true
 

@@ -5,7 +5,7 @@ import pytest
 def smtp_server():
     from pytest_localserver import smtp
 
-    port = 1125
+    port = 3377
     server = smtp.Server(port=port)
     server.start()
     yield server
