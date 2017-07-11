@@ -34,6 +34,7 @@ export default connect(
           <Button
             basic
             inverted
+            icon
             color="red"
             onClick={() => removeUserCancelled()}
           >
@@ -43,6 +44,7 @@ export default connect(
           <Button
             basic
             inverted
+            icon
             color="green"
             onClick={() => removeUserConfirmed()}
           >

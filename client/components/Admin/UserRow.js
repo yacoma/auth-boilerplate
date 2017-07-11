@@ -37,10 +37,12 @@ export default connect(
             user.email !== email &&
             <Button
               inverted
-              icon={<Icon name="remove user" size="large" />}
+              icon
               color="red"
               onClick={() => removeUserButtonClicked({ uid })}
-            />}
+            >
+              <Icon name="remove user" size="large" />
+            </Button>}
           <ConfirmRemoveUser />
         </Table.Cell>
         <Table.Cell>
@@ -49,30 +51,27 @@ export default connect(
         <Table.Cell>
           {user.email}
         </Table.Cell>
-        <Table.Cell
-          textAlign="center"
-          icon={
-            user.emailConfirmed
-              ? <Icon name="checkmark" color="green" size="large" />
-              : <Icon name="remove" color="red" size="large" />
-          }
-        />
+        <Table.Cell textAlign="center" icon>
+          {user.emailConfirmed
+            ? <Icon name="checkmark" color="green" size="large" />
+            : <Icon name="remove" color="red" size="large" />}
+        </Table.Cell>
         <Table.Cell textAlign="center">
           <Button
             inverted
             basic
+            icon
             color="blue"
             loading={toggleAdminIsLoading}
             disabled={
               user.email === 'admin@example.com' || user.email === email
             }
-            icon={
-              user.isAdmin
-                ? <Icon name="checkmark" color="green" size="large" />
-                : <Icon name="remove" color="red" size="large" />
-            }
             onClick={() => toggleAdminClicked({ uid })}
-          />
+          >
+            {user.isAdmin
+              ? <Icon name="checkmark" color="green" size="large" />
+              : <Icon name="remove" color="red" size="large" />}
+          </Button>
         </Table.Cell>
         <Table.Cell>
           {user.lastLogin}

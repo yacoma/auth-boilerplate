@@ -61,10 +61,12 @@ export default connect(
             <Button
               inverted
               compact
+              icon
               color="blue"
-              icon={<Icon name="user" size="large" />}
               active={currentPage === 'settings'}
-            />
+            >
+              <Icon name="user" size="large" />
+            </Button>
           </Menu.Item>
           <Menu.Item
             name="admin"
@@ -74,19 +76,23 @@ export default connect(
             <Button
               inverted
               compact
+              icon
               color="blue"
-              icon={<Icon name="users" size="large" />}
               active={currentPage === 'admin'}
-            />
+            >
+              <Icon name="users" size="large" />
+            </Button>
           </Menu.Item>
           <Menu.Item>
             <Button
               inverted
               compact
+              icon
               color="blue"
-              icon={<Icon name="sign out" size="large" />}
               onClick={() => logoutButtonClicked()}
-            />
+            >
+              <Icon name="sign out" size="large" />
+            </Button>
           </Menu.Item>
         </Menu.Menu>
       </Menu>

@@ -2,7 +2,7 @@ import React from 'react'
 import { connect } from 'cerebral/react'
 import { state, props, signal } from 'cerebral/tags'
 import { field } from '@cerebral/forms'
-import { Form, Input, Label } from 'semantic-ui-react'
+import { Form, Input, Icon, Label } from 'semantic-ui-react'
 import { hasError, showError } from './utils'
 
 export default connect(
@@ -14,12 +14,14 @@ export default connect(
     return (
       <Form.Field error={hasError(field, showErrors)}>
         <Input
-          icon="user"
           iconPosition="left"
           placeholder="nickname"
           value={field.value}
           onChange={(e, { value }) => fieldChanged({ path, value })}
-        />
+        >
+          <Icon name="user" />
+          <input />
+        </Input>
         <Label
           pointing
           basic

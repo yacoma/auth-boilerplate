@@ -66,11 +66,13 @@ export default connect(
                     </p>
                   </Message>
                   <Button
+                    icon
                     color="yellow"
-                    icon={<Icon name="sign out" size="large" />}
                     label="Sign-out from all devices"
                     onClick={() => signOutButtonClicked()}
-                  />
+                  >
+                    <Icon name="sign out" size="large" />
+                  </Button>
                   <ConfirmSignOut />
                 </Grid.Column>
               </Grid.Row>
@@ -87,12 +89,14 @@ export default connect(
                     </Message.Content>
                   </Message>
                   <Button
+                    icon
                     color="red"
-                    icon={<Icon name="remove user" size="large" />}
                     label="Delete your user account"
                     labelPosition="right"
                     onClick={() => removeUserButtonClicked()}
-                  />
+                  >
+                    <Icon name="remove user" size="large" />
+                  </Button>
                   <ConfirmRemoveUser />
                 </Grid.Column>
               </Grid.Row>
