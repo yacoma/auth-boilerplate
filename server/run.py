@@ -28,10 +28,8 @@ def add_admin():   # pragma: no cover
 
 
 def setup_db(app):
-    provider = app.settings.database.provider
-    args = app.settings.database.args
-    kwargs = app.settings.database.kwargs
-    db.bind(provider, *args, **kwargs) if args else db.bind(provider, **kwargs)
+    db_params = app.settings.database.__dict__.copy()
+    db.bind(**db_params)
     db.generate_mapping(create_tables=True)
     add_admin()
 

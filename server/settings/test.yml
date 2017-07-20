@@ -7,9 +7,8 @@ jwtauth:
 
 database:
   provider: sqlite
-  args:
-    - ":memory:"
-  kwargs: {}
+  filename: ":memory:"
+  create_db: null
 
 smtp:
   username: test@example.com

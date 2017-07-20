@@ -4,13 +4,12 @@ jwtauth:
 
 database:
   provider: postgres
-  args: null
-  kwargs:
-    user: yacoma_auth
-    password: auth_boilerplate0
-    host: localhost
-    database: yacoma_auth_boilerplate
-    create_db: null
+  user: yacoma_auth
+  password: auth_boilerplate0
+  host: localhost
+  database: yacoma_auth_boilerplate
+  filename: null
+  create_db: null
 
 smtp:
   username: admin@yacoma.it

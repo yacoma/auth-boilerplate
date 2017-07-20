@@ -52,18 +52,17 @@ database
 Setup your database server. For details see the
 [PonyORM documentation](https://docs.ponyorm.com/database.html#binding-the-database-object-to-a-specific-database).
 
-This section uses the following settings:
+This section provides the parameters needed for setting up the database:
 
 - **provider** - one of the following:
     - [sqlite](https://docs.ponyorm.com/api_reference.html#sqlite)
     - [postgres](https://docs.ponyorm.com/api_reference.html#postgresql)
     - [mysql](https://docs.ponyorm.com/api_reference.html#mysql)
     - [oracle](https://docs.ponyorm.com/api_reference.html#oracle)
-- **args** - a list of positional arguments passed to the database provider
-- **kwargs** - a dictionary of keyword arguments passed to the database provider
+- other parameters specific for the chosen database provider
 
-When overriding, settings or dictionary keys which are not needed anymore have
-to be explicitly unset by setting them to `null` or an empty dictionary `{}`.
+When overriding, parameters which are not needed anymore have
+to be explicitly unset by setting them to `null`.
 
 Auth-boilerplate uses for development SQLite with a file-based data store,
 for testing SQLite with an in-memory database and in production PostgreSQL.

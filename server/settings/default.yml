@@ -8,10 +8,8 @@ jwtauth:
 
 database:
   provider: sqlite
-  args:
-    - auth.db
-  kwargs:
-    create_db: true
+  filename: auth.db
+  create_db: true
 
 smtp:
   username: null

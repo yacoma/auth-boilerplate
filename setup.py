@@ -24,7 +24,7 @@ setup(
     install_requires=[
         'more.jwtauth',
         'more.cerberus',
-        'more.pony',
+        'more.pony >= 0.2',
         'more.emit',
         'argon2_cffi',
         'gunicorn',
