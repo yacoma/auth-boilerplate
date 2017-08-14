@@ -28,10 +28,12 @@ export default connect(
         <Table.Cell collapsing textAlign="center">
           <Button
             inverted
-            icon={<Icon name="sign out" size="large" />}
+            icon
             color="yellow"
             onClick={() => signOutButtonClicked({ uid })}
-          />
+          >
+            <Icon name="sign out" size="large" />
+          </Button>
           <ConfirmSignOut />
           {user.email !== 'admin@example.com' &&
             user.email !== email &&
@@ -51,7 +53,7 @@ export default connect(
         <Table.Cell>
           {user.email}
         </Table.Cell>
-        <Table.Cell textAlign="center" icon>
+        <Table.Cell textAlign="center">
           {user.emailConfirmed
             ? <Icon name="checkmark" color="green" size="large" />
             : <Icon name="remove" color="red" size="large" />}
