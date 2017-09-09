@@ -29,9 +29,7 @@ export default connect(
           Delete User Account
         </Modal.Header>
         <Modal.Content>
-          <p>
-            Are you sure you want to delete {nickname}?
-          </p>
+          <p>Are you sure you want to delete {nickname}?</p>
         </Modal.Content>
         <Modal.Actions>
           <Button

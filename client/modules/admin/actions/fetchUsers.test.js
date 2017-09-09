@@ -52,21 +52,24 @@ test.beforeEach(t => {
 
 test.serial('should fetch users', t => {
   mock.get(/\/api\/users.*/, (req, res) => {
-    return res.status(200).header('Content-Type', 'application/json').body(
-      JSON.stringify({
-        pages: 5,
-        users: [
-          {
-            '@id': '/users/1',
-            nickname: 'Leader',
-            email: 'leader@example.com',
-            emailConfirmed: false,
-            isAdmin: true,
-            registerIP: '',
-          },
-        ],
-      })
-    )
+    return res
+      .status(200)
+      .header('Content-Type', 'application/json')
+      .body(
+        JSON.stringify({
+          pages: 5,
+          users: [
+            {
+              '@id': '/users/1',
+              nickname: 'Leader',
+              email: 'leader@example.com',
+              emailConfirmed: false,
+              isAdmin: true,
+              registerIP: '',
+            },
+          ],
+        })
+      )
   })
 
   return runSignal(fetchUsers, cerebral).then(({ state }) => [
@@ -111,21 +114,24 @@ test.serial('should update existing user', t => {
   })
 
   mock.get(/\/api\/users.*/, (req, res) => {
-    return res.status(200).header('Content-Type', 'application/json').body(
-      JSON.stringify({
-        pages: 15,
-        users: [
-          {
-            '@id': '/users/1',
-            nickname: 'Leader',
-            email: 'leader@example.com',
-            emailConfirmed: false,
-            isAdmin: true,
-            registerIP: '',
-          },
-        ],
-      })
-    )
+    return res
+      .status(200)
+      .header('Content-Type', 'application/json')
+      .body(
+        JSON.stringify({
+          pages: 15,
+          users: [
+            {
+              '@id': '/users/1',
+              nickname: 'Leader',
+              email: 'leader@example.com',
+              emailConfirmed: false,
+              isAdmin: true,
+              registerIP: '',
+            },
+          ],
+        })
+      )
   })
 
   return runSignal(fetchUsers, cerebral).then(({ state }) => [
@@ -142,11 +148,14 @@ test.serial('should update existing user', t => {
 
 test.serial('should return noUsersFound', t => {
   mock.get(/\/api\/users.*/, (req, res) => {
-    return res.status(200).header('Content-Type', 'application/json').body(
-      JSON.stringify({
-        users: [],
-      })
-    )
+    return res
+      .status(200)
+      .header('Content-Type', 'application/json')
+      .body(
+        JSON.stringify({
+          users: [],
+        })
+      )
   })
 
   return runSignal(fetchUsers, cerebral, {

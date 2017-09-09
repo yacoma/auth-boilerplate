@@ -36,7 +36,7 @@ export default connect(
           </Button>
           <ConfirmSignOut />
           {user.email !== 'admin@example.com' &&
-            user.email !== email &&
+          user.email !== email && (
             <Button
               inverted
               icon
@@ -44,19 +44,18 @@ export default connect(
               onClick={() => removeUserButtonClicked({ uid })}
             >
               <Icon name="remove user" size="large" />
-            </Button>}
+            </Button>
+          )}
           <ConfirmRemoveUser />
         </Table.Cell>
-        <Table.Cell>
-          {user.nickname}
-        </Table.Cell>
-        <Table.Cell>
-          {user.email}
-        </Table.Cell>
+        <Table.Cell>{user.nickname}</Table.Cell>
+        <Table.Cell>{user.email}</Table.Cell>
         <Table.Cell textAlign="center">
-          {user.emailConfirmed
-            ? <Icon name="checkmark" color="green" size="large" />
-            : <Icon name="remove" color="red" size="large" />}
+          {user.emailConfirmed ? (
+            <Icon name="checkmark" color="green" size="large" />
+          ) : (
+            <Icon name="remove" color="red" size="large" />
+          )}
         </Table.Cell>
         <Table.Cell textAlign="center">
           <Button
@@ -70,20 +69,16 @@ export default connect(
             }
             onClick={() => toggleAdminClicked({ uid })}
           >
-            {user.isAdmin
-              ? <Icon name="checkmark" color="green" size="large" />
-              : <Icon name="remove" color="red" size="large" />}
+            {user.isAdmin ? (
+              <Icon name="checkmark" color="green" size="large" />
+            ) : (
+              <Icon name="remove" color="red" size="large" />
+            )}
           </Button>
         </Table.Cell>
-        <Table.Cell>
-          {user.lastLogin}
-        </Table.Cell>
-        <Table.Cell>
-          {user.registered}
-        </Table.Cell>
-        <Table.Cell>
-          {user.registerIP}
-        </Table.Cell>
+        <Table.Cell>{user.lastLogin}</Table.Cell>
+        <Table.Cell>{user.registered}</Table.Cell>
+        <Table.Cell>{user.registerIP}</Table.Cell>
       </Table.Row>
     )
   }

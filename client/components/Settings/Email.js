@@ -49,9 +49,7 @@ export default connect(
               <List.Item>
                 <List.Header as="h4">Current email address</List.Header>
                 <List.Icon name="mail" color="blue" />
-                <List.Content>
-                  {currentEmail}
-                </List.Content>
+                <List.Content>{currentEmail}</List.Content>
               </List.Item>
               <List.Item>
                 <List.Header as="h4">

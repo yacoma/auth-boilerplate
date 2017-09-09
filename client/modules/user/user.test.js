@@ -66,11 +66,14 @@ test.serial('should login', t => {
 
 test.serial('should not log in when wrong password', t => {
   mock.post('/api/login', (req, res) => {
-    return res.status(403).header('Content-Type', 'application/json').body(
-      JSON.stringify({
-        validationError: 'Invalid email or password',
-      })
-    )
+    return res
+      .status(403)
+      .header('Content-Type', 'application/json')
+      .body(
+        JSON.stringify({
+          validationError: 'Invalid email or password',
+        })
+      )
   })
 
   cerebral.setState('user.loginForm.email.value', 'admin@example.com')
@@ -161,11 +164,14 @@ test.serial('should login on registration', t => {
 
 test.serial('should not register when email exists', t => {
   mock.post('/api/users', (req, res) => {
-    return res.status(409).header('Content-Type', 'application/json').body(
-      JSON.stringify({
-        validationError: 'Email already exists',
-      })
-    )
+    return res
+      .status(409)
+      .header('Content-Type', 'application/json')
+      .body(
+        JSON.stringify({
+          validationError: 'Email already exists',
+        })
+      )
   })
 
   cerebral.setState('user.registerForm.nickname.value', 'Test')
@@ -187,12 +193,15 @@ test.serial('should not register when email exists', t => {
 
 test.serial('should not register when email server does not exists', t => {
   mock.post('/api/users', (req, res) => {
-    return res.status(422).header('Content-Type', 'application/json').body(
-      JSON.stringify({
-        '@id': '/users/1',
-        email: ['Email could not be delivered'],
-      })
-    )
+    return res
+      .status(422)
+      .header('Content-Type', 'application/json')
+      .body(
+        JSON.stringify({
+          '@id': '/users/1',
+          email: ['Email could not be delivered'],
+        })
+      )
   })
 
   cerebral.setState('user.registerForm.nickname.value', 'Test')
