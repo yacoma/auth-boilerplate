@@ -1,7 +1,7 @@
 import jwtDecode from 'jwt-decode'
 
 function initUser({ props, state, storage, http }) {
-  const jwtHeader = props.headers.authorization
+  const jwtHeader = props.response.headers.authorization
   const claims = jwtDecode(jwtHeader)
   storage.set('jwtHeader', jwtHeader)
   http.updateOptions({

@@ -24,8 +24,10 @@ test('should initialize user state', t => {
       },
     },
     props: {
-      headers: {
-        authorization: jwtHeader,
+      response: {
+        headers: {
+          authorization: jwtHeader,
+        },
       },
     },
     providers: [

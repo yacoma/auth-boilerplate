@@ -26,7 +26,10 @@ export default sequence('Fetch users from database', [
   },
   httpGet(string`/users?${props`sort`}${props`pagination`}${props`search`}`),
   {
-    success: [mergeUsers, set(state`admin.pages`, props`result.pages`)],
+    success: [
+      mergeUsers,
+      set(state`admin.pages`, props`response.result.pages`),
+    ],
     error: showFlash('Could not fetch users from database', 'error'),
   },
 ])
