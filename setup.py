@@ -65,7 +65,7 @@ setup(
         'Intended Audience :: Developers',
         'Environment :: Web Environment',
         'Topic :: Internet :: WWW/HTTP :: WSGI',
-        'Programming Language :: Python :: 3.4',
         'Programming Language :: Python :: 3.5',
+        'Programming Language :: Python :: 3.6',
     ]
 )

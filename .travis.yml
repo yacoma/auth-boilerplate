@@ -1,10 +1,10 @@
 language: python
 matrix:
   include:
-    - python: 3.4
-      env: TOXENV=py34
     - python: 3.5
       env: TOXENV=py35
+    - python: 3.6
+      env: TOXENV=py36
     - python: 3.5
       env: TOXENV=pep8
     - python: 3.5
@@ -14,7 +14,7 @@ before_install:
 install:
 - pip install tox
 script:
-- travis_wait tox -e $TOXENV
+- tox -e $TOXENV
 addons:
   ssh_known_hosts: yacoma.it
 after_success:
