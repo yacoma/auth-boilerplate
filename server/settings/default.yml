@@ -17,7 +17,8 @@ smtp:
   host: mail.yacoma.it
   port: '587'
   starttls: true
-  smtp_skip_login: false
+  ssl: false
+  skip_login: false
 
 token:
   secret: edba63b558ae4aee9ce47c38e48b6e5b

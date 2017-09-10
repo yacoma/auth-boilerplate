@@ -84,7 +84,8 @@ Available settings:
 - **host:** SMTP server host
 - **port:** SMTP port
 - **starttls:** use starttls (boolean)
-- **smtp_skip_login:** skip login (boolean)
+- **ssl:** use SSL (boolean)
+- **skip_login:** skip smtp login (boolean)
 
 
 token

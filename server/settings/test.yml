@@ -15,7 +15,7 @@ smtp:
   host: localhost
   port: '3377'
   starttls: false
-  smtp_skip_login: true
+  skip_login: true
 
 token:
   secret: 2e999240aeb847d0a20ed830da2a3668

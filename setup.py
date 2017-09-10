@@ -29,7 +29,7 @@ setup(
         'argon2_cffi',
         'gunicorn',
         'itsdangerous',
-        'yagmail[all]',
+        'yagmail[all] >= 0.10.190',
         'keyrings.alt',
         'email_validator',
         'pyyaml',

@@ -8,10 +8,10 @@ from .model import ConfirmEmail, ResetPassword
 
 class MailerService(object):
     def __init__(self, username, password, host, port,
-                 starttls, smtp_skip_login, token_service):
+                 starttls, ssl, skip_login, token_service):
         self.smtp = yagmail.SMTP(
             username, password, host, port,
-            smtp_starttls=starttls, smtp_skip_login=smtp_skip_login
+            smtp_starttls=starttls, smtp_ssl=ssl, smtp_skip_login=skip_login
         )
         self.token_service = token_service
 
@@ -59,13 +59,14 @@ def mailer_service(app, name):
     password = getattr(app.settings.smtp, 'password', None)
     host = getattr(app.settings.smtp, 'host', 'smtp.gmail.com')
     port = getattr(app.settings.smtp, 'port', '587')
-    starttls = getattr(app.settings.smtp, 'starttls', True)
-    smtp_skip_login = getattr(app.settings.smtp, 'smtp_skip_login', False)
+    starttls = getattr(app.settings.smtp, 'starttls', None)
+    ssl = getattr(app.settings.smtp, 'ssl', True)
+    skip_login = getattr(app.settings.smtp, 'skip_login', False)
     token_service = app.service(name='token')
 
     return MailerService(
         username=username, password=password, host=host,
-        port=port, starttls=starttls, smtp_skip_login=smtp_skip_login,
+        port=port, starttls=starttls, ssl=ssl, skip_login=skip_login,
         token_service=token_service
     )
 

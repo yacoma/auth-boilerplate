@@ -50,7 +50,8 @@ API
 - **host:** SMPT server host (string from settings)
 - **port:** SMPT server port (string from settings)
 - **starttls:** True, if starttls should be used (boolean from settings)
-- **smtp_skip_login:** True, if login should be skipped (boolean from settings)
+- **ssl:** True, if SSL should be used (boolean from settings)
+- **skip_login:** True, if login should be skipped (boolean from settings)
 - **token_service:** a reference to a token service instance
 
 ### Class method `send_confirmation_email`
