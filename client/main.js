@@ -5,7 +5,7 @@ import './index.html'
 import React from 'react'
 import { render } from 'react-dom'
 import controller from './controller'
-import { Container } from 'cerebral/react'
+import { Container } from '@cerebral/react'
 
 import App from './components/App'
 

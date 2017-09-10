@@ -1,5 +1,5 @@
 import React from 'react'
-import { connect } from 'cerebral/react'
+import { connect } from '@cerebral/react'
 import { state, props, signal } from 'cerebral/tags'
 import { Table, Button, Icon } from 'semantic-ui-react'
 import ConfirmSignOut from './ConfirmSignOut'

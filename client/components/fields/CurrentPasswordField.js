@@ -1,5 +1,5 @@
 import React from 'react'
-import { connect } from 'cerebral/react'
+import { connect } from '@cerebral/react'
 import { state, props, signal } from 'cerebral/tags'
 import { field } from '@cerebral/forms'
 import { Form, Input, Icon, Label } from 'semantic-ui-react'

@@ -31,9 +31,9 @@
   "dependencies": {
     "@cerebral/forms": "^1.1.0",
     "@cerebral/http": "^2.0.0",
+    "@cerebral/react": "^1.0.0",
     "@cerebral/router": "^1.1.0",
     "@cerebral/storage": "^1.1.0",
-    "cerebral": "^2.2.0",
     "es6-error": "^4.0.2",
     "jwt-decode": "^2.2.0",
     "react": "^15.6.1",
