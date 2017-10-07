@@ -5,7 +5,7 @@ import { Controller, provide } from 'cerebral'
 import Devtools from 'cerebral/devtools'
 import HttpProvider from '@cerebral/http'
 import FormsProvider from '@cerebral/forms'
-import StorageProvider from '@cerebral/storage'
+import StorageModule from '@cerebral/storage'
 
 import App from './modules/app'
 import User from './modules/user'
@@ -61,6 +61,7 @@ const controller = Controller({
     admin: Admin,
     settings: Settings,
     router: Router,
+    storage: StorageModule({ target: localStorage }),
   },
   providers: [
     provide('uuid', uuid),
@@ -85,7 +86,6 @@ const controller = Controller({
         },
       },
     }),
-    StorageProvider({ target: localStorage }),
   ],
   catch: new Map([[AuthenticationError, routeToLogin]]),
 })

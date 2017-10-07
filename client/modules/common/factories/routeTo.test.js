@@ -1,5 +1,5 @@
 import test from 'ava'
-import StorageProvider from '@cerebral/storage'
+import StorageModule from '@cerebral/storage'
 import { runAction } from 'cerebral/test'
 import routeTo from './routeTo'
 import App from '../../app'
@@ -65,8 +65,8 @@ test('route to newpassword should redirect to home', t => {
     },
     modules: {
       app: App({ flash: null, flashType: null }),
+      storage: StorageModule({ target: localStorage }),
     },
-    providers: [StorageProvider({ target: localStorage })],
   }).then(({ state }) => [
     t.is(state.app.currentPage, 'home'),
     t.not(state.app.lastVisited, 'newpassword'),
@@ -86,8 +86,8 @@ test('route to newpassword when user authenticated should redirect to home', t =
     },
     modules: {
       app: App({ flash: null, flashType: null }),
+      storage: StorageModule({ target: localStorage }),
     },
-    providers: [StorageProvider({ target: localStorage })],
   }).then(({ state }) => [t.is(state.app.currentPage, 'home')])
 })
 

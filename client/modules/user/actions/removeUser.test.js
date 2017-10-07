@@ -1,6 +1,6 @@
 import test from 'ava'
 import HttpProvider from '@cerebral/http'
-import StorageProvider from '@cerebral/storage'
+import StorageModule from '@cerebral/storage'
 import { runAction } from 'cerebral/test'
 import removeUser from './removeUser'
 
@@ -27,6 +27,7 @@ test('should remove user state', t => {
         },
       },
     },
+    modules: { storage: StorageModule({ target: localStorage }) },
     providers: [
       HttpProvider({
         baseUrl: '/api',
@@ -36,7 +37,6 @@ test('should remove user state', t => {
           Authorization: jwtHeader,
         },
       }),
-      StorageProvider({ target: localStorage }),
     ],
   }).then(({ state }) => [
     t.false(state.user.authenticated),

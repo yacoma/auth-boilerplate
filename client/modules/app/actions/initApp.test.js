@@ -1,5 +1,5 @@
 import test from 'ava'
-import StorageProvider from '@cerebral/storage'
+import StorageModule from '@cerebral/storage'
 import { runAction } from 'cerebral/test'
 import initApp from './initApp'
 
@@ -23,7 +23,7 @@ test.serial('should initialize app state when no exp claim', t => {
         api: {},
       },
     },
-    providers: [StorageProvider({ target: localStorage })],
+    modules: { storage: StorageModule({ target: localStorage }) },
   }).then(({ state }) => [
     t.true(state.user.authenticated),
     t.is(state.user.api['@id'], '/users/1'),
@@ -55,7 +55,7 @@ test.serial('should initialize app state when exp claim is valid', t => {
         api: {},
       },
     },
-    providers: [StorageProvider({ target: localStorage })],
+    modules: { storage: StorageModule({ target: localStorage }) },
   }).then(({ state }) => [
     t.true(state.user.authenticated),
     t.is(state.user.api['@id'], '/users/1'),
@@ -91,7 +91,7 @@ test.serial(
           api: {},
         },
       },
-      providers: [StorageProvider({ target: localStorage })],
+      modules: { storage: StorageModule({ target: localStorage }) },
     }).then(({ state }) => [
       t.false(state.user.authenticated),
       t.is(localStorage.getItem('jwtHeader'), null),

@@ -2,7 +2,7 @@ import test from 'ava'
 import mock from 'xhr-mock'
 import uuid from 'uuid'
 import { provide } from 'cerebral'
-import StorageProvider from '@cerebral/storage'
+import StorageModule from '@cerebral/storage'
 import HttpProvider from '@cerebral/http'
 import { CerebralTest } from 'cerebral/test'
 
@@ -26,6 +26,7 @@ test.beforeEach(t => {
       admin: Admin,
       app: App({ flash: null, flashType: null }),
       user: User({ '@id': null }),
+      storage: StorageModule({ target: localStorage }),
     },
     providers: [
       provide('uuid', uuid),
@@ -37,7 +38,6 @@ test.beforeEach(t => {
           Authorization: jwtHeader,
         },
       }),
-      StorageProvider({ target: localStorage }),
     ],
   })
 

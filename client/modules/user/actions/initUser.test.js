@@ -1,6 +1,6 @@
 import test from 'ava'
 import HttpProvider from '@cerebral/http'
-import StorageProvider from '@cerebral/storage'
+import StorageModule from '@cerebral/storage'
 import { runAction } from 'cerebral/test'
 import initUser from './initUser'
 
@@ -30,6 +30,7 @@ test('should initialize user state', t => {
         },
       },
     },
+    modules: { storage: StorageModule({ target: localStorage }) },
     providers: [
       HttpProvider({
         baseUrl: '/api',
@@ -39,7 +40,6 @@ test('should initialize user state', t => {
           Authorization: jwtHeader,
         },
       }),
-      StorageProvider({ target: localStorage }),
     ],
   }).then(({ state }) => [
     t.true(state.user.authenticated),
