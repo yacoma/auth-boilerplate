@@ -10,7 +10,7 @@ export default connect(
   },
   function PageHeader({ headerText, headerIcon }) {
     return (
-      <Grid stackable columns={2} centered>
+      <Grid stackable padded="vertically" columns={2} centered>
         <Grid.Row>
           <Grid.Column>
             <Header
