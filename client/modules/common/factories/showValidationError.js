@@ -5,11 +5,11 @@ import showFlash from './showFlash'
 
 function getSchemaValidationErrorMessages({ props }) {
   const errorMessages = Object.keys(
-    props.error.body
+    props.error.response.result
   ).reduce((errorMessages, errorField) => {
-    if (Array.isArray(props.error.body[errorField])) {
+    if (Array.isArray(props.error.response.result[errorField])) {
       errorMessages.push(
-        errorField + ': ' + props.error.body[errorField].join(', ')
+        errorField + ': ' + props.error.response.result[errorField].join(', ')
       )
     }
     return errorMessages
@@ -19,10 +19,16 @@ function getSchemaValidationErrorMessages({ props }) {
 
 function showValidationError(defaultErrorMessage) {
   return sequence('Show validation error', [
-    equals(props`error.status`),
+    equals(props`error.response.status`),
     {
-      403: set(props`errorMessages`, props`error.body.validationError`),
-      409: set(props`errorMessages`, props`error.body.validationError`),
+      403: set(
+        props`errorMessages`,
+        props`error.response.result.validationError`
+      ),
+      409: set(
+        props`errorMessages`,
+        props`error.response.result.validationError`
+      ),
       422: getSchemaValidationErrorMessages,
       otherwise: set(props`errorMessages`, defaultErrorMessage),
     },

@@ -2042,9 +2042,9 @@ Object.defineProperty(exports, "__esModule", {
   value: true
 });
 
-var _templateObject = _taggedTemplateLiteral(['error.status'], ['error.status']),
+var _templateObject = _taggedTemplateLiteral(['error.response.status'], ['error.response.status']),
     _templateObject2 = _taggedTemplateLiteral(['errorMessages'], ['errorMessages']),
-    _templateObject3 = _taggedTemplateLiteral(['error.body.validationError'], ['error.body.validationError']);
+    _templateObject3 = _taggedTemplateLiteral(['error.response.result.validationError'], ['error.response.result.validationError']);
 
 var _cerebral = __webpack_require__(7);
 
@@ -2063,9 +2063,9 @@ function _taggedTemplateLiteral(strings, raw) { return Object.freeze(Object.defi
 function getSchemaValidationErrorMessages(_ref) {
   var props = _ref.props;
 
-  var errorMessages = Object.keys(props.error.body).reduce(function (errorMessages, errorField) {
-    if (Array.isArray(props.error.body[errorField])) {
-      errorMessages.push(errorField + ': ' + props.error.body[errorField].join(', '));
+  var errorMessages = Object.keys(props.error.response.result).reduce(function (errorMessages, errorField) {
+    if (Array.isArray(props.error.response.result[errorField])) {
+      errorMessages.push(errorField + ': ' + props.error.response.result[errorField].join(', '));
     }
     return errorMessages;
   }, []);
