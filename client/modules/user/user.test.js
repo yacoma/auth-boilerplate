@@ -205,7 +205,7 @@ test.serial('should not register when email server does not exists', t => {
   })
 
   cerebral.setState('user.registerForm.nickname.value', 'Test')
-  cerebral.setState('user.registerForm.email.value', 'test@example.com')
+  cerebral.setState('user.registerForm.email.value', 'test@not.existing.com')
   cerebral.setState('user.registerForm.password.value', 'test0')
   cerebral.setState('user.registerForm.confirmPassword.value', 'test0')
 
@@ -214,7 +214,7 @@ test.serial('should not register when email server does not exists', t => {
     .then(({ state }) => [
       t.is(state.app.flash, null),
       t.is(state.user.registerForm.nickname.value, 'Test'),
-      t.is(state.user.registerForm.email.value, 'test@example.com'),
+      t.is(state.user.registerForm.email.value, 'test@not.existing.com'),
       t.is(state.user.registerForm.password.value, ''),
       t.is(state.user.registerForm.confirmPassword.value, ''),
       t.false(state.user.registerForm.showErrors),

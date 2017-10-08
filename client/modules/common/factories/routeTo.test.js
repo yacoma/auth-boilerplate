@@ -1,11 +1,11 @@
 import test from 'ava'
 import StorageModule from '@cerebral/storage'
-import { runAction } from 'cerebral/test'
+import { runSignal } from 'cerebral/test'
 import routeTo from './routeTo'
 import App from '../../app'
 
 test('should route to home', t => {
-  return runAction(routeTo('home'), {
+  return runSignal(routeTo('home'), {
     state: { app: { lastVisited: 'private' } },
   }).then(({ state }) => [
     t.is(state.app.currentPage, 'home'),
@@ -16,7 +16,7 @@ test('should route to home', t => {
 })
 
 test('route to login should not change lastVisited', t => {
-  return runAction(routeTo('login'), {
+  return runSignal(routeTo('login'), {
     state: { app: { lastVisited: 'private' } },
   }).then(({ state }) => [
     t.is(state.app.currentPage, 'login'),
@@ -27,7 +27,7 @@ test('route to login should not change lastVisited', t => {
 })
 
 test('route to register should not change lastVisited', t => {
-  return runAction(routeTo('register'), {
+  return runSignal(routeTo('register'), {
     state: { app: { lastVisited: 'private' } },
   }).then(({ state }) => [
     t.is(state.app.currentPage, 'register'),
@@ -38,7 +38,7 @@ test('route to register should not change lastVisited', t => {
 })
 
 test('route to private should set header title', t => {
-  return runAction(routeTo('private'), {
+  return runSignal(routeTo('private'), {
     state: {
       app: {},
       user: {
@@ -55,44 +55,52 @@ test('route to private should set header title', t => {
 })
 
 test('route to newpassword should redirect to home', t => {
-  return runAction(routeTo('newpassword'), {
-    state: {
-      app: {},
-      user: {
-        authenticated: false,
-        api: {},
+  return runSignal(
+    routeTo('newpassword'),
+    {
+      state: {
+        app: {},
+        user: {
+          authenticated: false,
+          api: {},
+        },
+      },
+      modules: {
+        app: App({ flash: null, flashType: null }),
+        storage: StorageModule({ target: localStorage }),
       },
     },
-    modules: {
-      app: App({ flash: null, flashType: null }),
-      storage: StorageModule({ target: localStorage }),
-    },
-  }).then(({ state }) => [
+    { noDuplicateWarnings: true }
+  ).then(({ state }) => [
     t.is(state.app.currentPage, 'home'),
     t.not(state.app.lastVisited, 'newpassword'),
   ])
 })
 
 test('route to newpassword when user authenticated should redirect to home', t => {
-  return runAction(routeTo('newpassword'), {
-    state: {
-      app: {},
-      user: {
-        authenticated: true,
-        api: {
-          '@id': '/users/1',
+  return runSignal(
+    routeTo('newpassword'),
+    {
+      state: {
+        app: {},
+        user: {
+          authenticated: true,
+          api: {
+            '@id': '/users/1',
+          },
         },
       },
+      modules: {
+        app: App({ flash: null, flashType: null }),
+        storage: StorageModule({ target: localStorage }),
+      },
     },
-    modules: {
-      app: App({ flash: null, flashType: null }),
-      storage: StorageModule({ target: localStorage }),
-    },
-  }).then(({ state }) => [t.is(state.app.currentPage, 'home')])
+    { noDuplicateWarnings: true }
+  ).then(({ state }) => [t.is(state.app.currentPage, 'home')])
 })
 
 test('newpassword with passed @id should route to newpassword', t => {
-  return runAction(routeTo('newpassword'), {
+  return runSignal(routeTo('newpassword'), {
     state: {
       app: {},
       user: {
@@ -110,7 +118,7 @@ test('newpassword with passed @id should route to newpassword', t => {
 })
 
 test('settings should set currentTab and nickname', t => {
-  return runAction(routeTo('settings', 'email'), {
+  return runSignal(routeTo('settings', 'email'), {
     state: {
       app: {},
       settings: {
