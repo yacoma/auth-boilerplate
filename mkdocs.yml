@@ -18,6 +18,7 @@ pages:
         - Softwarestack: 'server/softwarestack.md'
     - Cerebral Client:
         - Quick Start: 'client/quick-start.md'
+        - Softwarestack: 'client/softwarestack.md'
     - Deployment: 'deployment.md'
 
 markdown_extensions:
