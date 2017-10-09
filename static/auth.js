@@ -43805,7 +43805,9 @@ var controller = (0, _cerebral.Controller)({
     router: _router2.default,
     storage: (0, _storage2.default)({ target: localStorage })
   },
-  providers: [(0, _cerebral.provide)('uuid', _uuid2.default), (0, _http2.default)({
+  providers: [(0, _cerebral.provide)('uuid', function () {
+    return _uuid2.default;
+  }), (0, _http2.default)({
     baseUrl: '/api',
     headers: {
       'Content-Type': 'application/json; charset=UTF-8',

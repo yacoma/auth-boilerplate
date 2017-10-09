@@ -64,7 +64,7 @@ const controller = Controller({
     storage: StorageModule({ target: localStorage }),
   },
   providers: [
-    provide('uuid', uuid),
+    provide('uuid', () => uuid),
     HttpProvider({
       baseUrl: '/api',
       headers: {
