@@ -48970,29 +48970,30 @@ function mergeUsers(_ref) {
 
   if (props.response.result.users && props.response.result.users.length !== 0) {
     var orderKey = 1;
+
+    var _loop = function _loop(user) {
+      user['orderKey'] = orderKey;
+      var usersInState = state.get('admin.users');
+      var uidInState = Object.keys(usersInState).filter(function (uid) {
+        return usersInState[uid]['email'] === user['email'];
+      })[0];
+      if (uidInState) {
+        state.merge('admin.users.' + uidInState, user);
+      } else {
+        state.set('admin.users.' + uuid(), user);
+      }
+      orderKey++;
+    };
+
     var _iteratorNormalCompletion = true;
     var _didIteratorError = false;
     var _iteratorError = undefined;
 
     try {
-      var _loop = function _loop() {
+      for (var _iterator = props.response.result.users[Symbol.iterator](), _step; !(_iteratorNormalCompletion = (_step = _iterator.next()).done); _iteratorNormalCompletion = true) {
         var user = _step.value;
 
-        user['orderKey'] = orderKey;
-        var usersInState = state.get('admin.users');
-        var uidInState = Object.keys(usersInState).filter(function (uid) {
-          return usersInState[uid]['email'] === user['email'];
-        })[0];
-        if (uidInState) {
-          state.merge('admin.users.' + uidInState, user);
-        } else {
-          state.set('admin.users.' + uuid(), user);
-        }
-        orderKey++;
-      };
-
-      for (var _iterator = props.response.result.users[Symbol.iterator](), _step; !(_iteratorNormalCompletion = (_step = _iterator.next()).done); _iteratorNormalCompletion = true) {
-        _loop();
+        _loop(user);
       }
     } catch (err) {
       _didIteratorError = true;
