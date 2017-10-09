@@ -72324,6 +72324,28 @@ function Home() {
               'admin0'
             ),
             '. In the Admin panel you can give Admin permissions also to other users.'
+          ),
+          _react2.default.createElement(
+            'p',
+            null,
+            'For some insides take a look at',
+            _react2.default.createElement(
+              'a',
+              { href: 'http://auth-boilerplate.readthedocs.io', target: '_blank' },
+              _react2.default.createElement(_semanticUiReact.Icon, { name: 'book', size: 'large' })
+            ),
+            '.',
+            _react2.default.createElement('br', null),
+            'You can examine the code at',
+            _react2.default.createElement(
+              'a',
+              {
+                href: 'https://github.com/yacoma/auth-boilerplate',
+                target: '_blank'
+              },
+              _react2.default.createElement(_semanticUiReact.Icon, { name: 'github alternate', size: 'large' })
+            ),
+            '.'
           )
         )
       )
