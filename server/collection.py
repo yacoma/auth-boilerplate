@@ -28,18 +28,18 @@ class UserCollection(object):
 
     def query(self):
         user_select = User.select()
-        if self.search != '':
+        if self.search:
             user_select = User.select(
                 lambda u: self.search in u.nickname or self.search in u.email
             )
-        if self.sort_by != '':
+        if self.sort_by:
             if self.sort_dir == 'desc':
                 sort_by = desc(getattr(User, self.sort_by))
             else:
                 sort_by = getattr(User, self.sort_by)
 
             user_select = user_select.order_by(sort_by)
-        if self.page != 0:
+        if self.page:
             user_select = user_select.page(self.page, pagesize=self.pagesize)
 
         return user_select
