@@ -172,7 +172,7 @@ def user_collection_add(self, request, json):
             email=email,
             password=password,
             register_ip=register_ip,
-            groups=groups
+            group_names=groups
         )
 
         @request.after
