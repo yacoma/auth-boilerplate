@@ -62,7 +62,7 @@ def login(self, request, json):
             credentials_valid = True
 
         if credentials_valid:
-            user.last_login = datetime.now()
+            user.last_login = datetime.utcnow()
 
             @request.after
             def remember(response):

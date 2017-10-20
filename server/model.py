@@ -56,7 +56,7 @@ class User(db.Entity):
     email = Required(str, 255, unique=True)
     email_confirmed = Required(bool, default=False)
     last_login = Optional(datetime, 0)
-    registered = Required(datetime, 0, default=datetime.now)
+    registered = Required(datetime, 0, default=datetime.utcnow)
     register_ip = Optional(str, 255)
     groups = Set('Group')
     password = Required(str, 255)
