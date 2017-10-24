@@ -6,7 +6,7 @@ name = 'auth-boilerplate'
 description = (
     'Authentication boilerplate based on Morepath and Cerebral'
 )
-version = '0.0.1'
+version = '1.0.0'
 
 
 setup(
