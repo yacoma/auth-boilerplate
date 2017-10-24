@@ -49791,10 +49791,10 @@ function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { de
 function _taggedTemplateLiteral(strings, raw) { return Object.freeze(Object.defineProperties(strings, { raw: { value: Object.freeze(raw) } })); }
 
 exports.default = (0, _cerebral.sequence)('Sign-in user', [(0, _operators2.isValidForm)((0, _tags.state)(_templateObject)), {
-  true: [(0, _operators.set)((0, _tags.state)(_templateObject2), false), (0, _operators.set)((0, _tags.state)(_templateObject3), true), (0, _operators3.httpPost)('/login', {
+  true: [(0, _operators.set)((0, _tags.state)(_templateObject2), false), (0, _operators.set)((0, _tags.state)(_templateObject3), true), (0, _operators3.httpPost)('/login', (0, _tags.resolveObject)({
     email: (0, _tags.state)(_templateObject4),
     password: (0, _tags.state)(_templateObject5)
-  }), {
+  })), {
     success: [(0, _operators.set)((0, _tags.state)(_templateObject4), ''), (0, _operators.set)((0, _tags.state)(_templateObject5), ''), (0, _operators.set)((0, _tags.state)(_templateObject6), null), (0, _operators.set)((0, _tags.state)(_templateObject7), null), _initUser2.default, (0, _operators.set)((0, _tags.state)(_templateObject3), false), (0, _operators.when)((0, _tags.state)(_templateObject8)), {
       true: (0, _redirect2.default)((0, _tags.state)(_templateObject8)),
       false: (0, _redirect2.default)('home')
@@ -49857,15 +49857,15 @@ function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { de
 function _taggedTemplateLiteral(strings, raw) { return Object.freeze(Object.defineProperties(strings, { raw: { value: Object.freeze(raw) } })); }
 
 exports.default = (0, _cerebral.sequence)('Register new user', [(0, _operators2.isValidForm)((0, _tags.state)(_templateObject)), {
-  true: [(0, _operators.set)((0, _tags.state)(_templateObject2), false), (0, _operators.set)((0, _tags.state)(_templateObject3), ''), (0, _operators.set)((0, _tags.state)(_templateObject4), true), (0, _operators3.httpPost)('/users', {
+  true: [(0, _operators.set)((0, _tags.state)(_templateObject2), false), (0, _operators.set)((0, _tags.state)(_templateObject3), ''), (0, _operators.set)((0, _tags.state)(_templateObject4), true), (0, _operators3.httpPost)('/users', (0, _tags.resolveObject)({
     nickname: (0, _tags.state)(_templateObject5),
     email: (0, _tags.state)(_templateObject6),
     password: (0, _tags.state)(_templateObject7)
-  }), {
-    success: [(0, _operators3.httpPost)('/login', {
+  })), {
+    success: [(0, _operators3.httpPost)('/login', (0, _tags.resolveObject)({
       email: (0, _tags.state)(_templateObject6),
       password: (0, _tags.state)(_templateObject7)
-    }), {
+    })), {
       success: [(0, _operators.set)((0, _tags.state)(_templateObject8), null), (0, _operators.set)((0, _tags.state)(_templateObject9), null), _initUser2.default, (0, _operators.when)((0, _tags.state)(_templateObject10)), {
         true: (0, _redirect2.default)((0, _tags.state)(_templateObject10)),
         false: (0, _redirect2.default)('home')
@@ -49920,9 +49920,9 @@ function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { de
 function _taggedTemplateLiteral(strings, raw) { return Object.freeze(Object.defineProperties(strings, { raw: { value: Object.freeze(raw) } })); }
 
 exports.default = (0, _cerebral.sequence)('Request password reset', [(0, _operators2.isValidForm)((0, _tags.state)(_templateObject)), {
-  true: [(0, _operators.set)((0, _tags.state)(_templateObject2), false), (0, _operators.set)((0, _tags.state)(_templateObject3), true), (0, _operators3.httpPost)('/reset', {
+  true: [(0, _operators.set)((0, _tags.state)(_templateObject2), false), (0, _operators.set)((0, _tags.state)(_templateObject3), true), (0, _operators3.httpPost)('/reset', (0, _tags.resolveObject)({
     email: (0, _tags.state)(_templateObject4)
-  }), {
+  })), {
     success: [(0, _operators.set)((0, _tags.state)(_templateObject4), ''), (0, _operators.set)((0, _tags.state)(_templateObject3), false), (0, _redirect2.default)('login'), (0, _showFlash2.default)('Please check your email for a password reset link', 'success')],
     error: [(0, _operators.set)((0, _tags.state)(_templateObject3), false), (0, _showValidationError2.default)('Could not send password reset email!')]
   }],
@@ -49975,9 +49975,9 @@ function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { de
 function _taggedTemplateLiteral(strings, raw) { return Object.freeze(Object.defineProperties(strings, { raw: { value: Object.freeze(raw) } })); }
 
 exports.default = (0, _cerebral.sequence)('Update password', [(0, _operators2.isValidForm)((0, _tags.state)(_templateObject)), {
-  true: [(0, _operators.set)((0, _tags.state)(_templateObject2), false), (0, _operators.set)((0, _tags.state)(_templateObject3), ''), (0, _operators.set)((0, _tags.state)(_templateObject4), true), (0, _operators3.httpPut)((0, _tags.string)(_templateObject5, (0, _tags.state)(_templateObject6)), {
+  true: [(0, _operators.set)((0, _tags.state)(_templateObject2), false), (0, _operators.set)((0, _tags.state)(_templateObject3), ''), (0, _operators.set)((0, _tags.state)(_templateObject4), true), (0, _operators3.httpPut)((0, _tags.string)(_templateObject5, (0, _tags.state)(_templateObject6)), (0, _tags.resolveObject)({
     password: (0, _tags.state)(_templateObject7)
-  }), {
+  })), {
     success: [(0, _operators.set)((0, _tags.state)(_templateObject6), null), (0, _operators.set)((0, _tags.state)(_templateObject7), ''), (0, _operators.set)((0, _tags.state)(_templateObject4), false), (0, _redirect2.default)('home'), (0, _showFlash2.default)('Your password has been updated', 'success')],
     error: [(0, _operators.set)((0, _tags.state)(_templateObject7), ''), (0, _operators.set)((0, _tags.state)(_templateObject4), false), (0, _showValidationError2.default)('Could not update Password!')]
   }],
@@ -50371,9 +50371,9 @@ function _taggedTemplateLiteral(strings, raw) { return Object.freeze(Object.defi
 exports.default = (0, _cerebral.sequence)('Toggle Admin permissions', [(0, _operators.set)((0, _tags.state)(_templateObject, (0, _tags.props)(_templateObject2)), true), (0, _operators.when)((0, _tags.state)(_templateObject3, (0, _tags.props)(_templateObject2))), {
   true: [(0, _operators.set)((0, _tags.props)(_templateObject4), false), (0, _operators.set)((0, _tags.props)(_templateObject5), [])],
   false: [(0, _operators.set)((0, _tags.props)(_templateObject4), true), (0, _operators.set)((0, _tags.props)(_templateObject5), ['Admin'])]
-}, (0, _operators2.httpPut)((0, _tags.string)(_templateObject6, (0, _tags.state)(_templateObject7, (0, _tags.props)(_templateObject2))), {
+}, (0, _operators2.httpPut)((0, _tags.string)(_templateObject6, (0, _tags.state)(_templateObject7, (0, _tags.props)(_templateObject2))), (0, _tags.resolveObject)({
   groups: (0, _tags.props)(_templateObject5)
-}), {
+})), {
   success: [(0, _operators.set)((0, _tags.state)(_templateObject3, (0, _tags.props)(_templateObject2)), (0, _tags.props)(_templateObject4))],
   error: (0, _showValidationError2.default)((0, _tags.string)(_templateObject8, (0, _tags.state)(_templateObject9, (0, _tags.props)(_templateObject2))))
 }, (0, _operators.set)((0, _tags.state)(_templateObject, (0, _tags.props)(_templateObject2)), false)]);
@@ -50693,9 +50693,9 @@ function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { de
 function _taggedTemplateLiteral(strings, raw) { return Object.freeze(Object.defineProperties(strings, { raw: { value: Object.freeze(raw) } })); }
 
 exports.default = (0, _cerebral.sequence)('Edit your user profile', [(0, _operators2.isValidForm)((0, _tags.state)(_templateObject)), {
-  true: [(0, _operators.set)((0, _tags.state)(_templateObject2), false), (0, _operators.set)((0, _tags.state)(_templateObject3), true), (0, _operators3.httpPut)((0, _tags.string)(_templateObject4, (0, _tags.state)(_templateObject5)), {
+  true: [(0, _operators.set)((0, _tags.state)(_templateObject2), false), (0, _operators.set)((0, _tags.state)(_templateObject3), true), (0, _operators3.httpPut)((0, _tags.string)(_templateObject4, (0, _tags.state)(_templateObject5)), (0, _tags.resolveObject)({
     nickname: (0, _tags.state)(_templateObject6)
-  }), {
+  })), {
     success: [(0, _operators.set)((0, _tags.state)(_templateObject7), (0, _tags.state)(_templateObject6)), (0, _operators.set)((0, _tags.state)(_templateObject3), false), (0, _showFlash2.default)('Your profile has be saved', 'success')],
     error: [(0, _operators.set)((0, _tags.state)(_templateObject3), false), (0, _showValidationError2.default)('Could not save your profile!')]
   }],
@@ -50748,13 +50748,13 @@ exports.default = (0, _cerebral.sequence)('Update your email address', [(0, _ope
   true: [(0, _operators.set)((0, _tags.state)(_templateObject2), false), (0, _operators.when)((0, _tags.state)(_templateObject3), (0, _tags.state)(_templateObject4), function (currentEmail, email) {
     return currentEmail !== email;
   }), {
-    true: [(0, _operators.set)((0, _tags.state)(_templateObject5), true), (0, _operators3.httpPost)('/login', {
+    true: [(0, _operators.set)((0, _tags.state)(_templateObject5), true), (0, _operators3.httpPost)('/login', (0, _tags.resolveObject)({
       email: (0, _tags.state)(_templateObject3),
       password: (0, _tags.state)(_templateObject6)
-    }), {
-      success: [(0, _operators.set)((0, _tags.state)(_templateObject6), ''), (0, _operators3.httpPut)((0, _tags.string)(_templateObject7, (0, _tags.state)(_templateObject8)), {
+    })), {
+      success: [(0, _operators.set)((0, _tags.state)(_templateObject6), ''), (0, _operators3.httpPut)((0, _tags.string)(_templateObject7, (0, _tags.state)(_templateObject8)), (0, _tags.resolveObject)({
         email: (0, _tags.state)(_templateObject4)
-      }), {
+      })), {
         success: [(0, _operators.set)((0, _tags.state)(_templateObject3), (0, _tags.state)(_templateObject4)), (0, _operators.set)((0, _tags.state)(_templateObject5), false), (0, _showFlash2.default)('Please check your mailbox to confirm your new email address', 'success')],
         error: [(0, _operators.set)((0, _tags.state)(_templateObject5), false), (0, _showValidationError2.default)('Could not update email!')]
       }],
@@ -50809,13 +50809,13 @@ function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { de
 function _taggedTemplateLiteral(strings, raw) { return Object.freeze(Object.defineProperties(strings, { raw: { value: Object.freeze(raw) } })); }
 
 exports.default = (0, _cerebral.sequence)('Change your password', [(0, _operators2.isValidForm)((0, _tags.state)(_templateObject)), {
-  true: [(0, _operators.set)((0, _tags.state)(_templateObject2), false), (0, _operators.set)((0, _tags.state)(_templateObject3), ''), (0, _operators.set)((0, _tags.state)(_templateObject4), true), (0, _operators3.httpPost)('/login', {
+  true: [(0, _operators.set)((0, _tags.state)(_templateObject2), false), (0, _operators.set)((0, _tags.state)(_templateObject3), ''), (0, _operators.set)((0, _tags.state)(_templateObject4), true), (0, _operators3.httpPost)('/login', (0, _tags.resolveObject)({
     email: (0, _tags.state)(_templateObject5),
     password: (0, _tags.state)(_templateObject6)
-  }), {
-    success: [(0, _operators.set)((0, _tags.state)(_templateObject6), ''), (0, _operators3.httpPut)((0, _tags.string)(_templateObject7, (0, _tags.state)(_templateObject8)), {
+  })), {
+    success: [(0, _operators.set)((0, _tags.state)(_templateObject6), ''), (0, _operators3.httpPut)((0, _tags.string)(_templateObject7, (0, _tags.state)(_templateObject8)), (0, _tags.resolveObject)({
       password: (0, _tags.state)(_templateObject9)
-    }), {
+    })), {
       success: [(0, _operators.set)((0, _tags.state)(_templateObject9), ''), (0, _operators.set)((0, _tags.state)(_templateObject4), false), (0, _showFlash2.default)('Your password has been changed', 'success')],
       error: [(0, _operators.set)((0, _tags.state)(_templateObject9), ''), (0, _operators.set)((0, _tags.state)(_templateObject4), false), (0, _showValidationError2.default)('Could not change Password!')]
     }],
@@ -50888,10 +50888,10 @@ function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { de
 function _taggedTemplateLiteral(strings, raw) { return Object.freeze(Object.defineProperties(strings, { raw: { value: Object.freeze(raw) } })); }
 
 exports.default = (0, _cerebral.sequence)('Sign-out yourself', [(0, _operators.set)((0, _tags.state)(_templateObject), false), (0, _operators3.isValidForm)((0, _tags.state)(_templateObject2)), {
-  true: [(0, _operators.set)((0, _tags.state)(_templateObject3), false), (0, _operators.set)((0, _tags.state)(_templateObject4), true), (0, _operators2.httpPost)('/login', {
+  true: [(0, _operators.set)((0, _tags.state)(_templateObject3), false), (0, _operators.set)((0, _tags.state)(_templateObject4), true), (0, _operators2.httpPost)('/login', (0, _tags.resolveObject)({
     email: (0, _tags.state)(_templateObject5),
     password: (0, _tags.state)(_templateObject6)
-  }), {
+  })), {
     success: [(0, _operators.set)((0, _tags.state)(_templateObject6), ''), (0, _operators2.httpGet)((0, _tags.string)(_templateObject7, (0, _tags.state)(_templateObject8))), {
       success: [(0, _operators.set)((0, _tags.state)(_templateObject4), false), (0, _showFlash2.default)((0, _tags.string)(_templateObject9), 'success')],
       error: [(0, _operators.set)((0, _tags.state)(_templateObject4), false), (0, _showFlash2.default)((0, _tags.string)(_templateObject10), 'error')]
@@ -50996,10 +50996,10 @@ function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { de
 function _taggedTemplateLiteral(strings, raw) { return Object.freeze(Object.defineProperties(strings, { raw: { value: Object.freeze(raw) } })); }
 
 exports.default = (0, _cerebral.sequence)('Delete yourself', [(0, _operators.set)((0, _tags.state)(_templateObject), false), (0, _operators3.isValidForm)((0, _tags.state)(_templateObject2)), {
-  true: [(0, _operators.set)((0, _tags.state)(_templateObject3), false), (0, _operators.set)((0, _tags.state)(_templateObject4), true), (0, _operators2.httpPost)('/login', {
+  true: [(0, _operators.set)((0, _tags.state)(_templateObject3), false), (0, _operators.set)((0, _tags.state)(_templateObject4), true), (0, _operators2.httpPost)('/login', (0, _tags.resolveObject)({
     email: (0, _tags.state)(_templateObject5),
     password: (0, _tags.state)(_templateObject6)
-  }), {
+  })), {
     success: [(0, _operators.set)((0, _tags.state)(_templateObject6), ''), (0, _operators2.httpDelete)((0, _tags.string)(_templateObject7, (0, _tags.state)(_templateObject8))), {
       success: [_removeUser2.default, (0, _operators.set)((0, _tags.state)(_templateObject4), false), (0, _redirect2.default)('home'), (0, _showFlash2.default)((0, _tags.string)(_templateObject9), 'success')],
       error: [(0, _operators.set)((0, _tags.state)(_templateObject4), false), (0, _showFlash2.default)((0, _tags.string)(_templateObject10), 'error')]

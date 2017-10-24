@@ -1,5 +1,5 @@
 import { sequence } from 'cerebral'
-import { state, string } from 'cerebral/tags'
+import { state, string, resolveObject } from 'cerebral/tags'
 import { set } from 'cerebral/operators'
 import { httpPost, httpGet } from '@cerebral/http/operators'
 import { isValidForm } from '@cerebral/forms/operators'
@@ -12,10 +12,13 @@ export default sequence('Sign-out yourself', [
     true: [
       set(state`settings.accountForm.showErrors`, false),
       set(state`settings.accountForm.isLoading`, true),
-      httpPost('/login', {
-        email: state`user.email`,
-        password: state`settings.accountForm.password.value`,
-      }),
+      httpPost(
+        '/login',
+        resolveObject({
+          email: state`user.email`,
+          password: state`settings.accountForm.password.value`,
+        })
+      ),
       {
         success: [
           set(state`settings.accountForm.password.value`, ''),

@@ -1,5 +1,5 @@
 import { sequence } from 'cerebral'
-import { state, string } from 'cerebral/tags'
+import { state, string, resolveObject } from 'cerebral/tags'
 import { set } from 'cerebral/operators'
 import { isValidForm } from '@cerebral/forms/operators'
 import { httpPut } from '@cerebral/http/operators'
@@ -12,9 +12,12 @@ export default sequence('Edit your user profile', [
     true: [
       set(state`settings.profileForm.showErrors`, false),
       set(state`settings.profileForm.isLoading`, true),
-      httpPut(string`${state`user.api.@id`}`, {
-        nickname: state`settings.profileForm.nickname.value`,
-      }),
+      httpPut(
+        string`${state`user.api.@id`}`,
+        resolveObject({
+          nickname: state`settings.profileForm.nickname.value`,
+        })
+      ),
       {
         success: [
           set(state`user.nickname`, state`settings.profileForm.nickname.value`),

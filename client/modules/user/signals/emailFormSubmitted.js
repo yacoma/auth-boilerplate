@@ -1,5 +1,5 @@
 import { sequence } from 'cerebral'
-import { state } from 'cerebral/tags'
+import { state, resolveObject } from 'cerebral/tags'
 import { set } from 'cerebral/operators'
 import { isValidForm } from '@cerebral/forms/operators'
 import { httpPost } from '@cerebral/http/operators'
@@ -13,9 +13,12 @@ export default sequence('Request password reset', [
     true: [
       set(state`user.emailForm.showErrors`, false),
       set(state`user.emailForm.isLoading`, true),
-      httpPost('/reset', {
-        email: state`user.emailForm.email.value`,
-      }),
+      httpPost(
+        '/reset',
+        resolveObject({
+          email: state`user.emailForm.email.value`,
+        })
+      ),
       {
         success: [
           set(state`user.emailForm.email.value`, ''),

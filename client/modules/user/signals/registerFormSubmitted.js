@@ -1,5 +1,5 @@
 import { sequence } from 'cerebral'
-import { state } from 'cerebral/tags'
+import { state, resolveObject } from 'cerebral/tags'
 import { set, when } from 'cerebral/operators'
 import { isValidForm } from '@cerebral/forms/operators'
 import { httpPost } from '@cerebral/http/operators'
@@ -15,17 +15,23 @@ export default sequence('Register new user', [
       set(state`user.registerForm.showErrors`, false),
       set(state`user.registerForm.confirmPassword.value`, ''),
       set(state`user.registerForm.isLoading`, true),
-      httpPost('/users', {
-        nickname: state`user.registerForm.nickname.value`,
-        email: state`user.registerForm.email.value`,
-        password: state`user.registerForm.password.value`,
-      }),
+      httpPost(
+        '/users',
+        resolveObject({
+          nickname: state`user.registerForm.nickname.value`,
+          email: state`user.registerForm.email.value`,
+          password: state`user.registerForm.password.value`,
+        })
+      ),
       {
         success: [
-          httpPost('/login', {
-            email: state`user.registerForm.email.value`,
-            password: state`user.registerForm.password.value`,
-          }),
+          httpPost(
+            '/login',
+            resolveObject({
+              email: state`user.registerForm.email.value`,
+              password: state`user.registerForm.password.value`,
+            })
+          ),
           {
             success: [
               set(state`app.flash`, null),

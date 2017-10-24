@@ -1,5 +1,5 @@
 import { sequence } from 'cerebral'
-import { state, string } from 'cerebral/tags'
+import { state, string, resolveObject } from 'cerebral/tags'
 import { set, when } from 'cerebral/operators'
 import { isValidForm } from '@cerebral/forms/operators'
 import { httpPost, httpPut } from '@cerebral/http/operators'
@@ -19,16 +19,22 @@ export default sequence('Update your email address', [
       {
         true: [
           set(state`settings.emailForm.isLoading`, true),
-          httpPost('/login', {
-            email: state`user.email`,
-            password: state`settings.emailForm.password.value`,
-          }),
+          httpPost(
+            '/login',
+            resolveObject({
+              email: state`user.email`,
+              password: state`settings.emailForm.password.value`,
+            })
+          ),
           {
             success: [
               set(state`settings.emailForm.password.value`, ''),
-              httpPut(string`${state`user.api.@id`}`, {
-                email: state`settings.emailForm.email.value`,
-              }),
+              httpPut(
+                string`${state`user.api.@id`}`,
+                resolveObject({
+                  email: state`settings.emailForm.email.value`,
+                })
+              ),
               {
                 success: [
                   set(state`user.email`, state`settings.emailForm.email.value`),

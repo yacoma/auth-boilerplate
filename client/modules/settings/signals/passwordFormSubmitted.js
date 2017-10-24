@@ -1,5 +1,5 @@
 import { sequence } from 'cerebral'
-import { state, string } from 'cerebral/tags'
+import { state, string, resolveObject } from 'cerebral/tags'
 import { set } from 'cerebral/operators'
 import { isValidForm } from '@cerebral/forms/operators'
 import { httpPost, httpPut } from '@cerebral/http/operators'
@@ -13,16 +13,22 @@ export default sequence('Change your password', [
       set(state`settings.passwordForm.showErrors`, false),
       set(state`settings.passwordForm.confirmPassword.value`, ''),
       set(state`settings.passwordForm.isLoading`, true),
-      httpPost('/login', {
-        email: state`user.email`,
-        password: state`settings.passwordForm.currentPassword.value`,
-      }),
+      httpPost(
+        '/login',
+        resolveObject({
+          email: state`user.email`,
+          password: state`settings.passwordForm.currentPassword.value`,
+        })
+      ),
       {
         success: [
           set(state`settings.passwordForm.currentPassword.value`, ''),
-          httpPut(string`${state`user.api.@id`}`, {
-            password: state`settings.passwordForm.password.value`,
-          }),
+          httpPut(
+            string`${state`user.api.@id`}`,
+            resolveObject({
+              password: state`settings.passwordForm.password.value`,
+            })
+          ),
           {
             success: [
               set(state`settings.passwordForm.password.value`, ''),
