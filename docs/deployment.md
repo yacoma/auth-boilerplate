@@ -1,15 +1,17 @@
 Example deployment for auth-boilerplate
 =======================================
 
-Requirements for the server:
+## Requirements for the server
 
-- nginx
-- supervisor
-- make
+- [nginx](https://nginx.org/en/)
+- [supervisor](http://supervisord.org/)
+- [make](https://www.gnu.org/software/make/)
+
+## Overview
 
 On Debian/Ubuntu you can install them as superuser with:
 
-```console
+```sh
 $ apt-get install nginx supervisor make
 ```
 
@@ -21,12 +23,13 @@ variable. Make sure that this path exists on the server before pushing
 the first time.
 
 The hook triggers `make deploylive` which is defined in `Makefile`. This
-copy the production settings to `settings.json`, install the
-dependencies and build the App.
+install the dependencies and build the App.
 
 In addition on every push to Github master branch Travis CI triggers a
 push to the live server. So the live site is in sync with the Github
 master branch.
+
+## Configuration
 
 The `deploy/conf` directory contains examples for git hook and server
 configuration with gunicord behind a nginx reverse proxy. For monitoring
@@ -39,4 +42,15 @@ and controlling gunicord we use supervisor.
   gunicorn.
 - **web/gunicorn.conf.py** - gunicorn configuration which id used
   directly from  here.
-  
+
+## Database
+
+PonyORM supports SQLite, PostgreSQL, MySQL/MariaDB and Oracle.
+In auth-boilerplate we use Postgres in production and SQLite
+for development and testing.
+
+When you want to use another database then SQLite you have to
+first create a database for auth-boilerplate on the server.
+
+Then configure `server/settings/production.yml` according
+to the database setup.

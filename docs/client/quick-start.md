@@ -4,13 +4,13 @@ Cerebral React client
 JavaScript code is in the client subdirectory. To rebuild the bundle you
 need to install the JS dependencies (listed in package.json). Run:
 
-```console
+```sh
 $ npm install
 ```
 
 to install them. Then run:
 
-```console
+```sh
 $ npm run build
 ```
 
@@ -19,7 +19,7 @@ To rebuild the bundle after changing it.
 If you want to rebuild the bundle and immediately after start the server
 you can use:
 
-```console
+```sh
 $ npm start
 ```
 
@@ -29,30 +29,30 @@ Testing
 
 To run the tests use:
 
-```console
+```sh
 $ npm test
 ```
 
 For checking coverage:
 
-```console
+```sh
 $ npm run coverage
 ```
 
 After you can create a coverage report in html format:
 
-```console
+```sh
 $ npm run coverage:report
 ```
 
 For checking linting errors:
 
-```console
+```sh
 $ npm run lint
 ```
 
 You can automatically fix them with:
 
-```console
+```sh
 $ npm run format
 ```
