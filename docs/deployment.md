@@ -36,7 +36,7 @@ configuration with gunicord behind a nginx reverse proxy. For monitoring
 and controlling gunicord we use supervisor.
 
 - **git/hooks/post-receive** - put this in the `hooks` directory of
-  your bare git repository on the server.
+  your bare git repository on the server and make sure it is executable.
 - **web/nginx.conf** - the nginx configuration.
 - **web/supervisord.conf** - the supervisor configuration for
   gunicorn.
