@@ -38,7 +38,7 @@ class UserCollection(object):
             else:
                 sort_by = getattr(User, self.sort_by)
 
-            user_select = user_select.order_by(sort_by)
+            user_select = user_select.sort_by(sort_by)
         if self.page:
             user_select = user_select.page(self.page, pagesize=self.pagesize)
 
