@@ -7,11 +7,11 @@ import HttpProvider from '@cerebral/http'
 import FormsProvider from '@cerebral/forms'
 import StorageModule from '@cerebral/storage'
 
-import App from './modules/app'
-import User from './modules/user'
-import Admin from './modules/admin'
-import Settings from './modules/settings'
-import Router from './router'
+import app from './modules/app'
+import user from './modules/user'
+import admin from './modules/admin'
+import settings from './modules/settings'
+import router from './router'
 import { AuthenticationError } from 'modules/common/errors'
 import routeToLogin from 'modules/common/actions/routeToLogin'
 
@@ -53,14 +53,14 @@ const controller = Controller({
     reconnect: false,
   }),
   modules: {
-    app: App({
+    app: app({
       flash: urlParams['flash'] ? base64UrlDecode(urlParams['flash']) : null,
       flashType: urlParams['flashtype'],
     }),
-    user: User({ '@id': urlParams['@id'] }),
-    admin: Admin,
-    settings: Settings,
-    router: Router,
+    user: user({ '@id': urlParams['@id'] }),
+    admin,
+    settings,
+    router,
     storage: StorageModule({ target: localStorage }),
   },
   providers: [

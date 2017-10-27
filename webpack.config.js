@@ -30,7 +30,7 @@ if (process.env.NODE_ENV === 'production') {
 }
 
 module.exports = {
-  entry: path.resolve('client', 'main.js'),
+  entry: path.resolve('client', 'index.js'),
   devtool: 'source-map',
   output: {
     path: path.resolve('static'),

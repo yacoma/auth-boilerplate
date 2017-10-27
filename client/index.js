@@ -17,5 +17,5 @@ render(
   <Container controller={controller}>
     <App />
   </Container>,
-  document.querySelector('#app')
+  document.getElementById('root')
 )

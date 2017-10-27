@@ -23828,7 +23828,7 @@ function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { de
   _react3.Container,
   { controller: _controller2.default },
   _react2.default.createElement(_App2.default, null)
-), document.querySelector('#app'));
+), document.getElementById('root'));
 
 /***/ }),
 /* 417 */
