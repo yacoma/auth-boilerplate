@@ -47,21 +47,21 @@ export default connect(
               <List.Item>
                 <List.Header as="h4">Current password</List.Header>
                 <CurrentPasswordField
-                  path={'settings.passwordForm.currentPassword'}
+                  path="settings.passwordForm.currentPassword"
                   showErrors={showErrors}
                 />
               </List.Item>
               <List.Item>
                 <List.Header as="h4">New password</List.Header>
                 <PasswordField
-                  path={'settings.passwordForm.password'}
+                  path="settings.passwordForm.password"
                   showErrors={showErrors}
                 />
               </List.Item>
               <List.Item>
                 <List.Header as="h4">Confirm new password</List.Header>
                 <ConfirmPasswordField
-                  path={'settings.passwordForm.confirmPassword'}
+                  path="settings.passwordForm.confirmPassword"
                   showErrors={showErrors}
                 />
               </List.Item>

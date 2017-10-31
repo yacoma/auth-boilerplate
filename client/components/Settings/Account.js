@@ -48,7 +48,7 @@ export default connect(
                     </Message.Header>
                   </Message>
                   <PasswordField
-                    path={'settings.accountForm.password'}
+                    path="settings.accountForm.password"
                     showErrors={showErrors}
                   />
                 </Grid.Column>

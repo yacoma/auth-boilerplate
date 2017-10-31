@@ -25,11 +25,11 @@ export default connect(
                   <Loader />
                 </Dimmer>
                 <PasswordField
-                  path={'user.passwordForm.password'}
+                  path="user.passwordForm.password"
                   showErrors={showErrors}
                 />
                 <ConfirmPasswordField
-                  path={'user.passwordForm.confirmPassword'}
+                  path="user.passwordForm.confirmPassword"
                   showErrors
                 />
                 <Button fluid size="large" color="blue" onClick={handleSubmit}>

@@ -56,14 +56,14 @@ export default connect(
                   We need your password to verify your identity
                 </List.Header>
                 <PasswordField
-                  path={'settings.emailForm.password'}
+                  path="settings.emailForm.password"
                   showErrors={showErrors}
                 />
               </List.Item>
               <List.Item>
                 <List.Header as="h4">New email adress</List.Header>
                 <EmailField
-                  path={'settings.emailForm.email'}
+                  path="settings.emailForm.email"
                   showErrors={showErrors}
                 />
               </List.Item>

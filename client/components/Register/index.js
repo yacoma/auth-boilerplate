@@ -30,19 +30,19 @@ export default connect(
                   <Loader />
                 </Dimmer>
                 <NicknameField
-                  path={'user.registerForm.nickname'}
+                  path="user.registerForm.nickname"
                   showErrors={showErrors}
                 />
                 <EmailField
-                  path={'user.registerForm.email'}
+                  path="user.registerForm.email"
                   showErrors={showErrors}
                 />
                 <PasswordField
-                  path={'user.registerForm.password'}
+                  path="user.registerForm.password"
                   showErrors={showErrors}
                 />
                 <ConfirmPasswordField
-                  path={'user.registerForm.confirmPassword'}
+                  path="user.registerForm.confirmPassword"
                   showErrors={showErrors}
                 />
                 <Button fluid size="large" color="blue" onClick={handleSubmit}>

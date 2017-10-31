@@ -25,7 +25,7 @@ export default connect(
                   <Loader />
                 </Dimmer>
                 <EmailField
-                  path={'user.emailForm.email'}
+                  path="user.emailForm.email"
                   showErrors={showErrors}
                 />
                 <Button fluid size="large" color="blue" onClick={handleSubmit}>

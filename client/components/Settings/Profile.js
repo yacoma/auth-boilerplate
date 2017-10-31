@@ -38,7 +38,7 @@ export default connect(
               <List.Item>
                 <List.Header as="h4">Nickname</List.Header>
                 <NicknameField
-                  path={'settings.profileForm.nickname'}
+                  path="settings.profileForm.nickname"
                   showErrors={showErrors}
                 />
               </List.Item>

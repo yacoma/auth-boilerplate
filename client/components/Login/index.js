@@ -33,11 +33,11 @@ export default connect(
                   <Loader />
                 </Dimmer>
                 <EmailField
-                  path={'user.loginForm.email'}
+                  path="user.loginForm.email"
                   showErrors={showErrors}
                 />
                 <PasswordField
-                  path={'user.loginForm.password'}
+                  path="user.loginForm.password"
                   showErrors={showErrors}
                 />
                 <Button fluid size="large" color="blue" onClick={handleSubmit}>

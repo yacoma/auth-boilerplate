@@ -36,16 +36,16 @@ export default connect(
           </Button>
           <ConfirmSignOut />
           {user.email !== 'admin@example.com' &&
-          user.email !== email && (
-            <Button
-              inverted
-              icon
-              color="red"
-              onClick={() => removeUserButtonClicked({ uid })}
-            >
-              <Icon name="remove user" size="large" />
-            </Button>
-          )}
+            user.email !== email && (
+              <Button
+                inverted
+                icon
+                color="red"
+                onClick={() => removeUserButtonClicked({ uid })}
+              >
+                <Icon name="remove user" size="large" />
+              </Button>
+            )}
           <ConfirmRemoveUser />
         </Table.Cell>
         <Table.Cell>{user.nickname}</Table.Cell>
