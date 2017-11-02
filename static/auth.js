@@ -46549,6 +46549,8 @@ var Devtools = exports.Devtools = function (_DevtoolsBase) {
         bigComponentsWarning = _ref$bigComponentsWar === undefined ? 10 : _ref$bigComponentsWar,
         _ref$host = _ref.host,
         host = _ref$host === undefined ? null : _ref$host,
+        _ref$https = _ref.https,
+        https = _ref$https === undefined ? false : _ref$https,
         _ref$reconnect = _ref.reconnect,
         reconnect = _ref$reconnect === undefined ? true : _ref$reconnect,
         _ref$reconnectInterva = _ref.reconnectInterval,
@@ -46560,11 +46562,12 @@ var Devtools = exports.Devtools = function (_DevtoolsBase) {
 
     var _this = _possibleConstructorReturn(this, (Devtools.__proto__ || Object.getPrototypeOf(Devtools)).call(this, {
       host: host,
+      https: https,
       reconnect: reconnect,
       reconnectInterval: reconnectInterval
     }));
 
-    _this.version = "3.4.0";
+    _this.version = "3.5.0";
     _this.debuggerComponentsMap = {};
     _this.debuggerComponentDetailsId = 1;
     _this.storeMutations = storeMutations;
@@ -46584,20 +46587,25 @@ var Devtools = exports.Devtools = function (_DevtoolsBase) {
     _this.sendComponentsMap = (0, _utils.delay)(_this.sendComponentsMap, 50);
     return _this;
   }
-  /*
-    To remember state Cerebral stores the initial model as stringified
-    object. Since the model is mutable this is necessary. The debugger
-    passes the execution id of the signal that was double clicked. This
-    execution id is searched backwards in the array of mutations done.
-    This is necessary as multiple mutations can be done on the same execution.
-    Then all mutations are replayed to the model and all the components
-    will be rerendered using the "flush" event and "force" flag.
-     It will also replace the "run" method of the controller to
-    prevent any new signals firing off when in "remember state"
-  */
-
 
   _createClass(Devtools, [{
+    key: 'createSocket',
+    value: function createSocket() {
+      this.ws = new WebSocket((this.https ? 'wss' : 'ws') + '://' + this.host);
+    }
+    /*
+      To remember state Cerebral stores the initial model as stringified
+      object. Since the model is mutable this is necessary. The debugger
+      passes the execution id of the signal that was double clicked. This
+      execution id is searched backwards in the array of mutations done.
+      This is necessary as multiple mutations can be done on the same execution.
+      Then all mutations are replayed to the model and all the components
+      will be rerendered using the "flush" event and "force" flag.
+       It will also replace the "run" method of the controller to
+      prevent any new signals firing off when in "remember state"
+    */
+
+  }, {
     key: 'remember',
     value: function remember(index) {
       this.controller.model.set([], JSON.parse(this.initialModelString));
@@ -46630,11 +46638,6 @@ var Devtools = exports.Devtools = function (_DevtoolsBase) {
       this.backlog = [];
       this.mutations = [];
       this.controller.flush(true);
-    }
-  }, {
-    key: 'createSocket',
-    value: function createSocket() {
-      this.ws = new WebSocket('ws://' + this.host);
     }
   }, {
     key: 'onMessage',
@@ -46886,6 +46889,8 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
 var DevtoolsBase = exports.DevtoolsBase = function () {
   function DevtoolsBase() {
     var _ref = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : {},
+        _ref$https = _ref.https,
+        https = _ref$https === undefined ? false : _ref$https,
         _ref$host = _ref.host,
         host = _ref$host === undefined ? null : _ref$host,
         _ref$reconnect = _ref.reconnect,
@@ -46896,6 +46901,7 @@ var DevtoolsBase = exports.DevtoolsBase = function () {
     _classCallCheck(this, DevtoolsBase);
 
     this.host = host;
+    this.https = https;
     this.version = 0;
     if (!this.host) {
       throw new Error('Devtools: You have to pass in the "host" option');
@@ -46911,7 +46917,9 @@ var DevtoolsBase = exports.DevtoolsBase = function () {
 
   _createClass(DevtoolsBase, [{
     key: 'createSocket',
-    value: function createSocket() {}
+    value: function createSocket() {
+      throw new Error('You have to implement a "createSocket" method');
+    }
     /*
       Sets up the listeners to Chrome Extension or remote debugger
     */
