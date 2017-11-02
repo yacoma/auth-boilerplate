@@ -61,27 +61,20 @@ def login(self, request, json):
         else:
             credentials_valid = True
 
-        if credentials_valid:
-            user.last_login = datetime.utcnow()
+    if credentials_valid:
+        user.last_login = datetime.utcnow()
 
-            @request.after
-            def remember(response):
-                # Checks if user is member of Admin group.
-                is_admin = Group.get(name='Admin') in user.groups
-                identity = morepath.Identity(
-                    email,
-                    nickname=user.nickname,
-                    isAdmin=is_admin,
-                    uid=request.class_link(User, variables={'id': user.id})
-                )
-                request.app.remember_identity(response, request, identity)
-
-        else:
-            @request.after
-            def credentials_not_valid(response):
-                response.status_code = 403
-
-            return {'validationError': 'Invalid email or password'}
+        @request.after
+        def remember(response):
+            # Checks if user is member of Admin group.
+            is_admin = Group.get(name='Admin') in user.groups
+            identity = morepath.Identity(
+                email,
+                nickname=user.nickname,
+                isAdmin=is_admin,
+                uid=request.class_link(User, variables={'id': user.id})
+            )
+            request.app.remember_identity(response, request, identity)
 
     else:
         @request.after
