@@ -51051,30 +51051,21 @@ Object.defineProperty(exports, "__esModule", {
   value: true
 });
 
-var _templateObject = _taggedTemplateLiteral(['tab'], ['tab']),
-    _templateObject2 = _taggedTemplateLiteral(['page'], ['page']);
-
 var _router = __webpack_require__(559);
 
 var _router2 = _interopRequireDefault(_router);
 
-var _tags = __webpack_require__(5);
-
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
-function _taggedTemplateLiteral(strings, raw) { return Object.freeze(Object.defineProperties(strings, { raw: { value: Object.freeze(raw) } })); }
-
 exports.default = (0, _router2.default)({
-  filterFalsy: true,
   routes: [{
-    path: '/settings/:tab?',
-    map: { tab: (0, _tags.props)(_templateObject) },
+    path: '/settings/:tab',
     signal: 'app.settingsRouted'
   }, {
-    path: '/:page?',
-    map: { page: (0, _tags.props)(_templateObject2) },
+    path: '/:page',
     signal: 'app.pageRouted'
-  }]
+  }],
+  allowEscape: true
 });
 
 /***/ }),
