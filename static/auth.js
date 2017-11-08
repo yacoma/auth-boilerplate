@@ -44077,7 +44077,7 @@ var jwtHeader = localStorage.getItem('jwtHeader') ? JSON.parse(localStorage.getI
  * @returns {Object} - Object with keys and extracted values.
  *  If the key was not found the value is set to null.
  */
-function getUrlParams(keys) {
+function extractUrlParams(keys) {
   var urlParams = new URLSearchParams(location.search);
   var urlParamsChanged = false;
   var params = keys.reduce(function (params, key) {
@@ -44096,7 +44096,7 @@ function getUrlParams(keys) {
   return params;
 }
 
-var urlParams = getUrlParams(['flash', 'flashtype', '@id']);
+var urlParams = extractUrlParams(['flash', 'flashtype', '@id']);
 
 var controller = (0, _cerebral.Controller)({
   devtools: (0, _devtools2.default)({

@@ -26,7 +26,7 @@ const jwtHeader = localStorage.getItem('jwtHeader')
  * @returns {Object} - Object with keys and extracted values.
  *  If the key was not found the value is set to null.
  */
-function getUrlParams(keys) {
+function extractUrlParams(keys) {
   const urlParams = new URLSearchParams(location.search)
   let urlParamsChanged = false
   const params = keys.reduce((params, key) => {
@@ -45,7 +45,7 @@ function getUrlParams(keys) {
   return params
 }
 
-const urlParams = getUrlParams(['flash', 'flashtype', '@id'])
+const urlParams = extractUrlParams(['flash', 'flashtype', '@id'])
 
 const controller = Controller({
   devtools: Devtools({
