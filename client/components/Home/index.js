@@ -8,7 +8,7 @@ export default function Home() {
         <Grid.Column>
           <Segment padded size="big">
             <p>
-              This is a a authentication boilerplate, which uses Morepath as a
+              This is an authentication boilerplate, which uses Morepath as a
               REST back-end and Cerebral as front-end.
             </p>
             <p>
