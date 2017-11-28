@@ -23,6 +23,12 @@ Once that is done you can start the server:
 
 You can go to <http://localhost:8000> to see the UI.
 
+You can also start the server on another host/port:
+
+```sh
+(env) $ gunicorn --bind=example.com:3000 server.run
+```
+
 For installing the test suite and running the tests use:
 
 ```sh
