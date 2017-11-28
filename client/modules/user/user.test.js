@@ -5,6 +5,7 @@ import HttpProvider from '@cerebral/http'
 import StorageModule from '@cerebral/storage'
 import { CerebralTest } from 'cerebral/test'
 
+import router from '../../router'
 import App from '../app'
 import User from '.'
 
@@ -24,6 +25,7 @@ test.beforeEach(t => {
       app: App({ flash: null, flashType: null }),
       user: User({ '@id': null }),
       storage: StorageModule({ target: localStorage }),
+      router,
     },
     providers: [
       HttpProvider({

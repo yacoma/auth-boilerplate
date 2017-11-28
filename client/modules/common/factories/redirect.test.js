@@ -1,6 +1,8 @@
 import test from 'ava'
 import StorageModule from '@cerebral/storage'
 import { runAction } from 'cerebral/test'
+
+import router from '../../../router'
 import redirect from './redirect'
 import App from '../../app'
 
@@ -12,6 +14,7 @@ test('should redirect to home', t => {
     modules: {
       app: App({ flash: null, flashType: null }),
       storage: StorageModule({ target: localStorage }),
+      router,
     },
   }).then(({ state }) => [
     t.is(state.app.currentPage, 'home'),
@@ -44,6 +47,7 @@ test('should redirect to settings email tab', t => {
     modules: {
       app: App({ flash: null, flashType: null }),
       storage: StorageModule({ target: localStorage }),
+      router,
     },
   }).then(({ state }) => [
     t.is(state.app.currentPage, 'settings'),

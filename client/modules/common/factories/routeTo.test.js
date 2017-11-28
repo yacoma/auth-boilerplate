@@ -1,6 +1,8 @@
 import test from 'ava'
 import StorageModule from '@cerebral/storage'
 import { runSignal } from 'cerebral/test'
+
+import router from '../../../router'
 import routeTo from './routeTo'
 import App from '../../app'
 
@@ -68,6 +70,7 @@ test('route to newpassword should redirect to home', t => {
       modules: {
         app: App({ flash: null, flashType: null }),
         storage: StorageModule({ target: localStorage }),
+        router,
       },
     },
     { noDuplicateWarnings: true }
@@ -93,6 +96,7 @@ test('route to newpassword when user authenticated should redirect to home', t =
       modules: {
         app: App({ flash: null, flashType: null }),
         storage: StorageModule({ target: localStorage }),
+        router,
       },
     },
     { noDuplicateWarnings: true }
