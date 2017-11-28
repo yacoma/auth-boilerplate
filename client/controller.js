@@ -51,7 +51,9 @@ const controller = Controller({
     FormsProvider({
       errorMessages: {
         minLength(value, minLength) {
-          return `${value} is too short - should be equal or more than ${minLength}`
+          return `${value} is too short - should be equal or more than ${
+            minLength
+          }`
         },
         isEmail(value) {
           return `${value} is not a valid email`
