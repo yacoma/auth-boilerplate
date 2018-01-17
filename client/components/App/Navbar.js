@@ -5,7 +5,7 @@ import { Menu, Button, Icon } from 'semantic-ui-react'
 
 export default connect(
   {
-    currentPage: state`app.currentPage`,
+    currentPage: state`currentPage`,
     user: state`user`,
     logoutButtonClicked: signal`user.logoutButtonClicked`,
   },

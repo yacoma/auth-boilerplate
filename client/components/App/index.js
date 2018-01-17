@@ -27,7 +27,7 @@ const pages = {
 
 export default connect(
   {
-    currentPage: state`app.currentPage`,
+    currentPage: state`currentPage`,
   },
   function App({ currentPage }) {
     const Page = pages[currentPage || 'home']

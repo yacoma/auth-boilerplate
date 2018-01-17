@@ -5,8 +5,8 @@ import { Grid, Header, Icon } from 'semantic-ui-react'
 
 export default connect(
   {
-    headerText: state`app.headerText`,
-    headerIcon: state`app.headerIcon`,
+    headerText: state`headerText`,
+    headerIcon: state`headerIcon`,
   },
   function PageHeader({ headerText, headerIcon }) {
     return (

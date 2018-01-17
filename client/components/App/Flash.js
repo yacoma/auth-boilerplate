@@ -5,8 +5,8 @@ import { Grid, Message } from 'semantic-ui-react'
 
 export default connect(
   {
-    flash: state`app.flash`,
-    flashType: state`app.flashType`,
+    flash: state`flash`,
+    flashType: state`flashType`,
   },
   function Flash({ flash, flashType }) {
     const flashTypeAttr = flashType ? { [flashType]: true } : {}

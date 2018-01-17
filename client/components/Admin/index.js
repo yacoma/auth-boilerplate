@@ -42,7 +42,8 @@ export default connect(
                       usersSortBy === 'emailConfirmed' ? usersSortDir : null
                     }
                     onClick={() =>
-                      sortUsersClicked({ sortBy: 'emailConfirmed' })}
+                      sortUsersClicked({ sortBy: 'emailConfirmed' })
+                    }
                   >
                     Confirmed
                   </Table.HeaderCell>
