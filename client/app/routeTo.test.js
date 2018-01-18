@@ -47,7 +47,7 @@ test('route to private should set header title', t => {
   }).then(({ state }) => [
     t.is(state.currentPage, 'private'),
     t.is(state.lastVisited, 'private'),
-    t.is(state.headerText, 'Hello Test!'),
+    t.is(state.headerText, 'Hello {nickname}!'),
     t.is(state.headerIcon, null),
   ])
 })
@@ -90,7 +90,7 @@ test('settings should set currentTab and nickname', t => {
     t.is(state.lastVisited, 'settings'),
     t.is(state.settings.currentTab, 'email'),
     t.is(state.settings.profileForm.nickname.value, 'Test'),
-    t.is(state.headerText, "Test's settings"),
+    t.is(state.headerText, "{nickname}'s settings"),
     t.is(state.headerIcon, 'user'),
   ])
 })

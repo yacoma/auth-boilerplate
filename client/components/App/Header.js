@@ -3,9 +3,11 @@ import { connect } from '@cerebral/react'
 import { state } from 'cerebral/tags'
 import { Grid, Header, Icon } from 'semantic-ui-react'
 
+import personalizedHeader from '../../computed/personalizedHeader'
+
 export default connect(
   {
-    headerText: state`headerText`,
+    headerText: personalizedHeader,
     headerIcon: state`headerIcon`,
   },
   function PageHeader({ headerText, headerIcon }) {

@@ -1,5 +1,5 @@
 import { sequence } from 'cerebral'
-import { state, string } from 'cerebral/tags'
+import { state } from 'cerebral/tags'
 import { set, equals, when } from 'cerebral/operators'
 import { redirectToSignal } from '@cerebral/router/operators'
 
@@ -24,7 +24,7 @@ export default function routeTo(page, tab) {
       private: [
         set(state`lastVisited`, 'private'),
         actions.authenticate,
-        set(state`headerText`, string`Hello ${state`user.nickname`}!`),
+        set(state`headerText`, 'Hello {nickname}!'),
         set(state`headerIcon`, null),
       ],
       login: [
@@ -41,7 +41,7 @@ export default function routeTo(page, tab) {
         when(state`user.email`, email => email !== 'admin@example.com'),
         {
           true: [
-            set(state`headerText`, string`${state`user.nickname`}'s settings`),
+            set(state`headerText`, "{nickname}'s settings"),
             set(state`headerIcon`, 'user'),
             tab ? set(state`settings.currentTab`, tab) : [],
             prepareSettingsForm,
