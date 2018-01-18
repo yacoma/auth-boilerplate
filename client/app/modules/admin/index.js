@@ -1,30 +1,20 @@
 import { Module } from 'cerebral'
 
-import sortUsersClicked from './signals/sortUsersClicked'
-import signOutButtonClicked from './signals/signOutButtonClicked'
-import signOutConfirmed from './signals/signOutConfirmed'
-import signOutCancelled from './signals/signOutCancelled'
-import removeUserButtonClicked from './signals/removeUserButtonClicked'
-import removeUserConfirmed from './signals/removeUserConfirmed'
-import removeUserCancelled from './signals/removeUserCancelled'
-import toggleAdminClicked from './signals/toggleAdminClicked'
-import searchSubmitted from './signals/searchSubmitted'
-import pageSizeChanged from './signals/pageSizeChanged'
-import changePageClicked from './signals/changePageClicked'
+import * as sequences from './sequences'
 
 export default Module({
   signals: {
-    sortUsersClicked,
-    signOutButtonClicked,
-    signOutCancelled,
-    signOutConfirmed,
-    removeUserButtonClicked,
-    removeUserCancelled,
-    removeUserConfirmed,
-    toggleAdminClicked,
-    searchSubmitted,
-    pageSizeChanged,
-    changePageClicked,
+    sortUsersClicked: sequences.fetchSortedUsers,
+    signOutButtonClicked: sequences.showSignOutUserModal,
+    signOutCancelled: sequences.closeSignOutUserModal,
+    signOutConfirmed: sequences.signOutUser,
+    removeUserButtonClicked: sequences.showRemoveUserModal,
+    removeUserCancelled: sequences.closeRemoveUserModal,
+    removeUserConfirmed: sequences.removeUser,
+    toggleAdminClicked: sequences.toggleAdmin,
+    searchSubmitted: sequences.searchUsers,
+    pageSizeChanged: sequences.changePageSize,
+    changePageClicked: sequences.changePage,
   },
   state: {
     users: {},

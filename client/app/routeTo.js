@@ -2,19 +2,19 @@ import { sequence } from 'cerebral'
 import { state, string } from 'cerebral/tags'
 import { set, equals, when } from 'cerebral/operators'
 import { redirectToSignal } from '@cerebral/router/operators'
-import showFlash from './showFlash'
-import authenticate from '../actions/authenticate'
-import authenticateAdmin from '../actions/authenticateAdmin'
-import prepareSettingsForm from '../modules/settings/actions/prepareSettingsForm'
-import fetchUsers from '../modules/admin/actions/fetchUsers'
 
-function routeTo(page, tab) {
+import { prepareSettingsForm } from './modules/settings/sequences'
+import { fetchUsers } from './modules/admin/sequences'
+import * as actions from './actions'
+import * as factories from './factories'
+
+export default function routeTo(page, tab) {
   return sequence('Route to', [
     set(state`currentPage`, page),
     when(state`initialFlash`),
     {
       true: [
-        showFlash(state`flash`, state`flashType`),
+        factories.showFlash(state`flash`, state`flashType`),
         set(state`initialFlash`, false),
       ],
       false: [],
@@ -23,7 +23,7 @@ function routeTo(page, tab) {
     {
       private: [
         set(state`lastVisited`, 'private'),
-        authenticate,
+        actions.authenticate,
         set(state`headerText`, string`Hello ${state`user.nickname`}!`),
         set(state`headerIcon`, null),
       ],
@@ -37,7 +37,7 @@ function routeTo(page, tab) {
       ],
       settings: [
         set(state`lastVisited`, 'settings'),
-        authenticate,
+        actions.authenticate,
         when(state`user.email`, email => email !== 'admin@example.com'),
         {
           true: [
@@ -50,13 +50,13 @@ function routeTo(page, tab) {
             page !== 'home'
               ? redirectToSignal('pageRouted', { page: 'home' })
               : [],
-            showFlash('Admin cannot edit his settings', 'warning'),
+            factories.showFlash('Admin cannot edit his settings', 'warning'),
           ],
         },
       ],
       admin: [
         set(state`lastVisited`, 'admin'),
-        authenticateAdmin,
+        actions.authenticateAdmin,
         set(state`headerText`, 'User Admin'),
         set(state`headerIcon`, 'users'),
         fetchUsers,
@@ -76,7 +76,10 @@ function routeTo(page, tab) {
             page !== 'home'
               ? redirectToSignal('pageRouted', { page: 'home' })
               : [],
-            showFlash('To reset your password use the reset link', 'info'),
+            factories.showFlash(
+              'To reset your password use the reset link',
+              'info'
+            ),
           ],
         },
       ],
@@ -92,5 +95,3 @@ function routeTo(page, tab) {
     },
   ])
 }
-
-export default routeTo

@@ -2,13 +2,13 @@ import test from 'ava'
 import StorageModule from '@cerebral/storage'
 import { runAction } from 'cerebral/test'
 
-import * as constants from '../test_constants'
-import initApp from './initApp'
+import * as constants from './test_constants'
+import * as actions from './actions'
 
 test.serial('should initialize app state when no exp claim', t => {
   localStorage.setItem('jwtHeader', JSON.stringify(constants.userJwtHeader))
 
-  return runAction(initApp, {
+  return runAction(actions.initApp, {
     state: {
       user: {
         email: '',
@@ -36,7 +36,7 @@ test.serial('should initialize app state when no exp claim', t => {
 test.serial('should initialize app state when exp claim is valid', t => {
   localStorage.setItem('jwtHeader', JSON.stringify(constants.validJwtHeader))
 
-  return runAction(initApp, {
+  return runAction(actions.initApp, {
     state: {
       user: {
         email: '',
@@ -71,7 +71,7 @@ test.serial(
       JSON.stringify(constants.expiredJwtHeader)
     )
 
-    return runAction(initApp, {
+    return runAction(actions.initApp, {
       state: {
         user: {
           email: '',

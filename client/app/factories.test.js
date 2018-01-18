@@ -1,9 +1,10 @@
 import test from 'ava'
 import { runSignal } from 'cerebral/test'
-import showFlash from './showFlash'
+
+import * as factories from './factories'
 
 test('show flash', t => {
-  return runSignal(showFlash('Test message'), {
+  return runSignal(factories.showFlash('Test message'), {
     state: {
       app: {},
     },
@@ -14,7 +15,7 @@ test('show flash', t => {
 })
 
 test('show flash for 3s', t => {
-  return runSignal(showFlash('Test error', 'error', 3000), {
+  return runSignal(factories.showFlash('Test error', 'error', 3000), {
     state: {
       app: {},
     },

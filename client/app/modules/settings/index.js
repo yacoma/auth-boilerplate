@@ -1,26 +1,18 @@
 import { Module } from 'cerebral'
 
-import profileFormSubmitted from './signals/profileFormSubmitted'
-import emailFormSubmitted from './signals/emailFormSubmitted'
-import passwordFormSubmitted from './signals/passwordFormSubmitted'
-import signOutButtonClicked from './signals/signOutButtonClicked'
-import signOutConfirmed from './signals/signOutConfirmed'
-import signOutCancelled from './signals/signOutCancelled'
-import removeUserButtonClicked from './signals/removeUserButtonClicked'
-import removeUserConfirmed from './signals/removeUserConfirmed'
-import removeUserCancelled from './signals/removeUserCancelled'
+import * as sequences from './sequences'
 
 export default Module({
   signals: {
-    profileFormSubmitted,
-    emailFormSubmitted,
-    passwordFormSubmitted,
-    signOutButtonClicked,
-    signOutCancelled,
-    signOutConfirmed,
-    removeUserButtonClicked,
-    removeUserCancelled,
-    removeUserConfirmed,
+    profileFormSubmitted: sequences.updateProfile,
+    emailFormSubmitted: sequences.updateEmail,
+    passwordFormSubmitted: sequences.updatePassword,
+    signOutButtonClicked: sequences.showSignOutActiveUserModal,
+    signOutCancelled: sequences.closeSignOutActiveUserModal,
+    signOutConfirmed: sequences.signOutActiveUser,
+    removeUserButtonClicked: sequences.showRemoveActiveUserModal,
+    removeUserCancelled: sequences.closeRemoveActiveUserModal,
+    removeUserConfirmed: sequences.removeActiveUser,
   },
 
   state: {

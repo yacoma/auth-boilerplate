@@ -1,21 +1,16 @@
 import { Module } from 'cerebral'
 
-import fieldChanged from './signals/fieldChanged'
-import loginFormSubmitted from './signals/loginFormSubmitted'
-import registerFormSubmitted from './signals/registerFormSubmitted'
-import emailFormSubmitted from './signals/emailFormSubmitted'
-import passwordFormSubmitted from './signals/passwordFormSubmitted'
-import logoutButtonClicked from './signals/logoutButtonClicked'
+import * as sequences from './sequences'
 
 export default urlParams => {
   return Module({
     signals: {
-      fieldChanged,
-      loginFormSubmitted,
-      registerFormSubmitted,
-      emailFormSubmitted,
-      passwordFormSubmitted,
-      logoutButtonClicked,
+      fieldChanged: sequences.changeField,
+      loginFormSubmitted: sequences.signinUser,
+      registerFormSubmitted: sequences.registerUser,
+      emailFormSubmitted: sequences.requestPasswordReset,
+      passwordFormSubmitted: sequences.updatePassword,
+      logoutButtonClicked: sequences.logoutUser,
     },
 
     state: {

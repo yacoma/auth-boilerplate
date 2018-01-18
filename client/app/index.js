@@ -10,10 +10,7 @@ import admin from './modules/admin'
 import settings from './modules/settings'
 import router from './router'
 import { AuthenticationError } from './errors'
-import routeToLogin from './actions/routeToLogin'
-import appMounted from './signals/appMounted'
-import pageRouted from './signals/pageRouted'
-import settingsRouted from './signals/settingsRouted'
+import * as sequences from './sequences'
 
 const jwtHeader = localStorage.getItem('jwtHeader')
   ? JSON.parse(localStorage.getItem('jwtHeader'))
@@ -35,9 +32,9 @@ export default urlParams =>
         initialFlash: urlParams['flash'] !== null,
       },
       signals: {
-        appMounted,
-        pageRouted,
-        settingsRouted,
+        appMounted: sequences.initialize,
+        pageRouted: sequences.routeToPage,
+        settingsRouted: sequences.routeToSettings,
       },
       modules: {
         user: user({ '@id': urlParams['@id'] }),
@@ -70,6 +67,6 @@ export default urlParams =>
           },
         }),
       },
-      catch: [[AuthenticationError, routeToLogin]],
+      catch: [[AuthenticationError, sequences.redirectToLogin]],
     }
   })

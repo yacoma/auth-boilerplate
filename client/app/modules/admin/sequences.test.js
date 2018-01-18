@@ -5,8 +5,8 @@ import StorageModule from '@cerebral/storage'
 import HttpProvider from '@cerebral/http'
 import { runSignal } from 'cerebral/test'
 
-import { userJwtHeader } from '../../../test_constants'
-import fetchUsers from './fetchUsers'
+import { userJwtHeader } from '../../test_constants'
+import * as sequences from './sequences'
 
 let cerebral
 
@@ -64,7 +64,7 @@ test.serial('should fetch users', t => {
       )
   })
 
-  return runSignal(fetchUsers, cerebral).then(({ state }) => [
+  return runSignal(sequences.fetchUsers, cerebral).then(({ state }) => [
     t.is(state.admin.pages, 5),
     t.is(state.admin.users[Object.keys(state.admin.users)[0]]['orderKey'], 1),
     t.is(
@@ -126,7 +126,7 @@ test.serial('should update existing user', t => {
       )
   })
 
-  return runSignal(fetchUsers, cerebral).then(({ state }) => [
+  return runSignal(sequences.fetchUsers, cerebral).then(({ state }) => [
     t.is(state.admin.pages, 15),
     t.is(state.admin.users.testuid000.orderKey, 1),
     t.is(state.admin.users.testuid000['@id'], '/users/1'),
@@ -150,7 +150,7 @@ test.serial('should return noUsersFound', t => {
       )
   })
 
-  return runSignal(fetchUsers, cerebral, {
+  return runSignal(sequences.fetchUsers, cerebral, {
     recordActions: 'byName',
   }).then(({ mergeUsers }) => [t.true(mergeUsers.output.noUsersFound)])
 })

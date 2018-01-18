@@ -1,6 +1,22 @@
 import jwtDecode from 'jwt-decode'
 
-function initApp({ state, storage }) {
+import { AuthenticationError } from './errors'
+
+export function authenticate({ state }) {
+  if (!state.get('user.authenticated')) {
+    throw new AuthenticationError('You must log in to view this page')
+  }
+}
+
+export function authenticateAdmin({ state }) {
+  if (!state.get('user.authenticated') || !state.get('user.isAdmin')) {
+    throw new AuthenticationError(
+      'You need Admin permissions to view this page'
+    )
+  }
+}
+
+export function initApp({ state, storage }) {
   const jwtHeader = storage.get('jwtHeader')
   if (jwtHeader) {
     const claims = jwtDecode(jwtHeader)
@@ -25,5 +41,3 @@ function initApp({ state, storage }) {
     }
   }
 }
-
-export default initApp
