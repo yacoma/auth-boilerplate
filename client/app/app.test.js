@@ -52,9 +52,7 @@ test.serial(
 test.serial(
   'unauthenticated route to private should redirect to login',
   async t => {
-    cerebral = CerebralTest(app({ flash: null, flashType: null }), {
-      throwToConsole: false,
-    })
+    cerebral = CerebralTest(app({ flash: null, flashType: null }))
     const error = await t.throws(
       cerebral.runSignal('pageRouted', { page: 'private' }),
       AuthenticationError
@@ -69,9 +67,7 @@ test.serial(
 test.serial(
   'unauthenticated route to settings should redirect to login',
   async t => {
-    cerebral = CerebralTest(app({ flash: null, flashType: null }), {
-      throwToConsole: false,
-    })
+    cerebral = CerebralTest(app({ flash: null, flashType: null }))
     const error = await t.throws(
       cerebral.runSignal('settingsRouted', { tab: 'email' }),
       AuthenticationError
@@ -86,9 +82,7 @@ test.serial(
 test.serial(
   'unauthenticated route to admin should redirect to login',
   async t => {
-    cerebral = CerebralTest(app({ flash: null, flashType: null }), {
-      throwToConsole: false,
-    })
+    cerebral = CerebralTest(app({ flash: null, flashType: null }))
     const error = await t.throws(
       cerebral.runSignal('pageRouted', { page: 'admin' }),
       AuthenticationError
@@ -104,9 +98,7 @@ test.serial(
   'route to admin should redirect to login when not isAdmin',
   async t => {
     localStorage.setItem('jwtHeader', JSON.stringify(constants.userJwtHeader))
-    cerebral = CerebralTest(app({ flash: null, flashType: null }), {
-      throwToConsole: false,
-    })
+    cerebral = CerebralTest(app({ flash: null, flashType: null }))
 
     const error = await t.throws(
       cerebral.runSignal('pageRouted', { page: 'admin' }),
