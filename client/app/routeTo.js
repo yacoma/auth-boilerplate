@@ -1,4 +1,3 @@
-import { sequence } from 'cerebral'
 import { state } from 'cerebral/tags'
 import { set, equals, when } from 'cerebral/operators'
 import { redirectToSignal } from '@cerebral/router/operators'
@@ -9,7 +8,7 @@ import * as actions from './actions'
 import * as factories from './factories'
 
 export default function routeTo(page, tab) {
-  return sequence('Route to', [
+  return [
     set(state`currentPage`, page),
     when(state`initialFlash`),
     {
@@ -93,5 +92,5 @@ export default function routeTo(page, tab) {
         set(state`headerIcon`, null),
       ],
     },
-  ])
+  ]
 }

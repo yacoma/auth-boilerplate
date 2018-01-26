@@ -1,4 +1,3 @@
-import { sequence } from 'cerebral'
 import { state, string, resolveObject } from 'cerebral/tags'
 import { set, when } from 'cerebral/operators'
 import { redirectToSignal } from '@cerebral/router/operators'
@@ -13,11 +12,12 @@ import {
 import { removeUser } from '../user/actions'
 import { showFlash, showValidationError } from '../../factories'
 
-export const prepareSettingsForm = sequence('Set values for settings form', [
-  set(state`settings.profileForm.nickname.value`, state`user.nickname`),
-])
+export const prepareSettingsForm = set(
+  state`settings.profileForm.nickname.value`,
+  state`user.nickname`
+)
 
-export const updateProfile = sequence('Update active user profile', [
+export const updateProfile = [
   isValidForm(state`settings.profileForm`),
   {
     true: [
@@ -43,9 +43,9 @@ export const updateProfile = sequence('Update active user profile', [
     ],
     false: set(state`settings.profileForm.showErrors`, true),
   },
-])
+]
 
-export const updateEmail = sequence('Update active user email address', [
+export const updateEmail = [
   isValidForm(state`settings.emailForm`),
   {
     true: [
@@ -104,9 +104,9 @@ export const updateEmail = sequence('Update active user email address', [
     ],
     false: set(state`settings.emailForm.showErrors`, true),
   },
-])
+]
 
-export const updatePassword = sequence('Update active user password', [
+export const updatePassword = [
   isValidForm(state`settings.passwordForm`),
   {
     true: [
@@ -155,19 +155,19 @@ export const updatePassword = sequence('Update active user password', [
     ],
     false: set(state`settings.passwordForm.showErrors`, true),
   },
-])
+]
 
-export const showSignOutActiveUserModal = sequence(
-  'Show confirm-sign-out-yourself modal',
-  [set(state`settings.showConfirmSignOut`, true)]
+export const showSignOutActiveUserModal = set(
+  state`settings.showConfirmSignOut`,
+  true
 )
 
-export const closeSignOutActiveUserModal = sequence(
-  'Close confirm-sign-out-yourself modal',
-  [set(state`settings.showConfirmSignOut`, false)]
+export const closeSignOutActiveUserModal = set(
+  state`settings.showConfirmSignOut`,
+  false
 )
 
-export const signOutActiveUser = sequence('Sign-out yourself', [
+export const signOutActiveUser = [
   set(state`settings.showConfirmSignOut`, false),
   isValidForm(state`settings.accountForm`),
   {
@@ -211,19 +211,19 @@ export const signOutActiveUser = sequence('Sign-out yourself', [
       showFlash('Please provide your password', 'error'),
     ],
   },
-])
+]
 
-export const showRemoveActiveUserModal = sequence(
-  'Show confirm-remove-yourself modal',
-  [set(state`settings.showConfirmRemoveUser`, true)]
+export const showRemoveActiveUserModal = set(
+  state`settings.showConfirmRemoveUser`,
+  true
 )
 
-export const closeRemoveActiveUserModal = sequence(
-  'Close confirm-remove-yourself modal',
-  [set(state`settings.showConfirmRemoveUser`, false)]
+export const closeRemoveActiveUserModal = set(
+  state`settings.showConfirmRemoveUser`,
+  false
 )
 
-export const removeActiveUser = sequence('Remove yourself', [
+export const removeActiveUser = [
   set(state`settings.showConfirmRemoveUser`, false),
   isValidForm(state`settings.accountForm`),
   {
@@ -266,4 +266,4 @@ export const removeActiveUser = sequence('Remove yourself', [
       showFlash('Please provide your password', 'error'),
     ],
   },
-])
+]

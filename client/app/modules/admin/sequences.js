@@ -1,4 +1,3 @@
-import { sequence } from 'cerebral'
 import { state, string, props, resolveObject } from 'cerebral/tags'
 import { set, unset, when, debounce } from 'cerebral/operators'
 import { httpGet, httpDelete, httpPut } from '@cerebral/http/operators'
@@ -6,7 +5,7 @@ import { httpGet, httpDelete, httpPut } from '@cerebral/http/operators'
 import { showFlash, showValidationError } from '../../factories'
 import * as actions from './actions'
 
-export const fetchUsers = sequence('Fetch users from database', [
+export const fetchUsers = [
   when(state`admin.usersSortDir`, usersSortDir => usersSortDir === 'ascending'),
   {
     true: set(props`sortDir`, 'asc'),
@@ -33,9 +32,9 @@ export const fetchUsers = sequence('Fetch users from database', [
     ],
     error: showFlash('Could not fetch users from database', 'error'),
   },
-])
+]
 
-export const fetchSortedUsers = sequence('Fetch sorted users', [
+export const fetchSortedUsers = [
   when(
     state`admin.usersSortBy`,
     props`sortBy`,
@@ -56,25 +55,19 @@ export const fetchSortedUsers = sequence('Fetch sorted users', [
   },
   set(state`admin.usersSortBy`, props`sortBy`),
   fetchUsers,
-])
+]
 
-export const showSignOutUserModal = sequence(
-  'Show confirm-sign-out-user modal',
-  [
-    set(state`admin.activeUid`, props`uid`),
-    set(state`admin.showConfirmSignOut`, true),
-  ]
-)
+export const showSignOutUserModal = [
+  set(state`admin.activeUid`, props`uid`),
+  set(state`admin.showConfirmSignOut`, true),
+]
 
-export const closeSignOutUserModal = sequence(
-  'Close confirm-sign-out-user modal',
-  [
-    set(state`admin.activeUid`, null),
-    set(state`admin.showConfirmSignOut`, false),
-  ]
-)
+export const closeSignOutUserModal = [
+  set(state`admin.activeUid`, null),
+  set(state`admin.showConfirmSignOut`, false),
+]
 
-export const signOutUser = sequence('Sign out user', [
+export const signOutUser = [
   set(state`admin.showConfirmSignOut`, false),
   set(props`nickname`, state`admin.users.${state`admin.activeUid`}.nickname`),
   httpGet(string`${state`admin.users.${state`admin.activeUid`}.@id`}/signout`),
@@ -91,22 +84,19 @@ export const signOutUser = sequence('Sign out user', [
     ),
   },
   set(state`admin.activeUid`, null),
-])
+]
 
-export const showRemoveUserModal = sequence('Show confirm-remove-user modal', [
+export const showRemoveUserModal = [
   set(state`admin.activeUid`, props`uid`),
   set(state`admin.showConfirmRemoveUser`, true),
-])
+]
 
-export const closeRemoveUserModal = sequence(
-  'Close confirm-remove-user modal',
-  [
-    set(state`admin.activeUid`, null),
-    set(state`admin.showConfirmRemoveUser`, false),
-  ]
-)
+export const closeRemoveUserModal = [
+  set(state`admin.activeUid`, null),
+  set(state`admin.showConfirmRemoveUser`, false),
+]
 
-export const removeUser = sequence('Remove user', [
+export const removeUser = [
   set(state`admin.showConfirmRemoveUser`, false),
   set(props`nickname`, state`admin.users.${state`admin.activeUid`}.nickname`),
   httpDelete(string`${state`admin.users.${state`admin.activeUid`}.@id`}`),
@@ -118,9 +108,9 @@ export const removeUser = sequence('Remove user', [
     error: showFlash(string`${props`nickname`} could not be deleted`, 'error'),
   },
   set(state`admin.activeUid`, null),
-])
+]
 
-export const toggleAdmin = sequence('Toggle Admin permissions', [
+export const toggleAdmin = [
   set(state`admin.users.${props`uid`}.toggleAdminIsLoading`, true),
   when(state`admin.users.${props`uid`}.isAdmin`),
   {
@@ -140,9 +130,9 @@ export const toggleAdmin = sequence('Toggle Admin permissions', [
     ),
   },
   set(state`admin.users.${props`uid`}.toggleAdminIsLoading`, false),
-])
+]
 
-export const searchUsers = sequence('Search for users', [
+export const searchUsers = [
   debounce(500),
   {
     continue: [
@@ -159,16 +149,16 @@ export const searchUsers = sequence('Search for users', [
     ],
     discard: [],
   },
-])
+]
 
-export const changePageSize = sequence('Change page size', [
+export const changePageSize = [
   set(state`admin.pageSize`, props`value`),
   set(state`admin.currentPage`, 1),
   set(state`admin.users`, {}),
   fetchUsers,
-])
+]
 
-export const changePage = sequence('Change page', [
+export const changePage = [
   actions.getNextPage,
   when(
     props`nextPage`,
@@ -185,4 +175,4 @@ export const changePage = sequence('Change page', [
     ],
     false: [],
   },
-])
+]

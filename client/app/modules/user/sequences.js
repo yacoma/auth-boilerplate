@@ -1,4 +1,3 @@
-import { sequence } from 'cerebral'
 import { state, props, string, resolveObject } from 'cerebral/tags'
 import { set, unset, when } from 'cerebral/operators'
 import { redirectToSignal } from '@cerebral/router/operators'
@@ -10,7 +9,7 @@ import { redirectToLogin } from '../../actions'
 import { showFlash, showValidationError } from '../../factories'
 import * as actions from './actions'
 
-export const refreshToken = sequence('Refresh token', [
+export const refreshToken = [
   httpGet('/refresh'),
   {
     success: [
@@ -40,13 +39,11 @@ export const refreshToken = sequence('Refresh token', [
     ],
   },
   unset(state`user.token.shouldRefresh`),
-])
+]
 
-export const changeField = sequence('Change field', [
-  setField(state`${props`path`}`, props`value`),
-])
+export const changeField = setField(state`${props`path`}`, props`value`)
 
-export const signinUser = sequence('Sign-in user', [
+export const signinUser = [
   isValidForm(state`user.loginForm`),
   {
     true: [
@@ -87,9 +84,9 @@ export const signinUser = sequence('Sign-in user', [
     ],
     false: set(state`user.loginForm.showErrors`, true),
   },
-])
+]
 
-export const registerUser = sequence('Register new user', [
+export const registerUser = [
   isValidForm(state`user.registerForm`),
   {
     true: [
@@ -152,9 +149,9 @@ export const registerUser = sequence('Register new user', [
     ],
     false: set(state`user.registerForm.showErrors`, true),
   },
-])
+]
 
-export const requestPasswordReset = sequence('Request password reset', [
+export const requestPasswordReset = [
   isValidForm(state`user.emailForm`),
   {
     true: [
@@ -184,9 +181,9 @@ export const requestPasswordReset = sequence('Request password reset', [
     ],
     false: set(state`user.emailForm.showErrors`, true),
   },
-])
+]
 
-export const updatePassword = sequence('Update password', [
+export const updatePassword = [
   isValidForm(state`user.passwordForm`),
   {
     true: [
@@ -216,11 +213,11 @@ export const updatePassword = sequence('Update password', [
     ],
     false: set(state`user.passwordForm.showErrors`, true),
   },
-])
+]
 
-export const logoutUser = sequence('Log user out', [
+export const logoutUser = [
   set(state`user.loginForm.isLoading`, false),
   actions.removeUser,
   redirectToSignal('pageRouted', { page: 'home' }),
   showFlash('Good bye!', 'info'),
-])
+]
