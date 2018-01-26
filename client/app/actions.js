@@ -41,3 +41,18 @@ export function initApp({ state, storage }) {
     }
   }
 }
+
+export function getSchemaValidationErrorMessages({ props }) {
+  const errorMessages = Object.keys(props.error.response.result).reduce(
+    (errorMessages, errorField) => {
+      if (Array.isArray(props.error.response.result[errorField])) {
+        errorMessages.push(
+          errorField + ': ' + props.error.response.result[errorField].join(', ')
+        )
+      }
+      return errorMessages
+    },
+    []
+  )
+  return { errorMessages: errorMessages.join('\n') }
+}

@@ -1,6 +1,8 @@
 import { state, props } from 'cerebral/tags'
 import { set, equals, debounce } from 'cerebral/operators'
 
+import * as actions from './actions'
+
 const showFlashDebounce = debounce.shared()
 
 export function showFlash(flash, flashType = null, ms = 7000) {
@@ -15,21 +17,6 @@ export function showFlash(flash, flashType = null, ms = 7000) {
   ]
 }
 
-function getSchemaValidationErrorMessages({ props }) {
-  const errorMessages = Object.keys(props.error.response.result).reduce(
-    (errorMessages, errorField) => {
-      if (Array.isArray(props.error.response.result[errorField])) {
-        errorMessages.push(
-          errorField + ': ' + props.error.response.result[errorField].join(', ')
-        )
-      }
-      return errorMessages
-    },
-    []
-  )
-  return { errorMessages: errorMessages.join('\n') }
-}
-
 export function showValidationError(defaultErrorMessage) {
   return [
     equals(props`error.response.status`),
@@ -42,7 +29,7 @@ export function showValidationError(defaultErrorMessage) {
         props`errorMessages`,
         props`error.response.result.validationError`
       ),
-      422: getSchemaValidationErrorMessages,
+      422: actions.getSchemaValidationErrorMessages,
       otherwise: set(props`errorMessages`, defaultErrorMessage),
     },
     showFlash(props`errorMessages`, 'error'),
