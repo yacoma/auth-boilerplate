@@ -3,7 +3,7 @@ import HttpProvider from '@cerebral/http'
 import StorageModule from '@cerebral/storage'
 import { runAction } from 'cerebral/test'
 
-import { validJwtHeader } from '../../test_constants'
+import { authHeader } from '../../test_constants'
 import * as actions from './actions'
 
 test.serial('should initialize user state', t => {
@@ -21,7 +21,7 @@ test.serial('should initialize user state', t => {
     props: {
       response: {
         headers: {
-          authorization: validJwtHeader,
+          authorization: authHeader.validJwt,
         },
       },
     },
@@ -32,7 +32,7 @@ test.serial('should initialize user state', t => {
         headers: {
           'Content-Type': 'application/json; charset=UTF-8',
           Accept: 'application/json',
-          Authorization: validJwtHeader,
+          Authorization: authHeader.validJwt,
         },
       }),
     },
@@ -42,12 +42,12 @@ test.serial('should initialize user state', t => {
     t.is(state.user.email, 'test@example.com'),
     t.is(state.user.nickname, 'Tester'),
     t.false(state.user.isAdmin),
-    t.is(localStorage.getItem('jwtHeader'), '"' + validJwtHeader + '"'),
+    t.is(localStorage.getItem('jwtHeader'), '"' + authHeader.validJwt + '"'),
   ])
 })
 
 test.serial('should remove user state', t => {
-  localStorage.setItem('jwtHeader', JSON.stringify(validJwtHeader))
+  localStorage.setItem('jwtHeader', JSON.stringify(authHeader.validJwt))
 
   return runAction(actions.removeUser, {
     state: {
@@ -69,7 +69,7 @@ test.serial('should remove user state', t => {
         headers: {
           'Content-Type': 'application/json; charset=UTF-8',
           Accept: 'application/json',
-          Authorization: validJwtHeader,
+          Authorization: authHeader.validJwt,
         },
       }),
     },

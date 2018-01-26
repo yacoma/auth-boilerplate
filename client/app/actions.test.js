@@ -2,11 +2,11 @@ import test from 'ava'
 import StorageModule from '@cerebral/storage'
 import { runAction } from 'cerebral/test'
 
-import * as constants from './test_constants'
+import { authHeader } from './test_constants'
 import * as actions from './actions'
 
 test.serial('should initialize app state when no exp claim', t => {
-  localStorage.setItem('jwtHeader', JSON.stringify(constants.userJwtHeader))
+  localStorage.setItem('jwtHeader', JSON.stringify(authHeader.userJwt))
 
   return runAction(actions.initApp, {
     state: {
@@ -26,15 +26,12 @@ test.serial('should initialize app state when no exp claim', t => {
     t.is(state.user.email, 'test@example.com'),
     t.is(state.user.nickname, 'Tester'),
     t.false(state.user.isAdmin),
-    t.is(
-      localStorage.getItem('jwtHeader'),
-      '"' + constants.userJwtHeader + '"'
-    ),
+    t.is(localStorage.getItem('jwtHeader'), '"' + authHeader.userJwt + '"'),
   ])
 })
 
 test.serial('should initialize app state when exp claim is valid', t => {
-  localStorage.setItem('jwtHeader', JSON.stringify(constants.validJwtHeader))
+  localStorage.setItem('jwtHeader', JSON.stringify(authHeader.validJwt))
 
   return runAction(actions.initApp, {
     state: {
@@ -56,20 +53,14 @@ test.serial('should initialize app state when exp claim is valid', t => {
     t.false(state.user.isAdmin),
     t.is(state.user.token.exp, 1000000000000),
     t.is(state.user.token.refreshUntil, 1000000010000),
-    t.is(
-      localStorage.getItem('jwtHeader'),
-      '"' + constants.validJwtHeader + '"'
-    ),
+    t.is(localStorage.getItem('jwtHeader'), '"' + authHeader.validJwt + '"'),
   ])
 })
 
 test.serial(
   'should fail initialize app state when token and refreshUntil expired',
   t => {
-    localStorage.setItem(
-      'jwtHeader',
-      JSON.stringify(constants.expiredJwtHeader)
-    )
+    localStorage.setItem('jwtHeader', JSON.stringify(authHeader.expiredJwt))
 
     return runAction(actions.initApp, {
       state: {

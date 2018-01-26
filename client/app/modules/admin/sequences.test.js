@@ -5,7 +5,7 @@ import StorageModule from '@cerebral/storage'
 import HttpProvider from '@cerebral/http'
 import { runSignal } from 'cerebral/test'
 
-import { userJwtHeader } from '../../test_constants'
+import { authHeader } from '../../test_constants'
 import * as sequences from './sequences'
 
 let cerebral
@@ -35,7 +35,7 @@ test.beforeEach(t => {
         headers: {
           'Content-Type': 'application/json; charset=UTF-8',
           Accept: 'application/json',
-          Authorization: userJwtHeader,
+          Authorization: authHeader.userJwt,
         },
       }),
     },

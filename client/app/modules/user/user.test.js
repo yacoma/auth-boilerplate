@@ -3,7 +3,7 @@ import mock from 'xhr-mock'
 import { CerebralTest } from 'cerebral/test'
 
 import app from '../..'
-import { userJwtHeader } from '../../test_constants'
+import { authHeader } from '../../test_constants'
 
 let cerebral
 
@@ -18,7 +18,7 @@ test.serial('should login', t => {
     return res
       .status(200)
       .header('Content-Type', 'application/json')
-      .header('Authorization', userJwtHeader)
+      .header('Authorization', authHeader.userJwt)
   })
 
   cerebral.setState('user.loginForm.email.value', 'test@example.com')
@@ -35,7 +35,7 @@ test.serial('should login', t => {
       t.is(state.user.loginForm.email.value, ''),
       t.is(state.user.loginForm.password.value, ''),
       t.false(state.user.loginForm.showErrors),
-      t.is(localStorage.getItem('jwtHeader'), '"' + userJwtHeader + '"'),
+      t.is(localStorage.getItem('jwtHeader'), '"' + authHeader.userJwt + '"'),
     ])
 })
 
@@ -105,7 +105,7 @@ test.serial('should login on registration', t => {
     return res
       .status(200)
       .header('Content-Type', 'application/json')
-      .header('Authorization', userJwtHeader)
+      .header('Authorization', authHeader.userJwt)
   })
 
   cerebral.setState('user.registerForm.nickname.value', 'Tester')
@@ -121,7 +121,7 @@ test.serial('should login on registration', t => {
       t.is(state.user.email, 'test@example.com'),
       t.is(state.user.nickname, 'Tester'),
       t.is(state.user.isAdmin, false),
-      t.is(localStorage.getItem('jwtHeader'), '"' + userJwtHeader + '"'),
+      t.is(localStorage.getItem('jwtHeader'), '"' + authHeader.userJwt + '"'),
       t.is(state.currentPage, 'home'),
       t.is(state.user.registerForm.nickname.value, ''),
       t.is(state.user.registerForm.email.value, ''),

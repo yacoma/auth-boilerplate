@@ -3,13 +3,13 @@ import mock from 'xhr-mock'
 import { CerebralTest } from 'cerebral/test'
 
 import app from '../..'
-import { userJwtHeader } from '../../test_constants'
+import { authHeader } from '../../test_constants'
 
 let cerebral
 
 test.beforeEach(t => {
   mock.setup()
-  localStorage.setItem('jwtHeader', JSON.stringify(userJwtHeader))
+  localStorage.setItem('jwtHeader', JSON.stringify(authHeader.userJwt))
   cerebral = CerebralTest(app({ flash: null, flashType: null }))
 
   cerebral.setState('admin.users.testuid000', {

@@ -4,7 +4,7 @@ import { CerebralTest } from 'cerebral/test'
 
 import app from '.'
 import { AuthenticationError } from './errors'
-import * as constants from './test_constants'
+import { authHeader } from './test_constants'
 
 let cerebral
 
@@ -14,7 +14,7 @@ test.beforeEach(t => {
 })
 
 test.serial('should authenticate when valid token in localStorage', t => {
-  localStorage.setItem('jwtHeader', JSON.stringify(constants.userJwtHeader))
+  localStorage.setItem('jwtHeader', JSON.stringify(authHeader.userJwt))
   cerebral = CerebralTest(app({ flash: null, flashType: null }))
   return cerebral
     .runSignal('appMounted')
@@ -29,7 +29,7 @@ test.serial(
   t => {
     localStorage.setItem(
       'jwtHeader',
-      JSON.stringify(constants.expiredRefreshableJwtHeader)
+      JSON.stringify(authHeader.expiredRefreshableJwt)
     )
     cerebral = CerebralTest(app({ flash: null, flashType: null }))
 
@@ -37,7 +37,7 @@ test.serial(
       return res
         .status(200)
         .header('Content-Type', 'application/json')
-        .header('Authorization', constants.validJwtHeader)
+        .header('Authorization', authHeader.validJwt)
     })
 
     return cerebral
@@ -97,7 +97,7 @@ test.serial(
 test.serial(
   'route to admin should redirect to login when not isAdmin',
   async t => {
-    localStorage.setItem('jwtHeader', JSON.stringify(constants.userJwtHeader))
+    localStorage.setItem('jwtHeader', JSON.stringify(authHeader.userJwt))
     cerebral = CerebralTest(app({ flash: null, flashType: null }))
 
     const error = await t.throws(
@@ -112,7 +112,7 @@ test.serial(
 )
 
 test.serial('route to admin should work when isAdmin', t => {
-  localStorage.setItem('jwtHeader', JSON.stringify(constants.adminJwtHeader))
+  localStorage.setItem('jwtHeader', JSON.stringify(authHeader.adminJwt))
   cerebral = CerebralTest(app({ flash: null, flashType: null }))
 
   return cerebral

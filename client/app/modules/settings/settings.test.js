@@ -3,12 +3,12 @@ import mock from 'xhr-mock'
 import { CerebralTest } from 'cerebral/test'
 
 import app from '../..'
-import { userJwtHeader } from '../../test_constants'
+import { authHeader } from '../../test_constants'
 
 let cerebral
 
 test.beforeEach(t => {
-  localStorage.setItem('jwtHeader', JSON.stringify(userJwtHeader))
+  localStorage.setItem('jwtHeader', JSON.stringify(authHeader.userJwt))
   mock.setup()
   cerebral = CerebralTest(app({ flash: null, flashType: null }))
 })
@@ -36,7 +36,7 @@ test.serial('should change email', t => {
     return res
       .status(200)
       .header('Content-Type', 'application/json')
-      .header('Authorization', userJwtHeader)
+      .header('Authorization', authHeader.userJwt)
   })
 
   cerebral.setState('user.email', 'old-test@example.com')
