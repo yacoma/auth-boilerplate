@@ -10,7 +10,7 @@ import {
 } from '@cerebral/http/operators'
 
 import { removeUser } from '../user/actions'
-import { showFlash, showValidationError } from '../../factories'
+import * as rootFactories from '../../factories'
 
 export const prepareSettingsForm = set(
   state`settings.profileForm.nickname.value`,
@@ -33,11 +33,11 @@ export const updateProfile = [
         success: [
           set(state`user.nickname`, state`settings.profileForm.nickname.value`),
           set(state`settings.profileForm.isLoading`, false),
-          showFlash('Your profile has be saved', 'success'),
+          rootFactories.showFlash('Your profile has be saved', 'success'),
         ],
         error: [
           set(state`settings.profileForm.isLoading`, false),
-          showValidationError('Could not save your profile!'),
+          rootFactories.showValidationError('Could not save your profile!'),
         ],
       },
     ],
@@ -78,25 +78,28 @@ export const updateEmail = [
                 success: [
                   set(state`user.email`, state`settings.emailForm.email.value`),
                   set(state`settings.emailForm.isLoading`, false),
-                  showFlash(
+                  rootFactories.showFlash(
                     'Please check your mailbox to confirm your new email address',
                     'success'
                   ),
                 ],
                 error: [
                   set(state`settings.emailForm.isLoading`, false),
-                  showValidationError('Could not update email!'),
+                  rootFactories.showValidationError('Could not update email!'),
                 ],
               },
             ],
             error: [
               set(state`settings.emailForm.password.value`, ''),
               set(state`settings.emailForm.isLoading`, false),
-              showFlash('Password is not correct - please try again', 'error'),
+              rootFactories.showFlash(
+                'Password is not correct - please try again',
+                'error'
+              ),
             ],
           },
         ],
-        false: showFlash(
+        false: rootFactories.showFlash(
           'This email address is the same as your current email',
           'warning'
         ),
@@ -133,12 +136,15 @@ export const updatePassword = [
             success: [
               set(state`settings.passwordForm.password.value`, ''),
               set(state`settings.passwordForm.isLoading`, false),
-              showFlash('Your password has been changed', 'success'),
+              rootFactories.showFlash(
+                'Your password has been changed',
+                'success'
+              ),
             ],
             error: [
               set(state`settings.passwordForm.password.value`, ''),
               set(state`settings.passwordForm.isLoading`, false),
-              showValidationError('Could not change Password!'),
+              rootFactories.showValidationError('Could not change Password!'),
             ],
           },
         ],
@@ -146,7 +152,7 @@ export const updatePassword = [
           set(state`settings.passwordForm.currentPassword.value`, ''),
           set(state`settings.passwordForm.password.value`, ''),
           set(state`settings.passwordForm.isLoading`, false),
-          showFlash(
+          rootFactories.showFlash(
             'Current password is not correct - please try again',
             'error'
           ),
@@ -188,27 +194,33 @@ export const signOutActiveUser = [
           {
             success: [
               set(state`settings.accountForm.isLoading`, false),
-              showFlash(
+              rootFactories.showFlash(
                 string`Your current tokens will not be refreshed`,
                 'success'
               ),
             ],
             error: [
               set(state`settings.accountForm.isLoading`, false),
-              showFlash(string`Your tokens could not be invalidated`, 'error'),
+              rootFactories.showFlash(
+                string`Your tokens could not be invalidated`,
+                'error'
+              ),
             ],
           },
         ],
         error: [
           set(state`settings.accountForm.password.value`, ''),
           set(state`settings.accountForm.isLoading`, false),
-          showFlash('Password is not correct - please try again', 'error'),
+          rootFactories.showFlash(
+            'Password is not correct - please try again',
+            'error'
+          ),
         ],
       },
     ],
     false: [
       set(state`settings.accountForm.showErrors`, true),
-      showFlash('Please provide your password', 'error'),
+      rootFactories.showFlash('Please provide your password', 'error'),
     ],
   },
 ]
@@ -246,24 +258,33 @@ export const removeActiveUser = [
               removeUser,
               set(state`settings.accountForm.isLoading`, false),
               redirectToSignal('pageRouted', { page: 'home' }),
-              showFlash(string`You were successfully deleted. Bye!`, 'success'),
+              rootFactories.showFlash(
+                string`You were successfully deleted. Bye!`,
+                'success'
+              ),
             ],
             error: [
               set(state`settings.accountForm.isLoading`, false),
-              showFlash(string`You could not be deleted`, 'error'),
+              rootFactories.showFlash(
+                string`You could not be deleted`,
+                'error'
+              ),
             ],
           },
         ],
         error: [
           set(state`settings.accountForm.password.value`, ''),
           set(state`settings.accountForm.isLoading`, false),
-          showFlash('Password is not correct - please try again', 'error'),
+          rootFactories.showFlash(
+            'Password is not correct - please try again',
+            'error'
+          ),
         ],
       },
     ],
     false: [
       set(state`settings.accountForm.showErrors`, true),
-      showFlash('Please provide your password', 'error'),
+      rootFactories.showFlash('Please provide your password', 'error'),
     ],
   },
 ]

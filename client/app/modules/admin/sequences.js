@@ -2,7 +2,7 @@ import { state, string, props, resolveObject } from 'cerebral/tags'
 import { set, unset, when, debounce } from 'cerebral/operators'
 import { httpGet, httpDelete, httpPut } from '@cerebral/http/operators'
 
-import { showFlash, showValidationError } from '../../factories'
+import * as rootFactories from '../../factories'
 import * as actions from './actions'
 
 export const fetchUsers = [
@@ -30,7 +30,10 @@ export const fetchUsers = [
       actions.mergeUsers,
       set(state`admin.pages`, props`response.result.pages`),
     ],
-    error: showFlash('Could not fetch users from database', 'error'),
+    error: rootFactories.showFlash(
+      'Could not fetch users from database',
+      'error'
+    ),
   },
 ]
 
@@ -73,12 +76,12 @@ export const signOutUser = [
   httpGet(string`${state`admin.users.${state`admin.activeUid`}.@id`}/signout`),
   {
     success: [
-      showFlash(
+      rootFactories.showFlash(
         string`Current tokens from ${props`nickname`} will not be refreshed`,
         'success'
       ),
     ],
-    error: showFlash(
+    error: rootFactories.showFlash(
       string`Tokens from ${props`nickname`} could not be invalidated`,
       'error'
     ),
@@ -103,9 +106,15 @@ export const removeUser = [
   {
     success: [
       unset(state`admin.users.${state`admin.activeUid`}`),
-      showFlash(string`${props`nickname`} was successfully deleted`, 'success'),
+      rootFactories.showFlash(
+        string`${props`nickname`} was successfully deleted`,
+        'success'
+      ),
     ],
-    error: showFlash(string`${props`nickname`} could not be deleted`, 'error'),
+    error: rootFactories.showFlash(
+      string`${props`nickname`} could not be deleted`,
+      'error'
+    ),
   },
   set(state`admin.activeUid`, null),
 ]
@@ -125,7 +134,7 @@ export const toggleAdmin = [
   ),
   {
     success: [set(state`admin.users.${props`uid`}.isAdmin`, props`isAdmin`)],
-    error: showValidationError(
+    error: rootFactories.showValidationError(
       string`Admin could not be toggled for ${state`admin.users.${props`uid`}.nickname`}`
     ),
   },
@@ -143,7 +152,10 @@ export const searchUsers = [
       set(state`admin.searchIsLoading`, false),
       when(props`noUsersFound`),
       {
-        true: showFlash('Could not find any users matching.', 'info'),
+        true: rootFactories.showFlash(
+          'Could not find any users matching.',
+          'info'
+        ),
         false: [],
       },
     ],

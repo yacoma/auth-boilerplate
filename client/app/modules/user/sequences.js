@@ -1,45 +1,12 @@
 import { state, props, string, resolveObject } from 'cerebral/tags'
-import { set, unset, when } from 'cerebral/operators'
+import { set, when } from 'cerebral/operators'
 import { redirectToSignal } from '@cerebral/router/operators'
-import { httpGet, httpPost, httpPut } from '@cerebral/http/operators'
+import { httpPost, httpPut } from '@cerebral/http/operators'
 import { setField, isValidForm } from '@cerebral/forms/operators'
-import { removeStorage } from '@cerebral/storage/operators'
 
-import { redirectToLogin } from '../../actions'
-import { showFlash, showValidationError } from '../../factories'
+import * as rootFactories from '../../factories'
+import * as rootActions from '../../actions'
 import * as actions from './actions'
-
-export const refreshToken = [
-  httpGet('/refresh'),
-  {
-    success: [
-      set(state`flash`, null),
-      set(state`flashType`, null),
-      actions.initUser,
-      when(state`currentPage`, currentPage => currentPage === 'login'),
-      {
-        true: [
-          when(state`lastVisited`),
-          {
-            true: redirectToSignal(
-              'pageRouted',
-              resolveObject({
-                page: state`lastVisited`,
-              })
-            ),
-            false: redirectToSignal('pageRouted', { page: 'home' }),
-          },
-        ],
-        false: [],
-      },
-    ],
-    error: [
-      removeStorage('jwtHeader'),
-      showValidationError('Could not refresh your token!'),
-    ],
-  },
-  unset(state`user.token.shouldRefresh`),
-]
 
 export const changeField = setField(state`${props`path`}`, props`value`)
 
@@ -62,7 +29,7 @@ export const signinUser = [
           set(state`user.loginForm.password.value`, ''),
           set(state`flash`, null),
           set(state`flashType`, null),
-          actions.initUser,
+          rootActions.initUser,
           set(state`user.loginForm.isLoading`, false),
           when(state`lastVisited`),
           {
@@ -78,7 +45,7 @@ export const signinUser = [
         error: [
           set(state`user.loginForm.password.value`, ''),
           set(state`user.loginForm.isLoading`, false),
-          showValidationError('Could not log-in!'),
+          rootFactories.showValidationError('Could not log-in!'),
         ],
       },
     ],
@@ -114,7 +81,7 @@ export const registerUser = [
             success: [
               set(state`flash`, null),
               set(state`flashType`, null),
-              actions.initUser,
+              rootActions.initUser,
               when(state`lastVisited`),
               {
                 true: redirectToSignal(
@@ -128,14 +95,14 @@ export const registerUser = [
             ],
             error: [
               redirectToSignal('pageRouted', { page: 'home' }),
-              showValidationError('Could not log-in!'),
+              rootFactories.showValidationError('Could not log-in!'),
             ],
           },
           set(state`user.registerForm.nickname.value`, ''),
           set(state`user.registerForm.email.value`, ''),
           set(state`user.registerForm.password.value`, ''),
           set(state`user.registerForm.isLoading`, false),
-          showFlash(
+          rootFactories.showFlash(
             'Welcome! Please check your mailbox to confirm your email address.',
             'success'
           ),
@@ -143,7 +110,7 @@ export const registerUser = [
         error: [
           set(state`user.registerForm.password.value`, ''),
           set(state`user.registerForm.isLoading`, false),
-          showValidationError('Could not register!'),
+          rootFactories.showValidationError('Could not register!'),
         ],
       },
     ],
@@ -167,15 +134,17 @@ export const requestPasswordReset = [
         success: [
           set(state`user.emailForm.email.value`, ''),
           set(state`user.emailForm.isLoading`, false),
-          redirectToLogin,
-          showFlash(
+          rootActions.redirectToLogin,
+          rootFactories.showFlash(
             'Please check your email for a password reset link',
             'success'
           ),
         ],
         error: [
           set(state`user.emailForm.isLoading`, false),
-          showValidationError('Could not send password reset email!'),
+          rootFactories.showValidationError(
+            'Could not send password reset email!'
+          ),
         ],
       },
     ],
@@ -202,12 +171,12 @@ export const updatePassword = [
           set(state`user.passwordForm.password.value`, ''),
           set(state`user.passwordForm.isLoading`, false),
           redirectToSignal('pageRouted', { page: 'home' }),
-          showFlash('Your password has been updated', 'success'),
+          rootFactories.showFlash('Your password has been updated', 'success'),
         ],
         error: [
           set(state`user.passwordForm.password.value`, ''),
           set(state`user.passwordForm.isLoading`, false),
-          showValidationError('Could not update Password!'),
+          rootFactories.showValidationError('Could not update Password!'),
         ],
       },
     ],
@@ -219,5 +188,5 @@ export const logoutUser = [
   set(state`user.loginForm.isLoading`, false),
   actions.removeUser,
   redirectToSignal('pageRouted', { page: 'home' }),
-  showFlash('Good bye!', 'info'),
+  rootFactories.showFlash('Good bye!', 'info'),
 ]
