@@ -12,7 +12,11 @@ export default connect(
   function Navbar({ currentPage, user, logoutButtonClicked }) {
     return (
       <Menu attached="top" inverted secondary pointing size="large">
-        <Menu.Item name="home" href="/" active={currentPage === null}>
+        <Menu.Item
+          name="home"
+          href="/home"
+          active={currentPage === 'home' || currentPage === null}
+        >
           Home
         </Menu.Item>
         <Menu.Item
