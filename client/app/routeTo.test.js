@@ -1,42 +1,41 @@
-import test from 'ava'
 import { runSignal } from 'cerebral/test'
 
 import routeTo from './routeTo'
 
-test('should route to home', t => {
+test('should route to home', () => {
   return runSignal(routeTo('home'), {
     state: { lastVisited: 'private' },
   }).then(({ state }) => [
-    t.is(state.currentPage, 'home'),
-    t.is(state.lastVisited, 'home'),
-    t.is(state.headerText, 'Auth Boilerplate'),
-    t.is(state.headerIcon, null),
+    expect(state.currentPage).toBe('home'),
+    expect(state.lastVisited).toBe('home'),
+    expect(state.headerText).toBe('Auth Boilerplate'),
+    expect(state.headerIcon).toBe(null),
   ])
 })
 
-test('route to login should not change lastVisited', t => {
+test('route to login should not change lastVisited', () => {
   return runSignal(routeTo('login'), {
     state: { lastVisited: 'private' },
   }).then(({ state }) => [
-    t.is(state.currentPage, 'login'),
-    t.is(state.lastVisited, 'private'),
-    t.is(state.headerText, 'Log in your account'),
-    t.is(state.headerIcon, 'user'),
+    expect(state.currentPage).toBe('login'),
+    expect(state.lastVisited).toBe('private'),
+    expect(state.headerText).toBe('Log in your account'),
+    expect(state.headerIcon).toBe('user'),
   ])
 })
 
-test('route to register should not change lastVisited', t => {
+test('route to register should not change lastVisited', () => {
   return runSignal(routeTo('register'), {
     state: { lastVisited: 'private' },
   }).then(({ state }) => [
-    t.is(state.currentPage, 'register'),
-    t.is(state.lastVisited, 'private'),
-    t.is(state.headerText, 'Create account'),
-    t.is(state.headerIcon, 'user'),
+    expect(state.currentPage).toBe('register'),
+    expect(state.lastVisited).toBe('private'),
+    expect(state.headerText).toBe('Create account'),
+    expect(state.headerIcon).toBe('user'),
   ])
 })
 
-test('route to private should set header title', t => {
+test('route to private should set header title', () => {
   return runSignal(routeTo('private'), {
     state: {
       user: {
@@ -45,14 +44,14 @@ test('route to private should set header title', t => {
       },
     },
   }).then(({ state }) => [
-    t.is(state.currentPage, 'private'),
-    t.is(state.lastVisited, 'private'),
-    t.is(state.headerText, 'Hello {nickname}!'),
-    t.is(state.headerIcon, null),
+    expect(state.currentPage).toBe('private'),
+    expect(state.lastVisited).toBe('private'),
+    expect(state.headerText).toBe('Hello {nickname}!'),
+    expect(state.headerIcon).toBe(null),
   ])
 })
 
-test('newpassword with passed @id should route to newpassword', t => {
+test('newpassword with passed @id should route to newpassword', () => {
   return runSignal(routeTo('newpassword'), {
     state: {
       user: {
@@ -63,13 +62,13 @@ test('newpassword with passed @id should route to newpassword', t => {
       },
     },
   }).then(({ state }) => [
-    t.is(state.currentPage, 'newpassword'),
-    t.is(state.headerText, 'New Password'),
-    t.is(state.headerIcon, 'user'),
+    expect(state.currentPage).toBe('newpassword'),
+    expect(state.headerText).toBe('New Password'),
+    expect(state.headerIcon).toBe('user'),
   ])
 })
 
-test('settings should set currentTab and nickname', t => {
+test('settings should set currentTab and nickname', () => {
   return runSignal(routeTo('settings', 'email'), {
     state: {
       settings: {
@@ -86,11 +85,11 @@ test('settings should set currentTab and nickname', t => {
       },
     },
   }).then(({ state }) => [
-    t.is(state.currentPage, 'settings'),
-    t.is(state.lastVisited, 'settings'),
-    t.is(state.settings.currentTab, 'email'),
-    t.is(state.settings.profileForm.nickname.value, 'Test'),
-    t.is(state.headerText, "{nickname}'s settings"),
-    t.is(state.headerIcon, 'user'),
+    expect(state.currentPage).toBe('settings'),
+    expect(state.lastVisited).toBe('settings'),
+    expect(state.settings.currentTab).toBe('email'),
+    expect(state.settings.profileForm.nickname.value).toBe('Test'),
+    expect(state.headerText).toBe("{nickname}'s settings"),
+    expect(state.headerIcon).toBe('user'),
   ])
 })

@@ -1,19 +1,17 @@
-import test from 'ava'
 import mock from 'xhr-mock'
 import { CerebralTest } from 'cerebral/test'
 
 import app from '../..'
-import { authHeader } from '../../test_constants'
 
 let cerebral
 
-test.beforeEach(t => {
+beforeEach(() => {
   localStorage.removeItem('jwtHeader')
   mock.setup()
   cerebral = CerebralTest(app({ flash: null, flashType: null }))
 })
 
-test.serial('should login', t => {
+test('should login', () => {
   mock.post('/api/login', (req, res) => {
     return res
       .status(200)
@@ -27,19 +25,21 @@ test.serial('should login', t => {
   return cerebral
     .runSignal('user.loginFormSubmitted')
     .then(({ state }) => [
-      t.true(state.user.authenticated),
-      t.is(state.user.api['@id'], '/users/1'),
-      t.is(state.user.email, 'test@example.com'),
-      t.is(state.user.nickname, 'Tester'),
-      t.false(state.user.isAdmin),
-      t.is(state.user.loginForm.email.value, ''),
-      t.is(state.user.loginForm.password.value, ''),
-      t.false(state.user.loginForm.showErrors),
-      t.is(localStorage.getItem('jwtHeader'), '"' + authHeader.userJwt + '"'),
+      expect(state.user.authenticated).toBe(true),
+      expect(state.user.api['@id']).toBe('/users/1'),
+      expect(state.user.email).toBe('test@example.com'),
+      expect(state.user.nickname).toBe('Tester'),
+      expect(state.user.isAdmin).toBe(false),
+      expect(state.user.loginForm.email.value).toBe(''),
+      expect(state.user.loginForm.password.value).toBe(''),
+      expect(state.user.loginForm.showErrors).toBe(false),
+      expect(localStorage.getItem('jwtHeader')).toBe(
+        '"' + authHeader.userJwt + '"'
+      ),
     ])
 })
 
-test.serial('should not log in when wrong password', t => {
+test('should not log in when wrong password', () => {
   mock.post('/api/login', (req, res) => {
     return res
       .status(403)
@@ -57,13 +57,13 @@ test.serial('should not log in when wrong password', t => {
   return cerebral
     .runSignal('user.loginFormSubmitted')
     .then(({ state }) => [
-      t.false(state.user.authenticated),
-      t.is(state.user.loginForm.email.value, 'test@example.com'),
-      t.is(state.user.loginForm.password.value, ''),
+      expect(state.user.authenticated).toBe(false),
+      expect(state.user.loginForm.email.value).toBe('test@example.com'),
+      expect(state.user.loginForm.password.value).toBe(''),
     ])
 })
 
-test.serial('should not log in on server error', t => {
+test('should not log in on server error', () => {
   mock.post('/api/login', (req, res) => {
     return res.status(501)
   })
@@ -74,13 +74,13 @@ test.serial('should not log in on server error', t => {
   return cerebral
     .runSignal('user.loginFormSubmitted')
     .then(({ state }) => [
-      t.false(state.user.authenticated),
-      t.is(state.user.loginForm.email.value, 'test@example.com'),
-      t.is(state.user.loginForm.password.value, ''),
+      expect(state.user.authenticated).toBe(false),
+      expect(state.user.loginForm.email.value).toBe('test@example.com'),
+      expect(state.user.loginForm.password.value).toBe(''),
     ])
 })
 
-test('should be logged out', t => {
+test('should be logged out', () => {
   cerebral.setState('user.authenticated', true)
   cerebral.setState('user.email', 'admin@example.com')
   cerebral.setState('user.nickname', 'Admin')
@@ -89,14 +89,14 @@ test('should be logged out', t => {
   return cerebral
     .runSignal('user.logoutButtonClicked')
     .then(({ state }) => [
-      t.false(state.user.authenticated),
-      t.is(state.user.email, ''),
-      t.is(state.user.nickname, ''),
-      t.false(state.user.isAdmin),
+      expect(state.user.authenticated).toBe(false),
+      expect(state.user.email).toBe(''),
+      expect(state.user.nickname).toBe(''),
+      expect(state.user.isAdmin).toBe(false),
     ])
 })
 
-test.serial('should login on registration', t => {
+test('should login on registration', () => {
   mock.post('/api/users', (req, res) => {
     return res.status(201).header('Content-Type', 'application/json')
   })
@@ -116,22 +116,24 @@ test.serial('should login on registration', t => {
   return cerebral
     .runSignal('user.registerFormSubmitted')
     .then(({ state }) => [
-      t.true(state.user.authenticated),
-      t.is(state.user.api['@id'], '/users/1'),
-      t.is(state.user.email, 'test@example.com'),
-      t.is(state.user.nickname, 'Tester'),
-      t.is(state.user.isAdmin, false),
-      t.is(localStorage.getItem('jwtHeader'), '"' + authHeader.userJwt + '"'),
-      t.is(state.currentPage, 'home'),
-      t.is(state.user.registerForm.nickname.value, ''),
-      t.is(state.user.registerForm.email.value, ''),
-      t.is(state.user.registerForm.password.value, ''),
-      t.is(state.user.registerForm.confirmPassword.value, ''),
-      t.false(state.user.registerForm.showErrors),
+      expect(state.user.authenticated).toBe(true),
+      expect(state.user.api['@id']).toBe('/users/1'),
+      expect(state.user.email).toBe('test@example.com'),
+      expect(state.user.nickname).toBe('Tester'),
+      expect(state.user.isAdmin).toBe(false),
+      expect(localStorage.getItem('jwtHeader')).toBe(
+        '"' + authHeader.userJwt + '"'
+      ),
+      expect(state.currentPage).toBe('home'),
+      expect(state.user.registerForm.nickname.value).toBe(''),
+      expect(state.user.registerForm.email.value).toBe(''),
+      expect(state.user.registerForm.password.value).toBe(''),
+      expect(state.user.registerForm.confirmPassword.value).toBe(''),
+      expect(state.user.registerForm.showErrors).toBe(false),
     ])
 })
 
-test.serial('should not register when email exists', t => {
+test('should not register when email exists', () => {
   mock.post('/api/users', (req, res) => {
     return res
       .status(409)
@@ -151,16 +153,16 @@ test.serial('should not register when email exists', t => {
   return cerebral
     .runSignal('user.registerFormSubmitted')
     .then(({ state }) => [
-      t.is(state.flash, null),
-      t.is(state.user.registerForm.nickname.value, 'Tester'),
-      t.is(state.user.registerForm.email.value, 'test@example.com'),
-      t.is(state.user.registerForm.password.value, ''),
-      t.is(state.user.registerForm.confirmPassword.value, ''),
-      t.false(state.user.registerForm.showErrors),
+      expect(state.flash).toBe(null),
+      expect(state.user.registerForm.nickname.value).toBe('Tester'),
+      expect(state.user.registerForm.email.value).toBe('test@example.com'),
+      expect(state.user.registerForm.password.value).toBe(''),
+      expect(state.user.registerForm.confirmPassword.value).toBe(''),
+      expect(state.user.registerForm.showErrors).toBe(false),
     ])
 })
 
-test.serial('should not register when email server does not exists', t => {
+test('should not register when email server does not exists', () => {
   mock.post('/api/users', (req, res) => {
     return res
       .status(422)
@@ -181,16 +183,16 @@ test.serial('should not register when email server does not exists', t => {
   return cerebral
     .runSignal('user.registerFormSubmitted')
     .then(({ state }) => [
-      t.is(state.flash, null),
-      t.is(state.user.registerForm.nickname.value, 'Tester'),
-      t.is(state.user.registerForm.email.value, 'test@not.existing.com'),
-      t.is(state.user.registerForm.password.value, ''),
-      t.is(state.user.registerForm.confirmPassword.value, ''),
-      t.false(state.user.registerForm.showErrors),
+      expect(state.flash).toBe(null),
+      expect(state.user.registerForm.nickname.value).toBe('Tester'),
+      expect(state.user.registerForm.email.value).toBe('test@not.existing.com'),
+      expect(state.user.registerForm.password.value).toBe(''),
+      expect(state.user.registerForm.confirmPassword.value).toBe(''),
+      expect(state.user.registerForm.showErrors).toBe(false),
     ])
 })
 
-test.serial('should not send register form when email is not valid', t => {
+test('should not send register form when email is not valid', () => {
   cerebral.setState('user.registerForm.nickname.value', 'Tester')
   cerebral.setState('user.registerForm.email.value', 'not.an.email')
   cerebral.setState('user.registerForm.password.value', 'secret0')
@@ -199,15 +201,15 @@ test.serial('should not send register form when email is not valid', t => {
   return cerebral
     .runSignal('user.registerFormSubmitted')
     .then(({ state }) => [
-      t.true(state.user.registerForm.showErrors),
-      t.is(state.user.registerForm.nickname.value, 'Tester'),
-      t.is(state.user.registerForm.email.value, 'not.an.email'),
-      t.is(state.user.registerForm.password.value, 'secret0'),
-      t.is(state.user.registerForm.confirmPassword.value, 'secret0'),
+      expect(state.user.registerForm.showErrors).toBe(true),
+      expect(state.user.registerForm.nickname.value).toBe('Tester'),
+      expect(state.user.registerForm.email.value).toBe('not.an.email'),
+      expect(state.user.registerForm.password.value).toBe('secret0'),
+      expect(state.user.registerForm.confirmPassword.value).toBe('secret0'),
     ])
 })
 
-test.serial('should not send register form when password is to short', t => {
+test('should not send register form when password is to short', () => {
   cerebral.setState('user.registerForm.nickname.value', 'Tester')
   cerebral.setState('user.registerForm.email.value', 'test@example.com')
   cerebral.setState('user.registerForm.password.value', 'mini')
@@ -216,15 +218,15 @@ test.serial('should not send register form when password is to short', t => {
   return cerebral
     .runSignal('user.registerFormSubmitted')
     .then(({ state }) => [
-      t.true(state.user.registerForm.showErrors),
-      t.is(state.user.registerForm.nickname.value, 'Tester'),
-      t.is(state.user.registerForm.email.value, 'test@example.com'),
-      t.is(state.user.registerForm.password.value, 'mini'),
-      t.is(state.user.registerForm.confirmPassword.value, 'mini'),
+      expect(state.user.registerForm.showErrors).toBe(true),
+      expect(state.user.registerForm.nickname.value).toBe('Tester'),
+      expect(state.user.registerForm.email.value).toBe('test@example.com'),
+      expect(state.user.registerForm.password.value).toBe('mini'),
+      expect(state.user.registerForm.confirmPassword.value).toBe('mini'),
     ])
 })
 
-test.serial('should not send register form when passwords are not equal', t => {
+test('should not send register form when passwords are not equal', () => {
   cerebral.setState('user.registerForm.nickname.value', 'Tester')
   cerebral.setState('user.registerForm.email.value', 'test@example.com')
   cerebral.setState('user.registerForm.password.value', 'secret0')
@@ -233,10 +235,10 @@ test.serial('should not send register form when passwords are not equal', t => {
   return cerebral
     .runSignal('user.registerFormSubmitted')
     .then(({ state }) => [
-      t.true(state.user.registerForm.showErrors),
-      t.is(state.user.registerForm.nickname.value, 'Tester'),
-      t.is(state.user.registerForm.email.value, 'test@example.com'),
-      t.is(state.user.registerForm.password.value, 'secret0'),
-      t.is(state.user.registerForm.confirmPassword.value, 'secret1'),
+      expect(state.user.registerForm.showErrors).toBe(true),
+      expect(state.user.registerForm.nickname.value).toBe('Tester'),
+      expect(state.user.registerForm.email.value).toBe('test@example.com'),
+      expect(state.user.registerForm.password.value).toBe('secret0'),
+      expect(state.user.registerForm.confirmPassword.value).toBe('secret1'),
     ])
 })

@@ -1,126 +1,114 @@
-import test from 'ava'
 import mock from 'xhr-mock'
 import { CerebralTest } from 'cerebral/test'
 
 import app from '.'
 import { AuthenticationError } from './errors'
-import { authHeader } from './test_constants'
 
 let cerebral
 
-test.beforeEach(t => {
+beforeEach(() => {
   mock.setup()
   localStorage.removeItem('jwtHeader')
 })
 
-test.serial('should authenticate when valid token in localStorage', t => {
+test('should authenticate when valid token in localStorage', () => {
   localStorage.setItem('jwtHeader', JSON.stringify(authHeader.userJwt))
   cerebral = CerebralTest(app({ flash: null, flashType: null }))
   return cerebral
     .runSignal('appMounted')
     .then(({ state }) => [
-      t.true(state.user.authenticated),
-      t.is(state.user.nickname, 'Tester'),
+      expect(state.user.authenticated).toBe(true),
+      expect(state.user.nickname).toBe('Tester'),
     ])
 })
 
-test.serial(
-  'should refresh token when expired token and refresh allowed',
-  t => {
-    localStorage.setItem(
-      'jwtHeader',
-      JSON.stringify(authHeader.expiredRefreshableJwt)
-    )
-    cerebral = CerebralTest(app({ flash: null, flashType: null }))
+test('should refresh token when expired token and refresh allowed', async () => {
+  expect.assertions(2)
 
-    mock.get('/api/refresh', (req, res) => {
-      return res
-        .status(200)
-        .header('Content-Type', 'application/json')
-        .header('Authorization', authHeader.validJwt)
-    })
+  localStorage.setItem(
+    'jwtHeader',
+    JSON.stringify(authHeader.expiredRefreshableJwt)
+  )
+  cerebral = CerebralTest(app({ flash: null, flashType: null }))
 
-    return cerebral
-      .runSignal('appMounted')
-      .then(({ state }) => [
-        t.true(state.user.authenticated),
-        t.is(state.user.nickname, 'Tester'),
-      ])
-  }
-)
+  mock.get('/api/refresh', (req, res) => {
+    return res
+      .status(200)
+      .header('Content-Type', 'application/json')
+      .header('Authorization', authHeader.validJwt)
+  })
 
-test.serial(
-  'unauthenticated route to private should redirect to login',
-  async t => {
-    cerebral = CerebralTest(app({ flash: null, flashType: null }))
-    const error = await t.throws(
-      cerebral.runSignal('pageRouted', { page: 'private' }),
-      AuthenticationError
-    )
+  await cerebral
+    .runSignal('appMounted')
+    .then(({ state }) => [
+      expect(state.user.authenticated).toBe(true),
+      expect(state.user.nickname).toBe('Tester'),
+    ])
+})
 
-    t.is(error.message, 'You must log in to view this page')
-    t.is(cerebral.getState('currentPage'), 'login')
-    t.is(cerebral.getState('lastVisited'), 'private')
-  }
-)
+test('unauthenticated route to private should redirect to login', async () => {
+  expect.assertions(3)
 
-test.serial(
-  'unauthenticated route to settings should redirect to login',
-  async t => {
-    cerebral = CerebralTest(app({ flash: null, flashType: null }))
-    const error = await t.throws(
-      cerebral.runSignal('settingsRouted', { tab: 'email' }),
-      AuthenticationError
-    )
+  cerebral = CerebralTest(app({ flash: null, flashType: null }))
+  await expect(
+    cerebral.runSignal('pageRouted', { page: 'private' })
+  ).rejects.toEqual(
+    new AuthenticationError('You must log in to view this page')
+  )
+  expect(cerebral.getState('lastVisited')).toBe('private')
+  expect(cerebral.getState('currentPage')).toBe('login')
+})
 
-    t.is(error.message, 'You must log in to view this page')
-    t.is(cerebral.getState('currentPage'), 'login')
-    t.is(cerebral.getState('lastVisited'), 'settings')
-  }
-)
+test('unauthenticated route to settings should redirect to login', async () => {
+  expect.assertions(3)
 
-test.serial(
-  'unauthenticated route to admin should redirect to login',
-  async t => {
-    cerebral = CerebralTest(app({ flash: null, flashType: null }))
-    const error = await t.throws(
-      cerebral.runSignal('pageRouted', { page: 'admin' }),
-      AuthenticationError
-    )
+  cerebral = CerebralTest(app({ flash: null, flashType: null }))
+  await expect(
+    cerebral.runSignal('settingsRouted', { tab: 'email' })
+  ).rejects.toEqual(
+    new AuthenticationError('You must log in to view this page')
+  )
+  expect(cerebral.getState('currentPage')).toBe('login')
+  expect(cerebral.getState('lastVisited')).toBe('settings')
+})
 
-    t.is(error.message, 'You need Admin permissions to view this page')
-    t.is(cerebral.getState('currentPage'), 'login')
-    t.is(cerebral.getState('lastVisited'), 'admin')
-  }
-)
+test('unauthenticated route to admin should redirect to login', async () => {
+  expect.assertions(3)
 
-test.serial(
-  'route to admin should redirect to login when not isAdmin',
-  async t => {
-    localStorage.setItem('jwtHeader', JSON.stringify(authHeader.userJwt))
-    cerebral = CerebralTest(app({ flash: null, flashType: null }))
+  cerebral = CerebralTest(app({ flash: null, flashType: null }))
+  await expect(
+    cerebral.runSignal('pageRouted', { page: 'admin' })
+  ).rejects.toEqual(
+    new AuthenticationError('You need Admin permissions to view this page')
+  )
+  expect(cerebral.getState('currentPage')).toBe('login')
+  expect(cerebral.getState('lastVisited')).toBe('admin')
+})
 
-    const error = await t.throws(
-      cerebral.runSignal('pageRouted', { page: 'admin' }),
-      AuthenticationError
-    )
+test('route to admin should redirect to login when not isAdmin', async () => {
+  expect.assertions(3)
 
-    t.is(error.message, 'You need Admin permissions to view this page')
-    t.is(cerebral.getState('currentPage'), 'login')
-    t.is(cerebral.getState('lastVisited'), 'admin')
-  }
-)
+  localStorage.setItem('jwtHeader', JSON.stringify(authHeader.userJwt))
+  cerebral = CerebralTest(app({ flash: null, flashType: null }))
 
-test.serial('route to admin should work when isAdmin', t => {
+  await expect(
+    cerebral.runSignal('pageRouted', { page: 'admin' })
+  ).rejects.toEqual(
+    new AuthenticationError('You need Admin permissions to view this page')
+  )
+  expect(cerebral.getState('currentPage')).toBe('login')
+  expect(cerebral.getState('lastVisited')).toBe('admin')
+})
+
+test('route to admin should work when isAdmin', async () => {
+  expect.assertions(4)
+
   localStorage.setItem('jwtHeader', JSON.stringify(authHeader.adminJwt))
   cerebral = CerebralTest(app({ flash: null, flashType: null }))
 
-  return cerebral
-    .runSignal('pageRouted', { page: 'admin' })
-    .then(({ state }) => [
-      t.true(state.user.authenticated),
-      t.true(state.user.isAdmin),
-      t.is(state.currentPage, 'admin'),
-      t.is(state.lastVisited, 'admin'),
-    ])
+  const result = await cerebral.runSignal('pageRouted', { page: 'admin' })
+  expect(result.state.user.authenticated).toEqual(true)
+  expect(result.state.user.isAdmin).toBe(true)
+  expect(result.state.currentPage).toBe('admin')
+  expect(result.state.lastVisited).toBe('admin')
 })

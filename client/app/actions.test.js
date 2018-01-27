@@ -1,12 +1,10 @@
-import test from 'ava'
 import HttpProvider from '@cerebral/http'
 import StorageModule from '@cerebral/storage'
 import { runAction } from 'cerebral/test'
 
-import { authHeader } from './test_constants'
 import * as actions from './actions'
 
-test.serial('should initialize user state', t => {
+test('should initialize user state', () => {
   return runAction(actions.initUser, {
     state: {
       user: {
@@ -37,16 +35,18 @@ test.serial('should initialize user state', t => {
       }),
     },
   }).then(({ state }) => [
-    t.true(state.user.authenticated),
-    t.is(state.user.api['@id'], '/users/1'),
-    t.is(state.user.email, 'test@example.com'),
-    t.is(state.user.nickname, 'Tester'),
-    t.false(state.user.isAdmin),
-    t.is(localStorage.getItem('jwtHeader'), '"' + authHeader.validJwt + '"'),
+    expect(state.user.authenticated).toBe(true),
+    expect(state.user.api['@id']).toBe('/users/1'),
+    expect(state.user.email).toBe('test@example.com'),
+    expect(state.user.nickname).toBe('Tester'),
+    expect(state.user.isAdmin).toBe(false),
+    expect(localStorage.getItem('jwtHeader')).toBe(
+      '"' + authHeader.validJwt + '"'
+    ),
   ])
 })
 
-test.serial('should initialize app state when no exp claim', t => {
+test('should initialize app state when no exp claim', () => {
   localStorage.setItem('jwtHeader', JSON.stringify(authHeader.userJwt))
 
   return runAction(actions.initApp, {
@@ -62,16 +62,18 @@ test.serial('should initialize app state when no exp claim', t => {
     },
     modules: { storage: StorageModule({ target: localStorage }) },
   }).then(({ state }) => [
-    t.true(state.user.authenticated),
-    t.is(state.user.api['@id'], '/users/1'),
-    t.is(state.user.email, 'test@example.com'),
-    t.is(state.user.nickname, 'Tester'),
-    t.false(state.user.isAdmin),
-    t.is(localStorage.getItem('jwtHeader'), '"' + authHeader.userJwt + '"'),
+    expect(state.user.authenticated).toBe(true),
+    expect(state.user.api['@id']).toBe('/users/1'),
+    expect(state.user.email).toBe('test@example.com'),
+    expect(state.user.nickname).toBe('Tester'),
+    expect(state.user.isAdmin).toBe(false),
+    expect(localStorage.getItem('jwtHeader')).toBe(
+      '"' + authHeader.userJwt + '"'
+    ),
   ])
 })
 
-test.serial('should initialize app state when exp claim is valid', t => {
+test('should initialize app state when exp claim is valid', () => {
   localStorage.setItem('jwtHeader', JSON.stringify(authHeader.validJwt))
 
   return runAction(actions.initApp, {
@@ -87,37 +89,36 @@ test.serial('should initialize app state when exp claim is valid', t => {
     },
     modules: { storage: StorageModule({ target: localStorage }) },
   }).then(({ state }) => [
-    t.true(state.user.authenticated),
-    t.is(state.user.api['@id'], '/users/1'),
-    t.is(state.user.email, 'test@example.com'),
-    t.is(state.user.nickname, 'Tester'),
-    t.false(state.user.isAdmin),
-    t.is(state.user.token.exp, 1000000000000),
-    t.is(state.user.token.refreshUntil, 1000000010000),
-    t.is(localStorage.getItem('jwtHeader'), '"' + authHeader.validJwt + '"'),
+    expect(state.user.authenticated).toBe(true),
+    expect(state.user.api['@id']).toBe('/users/1'),
+    expect(state.user.email).toBe('test@example.com'),
+    expect(state.user.nickname).toBe('Tester'),
+    expect(state.user.isAdmin).toBe(false),
+    expect(state.user.token.exp).toBe(1000000000000),
+    expect(state.user.token.refreshUntil).toBe(1000000010000),
+    expect(localStorage.getItem('jwtHeader')).toBe(
+      '"' + authHeader.validJwt + '"'
+    ),
   ])
 })
 
-test.serial(
-  'should fail initialize app state when token and refreshUntil expired',
-  t => {
-    localStorage.setItem('jwtHeader', JSON.stringify(authHeader.expiredJwt))
+test('should fail initialize app state when token and refreshUntil expired', () => {
+  localStorage.setItem('jwtHeader', JSON.stringify(authHeader.expiredJwt))
 
-    return runAction(actions.initApp, {
-      state: {
-        user: {
-          email: '',
-          nickname: '',
-          isAdmin: false,
-          authenticated: false,
-          token: {},
-          api: {},
-        },
+  return runAction(actions.initApp, {
+    state: {
+      user: {
+        email: '',
+        nickname: '',
+        isAdmin: false,
+        authenticated: false,
+        token: {},
+        api: {},
       },
-      modules: { storage: StorageModule({ target: localStorage }) },
-    }).then(({ state }) => [
-      t.false(state.user.authenticated),
-      t.is(localStorage.getItem('jwtHeader'), null),
-    ])
-  }
-)
+    },
+    modules: { storage: StorageModule({ target: localStorage }) },
+  }).then(({ state }) => [
+    expect(state.user.authenticated).toBe(false),
+    expect(localStorage.getItem('jwtHeader')).toBe(null),
+  ])
+})

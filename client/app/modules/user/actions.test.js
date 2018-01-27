@@ -1,12 +1,10 @@
-import test from 'ava'
 import HttpProvider from '@cerebral/http'
 import StorageModule from '@cerebral/storage'
 import { runAction } from 'cerebral/test'
 
-import { authHeader } from '../../test_constants'
 import * as actions from './actions'
 
-test.serial('should remove user state', t => {
+test('should remove user state', () => {
   localStorage.setItem('jwtHeader', JSON.stringify(authHeader.validJwt))
 
   return runAction(actions.removeUser, {
@@ -34,12 +32,12 @@ test.serial('should remove user state', t => {
       }),
     },
   }).then(({ state }) => [
-    t.false(state.user.authenticated),
-    t.deepEqual(state.user.api, {}),
-    t.deepEqual(state.user.token, {}),
-    t.is(state.user.email, ''),
-    t.is(state.user.nickname, ''),
-    t.false(state.user.isAdmin),
-    t.is(localStorage.getItem('jwtHeader'), null),
+    expect(state.user.authenticated).toBe(false),
+    expect(state.user.api).toEqual({}),
+    expect(state.user.token).toEqual({}),
+    expect(state.user.email).toBe(''),
+    expect(state.user.nickname).toBe(''),
+    expect(state.user.isAdmin).toBe(false),
+    expect(localStorage.getItem('jwtHeader')).toBe(null),
   ])
 })

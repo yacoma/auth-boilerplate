@@ -12,13 +12,11 @@
     "es6": true
   },
   "plugins": [
-    "ava",
     "prettier"
   ],
   "extends": [
     "standard",
     "standard-jsx",
-    "plugin:ava/recommended",
     "prettier",
     "prettier/react"
   ],
@@ -37,6 +35,11 @@
     "localStorage": true,
     "URLSearchParams": true,
     "location": true,
-    "history": true
+    "history": true,
+    "test": true,
+    "expect": true,
+    "beforeEach": true,
+    "afterEach": true,
+    "authHeader": true
   }
 }

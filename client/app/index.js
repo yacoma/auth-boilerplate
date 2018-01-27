@@ -12,6 +12,7 @@ import router from './router'
 import { AuthenticationError } from './errors'
 import * as sequences from './sequences'
 
+/* istanbul ignore next */
 const jwtHeader = localStorage.getItem('jwtHeader')
   ? JSON.parse(localStorage.getItem('jwtHeader'))
   : null

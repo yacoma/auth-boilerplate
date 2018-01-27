@@ -1,19 +1,17 @@
-import test from 'ava'
 import mock from 'xhr-mock'
 import { CerebralTest } from 'cerebral/test'
 
 import app from '../..'
-import { authHeader } from '../../test_constants'
 
 let cerebral
 
-test.beforeEach(t => {
+beforeEach(() => {
   localStorage.setItem('jwtHeader', JSON.stringify(authHeader.userJwt))
   mock.setup()
   cerebral = CerebralTest(app({ flash: null, flashType: null }))
 })
 
-test.serial('should change nickname', t => {
+test('should change nickname', () => {
   mock.put('/api/users/1', (req, res) => {
     return res.status(200).header('Content-Type', 'application/json')
   })
@@ -24,10 +22,10 @@ test.serial('should change nickname', t => {
 
   return cerebral
     .runSignal('settings.profileFormSubmitted')
-    .then(({ state }) => [t.is(state.user.nickname, 'NewTest')])
+    .then(({ state }) => [expect(state.user.nickname).toBe('NewTest')])
 })
 
-test.serial('should change email', t => {
+test('should change email', () => {
   mock.put('/api/users/1', (req, res) => {
     return res.status(200).header('Content-Type', 'application/json')
   })
@@ -46,5 +44,7 @@ test.serial('should change email', t => {
 
   return cerebral
     .runSignal('settings.emailFormSubmitted')
-    .then(({ state }) => [t.is(state.user.email, 'new-test@example.com')])
+    .then(({ state }) => [
+      expect(state.user.email).toBe('new-test@example.com'),
+    ])
 })

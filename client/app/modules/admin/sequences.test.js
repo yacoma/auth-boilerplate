@@ -1,16 +1,14 @@
-import test from 'ava'
 import uuid from 'uuid'
 import mock from 'xhr-mock'
 import StorageModule from '@cerebral/storage'
 import HttpProvider from '@cerebral/http'
 import { runSignal } from 'cerebral/test'
 
-import { authHeader } from '../../test_constants'
 import * as sequences from './sequences'
 
 let cerebral
 
-test.beforeEach(t => {
+beforeEach(() => {
   mock.setup()
   cerebral = {
     state: {
@@ -42,7 +40,7 @@ test.beforeEach(t => {
   }
 })
 
-test.serial('should fetch users', t => {
+test('should fetch users', () => {
   mock.get(/\/api\/users.*/, (req, res) => {
     return res
       .status(200)
@@ -65,33 +63,32 @@ test.serial('should fetch users', t => {
   })
 
   return runSignal(sequences.fetchUsers, cerebral).then(({ state }) => [
-    t.is(state.admin.pages, 5),
-    t.is(state.admin.users[Object.keys(state.admin.users)[0]]['orderKey'], 1),
-    t.is(
-      state.admin.users[Object.keys(state.admin.users)[0]]['@id'],
+    expect(state.admin.pages).toBe(5),
+    expect(
+      state.admin.users[Object.keys(state.admin.users)[0]]['orderKey']
+    ).toBe(1),
+    expect(state.admin.users[Object.keys(state.admin.users)[0]]['@id']).toBe(
       '/users/1'
     ),
-    t.is(
-      state.admin.users[Object.keys(state.admin.users)[0]]['nickname'],
-      'Leader'
-    ),
-    t.is(
-      state.admin.users[Object.keys(state.admin.users)[0]]['email'],
+    expect(
+      state.admin.users[Object.keys(state.admin.users)[0]]['nickname']
+    ).toBe('Leader'),
+    expect(state.admin.users[Object.keys(state.admin.users)[0]]['email']).toBe(
       'leader@example.com'
     ),
-    t.is(
-      state.admin.users[Object.keys(state.admin.users)[0]]['emailConfirmed'],
-      false
-    ),
-    t.is(state.admin.users[Object.keys(state.admin.users)[0]]['isAdmin'], true),
-    t.is(
-      state.admin.users[Object.keys(state.admin.users)[0]]['registerIP'],
-      ''
-    ),
+    expect(
+      state.admin.users[Object.keys(state.admin.users)[0]]['emailConfirmed']
+    ).toBe(false),
+    expect(
+      state.admin.users[Object.keys(state.admin.users)[0]]['isAdmin']
+    ).toBe(true),
+    expect(
+      state.admin.users[Object.keys(state.admin.users)[0]]['registerIP']
+    ).toBe(''),
   ])
 })
 
-test.serial('should update existing user', t => {
+test('should update existing user', () => {
   Object.assign(cerebral, {
     state: {
       admin: {
@@ -127,18 +124,18 @@ test.serial('should update existing user', t => {
   })
 
   return runSignal(sequences.fetchUsers, cerebral).then(({ state }) => [
-    t.is(state.admin.pages, 15),
-    t.is(state.admin.users.testuid000.orderKey, 1),
-    t.is(state.admin.users.testuid000['@id'], '/users/1'),
-    t.is(state.admin.users.testuid000.nickname, 'Leader'),
-    t.is(state.admin.users.testuid000.email, 'leader@example.com'),
-    t.is(state.admin.users.testuid000.emailConfirmed, false),
-    t.is(state.admin.users.testuid000.isAdmin, true),
-    t.is(state.admin.users.testuid000.registerIP, ''),
+    expect(state.admin.pages).toBe(15),
+    expect(state.admin.users.testuid000.orderKey).toBe(1),
+    expect(state.admin.users.testuid000['@id']).toBe('/users/1'),
+    expect(state.admin.users.testuid000.nickname).toBe('Leader'),
+    expect(state.admin.users.testuid000.email).toBe('leader@example.com'),
+    expect(state.admin.users.testuid000.emailConfirmed).toBe(false),
+    expect(state.admin.users.testuid000.isAdmin).toBe(true),
+    expect(state.admin.users.testuid000.registerIP).toBe(''),
   ])
 })
 
-test.serial('should return noUsersFound', t => {
+test('should return noUsersFound', () => {
   mock.get(/\/api\/users.*/, (req, res) => {
     return res
       .status(200)
@@ -152,5 +149,7 @@ test.serial('should return noUsersFound', t => {
 
   return runSignal(sequences.fetchUsers, cerebral, {
     recordActions: 'byName',
-  }).then(({ mergeUsers }) => [t.true(mergeUsers.output.noUsersFound)])
+  }).then(({ mergeUsers }) => [
+    expect(mergeUsers.output.noUsersFound).toBe(true),
+  ])
 })

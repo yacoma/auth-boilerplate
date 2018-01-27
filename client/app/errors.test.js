@@ -1,32 +1,31 @@
 /* eslint-env mocha */
-import test from 'ava'
 import { AuthenticationError } from './errors'
 
-test('should instanciate AuthenticationError', t => {
+test('should instanciate AuthenticationError', () => {
   const error = new AuthenticationError('User could not be authenticated')
 
-  t.true(error instanceof Error)
-  t.is(error.name, 'AuthenticationError')
-  t.is(error.message, 'User could not be authenticated')
-  t.truthy(error.stack)
-  t.is(error.toJSON().name, 'AuthenticationError')
-  t.is(error.toJSON().message, 'User could not be authenticated')
-  t.truthy(error.toJSON().stack)
+  expect(error instanceof Error).toBe(true)
+  expect(error.name).toBe('AuthenticationError')
+  expect(error.message).toBe('User could not be authenticated')
+  expect(error.stack).toBeTruthy()
+  expect(error.toJSON().name).toBe('AuthenticationError')
+  expect(error.toJSON().message).toBe('User could not be authenticated')
+  expect(error.toJSON().stack).toBeTruthy()
 })
 
-test('should have empty message', t => {
+test('should have empty message', () => {
   const error = new AuthenticationError()
 
-  t.true(error instanceof Error)
-  t.is(error.name, 'AuthenticationError')
-  t.is(error.message, '')
-  t.truthy(error.stack)
-  t.is(error.toJSON().name, 'AuthenticationError')
-  t.is(error.toJSON().message, '')
-  t.truthy(error.toJSON().stack)
+  expect(error instanceof Error).toBe(true)
+  expect(error.name).toBe('AuthenticationError')
+  expect(error.message).toBe('')
+  expect(error.stack).toBeTruthy()
+  expect(error.toJSON().name).toBe('AuthenticationError')
+  expect(error.toJSON().message).toBe('')
+  expect(error.toJSON().stack).toBeTruthy()
 })
 
-test('should extend AuthenticationError', t => {
+test('should extend AuthenticationError', () => {
   class CustomAuthenticationError extends AuthenticationError {
     constructor(message) {
       super(message)
@@ -38,12 +37,12 @@ test('should extend AuthenticationError', t => {
     'Admin could not be authenticated'
   )
 
-  t.true(error instanceof Error)
-  t.true(error instanceof AuthenticationError)
-  t.is(error.name, 'CustomAuthenticationError')
-  t.is(error.message, 'Admin could not be authenticated')
-  t.truthy(error.stack)
-  t.is(error.toJSON().name, 'CustomAuthenticationError')
-  t.is(error.toJSON().message, 'Admin could not be authenticated')
-  t.truthy(error.toJSON().stack)
+  expect(error instanceof Error).toBe(true)
+  expect(error instanceof AuthenticationError).toBe(true)
+  expect(error.name).toBe('CustomAuthenticationError')
+  expect(error.message).toBe('Admin could not be authenticated')
+  expect(error.stack).toBeTruthy()
+  expect(error.toJSON().name).toBe('CustomAuthenticationError')
+  expect(error.toJSON().message).toBe('Admin could not be authenticated')
+  expect(error.toJSON().stack).toBeTruthy()
 })

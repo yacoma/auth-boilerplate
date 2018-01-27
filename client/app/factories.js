@@ -5,7 +5,10 @@ import * as actions from './actions'
 
 const showFlashDebounce = debounce.shared()
 
-export function showFlash(flash, flashType = null, ms = 7000) {
+/* istanbul ignore next */
+const flashTimeOut = process.env.NODE_ENV !== 'test' ? 7000 : 10
+
+export function showFlash(flash, flashType = null, ms = flashTimeOut) {
   return [
     set(state`flash`, flash),
     set(state`flashType`, flashType),

@@ -1,4 +1,4 @@
-export const authHeader = {
+const authHeader = {
   adminJwt:
     'JWT eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJ1aWQiOiIvdXNlcnMvMSIs' +
     'Im5pY2tuYW1lIjoiQWRtaW4iLCJub25jZSI6IjkxZTc4N2Y4YWU5ZTRhNmE5ZTMzN' +
@@ -32,3 +32,5 @@ export const authHeader = {
     'A5MDAwMDAsInJlZnJlc2hfdW50aWwiOjEwMDAwMDAwMDAwMDAsImlzQWRtaW4iOmZ' +
     'hbHNlfQ.3X5zRdc7mvOnROO3Nrsp2iYY4MqhfoXWpSvwOoYwVFw',
 }
+
+global.authHeader = authHeader
