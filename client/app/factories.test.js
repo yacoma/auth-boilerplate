@@ -13,8 +13,8 @@ test('show flash', () => {
   ])
 })
 
-test('show flash for 3s', () => {
-  return runSignal(factories.showFlash('Test error', 'error', 3000), {
+test('show flash for 1s', () => {
+  return runSignal(factories.showFlash('Test error', 'error', 1000), {
     state: {
       app: {},
     },

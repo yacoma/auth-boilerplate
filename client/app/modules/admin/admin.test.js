@@ -35,38 +35,50 @@ test('isAdmin should toggle', async () => {
     ])
 })
 
-test('should switch to previous page', () => {
-  return cerebral
+test('should switch to previous page', async () => {
+  expect.assertions(1)
+
+  await cerebral
     .runSignal('admin.changePageClicked', { nextPage: 'previous' })
     .then(({ state }) => [expect(state.admin.currentPage).toBe(2)])
 })
 
-test('should switch to next page', () => {
-  return cerebral
+test('should switch to next page', async () => {
+  expect.assertions(1)
+
+  await cerebral
     .runSignal('admin.changePageClicked', { nextPage: 'next' })
     .then(({ state }) => [expect(state.admin.currentPage).toBe(4)])
 })
 
-test('should switch to first page', () => {
-  return cerebral
+test('should switch to first page', async () => {
+  expect.assertions(1)
+
+  await cerebral
     .runSignal('admin.changePageClicked', { nextPage: 'first' })
     .then(({ state }) => [expect(state.admin.currentPage).toBe(1)])
 })
 
-test('should switch to last page', () => {
-  return cerebral
+test('should switch to last page', async () => {
+  expect.assertions(1)
+
+  await cerebral
     .runSignal('admin.changePageClicked', { nextPage: 'last' })
     .then(({ state }) => [expect(state.admin.currentPage).toBe(5)])
 })
 
-test('should switch to specified page', () => {
-  return cerebral
+test('should switch to specified page', async () => {
+  expect.assertions(1)
+
+  await cerebral
     .runSignal('admin.changePageClicked', { nextPage: 2 })
     .then(({ state }) => [expect(state.admin.currentPage).toBe(2)])
 })
 
-test('should switch sorting order', () => {
-  return cerebral
+test('should switch sorting order', async () => {
+  expect.assertions(2)
+
+  await cerebral
     .runSignal('admin.sortUsersClicked', { sortBy: 'nickname' })
     .then(({ state }) => [
       expect(state.admin.usersSortBy).toBe('nickname'),
@@ -74,8 +86,10 @@ test('should switch sorting order', () => {
     ])
 })
 
-test('should change sorting row', () => {
-  return cerebral
+test('should change sorting row', async () => {
+  expect.assertions(2)
+
+  await cerebral
     .runSignal('admin.sortUsersClicked', { sortBy: 'email' })
     .then(({ state }) => [
       expect(state.admin.usersSortBy).toBe('email'),

@@ -11,10 +11,12 @@ beforeEach(() => {
   localStorage.removeItem('jwtHeader')
 })
 
-test('should authenticate when valid token in localStorage', () => {
+test('should authenticate when valid token in localStorage', async () => {
+  expect.assertions(2)
+
   localStorage.setItem('jwtHeader', JSON.stringify(authHeader.userJwt))
   cerebral = CerebralTest(app({ flash: null, flashType: null }))
-  return cerebral
+  await cerebral
     .runSignal('appMounted')
     .then(({ state }) => [
       expect(state.user.authenticated).toBe(true),

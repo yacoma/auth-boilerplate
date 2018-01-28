@@ -40,7 +40,9 @@ beforeEach(() => {
   }
 })
 
-test('should fetch users', () => {
+test('should fetch users', async () => {
+  expect.assertions(8)
+
   mock.get(/\/api\/users.*/, (req, res) => {
     return res
       .status(200)
@@ -62,7 +64,7 @@ test('should fetch users', () => {
       )
   })
 
-  return runSignal(sequences.fetchUsers, cerebral).then(({ state }) => [
+  await runSignal(sequences.fetchUsers, cerebral).then(({ state }) => [
     expect(state.admin.pages).toBe(5),
     expect(
       state.admin.users[Object.keys(state.admin.users)[0]]['orderKey']
@@ -88,7 +90,9 @@ test('should fetch users', () => {
   ])
 })
 
-test('should update existing user', () => {
+test('should update existing user', async () => {
+  expect.assertions(8)
+
   Object.assign(cerebral, {
     state: {
       admin: {
@@ -123,7 +127,7 @@ test('should update existing user', () => {
       )
   })
 
-  return runSignal(sequences.fetchUsers, cerebral).then(({ state }) => [
+  await runSignal(sequences.fetchUsers, cerebral).then(({ state }) => [
     expect(state.admin.pages).toBe(15),
     expect(state.admin.users.testuid000.orderKey).toBe(1),
     expect(state.admin.users.testuid000['@id']).toBe('/users/1'),
@@ -135,7 +139,9 @@ test('should update existing user', () => {
   ])
 })
 
-test('should return noUsersFound', () => {
+test('should return noUsersFound', async () => {
+  expect.assertions(1)
+
   mock.get(/\/api\/users.*/, (req, res) => {
     return res
       .status(200)
@@ -147,7 +153,7 @@ test('should return noUsersFound', () => {
       )
   })
 
-  return runSignal(sequences.fetchUsers, cerebral, {
+  await runSignal(sequences.fetchUsers, cerebral, {
     recordActions: 'byName',
   }).then(({ mergeUsers }) => [
     expect(mergeUsers.output.noUsersFound).toBe(true),

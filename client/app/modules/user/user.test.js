@@ -11,7 +11,9 @@ beforeEach(() => {
   cerebral = CerebralTest(app({ flash: null, flashType: null }))
 })
 
-test('should login', () => {
+test('should login', async () => {
+  expect.assertions(9)
+
   mock.post('/api/login', (req, res) => {
     return res
       .status(200)
@@ -22,7 +24,7 @@ test('should login', () => {
   cerebral.setState('user.loginForm.email.value', 'test@example.com')
   cerebral.setState('user.loginForm.password.value', 'secret0')
 
-  return cerebral
+  await cerebral
     .runSignal('user.loginFormSubmitted')
     .then(({ state }) => [
       expect(state.user.authenticated).toBe(true),
@@ -39,7 +41,9 @@ test('should login', () => {
     ])
 })
 
-test('should not log in when wrong password', () => {
+test('should not log in when wrong password', async () => {
+  expect.assertions(3)
+
   mock.post('/api/login', (req, res) => {
     return res
       .status(403)
@@ -54,7 +58,7 @@ test('should not log in when wrong password', () => {
   cerebral.setState('user.loginForm.email.value', 'test@example.com')
   cerebral.setState('user.loginForm.password.value', 'wrong_password')
 
-  return cerebral
+  await cerebral
     .runSignal('user.loginFormSubmitted')
     .then(({ state }) => [
       expect(state.user.authenticated).toBe(false),
@@ -63,7 +67,9 @@ test('should not log in when wrong password', () => {
     ])
 })
 
-test('should not log in on server error', () => {
+test('should not log in on server error', async () => {
+  expect.assertions(3)
+
   mock.post('/api/login', (req, res) => {
     return res.status(501)
   })
@@ -71,7 +77,7 @@ test('should not log in on server error', () => {
   cerebral.setState('user.loginForm.email.value', 'test@example.com')
   cerebral.setState('user.loginForm.password.value', 'secret0')
 
-  return cerebral
+  await cerebral
     .runSignal('user.loginFormSubmitted')
     .then(({ state }) => [
       expect(state.user.authenticated).toBe(false),
@@ -80,13 +86,15 @@ test('should not log in on server error', () => {
     ])
 })
 
-test('should be logged out', () => {
+test('should be logged out', async () => {
+  expect.assertions(4)
+
   cerebral.setState('user.authenticated', true)
   cerebral.setState('user.email', 'admin@example.com')
   cerebral.setState('user.nickname', 'Admin')
   cerebral.setState('user.isAdmin', true)
 
-  return cerebral
+  await cerebral
     .runSignal('user.logoutButtonClicked')
     .then(({ state }) => [
       expect(state.user.authenticated).toBe(false),
@@ -96,7 +104,9 @@ test('should be logged out', () => {
     ])
 })
 
-test('should login on registration', () => {
+test('should login on registration', async () => {
+  expect.assertions(12)
+
   mock.post('/api/users', (req, res) => {
     return res.status(201).header('Content-Type', 'application/json')
   })
@@ -113,7 +123,7 @@ test('should login on registration', () => {
   cerebral.setState('user.registerForm.password.value', 'secret0')
   cerebral.setState('user.registerForm.confirmPassword.value', 'secret0')
 
-  return cerebral
+  await cerebral
     .runSignal('user.registerFormSubmitted')
     .then(({ state }) => [
       expect(state.user.authenticated).toBe(true),
@@ -133,7 +143,9 @@ test('should login on registration', () => {
     ])
 })
 
-test('should not register when email exists', () => {
+test('should not register when email exists', async () => {
+  expect.assertions(6)
+
   mock.post('/api/users', (req, res) => {
     return res
       .status(409)
@@ -150,7 +162,7 @@ test('should not register when email exists', () => {
   cerebral.setState('user.registerForm.password.value', 'secret0')
   cerebral.setState('user.registerForm.confirmPassword.value', 'secret0')
 
-  return cerebral
+  await cerebral
     .runSignal('user.registerFormSubmitted')
     .then(({ state }) => [
       expect(state.flash).toBe(null),
@@ -162,7 +174,9 @@ test('should not register when email exists', () => {
     ])
 })
 
-test('should not register when email server does not exists', () => {
+test('should not register when email server does not exists', async () => {
+  expect.assertions(6)
+
   mock.post('/api/users', (req, res) => {
     return res
       .status(422)
@@ -180,7 +194,7 @@ test('should not register when email server does not exists', () => {
   cerebral.setState('user.registerForm.password.value', 'secret0')
   cerebral.setState('user.registerForm.confirmPassword.value', 'secret0')
 
-  return cerebral
+  await cerebral
     .runSignal('user.registerFormSubmitted')
     .then(({ state }) => [
       expect(state.flash).toBe(null),
@@ -192,13 +206,15 @@ test('should not register when email server does not exists', () => {
     ])
 })
 
-test('should not send register form when email is not valid', () => {
+test('should not send register form when email is not valid', async () => {
+  expect.assertions(5)
+
   cerebral.setState('user.registerForm.nickname.value', 'Tester')
   cerebral.setState('user.registerForm.email.value', 'not.an.email')
   cerebral.setState('user.registerForm.password.value', 'secret0')
   cerebral.setState('user.registerForm.confirmPassword.value', 'secret0')
 
-  return cerebral
+  await cerebral
     .runSignal('user.registerFormSubmitted')
     .then(({ state }) => [
       expect(state.user.registerForm.showErrors).toBe(true),
@@ -209,13 +225,15 @@ test('should not send register form when email is not valid', () => {
     ])
 })
 
-test('should not send register form when password is to short', () => {
+test('should not send register form when password is to short', async () => {
+  expect.assertions(5)
+
   cerebral.setState('user.registerForm.nickname.value', 'Tester')
   cerebral.setState('user.registerForm.email.value', 'test@example.com')
   cerebral.setState('user.registerForm.password.value', 'mini')
   cerebral.setState('user.registerForm.confirmPassword.value', 'mini')
 
-  return cerebral
+  await cerebral
     .runSignal('user.registerFormSubmitted')
     .then(({ state }) => [
       expect(state.user.registerForm.showErrors).toBe(true),
@@ -226,13 +244,15 @@ test('should not send register form when password is to short', () => {
     ])
 })
 
-test('should not send register form when passwords are not equal', () => {
+test('should not send register form when passwords are not equal', async () => {
+  expect.assertions(5)
+
   cerebral.setState('user.registerForm.nickname.value', 'Tester')
   cerebral.setState('user.registerForm.email.value', 'test@example.com')
   cerebral.setState('user.registerForm.password.value', 'secret0')
   cerebral.setState('user.registerForm.confirmPassword.value', 'secret1')
 
-  return cerebral
+  await cerebral
     .runSignal('user.registerFormSubmitted')
     .then(({ state }) => [
       expect(state.user.registerForm.showErrors).toBe(true),

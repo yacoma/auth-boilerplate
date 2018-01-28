@@ -11,7 +11,9 @@ beforeEach(() => {
   cerebral = CerebralTest(app({ flash: null, flashType: null }))
 })
 
-test('should change nickname', () => {
+test('should change nickname', async () => {
+  expect.assertions(1)
+
   mock.put('/api/users/1', (req, res) => {
     return res.status(200).header('Content-Type', 'application/json')
   })
@@ -20,12 +22,14 @@ test('should change nickname', () => {
   cerebral.setState('user.api.@id', '/users/1')
   cerebral.setState('settings.profileForm.nickname.value', 'NewTest')
 
-  return cerebral
+  await cerebral
     .runSignal('settings.profileFormSubmitted')
     .then(({ state }) => [expect(state.user.nickname).toBe('NewTest')])
 })
 
-test('should change email', () => {
+test('should change email', async () => {
+  expect.assertions(1)
+
   mock.put('/api/users/1', (req, res) => {
     return res.status(200).header('Content-Type', 'application/json')
   })
@@ -42,7 +46,7 @@ test('should change email', () => {
   cerebral.setState('settings.emailForm.password.value', 'secret0')
   cerebral.setState('settings.emailForm.email.value', 'new-test@example.com')
 
-  return cerebral
+  await cerebral
     .runSignal('settings.emailFormSubmitted')
     .then(({ state }) => [
       expect(state.user.email).toBe('new-test@example.com'),
