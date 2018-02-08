@@ -1,3 +1,4 @@
+import { sequence } from 'cerebral'
 import { state, props, string, resolveObject } from 'cerebral/tags'
 import { set, when } from 'cerebral/operators'
 import { redirectToSignal } from '@cerebral/router/operators'
@@ -8,9 +9,11 @@ import * as rootFactories from '../../factories'
 import * as rootActions from '../../actions'
 import * as actions from './actions'
 
-export const changeField = setField(state`${props`path`}`, props`value`)
+export const changeField = sequence('Change field', [
+  setField(state`${props`path`}`, props`value`),
+])
 
-export const signinUser = [
+export const signinUser = sequence('Sign-in user', [
   isValidForm(state`user.loginForm`),
   {
     true: [
@@ -51,9 +54,9 @@ export const signinUser = [
     ],
     false: set(state`user.loginForm.showErrors`, true),
   },
-]
+])
 
-export const registerUser = [
+export const registerUser = sequence('Register new user', [
   isValidForm(state`user.registerForm`),
   {
     true: [
@@ -116,9 +119,9 @@ export const registerUser = [
     ],
     false: set(state`user.registerForm.showErrors`, true),
   },
-]
+])
 
-export const requestPasswordReset = [
+export const requestPasswordReset = sequence('Request password reset', [
   isValidForm(state`user.emailForm`),
   {
     true: [
@@ -150,9 +153,9 @@ export const requestPasswordReset = [
     ],
     false: set(state`user.emailForm.showErrors`, true),
   },
-]
+])
 
-export const updatePassword = [
+export const updatePassword = sequence('Update password', [
   isValidForm(state`user.passwordForm`),
   {
     true: [
@@ -182,11 +185,11 @@ export const updatePassword = [
     ],
     false: set(state`user.passwordForm.showErrors`, true),
   },
-]
+])
 
-export const logoutUser = [
+export const logoutUser = sequence('Log user out', [
   set(state`user.loginForm.isLoading`, false),
   actions.removeUser,
   redirectToSignal('pageRouted', { page: 'home' }),
   rootFactories.showFlash('Good bye!', 'info'),
-]
+])

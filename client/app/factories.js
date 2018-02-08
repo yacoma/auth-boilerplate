@@ -1,3 +1,4 @@
+import { sequence } from 'cerebral'
 import { state, props } from 'cerebral/tags'
 import { set, equals, debounce } from 'cerebral/operators'
 
@@ -9,7 +10,7 @@ const showFlashDebounce = debounce.shared()
 const flashTimeOut = process.env.NODE_ENV !== 'test' ? 7000 : 10
 
 export function showFlash(flash, flashType = null, ms = flashTimeOut) {
-  return [
+  return sequence('Show flash', [
     set(state`flash`, flash),
     set(state`flashType`, flashType),
     showFlashDebounce(ms),
@@ -17,11 +18,11 @@ export function showFlash(flash, flashType = null, ms = flashTimeOut) {
       continue: [set(state`flash`, null), set(state`flashType`, null)],
       discard: [],
     },
-  ]
+  ])
 }
 
 export function showValidationError(defaultErrorMessage) {
-  return [
+  return sequence('Show validation error', [
     equals(props`error.response.status`),
     {
       403: set(
@@ -36,5 +37,5 @@ export function showValidationError(defaultErrorMessage) {
       otherwise: set(props`errorMessages`, defaultErrorMessage),
     },
     showFlash(props`errorMessages`, 'error'),
-  ]
+  ])
 }
