@@ -2,7 +2,7 @@ export function removeUser({ state, storage, http }) {
   storage.remove('jwtHeader')
   http.updateOptions({
     headers: {
-      Authorization: null,
+      Authorization: '',
     },
   })
   state.set('user.email', '')
