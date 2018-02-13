@@ -3,7 +3,8 @@ import { runSignal } from 'cerebral/test'
 import routeTo from './routeTo'
 
 test('should route to home', () => {
-  return runSignal(routeTo('home'), {
+  return runSignal(routeTo, {
+    props: { page: 'home' },
     state: { lastVisited: 'private' },
   }).then(({ state }) => [
     expect(state.currentPage).toBe('home'),
@@ -14,7 +15,8 @@ test('should route to home', () => {
 })
 
 test('route to login should not change lastVisited', () => {
-  return runSignal(routeTo('login'), {
+  return runSignal(routeTo, {
+    props: { page: 'login' },
     state: { lastVisited: 'private' },
   }).then(({ state }) => [
     expect(state.currentPage).toBe('login'),
@@ -25,7 +27,8 @@ test('route to login should not change lastVisited', () => {
 })
 
 test('route to register should not change lastVisited', () => {
-  return runSignal(routeTo('register'), {
+  return runSignal(routeTo, {
+    props: { page: 'register' },
     state: { lastVisited: 'private' },
   }).then(({ state }) => [
     expect(state.currentPage).toBe('register'),
@@ -36,7 +39,8 @@ test('route to register should not change lastVisited', () => {
 })
 
 test('route to private should set header title', () => {
-  return runSignal(routeTo('private'), {
+  return runSignal(routeTo, {
+    props: { page: 'private' },
     state: {
       user: {
         authenticated: true,
@@ -52,7 +56,8 @@ test('route to private should set header title', () => {
 })
 
 test('newpassword with passed @id should route to newpassword', () => {
-  return runSignal(routeTo('newpassword'), {
+  return runSignal(routeTo, {
+    props: { page: 'newpassword' },
     state: {
       user: {
         authenticated: false,
@@ -69,7 +74,11 @@ test('newpassword with passed @id should route to newpassword', () => {
 })
 
 test('settings should set currentTab and nickname', () => {
-  return runSignal(routeTo('settings', 'email'), {
+  return runSignal(routeTo, {
+    props: {
+      page: 'settings',
+      tab: 'email',
+    },
     state: {
       settings: {
         currentTab: 'profile',

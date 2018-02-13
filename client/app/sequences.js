@@ -50,10 +50,11 @@ export const initialize = sequence('Initiate App', [
   },
 ])
 
-export const routeToPage = sequence('Route to page', [routeTo(props`page`)])
+export const routeToPage = sequence('Route to page', [routeTo])
 
-export const routeToSettings = sequence('Route to settings tab', [
-  routeTo('settings', props`tab`),
+export const routeToSettings = sequence('Route to settings', [
+  set(props`page`, 'settings'),
+  routeTo,
 ])
 
 export const redirectToLogin = sequence('Redirect to login', [
