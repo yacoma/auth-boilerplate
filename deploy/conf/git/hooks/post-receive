@@ -1,15 +1,14 @@
 #!/bin/bash
 #
 set -x
-livepath="/home/yacoma/web/auth-boilerplate.yacoma.it/private/auth-boilerplate"
+app_path="/home/yacoma/web/auth-boilerplate.yacoma.it/private/auth-boilerplate"
 while read oldrev newrev ref
 do
         branch=`echo $ref | cut -d/ -f3`
         if [[ "master" == "$branch" ]]; then
-                git --work-tree=$livepath checkout -f $branch
-                cd $livepath
+                git --work-tree=$app_path checkout -f $branch
+                cd $app_path
                 make deploylive
                 echo 'Changes pushed live.'
         fi
 done
-cd /home/yacoma/git/auth-boilerplate.git
