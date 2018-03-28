@@ -1,11 +1,10 @@
-Example deployment for auth-boilerplate
-=======================================
+# Example deployment for auth-boilerplate
 
 ## Requirements for the server
 
-- [nginx](https://nginx.org/en/)
-- [supervisor](http://supervisord.org/)
-- [make](https://www.gnu.org/software/make/)
+* [nginx](https://nginx.org/en/)
+* [supervisor](http://supervisord.org/)
+* [make](https://www.gnu.org/software/make/)
 
 ## Overview
 
@@ -35,13 +34,13 @@ The `deploy/conf` directory contains examples for git hook and server
 configuration with gunicord behind a nginx reverse proxy. For monitoring
 and controlling gunicord we use supervisor.
 
-- **git/hooks/post-receive** - put this in the `hooks` directory of
+* **git/hooks/post-receive** - put this in the `hooks` directory of
   your bare git repository on the server and make sure it is executable.
-- **web/nginx.conf** - the nginx configuration.
-- **web/supervisord.conf** - the supervisor configuration for
+* **web/nginx.conf** - the nginx configuration.
+* **web/supervisord.conf** - the supervisor configuration for
   gunicorn.
-- **web/gunicorn.conf.py** - gunicorn configuration which id used
-  directly from  here.
+* **web/gunicorn.conf.py** - gunicorn configuration which id used
+  directly from here.
 
 ## Database
 

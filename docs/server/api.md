@@ -1,5 +1,4 @@
-Models
-======
+# Models
 
 Paths and Views in Morepath are bound to a Model.
 So we will use the Model names as chapters in the API documentation.
@@ -9,8 +8,7 @@ The permissions are defined in [server/permissions.py](https://github.com/yacoma
 
 Details about the Cerberus schemas used by the views can be found in [server/schema.yml](https://github.com/yacoma/auth-boilerplate/blob/master/server/schema.yml).
 
-Root
-----
+## Root
 
 **Path:** '/'
 
@@ -21,6 +19,7 @@ Returns a dictionary of available collections and there entry points.
 **Permission:** `None`
 
 **Example request:**
+
 ```js
 http.get('/')
 ```
@@ -30,21 +29,21 @@ http.get('/')
 ##### 200 - OK
 
 **Example response JSON:**
+
 ```json
 {
-    "collections": {
-        "users": {
-            "@id": "/users"
-        },
-        "groups": {
-            "@id": "/groups"
-        }
+  "collections": {
+    "users": {
+      "@id": "/users"
+    },
+    "groups": {
+      "@id": "/groups"
     }
+  }
 }
 ```
 
-UserCollection
---------------
+## UserCollection
 
 **Path:** '/users'
 
@@ -58,16 +57,21 @@ applies on nickname and email.
 **Permission**: `ViewPermission`
 
 **Example request:**
+
 ```js
-http.get('/users', {
-  search: 'Marie',  // caseinsensitive, uses nickname and email fields
-  sortby: 'nickname',
-  sortdir: 'desc',  // default: 'asc'
-  page: 4,  // 0 disables pagination
-  pagesize: 5
-}, {
-  headers: {'Authorization': jwt_token}
-})
+http.get(
+  '/users',
+  {
+    search: 'Marie', // caseinsensitive, uses nickname and email fields
+    sortby: 'nickname',
+    sortdir: 'desc', // default: 'asc'
+    page: 4, // 0 disables pagination
+    pagesize: 5
+  },
+  {
+    headers: { Authorization: jwt_token }
+  }
+)
 ```
 
 #### Responses
@@ -75,6 +79,7 @@ http.get('/users', {
 ##### 200 - OK
 
 **Example response JSON:**
+
 ```json
 {
   "users": [
@@ -86,8 +91,9 @@ http.get('/users', {
       "isAdmin": true,
       "lastLogin": "2017-04-30 15:42:57",
       "registered": "2017-04-20 23:04:27",
-      "registerIP": "127.0.0.1",
-    }, {
+      "registerIP": "127.0.0.1"
+    },
+    {
       "@id": "/users/2",
       "nickname": "Marie",
       "email": "marie@example.com",
@@ -95,7 +101,7 @@ http.get('/users', {
       "isAdmin": false,
       "lastLogin": "2017-04-30 14:38:25",
       "registered": "2017-04-27 20:05:57",
-      "registerIP": "127.0.0.1",
+      "registerIP": "127.0.0.1"
     }
   ],
   "pages": 5
@@ -112,6 +118,7 @@ A confirm email is sent to the email address.
 **Validation schema:** `user`
 
 **Example request:**
+
 ```js
 http.post('/users', {
   nickname: 'Marie',
@@ -135,6 +142,7 @@ User created successfully.
 Email address already exists.
 
 **Response JSON:**
+
 ```json
 {
   "validationError": "Email already exists"
@@ -147,6 +155,7 @@ Validation error either from **EmailValidationService**
 or from **Cerberus** schema validation.
 
 **Response JSON from EmailValidationService** when email address is not valid:
+
 ```json
 {
   "email": ["Not valid email"]
@@ -154,6 +163,7 @@ or from **Cerberus** schema validation.
 ```
 
 **Response JSON from EmailValidationService** when email domain cannot be found:
+
 ```json
 {
   "email": ["Email could not be delivered"]
@@ -161,14 +171,14 @@ or from **Cerberus** schema validation.
 ```
 
 **Example response JSON from Cerberus** when schema is not valid:
+
 ```json
 {
   "nickname": ["must be of string type"]
 }
 ```
 
-User
-----
+## User
 
 **Path:** '/users/{id}'
 
@@ -179,10 +189,15 @@ Returns the user entity with the requested id.
 **Permission**: `ViewPermission`
 
 **Example request:**
+
 ```js
-http.get('/users/1', {}, {
-  headers: {'Authorization': jwt_token}
-})
+http.get(
+  '/users/1',
+  {},
+  {
+    headers: { Authorization: jwt_token }
+  }
+)
 ```
 
 #### Responses
@@ -190,6 +205,7 @@ http.get('/users/1', {}, {
 ##### 200 - OK
 
 **Example response JSON:**
+
 ```json
 {
   "@id": "/users/1",
@@ -199,7 +215,7 @@ http.get('/users/1', {}, {
   "isAdmin": true,
   "lastLogin": "2017-04-30 15:42:57",
   "registered": "2017-04-20 23:04:27",
-  "registerIP": "127.0.0.1",
+  "registerIP": "127.0.0.1"
 }
 ```
 
@@ -216,13 +232,18 @@ to `False` and a confirm email is sent to the new email address.
 **Validation schema:** `user`
 
 **Example request:**
+
 ```js
-http.put('/users/1', {
-  nickname: 'Marie',
-  email: 'marie@example.com'
-}, {
-  headers: {'Authorization': jwt_token}
-})
+http.put(
+  '/users/1',
+  {
+    nickname: 'Marie',
+    email: 'marie@example.com'
+  },
+  {
+    headers: { Authorization: jwt_token }
+  }
+)
 ```
 
 #### Responses
@@ -240,6 +261,7 @@ User updated successfully.
 Email address already exists.
 
 **Response JSON:**
+
 ```json
 {
   "validationError": "Email already exists"
@@ -252,6 +274,7 @@ Validation error either from **EmailValidationService**
 or from **Cerberus** schema validation.
 
 **Response JSON from EmailValidationService** when email address is not valid:
+
 ```json
 {
   "email": ["Not valid email"]
@@ -259,6 +282,7 @@ or from **Cerberus** schema validation.
 ```
 
 **Response JSON from EmailValidationService** when email domain cannot be found:
+
 ```json
 {
   "email": ["Email could not be delivered"]
@@ -266,6 +290,7 @@ or from **Cerberus** schema validation.
 ```
 
 **Example response JSON from Cerberus** when schema is not valid:
+
 ```json
 {
   "nickname": ["must be of string type"]
@@ -279,10 +304,15 @@ Delete a user entity.
 **Permission**: `EditPermission`
 
 **Example request:**
+
 ```js
-http.delete('/users/1', {}, {
-  headers: {'Authorization': jwt_token}
-})
+http.delete(
+  '/users/1',
+  {},
+  {
+    headers: { Authorization: jwt_token }
+  }
+)
 ```
 
 #### Responses
@@ -293,9 +323,7 @@ User deleted successfully.
 
 **Response JSON**: empty
 
-
-Login
------
+## Login
 
 **Path:** '/login'
 
@@ -308,10 +336,11 @@ Log in the user and return a JWT token in the `Authorization` header.
 **Validation schema:** `login`
 
 **Example request:**
+
 ```js
 http.post('/login', {
-  email: "test@example",
-  password: "secret"
+  email: 'test@example',
+  password: 'secret'
 })
 ```
 
@@ -330,6 +359,7 @@ User successfully logged in.
 Invalid credentials.
 
 **Response JSON:**
+
 ```json
 {
   "validationError": "Invalid email or password"
@@ -341,15 +371,14 @@ Invalid credentials.
 Validation error from **Cerberus** schema validation.
 
 **Example response JSON** when schema is not valid:
+
 ```json
 {
   "password": ["min length is 5"]
 }
 ```
 
-
-Refresh
--------
+## Refresh
 
 **Path:** '/refresh'
 
@@ -362,10 +391,15 @@ the response `Authorization` header.
 **Permission**: `None`
 
 **Example request:**
+
 ```js
-http.get('/refresh', {}, {
-  headers: {'Authorization': jwt_token}
-})
+http.get(
+  '/refresh',
+  {},
+  {
+    headers: { Authorization: jwt_token }
+  }
+)
 ```
 
 #### Responses
@@ -383,6 +417,7 @@ Token successfully refreshed.
 The JWT token could not be refreshed.
 
 **Response JSON** when `refresh_until` or token has expired:
+
 ```json
 {
   "validationError": "Your session has expired"
@@ -390,15 +425,14 @@ The JWT token could not be refreshed.
 ```
 
 **Response JSON** when token could not be refreshed:
+
 ```json
 {
   "validationError": "Could not refresh your token"
 }
 ```
 
-
-ResetNonce
-----------
+## ResetNonce
 
 **Path:** 'users/{id}/signout'
 
@@ -409,10 +443,15 @@ Reset the refresh nonce of the user with the given `id`.
 **Permission**: `None`
 
 **Example request:**
+
 ```js
-http.get('/users/1/signout', {}, {
-  headers: {'Authorization': jwt_token}
-})
+http.get(
+  '/users/1/signout',
+  {},
+  {
+    headers: { Authorization: jwt_token }
+  }
+)
 ```
 
 #### Responses
@@ -424,8 +463,7 @@ JWT tokens of this user cannot be refreshed anymore.
 
 **Response JSON:** empty
 
-ConfirmEmail
-------------
+## ConfirmEmail
 
 **Path:** 'users/{id}/confirm/{token}'
 
@@ -440,6 +478,7 @@ contains a time-limit which can be adjusted in the `token.max_age` setting.
 **Permission**: `EditPermission`
 
 **Example request:**
+
 ```js
 http.get(
   '/users/4/confirm/Im5ld3VzZXJAZXhhbXBsZS5jb20i.C3dnsw.2meomRPK3wnYwB2AERt2ygjFaRE'
@@ -454,6 +493,7 @@ After processing the request it redirects to the homepage.
 Examples here are in Python language.
 
 **Example redirect URL** when email address is successfully confirmed:
+
 ```python
 from base64 import urlsafe_b64encode
 
@@ -466,6 +506,7 @@ url = "http://yourawesomesite.com/?flashtype=success&flash=" + flash
 ```
 
 **Example redirect URL** when email address was already confirmed before:
+
 ```python
 flash = urlsafe_b64encode(
     'Your email is already confirmed. Please log in.'.encode('utf-8')
@@ -475,6 +516,7 @@ url = "http://yourawesomesite.com/?flashtype=info&flash=" + flash
 ```
 
 **Example redirect URL** when email address could not be confirmed:
+
 ```python
 flash = urlsafe_b64encode(
     'The confirmation link is invalid or has been expired'.encode('utf-8')
@@ -483,8 +525,7 @@ flash = urlsafe_b64encode(
 url = "http://yourawesomesite.com/?flashtype=error&flash=" + flash
 ```
 
-SendResetEmail
---------------
+## SendResetEmail
 
 **Path:** '/reset'
 
@@ -497,6 +538,7 @@ Send a password reset email to given `email` address.
 **Validation schema:** `send_reset_email_validator`
 
 **Example request:**
+
 ```js
 http.post('/reset', {
   email: 'marie@example.com'
@@ -516,6 +558,7 @@ Password reset email successfully sent.
 Email not in database or email address not yet confirmed.
 
 **Response JSON** when email not in database:
+
 ```json
 {
   "validationError": "Email not found"
@@ -523,9 +566,11 @@ Email not in database or email address not yet confirmed.
 ```
 
 **Response JSON** when email address not yet confirmed:
+
 ```json
 {
-  "validationError": "Your email must be confirmed before resetting the password."
+  "validationError":
+    "Your email must be confirmed before resetting the password."
 }
 ```
 
@@ -534,14 +579,14 @@ Email not in database or email address not yet confirmed.
 Validation error from **Cerberus** schema validation.
 
 **Example response JSON** when schema is not valid:
+
 ```json
 {
   "email": ["must be of string type"]
 }
 ```
 
-ResetPassword
--------------
+## ResetPassword
 
 **Path:** 'users/{id}/reset/{token}'
 
@@ -556,6 +601,7 @@ contains a time-limit which can be adjusted in the `token.max_age` setting.
 **Permission**: `None`
 
 **Example request:**
+
 ```js
 http.get(
   '/users/7/reset/Im5ld3VzZXJAZXhhbXBsZS5jb20i.C40RUQ.5JhlEE36_JrUGhlAxao46VsQevI'
@@ -571,12 +617,14 @@ and on error to '/login'.
 Examples here are in Python language.
 
 **Example redirect URL** when reset password request was excepted:
+
 ```python
 url = "http://yourawesomesite.com/newpassword?%40id=%2Fusers%2F7%2Freset%2F" +
       "Im5ld3VzZXJAZXhhbXBsZS5jb20i.C40RUQ.5JhlEE36_JrUGhlAxao46VsQevI"
 ```
 
 **Example redirect URL** when reset link is invalid:
+
 ```python
 flash = urlsafe_b64encode(
     'The password reset link is invalid or has been expired'.encode('utf-8')
@@ -594,6 +642,7 @@ Reset the password of the user with given `id` to the provided password.
 **Validation schema:** `reset_password`
 
 **Example request:**
+
 ```js
 http.put(
   '/users/7/reset/Im5ld3VzZXJAZXhhbXBsZS5jb20i.C40RUQ.5JhlEE36_JrUGhlAxao46VsQevI',
@@ -616,6 +665,7 @@ Password resetted successfully.
 Email not in database or email address not yet confirmed.
 
 **Response JSON** when reset token is invalid:
+
 ```json
 {
   "validationError": "The password reset link is invalid or has been expired"
@@ -623,9 +673,11 @@ Email not in database or email address not yet confirmed.
 ```
 
 **Response JSON** when email address not yet confirmed:
+
 ```json
 {
-  "validationError": "Your email must be confirmed before resetting the password."
+  "validationError":
+    "Your email must be confirmed before resetting the password."
 }
 ```
 
@@ -634,14 +686,14 @@ Email not in database or email address not yet confirmed.
 Validation error from **Cerberus** schema validation.
 
 **Example response JSON** when schema is not valid:
+
 ```json
 {
   "password": ["min length is 5"]
 }
 ```
 
-GroupCollection
---------------
+## GroupCollection
 
 **Path:** '/groups'
 
@@ -652,10 +704,15 @@ Returns a list of group entities.
 **Permission**: `ViewPermission`
 
 **Example request:**
+
 ```js
-http.get('/groups', {}, {
-  headers: {'Authorization': jwt_token}
-})
+http.get(
+  '/groups',
+  {},
+  {
+    headers: { Authorization: jwt_token }
+  }
+)
 ```
 
 #### Responses
@@ -663,6 +720,7 @@ http.get('/groups', {}, {
 ##### 200 - OK
 
 **Example response JSON:**
+
 ```json
 {
   "groups": [
@@ -670,7 +728,8 @@ http.get('/groups', {}, {
       "@id": "/groups/1",
       "name": "Admin",
       "users": ["leader@example.com"]
-    }, {
+    },
+    {
       "@id": "/groups/2",
       "name": "Moderator",
       "users": ["marie@example.com"]
@@ -688,6 +747,7 @@ Add a new group.
 **Validation schema:** `group`
 
 **Example request:**
+
 ```js
 http.post('/groups', {
   name: 'Editor'
@@ -701,18 +761,19 @@ http.post('/groups', {
 Group created successfully.
 
 **Response JSON:**
+
 ```json
 {
   "@id": "/groups/4"
 }
 ```
 
-
 ##### 409 - Conflict
 
 Group name already exists.
 
 **Response JSON:**
+
 ```json
 {
   "validationError": "Group already exists"
@@ -724,14 +785,14 @@ Group name already exists.
 Validation error from **Cerberus** schema validation.
 
 **Example response JSON from Cerberus** when schema is not valid:
+
 ```json
 {
   "name": ["must be of string type"]
 }
 ```
 
-Group
-----
+## Group
 
 **Path:** '/groups/{id}'
 
@@ -742,10 +803,15 @@ Returns the group entity with the requested id.
 **Permission**: `ViewPermission`
 
 **Example request:**
+
 ```js
-http.get('/groups/1', {}, {
-  headers: {'Authorization': jwt_token}
-})
+http.get(
+  '/groups/1',
+  {},
+  {
+    headers: { Authorization: jwt_token }
+  }
+)
 ```
 
 #### Responses
@@ -753,6 +819,7 @@ http.get('/groups/1', {}, {
 ##### 200 - OK
 
 **Example response JSON:**
+
 ```json
 {
   "@id": "/groups/1",
@@ -771,12 +838,17 @@ Other fields stay untouched.
 **Validation schema:** `group`
 
 **Example request:**
+
 ```js
-http.put('/groups/1', {
-  name: 'Editor'
-}, {
-  headers: {'Authorization': jwt_token}
-})
+http.put(
+  '/groups/1',
+  {
+    name: 'Editor'
+  },
+  {
+    headers: { Authorization: jwt_token }
+  }
+)
 ```
 
 #### Responses
@@ -792,6 +864,7 @@ Group updated successfully.
 Group already exists.
 
 **Response JSON:**
+
 ```json
 {
   "validationError": "Group already exists"
@@ -803,6 +876,7 @@ Group already exists.
 Validation error from **Cerberus** schema validation.
 
 **Example response JSON from Cerberus** when schema is not valid:
+
 ```json
 {
   "name": ["must be of string type"]
@@ -816,10 +890,15 @@ Delete a group entity.
 **Permission**: `EditPermission`
 
 **Example request:**
+
 ```js
-http.delete('/groups/1', {}, {
-  headers: {'Authorization': jwt_token}
-})
+http.delete(
+  '/groups/1',
+  {},
+  {
+    headers: { Authorization: jwt_token }
+  }
+)
 ```
 
 #### Responses

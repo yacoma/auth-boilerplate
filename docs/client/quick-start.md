@@ -1,5 +1,4 @@
-Cerebral React client
-=====================
+# Cerebral React client
 
 JavaScript code is in the client subdirectory. To rebuild the bundle you
 need to install the JS dependencies (listed in package.json). Run:
@@ -23,9 +22,7 @@ you can use:
 $ npm start
 ```
 
-
-Testing
--------
+## Testing
 
 To run the tests use:
 

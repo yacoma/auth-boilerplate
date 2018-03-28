@@ -1,5 +1,4 @@
-Quick Start
-===========
+# Quick Start
 
 From inside the project directory create a clean Python environment with
 [virtualenv](https://virtualenv.pypa.io/en/latest) and activate it:
