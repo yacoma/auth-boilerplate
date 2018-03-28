@@ -34,3 +34,32 @@ const authHeader = {
 }
 
 global.authHeader = authHeader
+
+const jsonResponse = {
+  users: JSON.stringify({
+    pages: 2,
+    users: [
+      {
+        '@id': '/users/3',
+        email: 'juergen@example.com',
+        emailConfirmed: false,
+        isAdmin: false,
+        lastLogin: null,
+        nickname: 'Jürgen',
+        registerIP: '',
+        registered: '2018-03-26 13:40:28',
+      },
+      {
+        '@id': '/users/1',
+        email: 'leader@example.com',
+        emailConfirmed: false,
+        isAdmin: true,
+        lastLogin: '2018-03-26 13:42:39',
+        nickname: 'Leader',
+        registerIP: '',
+        registered: '2018-03-26 13:42:39',
+      },
+    ],
+  }),
+}
+global.jsonResponse = jsonResponse

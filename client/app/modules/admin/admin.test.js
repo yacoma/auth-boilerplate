@@ -6,8 +6,15 @@ import app from '../..'
 let cerebral
 
 beforeEach(() => {
-  mock.setup()
   localStorage.setItem('jwtHeader', JSON.stringify(authHeader.userJwt))
+  mock.setup()
+  mock.get(/^.*\/users\?.*$/, (req, res) => {
+    return res
+      .status(200)
+      .header('Content-Type', 'application/json')
+      .body(jsonResponse.users)
+  })
+
   cerebral = CerebralTest(app({ flash: null, flashType: null }))
 
   cerebral.setState('admin.users.testuid000', {

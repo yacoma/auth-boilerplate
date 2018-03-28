@@ -31,7 +31,6 @@ test('should refresh token when expired token and refresh allowed', async () => 
     'jwtHeader',
     JSON.stringify(authHeader.expiredRefreshableJwt)
   )
-  cerebral = CerebralTest(app({ flash: null, flashType: null }))
 
   mock.get('/api/refresh', (req, res) => {
     return res
@@ -39,6 +38,8 @@ test('should refresh token when expired token and refresh allowed', async () => 
       .header('Content-Type', 'application/json')
       .header('Authorization', authHeader.validJwt)
   })
+
+  cerebral = CerebralTest(app({ flash: null, flashType: null }))
 
   await cerebral
     .runSignal('appMounted')
@@ -107,6 +108,13 @@ test('route to admin should work when isAdmin', async () => {
 
   localStorage.setItem('jwtHeader', JSON.stringify(authHeader.adminJwt))
   cerebral = CerebralTest(app({ flash: null, flashType: null }))
+
+  mock.get(/^.*\/users\?.*$/, (req, res) => {
+    return res
+      .status(200)
+      .header('Content-Type', 'application/json')
+      .body(jsonResponse.users)
+  })
 
   const result = await cerebral.runSignal('pageRouted', { page: 'admin' })
   expect(result.state.user.authenticated).toEqual(true)
