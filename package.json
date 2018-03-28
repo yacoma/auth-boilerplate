@@ -16,16 +16,16 @@
   },
   "homepage": "https://github.com/henri-hulski/auth-boilerplate#readme",
   "scripts": {
-    "start": "npm run build&&env/bin/gunicorn server.run",
     "build": "webpack --config webpack.config.js --progress",
     "build:production": "NODE_ENV=production webpack --config webpack.config.js --progress",
-    "test": "jest",
-    "coverage": "jest --coverage",
-    "precommit": "lint-staged",
-    "commitmsg": "cz-customizable-ghooks",
     "commit": "git-cz",
+    "commitmsg": "cz-customizable-ghooks",
+    "coverage": "jest --coverage",
+    "format": "npm run lint -- --fix && prettier --write \"*.md\" \"docs/**/*.md\" \"*.json\"",
     "lint": "eslint \"client/**/*.js\"",
-    "format": "npm run lint -- --fix"
+    "precommit": "lint-staged",
+    "start": "npm run build&&env/bin/gunicorn server.run",
+    "test": "jest"
   },
   "dependencies": {
     "@cerebral/forms": "^3.2.0",
@@ -55,7 +55,7 @@
     "eslint": "^4.19.1",
     "eslint-config-prettier": "^2.9.0",
     "eslint-config-standard": "^11.0.0",
-    "eslint-config-standard-react": "^6.0.0",
+    "eslint-config-standard-jsx": "^5.0.0",
     "eslint-plugin-import": "^2.9.0",
     "eslint-plugin-node": "^6.0.1",
     "eslint-plugin-prettier": "^2.6.0",
@@ -75,8 +75,12 @@
     "xhr-mock": "^2.3.1"
   },
   "lint-staged": {
-    "client/**/*.js": [
+    "*.js": [
       "eslint --fix",
+      "git add"
+    ],
+    "*.{md,css,json}": [
+      "prettier --write",
       "git add"
     ]
   },

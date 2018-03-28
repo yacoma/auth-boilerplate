@@ -11,25 +11,15 @@
     "node": true,
     "es6": true
   },
-  "plugins": [
-    "prettier"
-  ],
   "extends": [
     "standard",
     "standard-jsx",
-    "prettier",
-    "prettier/react"
+    "plugin:prettier/recommended",
+    "prettier/react",
+    "prettier/standard"
   ],
   "rules": {
-    "ava/prefer-async-await": "off",
-    "prettier/prettier": [
-      "error",
-      {
-        "trailingComma": "es5",
-        "singleQuote": true,
-        "semi": false
-      }
-    ]
+    "linebreak-style": ["error", "unix"]
   },
   "globals": {
     "localStorage": true,
