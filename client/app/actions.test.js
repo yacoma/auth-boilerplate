@@ -49,7 +49,7 @@ test('should initialize user state', () => {
 test('should initialize app state when no exp claim', () => {
   localStorage.setItem('jwtHeader', JSON.stringify(authHeader.userJwt))
 
-  return runAction(actions.initApp, {
+  return runAction(actions.validateJwt, {
     state: {
       user: {
         email: '',
@@ -76,7 +76,7 @@ test('should initialize app state when no exp claim', () => {
 test('should initialize app state when exp claim is valid', () => {
   localStorage.setItem('jwtHeader', JSON.stringify(authHeader.validJwt))
 
-  return runAction(actions.initApp, {
+  return runAction(actions.validateJwt, {
     state: {
       user: {
         email: '',
@@ -105,7 +105,7 @@ test('should initialize app state when exp claim is valid', () => {
 test('should fail initialize app state when token and refreshUntil expired', () => {
   localStorage.setItem('jwtHeader', JSON.stringify(authHeader.expiredJwt))
 
-  return runAction(actions.initApp, {
+  return runAction(actions.validateJwt, {
     state: {
       user: {
         email: '',

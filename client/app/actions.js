@@ -37,7 +37,7 @@ export function initUser({ props, state, storage, http }) {
   }
 }
 
-export function initApp({ state, storage }) {
+export function validateJwt({ state, storage }) {
   const jwtHeader = storage.get('jwtHeader')
   if (jwtHeader) {
     const claims = jwtDecode(jwtHeader)

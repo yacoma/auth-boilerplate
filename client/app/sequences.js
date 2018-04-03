@@ -42,7 +42,7 @@ export const refreshToken = sequence('Refresh token', [
 ])
 
 export const initialize = sequence('Initiate App', [
-  actions.initApp,
+  actions.validateJwt,
   when(state`user.token.shouldRefresh`),
   {
     true: refreshToken,
