@@ -11,7 +11,7 @@ export default connect(
     formSubmitted: signal`user.passwordFormSubmitted`,
   },
   function NewPassword({ isLoading, showErrors, formSubmitted }) {
-    const handleSubmit = event => {
+    const handleSubmit = (event) => {
       event.preventDefault()
       formSubmitted()
     }

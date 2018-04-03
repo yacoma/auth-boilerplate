@@ -69,7 +69,7 @@ export default connect(
                 </Table.Row>
               </Table.Header>
               <Table.Body>
-                {sortedUsers.map(uid => {
+                {sortedUsers.map((uid) => {
                   return <UserRow key={uid} uid={uid} />
                 })}
               </Table.Body>

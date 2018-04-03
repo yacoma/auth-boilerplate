@@ -2,7 +2,7 @@ import { Module } from 'cerebral'
 
 import * as sequences from './sequences'
 
-export default urlParams => {
+export default (urlParams) => {
   return Module({
     signals: {
       fieldChanged: sequences.changeField,

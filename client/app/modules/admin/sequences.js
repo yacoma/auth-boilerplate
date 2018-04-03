@@ -7,7 +7,10 @@ import * as rootFactories from '../../factories'
 import * as actions from './actions'
 
 export const fetchUsers = sequence('Fetch users from database', [
-  when(state`admin.usersSortDir`, usersSortDir => usersSortDir === 'ascending'),
+  when(
+    state`admin.usersSortDir`,
+    (usersSortDir) => usersSortDir === 'ascending'
+  ),
   {
     true: set(props`sortDir`, 'asc'),
     false: set(props`sortDir`, 'desc'),
@@ -20,7 +23,7 @@ export const fetchUsers = sequence('Fetch users from database', [
     props`pagination`,
     string`&page=${state`admin.currentPage`}&pagesize=${state`admin.pageSize`}`
   ),
-  when(state`admin.searchString`, searchString => searchString !== ''),
+  when(state`admin.searchString`, (searchString) => searchString !== ''),
   {
     true: set(props`search`, string`&search=${state`admin.searchString`}`),
     false: set(props`search`, ''),
@@ -48,7 +51,7 @@ export const fetchSortedUsers = sequence('Fetch sorted users', [
     true: [
       when(
         state`admin.usersSortDir`,
-        currentSortDir => currentSortDir === 'ascending'
+        (currentSortDir) => currentSortDir === 'ascending'
       ),
       {
         true: set(state`admin.usersSortDir`, 'descending'),

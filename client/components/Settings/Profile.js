@@ -20,7 +20,7 @@ export default connect(
     formSubmitted: signal`settings.profileFormSubmitted`,
   },
   function EditProfile({ isLoading, showErrors, formSubmitted }) {
-    const handleSubmit = event => {
+    const handleSubmit = (event) => {
       event.preventDefault()
       formSubmitted()
     }

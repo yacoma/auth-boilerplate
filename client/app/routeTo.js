@@ -37,7 +37,7 @@ const routeTo = sequence('Route to', [
     settings: [
       set(state`lastVisited`, 'settings'),
       actions.authenticate,
-      when(state`user.email`, email => email !== 'admin@example.com'),
+      when(state`user.email`, (email) => email !== 'admin@example.com'),
       {
         true: [
           set(state`headerText`, "{nickname}'s settings"),
@@ -50,7 +50,7 @@ const routeTo = sequence('Route to', [
           prepareSettingsForm,
         ],
         false: [
-          when(props`page`, page => page !== 'home'),
+          when(props`page`, (page) => page !== 'home'),
           {
             true: redirectToSignal('pageRouted', { page: 'home' }),
             false: [],
@@ -78,7 +78,7 @@ const routeTo = sequence('Route to', [
           set(state`headerIcon`, 'user'),
         ],
         false: [
-          when(props`page`, page => page !== 'home'),
+          when(props`page`, (page) => page !== 'home'),
           {
             true: redirectToSignal('pageRouted', { page: 'home' }),
             false: [],

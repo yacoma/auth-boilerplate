@@ -19,7 +19,7 @@ export default connect(
     formSubmitted: signal`user.loginFormSubmitted`,
   },
   function Login({ isLoading, showErrors, formSubmitted }) {
-    const handleSubmit = event => {
+    const handleSubmit = (event) => {
       event.preventDefault()
       formSubmitted()
     }

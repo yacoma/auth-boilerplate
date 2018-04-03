@@ -22,7 +22,7 @@ export default connect(
     formSubmitted: signal`settings.emailFormSubmitted`,
   },
   function UpdateEmail({ isLoading, showErrors, currentEmail, formSubmitted }) {
-    const handleSubmit = event => {
+    const handleSubmit = (event) => {
       event.preventDefault()
       formSubmitted()
     }

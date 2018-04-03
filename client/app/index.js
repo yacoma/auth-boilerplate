@@ -17,7 +17,7 @@ const jwtHeader = localStorage.getItem('jwtHeader')
   ? JSON.parse(localStorage.getItem('jwtHeader'))
   : null
 
-export default urlParams =>
+export default (urlParams) =>
   Module(({ controller, path }) => {
     controller.on('initialized', () => {
       controller.getSignal('appMounted')({})

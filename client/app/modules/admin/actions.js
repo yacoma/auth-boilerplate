@@ -4,7 +4,7 @@ export function mergeUsers({ props, state, uuid }) {
     for (const user of props.response.result.users) {
       user['orderKey'] = orderKey
       const usersInState = state.get('admin.users')
-      const uidInState = Object.keys(usersInState).filter(uid => {
+      const uidInState = Object.keys(usersInState).filter((uid) => {
         return usersInState[uid]['email'] === user['email']
       })[0]
       if (uidInState) {
