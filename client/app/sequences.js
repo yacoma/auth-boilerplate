@@ -16,7 +16,7 @@ export const refreshToken = sequence('Refresh token', [
       set(state`flash`, null),
       set(state`flashType`, null),
       actions.initUser,
-      when(state`currentPage`, currentPage => currentPage === 'login'),
+      when(state`currentPage`, (currentPage) => currentPage === 'login'),
       {
         true: [
           when(state`lastVisited`),
