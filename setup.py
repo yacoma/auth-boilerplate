@@ -53,7 +53,7 @@ setup(
             'mkdocs',
         ],
         production=[
-            'psycopg2',
+            'psycopg2-binary',
         ]
     ),
     entry_points=dict(

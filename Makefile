@@ -4,12 +4,12 @@ install: env/bin/python
 
 env/bin/python:
 	virtualenv -p python3.5 --clear env
-	env/bin/pip install --upgrade pip setuptools
 
 .PHONY:	deploylive
 
 deploylive: env/bin/python
-	env/bin/pip install -Ue '.[production]'
+	env/bin/pip install --upgrade-strategy eager -U pip setuptools
+	env/bin/pip install --upgrade-strategy eager -Ue '.[production]'
 	rm -rf node_modules
 	npm install
 	npm run build:production
@@ -20,7 +20,8 @@ deploylive: env/bin/python
 .PHONY:	setuplocal
 
 setuplocal: env/bin/python
-	env/bin/pip install -Ue .
+	env/bin/pip install --upgrade-strategy eager -U pip setuptools
+	env/bin/pip install --upgrade-strategy eager -Ue .
 	npm install
 	npm run build
 
