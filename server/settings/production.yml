@@ -15,5 +15,5 @@ smtp:
   username: admin@yacoma.it
 
 token:
-  secret: e07763a54d6e422aa5b37ee1e60c4d05
+  secret: e07763a54d6e422aa5b3dsj8eh40c4d05
   max_age: 604800
