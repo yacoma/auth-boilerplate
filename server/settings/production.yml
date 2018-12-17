@@ -5,9 +5,9 @@ jwtauth:
 database:
   provider: postgres
   user: yacoma_auth
-  password: ZGX8DnZpEF
+  password: ey2nOipWTX
   host: localhost
-  database: yacoma_auth_boilerplate
+  database: yacoma_auth
   filename: null
   create_db: null
 
