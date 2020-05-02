@@ -28,7 +28,7 @@ user:
     required: true
   email:
     type: string
-    validator: verify_email
+    check_with: verify_email
     coerce: normalize_email
     required: true
   password:

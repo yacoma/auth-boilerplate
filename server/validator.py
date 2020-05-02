@@ -3,7 +3,7 @@ from email_validator import EmailSyntaxError, EmailUndeliverableError
 
 
 class EmailValidator(CerberusValidator):
-    def _validator_verify_email(self, field, value):
+    def _check_with_verify_email(self, field, value):
         email_validation_service = self.request.app.service(
             name='email_validation'
         )
