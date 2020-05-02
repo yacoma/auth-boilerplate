@@ -2,6 +2,7 @@ from base64 import urlsafe_b64encode
 from calendar import timegm
 from datetime import datetime
 import json
+import urllib.parse
 from uuid import uuid4
 
 from argon2 import PasswordHasher
@@ -297,7 +298,7 @@ def test_search_user_collection():
 
     headers = {'Authorization': response.headers['Authorization']}
 
-    response = c.get('/users?search=j%C3%BCrgen', headers=headers)
+    response = c.get('/users?search=' + urllib.parse.quote('jürgen'), headers=headers)
 
     assert len(response.json['users']) == 1
     assert response.json['users'][0]['nickname'] == 'Jürgen'
