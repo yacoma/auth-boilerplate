@@ -28,9 +28,9 @@ export default (urlParams) =>
         lastVisited: null,
         headerText: '',
         headerIcon: null,
-        flash: urlParams['flash'],
-        flashType: urlParams['flashType'],
-        initialFlash: urlParams['flash'] !== null,
+        flash: urlParams.flash,
+        flashType: urlParams.flashType,
+        initialFlash: urlParams.flash !== null,
       },
       signals: {
         appMounted: sequences.initialize,

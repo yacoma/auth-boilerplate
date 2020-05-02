@@ -1,16 +1,16 @@
 # Overview
 
-* Programming language: [Python 3](https://www.python.org)
-* Web framework: [Morepath](http://morepath.readthedocs.io)
-* Authentication: [JSON Web Token (JWT)](http://tools.ietf.org/html/draft-ietf-oauth-json-web-token)
-* Object-Relational Mapper: [PonyORM](https://ponyorm.com)
-* Validation/Normalization: [Cerberus](http://python-cerberus.org)
-* Signal emitter: [Pymitter](https://github.com/riga/pymitter)
-* Token creation: [It's dangerous](https://pythonhosted.org/itsdangerous)
-* SMTP client: [yagmail](https://github.com/kootenpv/yagmail)
-* Email validation: [email_validator](https://github.com/JoshData/python-email-validator)
-* Password Hashing: [Argon2](https://argon2-cffi.readthedocs.io)
-* WSGI HTTP Server: [gunicorn](http://gunicorn.org)
+- Programming language: [Python 3](https://www.python.org)
+- Web framework: [Morepath](http://morepath.readthedocs.io)
+- Authentication: [JSON Web Token (JWT)](http://tools.ietf.org/html/draft-ietf-oauth-json-web-token)
+- Object-Relational Mapper: [PonyORM](https://ponyorm.com)
+- Validation/Normalization: [Cerberus](http://python-cerberus.org)
+- Signal emitter: [Pymitter](https://github.com/riga/pymitter)
+- Token creation: [It's dangerous](https://pythonhosted.org/itsdangerous)
+- SMTP client: [yagmail](https://github.com/kootenpv/yagmail)
+- Email validation: [email_validator](https://github.com/JoshData/python-email-validator)
+- Password Hashing: [Argon2](https://argon2-cffi.readthedocs.io)
+- WSGI HTTP Server: [gunicorn](http://gunicorn.org)
 
 # Morepath
 
@@ -18,19 +18,19 @@ Morepath is a web framework build the idea of creating REST APIs in mind.
 It has some really great features which help to create an awesome and secure
 API.
 
-* It's model-driven which means the routing points to models instead of views
+- It's model-driven which means the routing points to models instead of views
   and the views are also bind to models. This makes it an easy fit for REST.
-* The model based design allows also for automatic hyperlink creation which
+- The model based design allows also for automatic hyperlink creation which
   doesn't break.
-* It's easy to setup an identity depending on an identity_policy.
-* It has a powerful permission system which is based on models and allows
+- It's easy to setup an identity depending on an identity_policy.
+- It has a powerful permission system which is based on models and allows
   fine-grained settings for per view permissions.
-* Morepath is highly extensible by subclassing your App from an extension App
+- Morepath is highly extensible by subclassing your App from an extension App
   which has features you want to add to your App. These can be public Morepath
   extensions or just some custom features you want to add to several Apps.
   You can also create a default App and change settings/features by subclassing
   depending on the runtime environment like `production` or `testing`.
-* Morepath is build on top of the [Reg](http://reg.readthedocs.io) dispatcher,
+- Morepath is build on top of the [Reg](http://reg.readthedocs.io) dispatcher,
   which gives us some great low level features like creating services.
 
 # JSON Web Token (JWT)

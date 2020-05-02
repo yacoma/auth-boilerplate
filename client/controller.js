@@ -9,8 +9,8 @@ const urlParams = extractUrlParams(['flash', 'flashtype', '@id'])
 
 const controller = Controller(
   app({
-    flash: urlParams['flash'] ? base64UrlDecode(urlParams['flash']) : null,
-    flashType: urlParams['flashtype'],
+    flash: urlParams.flash ? base64UrlDecode(urlParams.flash) : null,
+    flashType: urlParams.flashtype,
   }),
   {
     devtools: Devtools({

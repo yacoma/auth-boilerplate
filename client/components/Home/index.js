@@ -1,5 +1,6 @@
+import { Grid, Icon, Segment } from 'semantic-ui-react'
+
 import React from 'react'
-import { Grid, Segment, Icon } from 'semantic-ui-react'
 
 export default function Home() {
   return (
@@ -18,22 +19,28 @@ export default function Home() {
             </p>
             <p>
               Just sign in with the email address <em>admin@example.com</em> and
-              the password <em>admin0</em>
-              . In the Admin panel you can give Admin permissions also to other
-              users.
+              the password <em>admin0</em>. In the Admin panel you can give
+              Admin permissions also to other users.
             </p>
             <p>
               For some insides take a look at
-              <a href="http://auth-boilerplate.readthedocs.io" target="_blank">
+              <a
+                href="http://auth-boilerplate.readthedocs.io"
+                rel="noreferrer noopener"
+                target="_blank"
+              >
                 <Icon name="book" size="large" />
-              </a>.<br />
+              </a>
+              .<br />
               You can examine the code at
               <a
                 href="https://github.com/yacoma/auth-boilerplate"
+                rel="noreferrer noopener"
                 target="_blank"
               >
                 <Icon name="github alternate" size="large" />
-              </a>.
+              </a>
+              .
             </p>
           </Segment>
         </Grid.Column>

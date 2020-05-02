@@ -569,8 +569,7 @@ Email not in database or email address not yet confirmed.
 
 ```json
 {
-  "validationError":
-    "Your email must be confirmed before resetting the password."
+  "validationError": "Your email must be confirmed before resetting the password."
 }
 ```
 
@@ -676,8 +675,7 @@ Email not in database or email address not yet confirmed.
 
 ```json
 {
-  "validationError":
-    "Your email must be confirmed before resetting the password."
+  "validationError": "Your email must be confirmed before resetting the password."
 }
 ```
 

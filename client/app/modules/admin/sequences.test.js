@@ -66,26 +66,26 @@ test('should fetch users', async () => {
 
   await runSignal(sequences.fetchUsers, cerebral).then(({ state }) => [
     expect(state.admin.pages).toBe(5),
-    expect(
-      state.admin.users[Object.keys(state.admin.users)[0]]['orderKey']
-    ).toBe(1),
+    expect(state.admin.users[Object.keys(state.admin.users)[0]].orderKey).toBe(
+      1
+    ),
     expect(state.admin.users[Object.keys(state.admin.users)[0]]['@id']).toBe(
       '/users/1'
     ),
-    expect(
-      state.admin.users[Object.keys(state.admin.users)[0]]['nickname']
-    ).toBe('Leader'),
-    expect(state.admin.users[Object.keys(state.admin.users)[0]]['email']).toBe(
+    expect(state.admin.users[Object.keys(state.admin.users)[0]].nickname).toBe(
+      'Leader'
+    ),
+    expect(state.admin.users[Object.keys(state.admin.users)[0]].email).toBe(
       'leader@example.com'
     ),
     expect(
-      state.admin.users[Object.keys(state.admin.users)[0]]['emailConfirmed']
+      state.admin.users[Object.keys(state.admin.users)[0]].emailConfirmed
     ).toBe(false),
+    expect(state.admin.users[Object.keys(state.admin.users)[0]].isAdmin).toBe(
+      true
+    ),
     expect(
-      state.admin.users[Object.keys(state.admin.users)[0]]['isAdmin']
-    ).toBe(true),
-    expect(
-      state.admin.users[Object.keys(state.admin.users)[0]]['registerIP']
+      state.admin.users[Object.keys(state.admin.users)[0]].registerIP
     ).toBe(''),
   ])
 })

@@ -45,14 +45,14 @@ For signing links which are sent to the user the TokenService is used.
 
 ### Parameters
 
-* **username:** SMPT username (string from settings)
-* **password:** SMTP password (string from settings)
-* **host:** SMPT server host (string from settings)
-* **port:** SMPT server port (string from settings)
-* **starttls:** True, if starttls should be used (boolean from settings)
-* **ssl:** True, if SSL should be used (boolean from settings)
-* **skip_login:** True, if login should be skipped (boolean from settings)
-* **token_service:** a reference to a token service instance
+- **username:** SMPT username (string from settings)
+- **password:** SMTP password (string from settings)
+- **host:** SMPT server host (string from settings)
+- **port:** SMPT server port (string from settings)
+- **starttls:** True, if starttls should be used (boolean from settings)
+- **ssl:** True, if SSL should be used (boolean from settings)
+- **skip_login:** True, if login should be skipped (boolean from settings)
+- **token_service:** a reference to a token service instance
 
 ### Class method `send_confirmation_email`
 
@@ -60,8 +60,8 @@ Sending an email confirming the users email address.
 
 #### Parameters
 
-* **user:** user entity
-* **request:** current request object
+- **user:** user entity
+- **request:** current request object
 
 ### Class method `send_reset_email`
 
@@ -69,8 +69,8 @@ Sending an email allowing the user to reset his password.
 
 #### Parameters
 
-* **user:** user entity
-* **request:** current request object
+- **user:** user entity
+- **request:** current request object
 
 # TokenService
 
@@ -81,9 +81,9 @@ URLSafeTimedSerializer to sign links which are time limited.
 
 ### Parameters
 
-* **secret:** The secret string used for creating the token
+- **secret:** The secret string used for creating the token
   (string from settings).
-* **max_age:** Maximal time the token should be valid in seconds
+- **max_age:** Maximal time the token should be valid in seconds
   (integer from settings). By default without limit.
 
 ### Class method `create`
@@ -92,13 +92,13 @@ Creates a token.
 
 #### Parameters
 
-* **obj:** The object to serialize. For `MailerService` we use the user's
+- **obj:** The object to serialize. For `MailerService` we use the user's
   email address.
-* **salt:** The salt used for serialization.
+- **salt:** The salt used for serialization.
 
 #### Return value
 
-* Returns the token.
+- Returns the token.
 
 ### Class method `validate`
 
@@ -106,13 +106,13 @@ Validates a token.
 
 #### Parameters
 
-* **token:** The token to validate.
-* **salt:** The salt used for validation.
+- **token:** The token to validate.
+- **salt:** The salt used for validation.
 
 #### Return values
 
-* Returns `True` if the token is valid.
-* Returns `False` if the token is invalid.
+- Returns `True` if the token is valid.
+- Returns `False` if the token is invalid.
 
 # EmailValidationService
 
@@ -130,12 +130,12 @@ Normalizes the email address by converting domain to lower case and replacing
 
 #### Parameters
 
-* **email:** email address to normalize
+- **email:** email address to normalize
 
 #### Return values
 
-* Returns the normalized email address.
-* Returns original email address if the syntax is not correct.
+- Returns the normalized email address.
+- Returns original email address if the syntax is not correct.
 
 ### Class method `verify`
 
@@ -144,10 +144,10 @@ is available.
 
 #### Parameters
 
-* **email:** email address to verify
+- **email:** email address to verify
 
 #### Return values
 
-* Returns the normalized email address.
-* Raises `EmailSyntaxError` if a syntax error occurs.
-* Raises `EmailUndeliverableError` if the domain is unavailable.
+- Returns the normalized email address.
+- Raises `EmailSyntaxError` if a syntax error occurs.
+- Raises `EmailUndeliverableError` if the domain is unavailable.
