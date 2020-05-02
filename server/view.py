@@ -22,7 +22,7 @@ from .validator import EmailValidator
 
 
 with open('server/schema.yml') as schema:
-    schema = yaml.load(schema)
+    schema = yaml.safe_load(schema)
 
 login_validator = loader(schema['login'], EmailValidator)
 user_validator = loader(schema['user'], EmailValidator)

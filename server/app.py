@@ -16,7 +16,7 @@ class App(CerberusApp, PonyApp, EmitApp):
 
 
 with open('server/settings/default.yml') as defaults:
-    defaults_dict = yaml.load(defaults)
+    defaults_dict = yaml.safe_load(defaults)
 
 App.init_settings(defaults_dict)
 
@@ -42,7 +42,7 @@ class ProductionApp(App):
 
 
 with open('server/settings/production.yml') as settings:
-    settings_dict = yaml.load(settings)
+    settings_dict = yaml.safe_load(settings)
 
 ProductionApp.init_settings(settings_dict)
 
@@ -52,6 +52,6 @@ class TestApp(App):
 
 
 with open('server/settings/test.yml') as settings:
-    settings_dict = yaml.load(settings)
+    settings_dict = yaml.safe_load(settings)
 
 TestApp.init_settings(settings_dict)
