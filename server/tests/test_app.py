@@ -13,29 +13,22 @@ def setup_module(module):
 
 
 def test_run_env():
-    assert os.getenv('RUN_ENV') == 'test'
+    assert os.getenv("RUN_ENV") == "test"
 
 
 def test_settings():
     app = App()
 
-    assert app.settings.smtp.username == 'test@example.com'
-    assert app.settings.smtp.port == '3377'
-    assert app.settings.database.filename == ':memory:'
+    assert app.settings.smtp.username == "test@example.com"
+    assert app.settings.smtp.port == "3377"
+    assert app.settings.database.filename == ":memory:"
 
 
 def test_root():
     app = App()
     c = Client(app)
 
-    response = c.get('/')
+    response = c.get("/")
     assert response.json == {
-        'collections': {
-            'users': {
-                '@id': '/users'
-            },
-            'groups': {
-                '@id': '/groups'
-            }
-        }
+        "collections": {"users": {"@id": "/users"}, "groups": {"@id": "/groups"}}
     }

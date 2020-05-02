@@ -9,13 +9,12 @@ from more.emit import EmitApp
 
 
 class App(CerberusApp, PonyApp, EmitApp):
-
-    @morepath.dispatch_method(match_key('name'))
+    @morepath.dispatch_method(match_key("name"))
     def service(self, name):
-        raise NotImplementedError   # pragma: no cover
+        raise NotImplementedError  # pragma: no cover
 
 
-with open('server/settings/default.yml') as defaults:
+with open("server/settings/default.yml") as defaults:
     defaults_dict = yaml.safe_load(defaults)
 
 App.init_settings(defaults_dict)
@@ -34,14 +33,14 @@ def verify_identity(identity):
 
 @App.link_prefix()
 def simple_link_prefix(request):
-    return ''
+    return ""
 
 
 class ProductionApp(App):
     pass
 
 
-with open('server/settings/production.yml') as settings:
+with open("server/settings/production.yml") as settings:
     settings_dict = yaml.safe_load(settings)
 
 ProductionApp.init_settings(settings_dict)
@@ -51,7 +50,7 @@ class TestApp(App):
     pass
 
 
-with open('server/settings/test.yml') as settings:
+with open("server/settings/test.yml") as settings:
     settings_dict = yaml.safe_load(settings)
 
 TestApp.init_settings(settings_dict)

@@ -8,12 +8,12 @@ from .model import User, Group
 
 class UserCollection:
     def __init__(self, sort_by, sort_dir, search, page, pagesize):
-        if sort_by == 'emailConfirmed':
-            self.sort_by = 'email_confirmed'
-        elif sort_by == 'lastLogin':
-            self.sort_by = 'last_login'
-        elif sort_by == 'registerIP':
-            self.sort_by = 'register_ip'
+        if sort_by == "emailConfirmed":
+            self.sort_by = "email_confirmed"
+        elif sort_by == "lastLogin":
+            self.sort_by = "last_login"
+        elif sort_by == "registerIP":
+            self.sort_by = "register_ip"
         else:
             self.sort_by = sort_by
 
@@ -31,11 +31,10 @@ class UserCollection:
         if self.search:
             s = self.search.lower()
             user_select = User.select(
-                lambda u: s in u.email.lower()
-                or s in u.nickname.lower()
+                lambda u: s in u.email.lower() or s in u.nickname.lower()
             )
         if self.sort_by:
-            if self.sort_dir == 'desc':
+            if self.sort_dir == "desc":
                 sort_by = desc(getattr(User, self.sort_by))
             else:
                 sort_by = getattr(User, self.sort_by)
@@ -46,8 +45,7 @@ class UserCollection:
 
         return user_select
 
-    def add(self, nickname, email, password,
-            register_ip='', group_names=[]):
+    def add(self, nickname, email, password, register_ip="", group_names=[]):
         ph = PasswordHasher()
         password_hash = ph.hash(password)
         groups = []
@@ -55,8 +53,11 @@ class UserCollection:
             for group_name in group_names:
                 groups.append(Group.get(name=group_name))
         user = User(
-            nickname=nickname, email=email, password=password_hash,
-            register_ip=register_ip, groups=groups
+            nickname=nickname,
+            email=email,
+            password=password_hash,
+            register_ip=register_ip,
+            groups=groups,
         )
         user.flush()
         return user

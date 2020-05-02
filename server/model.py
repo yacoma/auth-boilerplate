@@ -50,7 +50,7 @@ class ResetPassword:
 
 
 class User(db.Entity):
-    _table_ = 'users'
+    _table_ = "users"
 
     nickname = Required(str, 255)
     email = Required(str, 255, unique=True)
@@ -58,22 +58,22 @@ class User(db.Entity):
     last_login = Optional(datetime, 0)
     registered = Required(datetime, 0, default=datetime.utcnow)
     register_ip = Optional(str, 255)
-    groups = Set('Group')
+    groups = Set("Group")
     password = Required(str, 255)
     nonce = Required(str, 32, default=uuid4().hex)
 
     def update(self, payload={}):
         update_payload = {}
         for attribute, value in payload.items():
-            if attribute == 'groups':
+            if attribute == "groups":
                 group_names = []
                 for group in value:
                     group_names.append(Group.get(name=group))
-                update_payload['groups'] = group_names
-            elif attribute == 'password':
+                update_payload["groups"] = group_names
+            elif attribute == "password":
                 ph = PasswordHasher()
                 password_hash = ph.hash(value)
-                update_payload['password'] = password_hash
+                update_payload["password"] = password_hash
             else:
                 update_payload[attribute] = value
         self.set(**update_payload)
@@ -89,11 +89,11 @@ class Group(db.Entity):
     def update(self, payload={}):
         update_payload = {}
         for attribute, value in payload.items():
-            if attribute == 'users':
+            if attribute == "users":
                 user_emails = []
                 for user_email in value:
                     user_emails.append(User.get(email=user_email))
-                update_payload['users'] = user_emails
+                update_payload["users"] = user_emails
             else:
                 update_payload[attribute] = value
         self.set(**update_payload)
