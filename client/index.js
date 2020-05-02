@@ -1,6 +1,5 @@
 import 'semantic-ui-css/semantic.css'
 import './styles.css'
-import './index.html'
 
 import React from 'react'
 import { render } from 'react-dom'
