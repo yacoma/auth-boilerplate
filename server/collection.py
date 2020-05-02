@@ -29,8 +29,10 @@ class UserCollection(object):
     def query(self):
         user_select = User.select()
         if self.search:
+            s = self.search.lower()
             user_select = User.select(
-                lambda u: self.search in u.nickname or self.search in u.email
+                lambda u: s in u.email.lower()
+                or s in u.nickname.lower()
             )
         if self.sort_by:
             if self.sort_dir == 'desc':
