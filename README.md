@@ -30,7 +30,7 @@ You can go to <http://localhost:8000> to see the UI.
 
 ### Cerebral React client
 
-JavaScript code is in the client subdirectory. To rebuild the bundle you
+JavaScript code is in the client sub-directory. To rebuild the bundle you
 need to install the JS dependencies (listed in package.json). Run:
 
 ```sh
@@ -56,23 +56,23 @@ npm start
 
 If you want to create a pull request, this is the workflow:
 
-* Fork the repository on GitHub and clone it.
-* Checkout a new branch.
+- Fork the repository on GitHub and clone it.
+- Checkout a new branch.
   ```sh
   git checkout -b patch-1
   ```
-* Make the changes you want.
-* Add them to git.
+- Make the changes you want.
+- Add them to git.
   ```sh
   git add .
   ```
-* For making commits use the following cli which will guide you.
-  Javascript code will be auto-formatted with `prettier` during commit.
+- For making commits use the following cli which will guide you.
+  JavaScript code will be auto-formatted with `prettier` during commit.
   ```sh
   npm run commit
   ```
-* Push the changes.
+- Push the changes.
   ```sh
   git push --set-upstream origin patch-1
   ```
-* Create the pull request on GitHub.
+- Create the pull request on GitHub.
