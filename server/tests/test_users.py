@@ -525,7 +525,7 @@ def test_confirm_email():
     )
 
     flash = urlsafe_b64encode(
-        'The confirmation link is invalid or has been expired'.encode('utf-8')
+        b'The confirmation link is invalid or has been expired'
     ).replace(b'=', b'').decode('utf-8')
     assert '302 Found' in response.text
     assert 'flash=' + flash in response.text
@@ -538,7 +538,7 @@ def test_confirm_email():
     )
 
     flash = urlsafe_b64encode(
-        'Thank you for confirming your email address'.encode('utf-8')
+        b'Thank you for confirming your email address'
     ).replace(b'=', b'').decode('utf-8')
     assert '302 Found' in response.text
     assert 'flash=' + flash in response.text
@@ -551,7 +551,7 @@ def test_confirm_email():
     )
 
     flash = urlsafe_b64encode(
-        'Your email is already confirmed. Please log in.'.encode('utf-8')
+        b'Your email is already confirmed. Please log in.'
     ).replace(b'=', b'').decode('utf-8')
     assert '302 Found' in response.text
     assert 'flash=' + flash in response.text
@@ -621,8 +621,7 @@ def test_reset_password(smtp):
     )
 
     flash = urlsafe_b64encode(
-        'The password reset link is invalid or has been expired'
-        .encode('utf-8')
+        b'The password reset link is invalid or has been expired'
     ).replace(b'=', b'').decode('utf-8')
     assert '302 Found' in response.text
     assert 'flash=' + flash in response.text
@@ -635,8 +634,7 @@ def test_reset_password(smtp):
     )
 
     flash = urlsafe_b64encode(
-        'Your email must be confirmed before resetting the password'
-        .encode('utf-8')
+        b'Your email must be confirmed before resetting the password'
     ).replace(b'=', b'').decode('utf-8')
     assert '302 Found' in response.text
     assert 'flash=' + flash in response.text

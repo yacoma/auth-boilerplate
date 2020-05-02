@@ -6,7 +6,7 @@ from pony.orm import desc, count
 from .model import User, Group
 
 
-class UserCollection(object):
+class UserCollection:
     def __init__(self, sort_by, sort_dir, search, page, pagesize):
         if sort_by == 'emailConfirmed':
             self.sort_by = 'email_confirmed'
@@ -62,7 +62,7 @@ class UserCollection(object):
         return user
 
 
-class GroupCollection(object):
+class GroupCollection:
     def query(self):
         return Group.select()
 

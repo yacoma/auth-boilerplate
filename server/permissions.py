@@ -2,11 +2,11 @@ from .app import App
 from .model import User, Group, ResetNonce
 
 
-class ViewPermission(object):
+class ViewPermission:
     pass
 
 
-class EditPermission(object):
+class EditPermission:
     pass
 
 

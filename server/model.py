@@ -6,19 +6,19 @@ from pony.orm import Database, Required, Optional, Set
 db = Database()
 
 
-class Root(object):
+class Root:
     pass
 
 
-class Login(object):
+class Login:
     pass
 
 
-class Refresh(object):
+class Refresh:
     pass
 
 
-class ResetNonce(object):
+class ResetNonce:
     def __init__(self, id):
         self.id = id
 
@@ -27,17 +27,17 @@ class ResetNonce(object):
         user.nonce = uuid4().hex
 
 
-class ConfirmEmail(object):
+class ConfirmEmail:
     def __init__(self, id, token):
         self.id = id
         self.token = token
 
 
-class SendResetEmail(object):
+class SendResetEmail:
     pass
 
 
-class ResetPassword(object):
+class ResetPassword:
     def __init__(self, id, token):
         self.id = id
         self.token = token

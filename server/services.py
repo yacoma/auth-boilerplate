@@ -6,7 +6,7 @@ from .app import App
 from .model import ConfirmEmail, ResetPassword
 
 
-class MailerService(object):
+class MailerService:
     def __init__(self, username, password, host, port,
                  starttls, ssl, skip_login, token_service):
         self.smtp = yagmail.SMTP(
@@ -19,38 +19,38 @@ class MailerService(object):
         return self.smtp.send(email, subject, message)
 
     def send_confirmation_email(self, user, request):
-            token = self.token_service.create(
-                user.email, 'email-confirmation-salt'
-            )
+        token = self.token_service.create(
+            user.email, 'email-confirmation-salt'
+        )
 
-            confirm_url = request.application_url + request.class_link(
-                ConfirmEmail,
-                variables={'id': user.id, 'token': token}
-            )
+        confirm_url = request.application_url + request.class_link(
+            ConfirmEmail,
+            variables={'id': user.id, 'token': token}
+        )
 
-            with open("server/templates/email_confirmation.html") as f:
-                email_template = f.read()
+        with open("server/templates/email_confirmation.html") as f:
+            email_template = f.read()
 
-            html = email_template.format(confirm_url=confirm_url)
+        html = email_template.format(confirm_url=confirm_url)
 
-            self._send(user.email, 'Confirm Your Email Address', html)
+        self._send(user.email, 'Confirm Your Email Address', html)
 
     def send_reset_email(self, user, request):
-            token = self.token_service.create(
-                user.email, 'password-reset-salt'
-            )
+        token = self.token_service.create(
+            user.email, 'password-reset-salt'
+        )
 
-            reset_url = request.application_url + request.class_link(
-                ResetPassword,
-                variables={'id': user.id, 'token': token}
-            )
+        reset_url = request.application_url + request.class_link(
+            ResetPassword,
+            variables={'id': user.id, 'token': token}
+        )
 
-            with open("server/templates/password_reset.html") as f:
-                email_template = f.read()
+        with open("server/templates/password_reset.html") as f:
+            email_template = f.read()
 
-            html = email_template.format(reset_url=reset_url)
+        html = email_template.format(reset_url=reset_url)
 
-            self._send(user.email, 'Password Reset Requested', html)
+        self._send(user.email, 'Password Reset Requested', html)
 
 
 @App.method(App.service, name='mailer')
@@ -71,7 +71,7 @@ def mailer_service(app, name):
     )
 
 
-class EmailValidationService(object):
+class EmailValidationService:
     def normalize(self, email):
         try:
             v = validate_email(email, check_deliverability=False)
@@ -96,7 +96,7 @@ def email_validation_service(app, name):
     return EmailValidationService()
 
 
-class TokenService(object):
+class TokenService:
     def __init__(self, secret, max_age=None):
         self.serializer = URLSafeTimedSerializer(secret)
         self.max_age = max_age
