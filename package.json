@@ -39,7 +39,7 @@
     "react-dom": "16.8.6",
     "semantic-ui-css": "^2.4.1",
     "semantic-ui-react": "^0.88.2",
-    "uuid": "^8.0.0"
+    "uuidv4": "^6.0.8"
   },
   "devDependencies": {
     "@babel/core": "^7.9.6",
