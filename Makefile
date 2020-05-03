@@ -3,19 +3,20 @@
 install: env/bin/python
 
 env/bin/python:
-	virtualenv -p python3.5 --clear env
+	virtualenv -p python3 --clear env
 
 .PHONY:	deploylive
 
 deploylive: env/bin/python
-	env/bin/pip install --upgrade-strategy eager -U pip setuptools
-	env/bin/pip install --upgrade-strategy eager -Ue '.[production]'
+	env/bin/pip install -U pip setuptools
+	env/bin/pip install -Ue '.[production]'
 	rm -rf node_modules
 	npm install
+	rm -rf build
 	npm run build:production
-	rm -rf ../client/build
-	mkdir -p ../client/build
-	cp -a static/* ../client/build/
+	rm -rf ../client
+	mkdir ../client
+	cp -a build ../client
 
 	# check gunicorn config and create database if not present
 	export RUN_ENV=production; env/bin/gunicorn --check-config server.run

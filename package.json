@@ -16,7 +16,8 @@
   },
   "homepage": "https://github.com/henri-hulski/auth-boilerplate#readme",
   "scripts": {
-    "build": "parcel build -d build static/index.html  --public-url /static/ --no-cache",
+    "build": "NODE_ENV=development parcel build -d build static/index.html --public-url /static/ --no-minify --no-cache",
+    "build:production": "parcel build -d build static/index.html --no-cache",
     "commit": "git-cz",
     "commitmsg": "cz-customizable-ghooks",
     "coverage": "jest --coverage",
