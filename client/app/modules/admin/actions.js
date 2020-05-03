@@ -10,7 +10,7 @@ export function mergeUsers({ props, state, uuid }) {
       if (uidInState) {
         state.merge(`admin.users.${uidInState}`, user)
       } else {
-        state.set(`admin.users.${uuid}`, user)
+        state.set(`admin.users.${uuid()}`, user)
       }
       orderKey++
     }

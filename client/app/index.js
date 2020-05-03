@@ -1,16 +1,15 @@
-import uuid from 'uuid'
-
-import { Module } from 'cerebral'
-import HttpProvider from '@cerebral/http'
-import FormsProvider from '@cerebral/forms'
-import StorageModule from '@cerebral/storage'
-
-import user from './modules/user'
-import admin from './modules/admin'
-import settings from './modules/settings'
-import router from './router'
-import { AuthenticationError } from './errors'
 import * as sequences from './sequences'
+
+import { AuthenticationError } from './errors'
+import FormsProvider from '@cerebral/forms'
+import HttpProvider from '@cerebral/http'
+import { Module } from 'cerebral'
+import StorageModule from '@cerebral/storage'
+import admin from './modules/admin'
+import router from './router'
+import settings from './modules/settings'
+import user from './modules/user'
+import { uuid } from 'uuidv4'
 
 /* istanbul ignore next */
 const jwtHeader = localStorage.getItem('jwtHeader')
