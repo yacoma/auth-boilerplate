@@ -47,8 +47,8 @@ def wsgi_factory():  # pragma: no cover
         App.commit()
         app = App()
 
-    index = FileApp("static/index.html")
-    static = DirectoryApp("static")
+    index = FileApp("build/index.html")
+    static = DirectoryApp("build", index_page=None)
 
     setup_db(app)
 
