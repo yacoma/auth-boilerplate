@@ -1,16 +1,11 @@
 import 'semantic-ui-css/semantic.css'
 import './styles.css'
 
-import React from 'react'
-import { render } from 'react-dom'
-import controller from './controller'
-import { Container } from '@cerebral/react'
-
 import App from './components/App'
-
-// support tap events
-import injectTapEventPlugin from 'react-tap-event-plugin'
-injectTapEventPlugin()
+import { Container } from '@cerebral/react'
+import React from 'react'
+import controller from './controller'
+import { render } from 'react-dom'
 
 render(
   <Container controller={controller}>
