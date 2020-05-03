@@ -229,6 +229,28 @@ def test_user_collection():
 
     assert_dict_contains_subset(user_1, response.json["users"][0])
 
+    user_2 = {
+        "@id": "/users/2",
+        "nickname": "Mary",
+        "email": "mary@example.com",
+        "emailConfirmed": False,
+        "isAdmin": False,
+        "registerIP": "",
+    }
+
+    assert_dict_contains_subset(user_2, response.json["users"][1])
+
+    user_3 = {
+        "@id": "/users/3",
+        "nickname": "Jürgen",
+        "email": "juergen@example.com",
+        "emailConfirmed": False,
+        "isAdmin": False,
+        "registerIP": "",
+    }
+
+    assert_dict_contains_subset(user_3, response.json["users"][2])
+
 
 def test_sorted_user_collection():
     c = Client(App())
