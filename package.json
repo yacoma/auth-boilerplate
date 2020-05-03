@@ -16,14 +16,14 @@
   },
   "homepage": "https://github.com/henri-hulski/auth-boilerplate#readme",
   "scripts": {
-    "build": "parcel build -d build static/index.html --no-cache",
+    "build": "parcel build -d build static/index.html  --public-url /static/ --no-cache",
     "commit": "git-cz",
     "commitmsg": "cz-customizable-ghooks",
     "coverage": "jest --coverage",
     "format": "npm run lint -- --fix && prettier --write \"*.md\" \"docs/**/*.md\" \"*.json\"",
     "lint": "eslint \"client/**/*.js\"",
     "precommit": "lint-staged",
-    "start": "env/bin/gunicorn server.run&&parcel serve static/index.html --open",
+    "start": "npm run build&&env/bin/gunicorn server.run",
     "test": "jest"
   },
   "dependencies": {
