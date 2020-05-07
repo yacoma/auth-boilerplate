@@ -11,6 +11,7 @@
 - Email validation: [email_validator](https://github.com/JoshData/python-email-validator)
 - Password Hashing: [Argon2](https://argon2-cffi.readthedocs.io)
 - WSGI HTTP Server: [gunicorn](http://gunicorn.org)
+- Code formatter: [Black](https://black.readthedocs.io)
 
 # Morepath
 

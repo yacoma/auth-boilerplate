@@ -1,7 +1,7 @@
 # Overview
 
 - Programming language: [Javascript(ES6)](http://www.ecma-international.org/ecma-262/6.0)
-- State and side effects management: [Cerebral](http://cerebraljs.com)
+- State and side effects management: [Cerebral 4](http://cerebraljs.com)
 - View layer: [React](https://facebook.github.io/react)
 - UI framework: [Semantic UI React](http://react.semantic-ui.com)
 - Authentication: [JSON Web Token (JWT)](http://tools.ietf.org/html/draft-ietf-oauth-json-web-token)
