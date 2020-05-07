@@ -2,7 +2,7 @@ from setuptools import setup, find_packages
 
 name = "auth-boilerplate"
 description = "Authentication boilerplate based on Morepath and Cerebral"
-version = "1.1.0-dev0"
+version = "1.1.0"
 
 
 setup(
@@ -10,9 +10,9 @@ setup(
     version=version,
     description=description,
     author="Henri Hulski",
-    author_email="henri.hulski@gazeta.pl",
+    author_email="henri@yacoma.it",
     license="MIT",
-    url="https://github.com/henri-hulski/auth-boilerplate",
+    url="https://github.com/yacoma/auth-boilerplate",
     packages=find_packages(),
     include_package_data=True,
     zip_safe=False,

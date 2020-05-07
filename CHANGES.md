@@ -1,6 +1,6 @@
 # CHANGES
 
-## 1.1.0 (unreleased)
+## 1.1.0 (2020-05-07)
 
 - Server:
   - Upgrade to Python 3.7 and 3.8.

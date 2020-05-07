@@ -1,20 +1,20 @@
 {
   "name": "auth-boilerplate",
-  "version": "1.1.0-dev0",
+  "version": "1.1.0",
   "description": "",
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/henri-hulski/auth-boilerplate.git"
+    "url": "git+https://github.com/yacoma/auth-boilerplate.git"
   },
   "keywords": [
     "cerebral"
   ],
-  "author": "Henri Hulski <henri.hulski@gazeta.pl",
+  "author": "Henri Hulski <henri@yacoma.it",
   "license": "MIT",
   "bugs": {
-    "url": "https://github.com/henri-hulski/auth-boilerplate/issues"
+    "url": "https://github.com/yacoma/auth-boilerplate/issues"
   },
-  "homepage": "https://github.com/henri-hulski/auth-boilerplate#readme",
+  "homepage": "https://github.com/yacoma/auth-boilerplate#readme",
   "scripts": {
     "build": "NODE_ENV=development parcel build -d build static/index.html --public-url /static/ --no-minify --no-cache",
     "build:production": "parcel build -d build static/index.html --no-cache",
