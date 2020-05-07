@@ -25,7 +25,7 @@ after_success:
     -in deploy/deploy_rsa.enc -out deploy_rsa -d
   - |
     echo $TRAVIS_BRANCH; echo $TRAVIS_PULL_REQUEST; echo $TOXENV;
-    if [[ $TRAVIS_BRANCH == 'master' && $TRAVIS_PULL_REQUEST == 'false' && $TOXENV == 'py35' ]]; then
+    if [[ $TRAVIS_BRANCH == 'master' && $TRAVIS_PULL_REQUEST == 'false' && $TOXENV == 'py37' ]]; then
       eval "$(ssh-agent -s)" # start the ssh agent
       chmod 600 $TRAVIS_BUILD_DIR/deploy_rsa # this key should have push access
       ssh-add $TRAVIS_BUILD_DIR/deploy_rsa
