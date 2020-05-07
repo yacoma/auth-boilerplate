@@ -5,7 +5,8 @@
 - View layer: [React](https://facebook.github.io/react)
 - UI framework: [Semantic UI React](http://react.semantic-ui.com)
 - Authentication: [JSON Web Token (JWT)](http://tools.ietf.org/html/draft-ietf-oauth-json-web-token)
-- Testing Framework: [Jest](https://jestjs.io)
+- Testing framework: [Jest](https://jestjs.io)
+- Application bundler: [Parcel](https://parceljs.org/)
 
 # Cerebral
 
