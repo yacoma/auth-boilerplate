@@ -1,13 +1,13 @@
 {
   "name": "auth-boilerplate",
-  "version": "1.1.0",
+  "version": "2.0.0-dev0",
   "description": "",
   "repository": {
     "type": "git",
     "url": "git+https://github.com/yacoma/auth-boilerplate.git"
   },
   "keywords": [
-    "cerebral"
+    "overmind"
   ],
   "author": "Henri Hulski <henri@yacoma.it",
   "license": "MIT",

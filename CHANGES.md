@@ -1,5 +1,11 @@
 # CHANGES
 
+## 2.0.0 (unreleased)
+
+- Client:
+  - Switch from Cerebral to Overmind.
+  - Use Typescript.
+
 ## 1.1.0 (2020-05-07)
 
 - Server:

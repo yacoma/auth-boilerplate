@@ -1,8 +1,8 @@
 from setuptools import setup, find_packages
 
 name = "auth-boilerplate"
-description = "Authentication boilerplate based on Morepath and Cerebral"
-version = "1.1.0"
+description = "Authentication boilerplate based on Morepath and Overmind"
+version = "2.0.0-dev0"
 
 
 setup(
