@@ -9,7 +9,7 @@ import Pagination from './Pagination'
 
 export default connect(
   {
-    sortedUsers: sortedUsers,
+    sortedUsers,
     usersSortBy: state`admin.usersSortBy`,
     usersSortDir: state`admin.usersSortDir`,
     sortUsersClicked: signal`admin.sortUsersClicked`,

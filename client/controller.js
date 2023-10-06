@@ -1,15 +1,14 @@
-import base64UrlDecode from 'jwt-decode/lib/base64_url_decode'
 import { Controller } from 'cerebral'
 import Devtools from 'cerebral/devtools'
-
 import app from './app'
+import base64url from 'base64url'
 import { extractUrlParams } from './utils'
 
 const urlParams = extractUrlParams(['flash', 'flashtype', '@id'])
 
 const controller = Controller(
   app({
-    flash: urlParams.flash ? base64UrlDecode(urlParams.flash) : null,
+    flash: urlParams.flash ? base64url.decode(urlParams.flash) : null,
     flashType: urlParams.flashtype,
   }),
   {
