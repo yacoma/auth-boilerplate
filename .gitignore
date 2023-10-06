@@ -17,6 +17,11 @@ htmlcov
 nosetests.xml
 coverage.xml
 
+# Virtualenv
+/env/
+/venv/
+/.venv/
+
 # Sphinx documentation
 docs/_build/
 
